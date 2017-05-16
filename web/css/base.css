@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+.container{
+	width: 80%;
+}
+#hasira01{
+	background-color: #A7A7A7;
+	width: 10%;
+	height: 100vh;
+	float: left;
+}
+#hasira02{
+	background-color: #A7A7A7;
+	width: 10%;
+	height: 100vh;
+	float: right;
+}
