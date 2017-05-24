@@ -16,8 +16,20 @@
     <script>
         $(function(){
             $('#fullpage').fullpage({
-                verticalCentered:false,navigation:true,navigationTooltips:['TOP','概要','コンテンツ','メンバー','Twitter'],showActiveTooltip:true,});
+                verticalCentered:false,});
         });
+        
+        $(function(){
+            $('a[href^=#]').click(function(){
+                var speed = 500;
+                var href= $(this).attr("href");
+                var target = $(href == "#" || href == "" ? 'html' : href);
+                var position = target.offset().top;
+                $("html, body").animate({scrollTop:position}, speed,"swing");
+                return false;
+            });
+        });
+
     </script>    
 </head>
 
@@ -55,6 +67,15 @@
         <div class="section" id="02">
             <div id="contents">
                 <div id="hasira02">
+                    <div id="menu">
+                        <ul>
+                            <li><a href="#01">TOP</a></li>
+                            <li><a href="#02">プロジェクト</a></li>
+                            <li><a href="#03">コンテンツ</a></li>
+                            <li><a href="#04">メンバー</a></li>
+                            <li><a href="#05">Twitter</a></li>
+                        </ul> 
+                    </div>
                 </div>
                 <div class="container">
                     <h2>コンテンツ</h2>
