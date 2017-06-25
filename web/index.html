@@ -1,101 +1,194 @@
 <!DOCTYPE HTML>
 <html lang="ja">
+
 <head>
-    <meta charset="utf-8"/>
-    <title></title>
-    <link rel="stylesheet" href=""/>
-    <script type="text/javascript" src=""></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-    <script src="js/vendors/jquery.easings.min.js"></script>
-    <script src="js/vendors/jquery.slimscroll.min.js"></script>
-    <script src="js/jquery.fullPage.min.js"></script>
-    <script>
-        $(document).ready(function() {
-			$('#fullpage').fullpage({verticalCentered:false,});
-        });
-		
-    </script>
-    
-    <link rel="stylesheet" href="css/jquery.fullPage.css">
-    <link rel="stylesheet" href="css/base.css"><!-- このcssは自作しますた。こっちに指示描く感じで-->
+  <meta charset="utf-8" />
+  <title></title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+  <script src="js/vendors/jquery.easings.min.js"></script>
+  <script src="js/jquery.fullPage.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css">
+
+
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <script src="js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/base.css">
+  <!-- このcssは自作しますた。こっちに指示描く感じで-->
+  <script src="js/base.js"></script>
+
 </head>
 
 <body>
-    <div id="fullpage">
-        <div class="section">
-            <div id="top">
-        
-            </div>
-        </div>
-        <div class="section">
-            <div id="pro">
-                <div id="hasira01">
-        
-                </div>
-                <div class="container">
-                    <h2>プロジェクト概要</h2>
-                    <div id="box_up">
-                        <div class="box">
-                            <p>このプロジェクトは2020年のプログラミング必修化に合わせ、遊びの中でプログラミングに触れることを目的としたコンテンツを作成するものです。遊んでいる感覚で論理的思考や創造力を育てられる、そんなコンテンツを目標に活動しています。</p>
-                        </div>
-                        <div class="box">
-                            <img src="" alt="" width="40%" height="">
-                        </div>
-                    </div>
-                    <div id="box_down">
-                        <div class="box">
-                            <img src="" alt="" width="40%" height="">
-                        </div>
-                        <div class="box">
-                            <p>プログラミング教育は、アイデアや課題を見つけ、解決策をイメージする創造力やその解決策やアイデアの完成形にたどり着くプロセスを考え、選択できる論理的思考能力を育てることを目的にしています。実際のプログラミング言語でなく、プログラミングの本質的な部分に着目しているのが現在のプログラミング必修化の目指すところになっています。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section" id="02">
-            <div id="contents">
-                <div id="hasira02">
-                </div>
-                <div class="container">
-                    <h2>コンテンツ</h2>
-                    <div class="box_cont">
-                        <h3>企画名</h3>
-                        <img src="" alt="" width="80%">
-                        <br/>
-                        <button class="" onclick="location.href=''" disabled>リンク</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section" id="03">
-            <div id="member">
-                <img alt="" src="" class="">
-                <img alt="" src="" class="">
-                <img alt="" src="" class="">
-                <img alt="" src="" class="">
-                <img alt="" src="" class="">
+  <ul id="myMenu">
+    <li data-menuanchor="topPage" id="first"><a href="#topPage">トップ</a></li>
+    <li data-menuanchor="firstPage"><a href="#firstPage">プロジェクト概要</a></li>
+    <li data-menuanchor="secondPage"><a href="#secondPage">コンテンツについて</a></li>
+    <li data-menuanchor="thirdPage"><a href="#thirdPage">メンバー</a></li>
+    <li data-menuanchor="fourthPage"><a href="#fourthPage">Twitter</a></li>
+  </ul>
+  <div id="mov"><img src="image/move.gif" id="switch"></div>
 
-                <h2>メンバー</h2>
 
-                <img alt="" src="" class="">
-                <img alt="" src="" class="">
-                <img alt="" src="" class="">
-                <img alt="" src="" class="">
-                <img alt="" src="" class="">
-            </div>
+  <div id="fullpage">
+
+    <div class="section">
+      <div class="contain">
+        <img src="image/puzzle01.jpg" id="top_back" />
+        <div id="top">
+          <h3>プログラミング的思考を育てる</h3>
+          <h1>松永プロジェクト2017</h1>
         </div>
-        <div class="section" id="04">
-            <div id="twi">
-                <a class="twitter-timeline" href="https://twitter.com/mtngP_2017">Tweets by mtngP_2017</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </div>
-        </div>
+      </div>
     </div>
- 
-    
+
+
+    <div class="section">
+
+      <div id="pro">
+
+        <div id="hasira01">
+
+        </div>
+        <div class="container container-fluid">
+
+          <h2 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">プロジェクト概要</h2>
+          <div class="col-xs-10 col-sm-6 col-md-6 col-lg-6 box" style="height: 200px;">
+            <p>このプロジェクトは2020年の学習指導要領改訂でのプログラミング必修化に合わせ、ゲームの中でプログラミング的思考を目的としたコンテンツの企画・制作を行なっています。遊んでいる感覚で論理的思考や創造力を育てられる、そんなコンテンツの完成を目標に日々活動しています。</p>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <img src="image/no.jpg" alt="" width="100%" height="" class="image">
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <img src="image/no.jpg" alt="" width="100%" height="" class="image">
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 box" style="height: 430px;">
+            <p>私たちのコンテンツは、目的を達成するためのプロセスを考える論理的思考力や目的をイメージして表現する創造力、問題を発見し思考錯誤して解決する課題解決能力等の能力を育てることを目的としています。<br>これらの能力（プログラミング的思考）を身に付けることが今回のプログラミング必修化の目的であると判断し、その目的に適したコンテンツになるよう意識した活動を行なっています。</p>
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+    <div class="section" id="02">
+      <div id="contents">
+        <div id="hasira02">
+
+        </div>
+        <div class="container">
+          <h2>コンテンツ</h2>
+          <div class="box_cont">
+            <h3>コードカスタム（仮）</h3>
+            <img src="image/no.jpg" alt="" width="40%">
+            <br/>
+            <p>童話の主人公をプログラムで動かすゲーム。実行した結果で物語の展開が変わる？</p>
+            <button class="btn" disabled>詳細へ！</button>
+          </div>
+          <div class="box_cont">
+            <h3>すごろく（仮）</h3>
+            <img src="image/no.jpg" alt="" width="40%">
+            <br/>
+            <p>料理を作るためにおつかいへ。早く料理を作るにはどうプログラムを組めばいいかな？</p>
+            <button class="btn" disabled>詳細へ！</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="section" id="03">
+
+      <div id="member">
+        <div id="hasira03">
+        </div>
+
+        <div class="container">
+          <div id="member">
+            <h2>メンバー</h2>
+            <div class="who"><img alt="" src="image/icon.jpg">
+              <p>松永賢次</p>
+              <p style="font-size: 0.8em; width: 160px; margin: 10px auto;">ネットワーク情報学部教授</p>
+            </div>
+
+            <div class="who"><img alt="" src="image/icon.jpg">
+              <p>峯岸朋弥</p>
+              <p style="font-size: 0.8em; width: 160px; margin: 10px auto;">SD NS プロジェクト代表</p>
+            </div>
+            <div class="who"><img alt="" src="image/icon.jpg">
+              <p>小金井美里</p>
+              <p style="font-size: 0.8em; width: 160px; margin: 10px auto;">IxD CD プロジェクトリーダー</p>
+            </div>
+            <div class="who"><img alt="" src="image/icon.jpg">
+              <p>越川拓実</p>
+              <p style="font-size: 0.8em; width: 40px; margin: 10px auto;">IxD CD</p>
+            </div>
+            <div class="who"><img alt="" src="image/icon.jpg">
+              <p>諸星南菜</p>
+              <p style="font-size: 0.8em; width: 40px; margin: 10px auto;">IxD IB</p>
+            </div>
+            <div class="who"><img alt="" src="image/icon.jpg">
+              <p>山下修平</p>
+              <p style="font-size: 0.8em; width: 40px; margin: 10px auto;">IxD IS</p>
+            </div>
+            <div class="who"><img alt="" src="image/icon.jpg">
+              <p>齋藤陸弥</p>
+              <p style="font-size: 0.8em; width: 40px; margin: 10px auto;">SD NS</p>
+            </div>
+            <div class="who"><img alt="" src="image/icon.jpg">
+              <p>小原拓哉</p>
+              <p style="font-size: 0.8em; width: 40px; margin: 10px auto;">IxD SI</p>
+            </div>
+            <div class="who"><img alt="" src="image/icon.jpg">
+              <p>宮崎龍一</p>
+              <p style="font-size: 0.8em; width: 50px; margin: 10px auto;">SD NS(?)</p>
+            </div>
+            <div class="who"><img alt="" src="image/icon.jpg">
+              <p>一ノ瀬早紀</p>
+              <p style="font-size: 0.8em; width: 40px; margin: 10px auto;">IxD CD</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section" id="04">
+      <div id="hasira04">
+      </div>
+      <div id="twi">
+        <a class="twitter-timeline" href="https://twitter.com/mtngP_2017" data-height="800px">Tweets by mtngP_2017</a>
+        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+      </div>
+
+      <div id="hasira05">
+      </div>
+    </div>
+  </div>
+
+
 </body>
 
+<script>
+  $(function() {
+    $('#fullpage').fullpage({
+      verticalCentered: false,
+      anchors: ['topPage', 'firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
+      menu: '#myMenu',
+    });
+  });
 
+  $(function() {
+    $('a[href^=#]').click(function() {
+      var speed = 500;
+      var href = $(this).attr("href");
+      var target = $(href === "#" || href === "" ? 'html' : href);
+      var position = target.offset().top;
+      $("html, body").animate({
+        scrollTop: position
+      }, speed, "swing");
+      return false;
+    });
+  });
+</script>
 
 </html>
