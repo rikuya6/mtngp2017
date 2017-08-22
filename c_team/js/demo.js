@@ -12,11 +12,17 @@ window.onload = function Main() {
     game.rootScene.addChild(bear);
     bear.addEventListener("enterframe", function() {
       this.x += 1;
-      this.frame = this.age % 2 + 6;
+      // this.frame = this.age % 2 + 6;
+      if(this.age % 8 == 0){
+        this.frame = (this.frame + 1) % 2 + 6;
+      }
+      if(320 < this.x){
+        this.x = -32;
+      }
     });
-    bear.addEventListener("touchstart", function() {
-      game.rootScene.removeChild(bear);
-    });
+    // bear.addEventListener("touchstart", function() {
+    //   game.rootScene.removeChild(bear);
+    // });
   };
   game.start();
 };
