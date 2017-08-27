@@ -86,11 +86,21 @@ window.onload = function() {
     player.isMoving = false;
     player.direction = 0;
     player.walk = 1;
+    var move = new MoveController();
     player.addEventListener('enterframe', function() {
+      if (move.isNextOrder()) {
+        switch (move.nextOrder()) {
+          case 1:
+            game.input.right = true;
+            break;
+          case 2:
+            game.input.down = true;
+            break;
+        }
+      }
       this.frame = this.direction * 3 + this.walk;
       if (this.isMoving) {
         this.moveBy(this.vx, this.vy);
-
         if (!(game.frame % 3)) {
           this.walk++;
           this.walk %= 3;
@@ -114,12 +124,13 @@ window.onload = function() {
           this.direction = 0;
           this.vy = 4;
         }
+        game.input.right = game.input.left = game.input.up = game.input.down = false;
         if (this.vx || this.vy) {
           var x = this.x + (this.vx ? this.vx / Math.abs(this.vx) * 16 : 0) + 16;
           var y = this.y + (this.vy ? this.vy / Math.abs(this.vy) * 16 : 0) + 16;
           if (0 <= x && x < map.width && 0 <= y && y < map.height && !map.hitTest(x, y)) {
             this.isMoving = true;
-            game.input.right = game.input.left = game.input.up = game.input.down = false; // @TODO 暫定
+            // game.input.right = game.input.left = game.input.up = game.input.down = false; // @TODO 暫定
             arguments.callee.call(this);
           }
         }
@@ -132,18 +143,12 @@ window.onload = function() {
     var button = new Button("▶️");
     button.moveTo(90, 120);
     game.rootScene.addChild(button);
-    button.ontouchstart = function() {
-      // @TODO 正しく動作しない。非同期処理
-      this.text = "Running";
-      moveOneStepRight();
-      moveOneStepRight();
-      moveOneStepRight();
-    };
 
-    function moveOneStepRight() {
-      game.input.right = true;
-      // game.input.right = false;
-    }
+    button.ontouchstart = function() {
+      this.text = "Running";
+      move.moveOneStepRight();
+      move.moveOneStepDown();
+    };
 
     // var pad = new Pad();
     // pad.x = 0;
@@ -161,3 +166,28 @@ window.onload = function() {
   };
   game.start();
 };
+
+class MoveController{
+  constructor() {
+    this.orders = [];
+  }
+
+  moveOneStepRight() {
+    this.orders.push(1);
+    console.log("moveOneStepRight");
+  }
+
+  moveOneStepDown() {
+    this.orders.push(2);
+    console.log("moveOneStepDown");
+  }
+
+  isNextOrder() {
+    return this.orders.length > 0;
+  }
+
+  nextOrder() {
+    if (this.orders.length <= 0) throw new Error("次のorderが空です。");
+    return this.orders.shift();
+  }
+}
