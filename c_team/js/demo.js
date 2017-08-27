@@ -1,93 +1,99 @@
-/*
- * Same sample than examples/expert/rpg
- * but instead of using a group object the
- * map class is mixed with a group so that
- * objects can be nested directly within a
- * map:
- *
-    var MapGroup = enchant.Class.mixClasses(Map, Group,true);
-    var map = new MapGroup(16, 16);
-
-    map.addChild(player);
-    map.addChild(foregroundMap);
-
-    game.rootScene.addChild(map);
-
-    game.rootScene.addEventListener('enterframe', function(e) {
-        ...
-        map.x = x;
-        map.y = y;
-    });
- *
- * previously:
- *
-    var map = new Map(16, 16);
-    ...
-    var stage = new Group();
-    stage.addChild(map);
-    stage.addChild(player);
-    stage.addChild(foregroundMap);
-
-    game.rootScene.addChild(stage);
-
-    game.rootScene.addEventListener('enterframe', function(e) {
-        ...
-        stage.x = x;
-        stage.y = y;
-    });
- *
- */
-
 enchant();
 
+const gameSize = [x = 320, y = 320];
+const spriteSize = [x = 32, y = 32];
+
 window.onload = function() {
-  var game = new Game(160, 160);
-  game.fps = 15;
-  game.preload('map1.gif', 'chara0.gif');
+  var game = new Game(gameSize.x,gameSize.y);
+  game.preload("RZukin.png", "edit_map.png");
+
   game.onload = function() {
+    let rzukin = new Sprite(32, 32);
+    rzukin.image = game.assets["RZukin.png"];
+    rzukin.x = 0;
+    rzukin.y = 0;
+    rzukin.frame = 1;
+    rzukin.isMoving = false;
+    rzukin.direction = 0;
+    rzukin.walk = 1;
+
+    let square = new Sprite(320, 320);
+    square.x = 0;
+    square.y = 0;
+
+    let suef = new Surface(320, 320);
+    square.image = suef;
+    let cont = suef.context;
+    cont.beginPath();
+    for(i=-1; i < 320; i += 33){
+      cont.moveTo(i, 0);
+      cont.lineTo(i, 320);
+      cont.moveTo(0, i);
+      cont.lineTo(320, i);
+    }
+    cont.stroke();
+
     var MapGroup = enchant.Class.mixClasses(Map, Group, true);
-    var map = new MapGroup(16, 16);
-    map.image = game.assets['map1.gif'];
+    var map = new MapGroup(32, 32);
+    map.image = game.assets["edit_map.png"];
     map.loadData([
-      [322, 322, 322, 322, 322, 322, 322, 322, 322, 322, 322],
-      [322, 322, 322, 322, 322, 322, 322, 322, 322, 322, 322],
-      [322, 322, 322, 322, 322, 322, 322, 322, 322, 322, 322],
-      [322, 322, 322, 322, 322, 322, 322, 322, 322, 322, 322],
-      [322, 322, 322, 322, 322, 322, 322, 322, 322, 322, 322],
-      [322, 322, 322, 322, 322, 322, 322, 322, 322, 322, 322]
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0]
     ]);
     map.collisionData = [
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0]
     ];
 
-    var foregroundMap = new Map(16, 16);
-    foregroundMap.image = game.assets['map1.gif'];
+    var foregroundMap = new Map(32, 32);
+    foregroundMap.image = game.assets["edit_map.png"];
     foregroundMap.loadData([
-      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
     ]);
 
-    var player = new Sprite(32, 32);
-    player.x = 0;
-    player.y = 0;
-    var image = new Surface(96, 128);
-    image.draw(game.assets['chara0.gif'], 0, 0, 96, 128, 0, 0, 96, 128);
-    player.image = image;
+    map.addChild(rzukin);
+    map.addChild(foregroundMap);
+    map.addChild(square);
+    game.rootScene.addChild(map);
 
-    player.isMoving = false;
-    player.direction = 0;
-    player.walk = 1;
+    var button = new Button("▶️");
+    button.moveTo(140, 0);
+    game.rootScene.addChild(button);
+
+    button.ontouchstart = function() {
+      this.text = "Running";
+      move.moveOneStepRight();
+      move.moveOneStepDown();
+    };
+
+
     var move = new MoveController();
-    player.addEventListener('enterframe', function() {
+    rzukin.addEventListener('enterframe', function() {
       if (move.isNextOrder()) {
         switch (move.nextOrder()) {
           case 1:
@@ -105,7 +111,7 @@ window.onload = function() {
           this.walk++;
           this.walk %= 3;
         }
-        if ((this.vx && (this.x - 8) % 16 == 0) || (this.vy && this.y % 16 == 0)) {
+        if ((this.vx && (this.x) % 32 == 0) || (this.vy && this.y % 32 == 0)) {
           this.isMoving = false;
           this.walk = 1;
         }
@@ -126,8 +132,8 @@ window.onload = function() {
         }
         game.input.right = game.input.left = game.input.up = game.input.down = false;
         if (this.vx || this.vy) {
-          var x = this.x + (this.vx ? this.vx / Math.abs(this.vx) * 16 : 0) + 16;
-          var y = this.y + (this.vy ? this.vy / Math.abs(this.vy) * 16 : 0) + 16;
+          var x = this.x + (this.vx ? this.vx / Math.abs(this.vx) * 32 : 0) + 32;
+          var y = this.y + (this.vy ? this.vy / Math.abs(this.vy) * 32 : 0) + 32;
           if (0 <= x && x < map.width && 0 <= y && y < map.height && !map.hitTest(x, y)) {
             this.isMoving = true;
             // game.input.right = game.input.left = game.input.up = game.input.down = false; // @TODO 暫定
@@ -136,24 +142,6 @@ window.onload = function() {
         }
       }
     });
-    map.addChild(player);
-    map.addChild(foregroundMap);
-    game.rootScene.addChild(map);
-
-    var button = new Button("▶️");
-    button.moveTo(90, 120);
-    game.rootScene.addChild(button);
-
-    button.ontouchstart = function() {
-      this.text = "Running";
-      move.moveOneStepRight();
-      move.moveOneStepDown();
-    };
-
-    // var pad = new Pad();
-    // pad.x = 0;
-    // pad.y = 0;
-    // game.rootScene.addChild(pad);
 
     // game.rootScene.addEventListener('enterframe', function(e) {
     //   var x = Math.min((game.width - 16) / 2 - player.x, 0);
