@@ -187,7 +187,7 @@ class MoveController{
   }
 
   nextOrder() {
-    if (this.orders.length <= 0) throw new Error("次のorderが空です。");
+    if (!this.isNextOrder()) throw new Error("次のorderが空です。");
     return this.orders.shift();
   }
 }
