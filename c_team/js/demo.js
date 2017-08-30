@@ -97,7 +97,6 @@ window.onload = function() {
     };
 
     var move = new MoveController();
-    var check = false;
     rzukin.addEventListener('enterframe', function() {
       if (move.hasNextOrder() && !rzukin.isMoving) {
         switch (move.nextOrder()) {
