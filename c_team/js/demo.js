@@ -87,21 +87,34 @@ window.onload = function() {
 
     button.ontouchstart = function() {
       this.text = "Running";
-      move.moveRight();
-      move.moveDown();
+      for(let i = 0; i < 2; i++) {
+        move.moveRight();
+        move.moveDown();
+        move.moveUp();
+        move.moveLeft();
+        move.execute();
+      }
     };
 
-
     var move = new MoveController();
+    var check = false;
     rzukin.addEventListener('enterframe', function() {
-      if (move.hasNextOrder()) {
+      if (move.hasNextOrder() && !rzukin.isMoving) {
         switch (move.nextOrder()) {
+          case 0:
+            game.input.up = true;
+            break;
           case 1:
             game.input.right = true;
             break;
           case 2:
             game.input.down = true;
             break;
+          case 3:
+            game.input.left = true;
+            break;
+          default:
+            throw new Error("想定外のorderです。");
         }
       }
       this.frame = this.direction * 3 + this.walk;
@@ -157,6 +170,12 @@ window.onload = function() {
 class MoveController{
   constructor() {
     this.orders = [];
+    this.finish = false;
+  }
+
+  moveUp() {
+    this.orders.push(0);
+    console.log("moveUp");
   }
 
   moveRight() {
@@ -169,12 +188,32 @@ class MoveController{
     console.log("moveDown");
   }
 
+  moveLeft() {
+    this.orders.push(3);
+    console.log("moveLeft");
+  }
+
   hasNextOrder() {
-    return this.orders.length > 0;
+    return this.orders.length > 0 && this.finish;
   }
 
   nextOrder() {
     if (!this.hasNextOrder()) throw new Error("次のorderが空です。");
     return this.orders.shift();
+  }
+
+  execute() {
+    this.finish = true;
+  }
+
+  printAllOrder() {
+    for (var e in this.orders) {
+      console.log(this.orders[e]);
+    }
+  }
+
+  printNextOrder() {
+    if (this.hasNextOrder()) console.log(this.orders[0]);
+    else console.log("次のorderが空です。");
   }
 }
