@@ -94,7 +94,7 @@ window.onload = function() {
 
     var move = new MoveController();
     rzukin.addEventListener('enterframe', function() {
-      if (move.isNextOrder()) {
+      if (move.hasNextOrder()) {
         switch (move.nextOrder()) {
           case 1:
             game.input.right = true;
@@ -170,12 +170,12 @@ class MoveController{
     console.log("moveDown");
   }
 
-  isNextOrder() {
+  hasNextOrder() {
     return this.orders.length > 0;
   }
 
   nextOrder() {
-    if (!this.isNextOrder()) throw new Error("次のorderが空です。");
+    if (!this.hasNextOrder()) throw new Error("次のorderが空です。");
     return this.orders.shift();
   }
 }
