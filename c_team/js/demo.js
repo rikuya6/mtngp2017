@@ -100,6 +100,42 @@ window.onload = function() {
       }
     };
 
+    var s = new Sprite(32, 32);
+    // s.scale(0.2, 0.2);
+    var originX, originY;
+    s.image = game.assets["RZukin.png"];
+    s.x = 64;
+    s.addEventListener(enchant.Event.TOUCH_START, function(e){
+      originX = e.x - this.x;
+      originY = e.y - this.y;
+    });
+    s.addEventListener(enchant.Event.TOUCH_MOVE, function(e){
+      this.x = e.x - originX;
+      this.y = e.y - originY;
+    });
+    s.addEventListener(enchant.Event.TOUCH_END, function(e){
+      var x = [];
+      for (let i = 0; i <= 300; i+=32) x.push(i);
+      let xpos = 0, ypos = 0;
+      for (let i = 1; i < x.length; i++) {
+        if (e.x <= x[i]) {
+          xpos = --i;
+          break;
+        }
+      }
+      for (let i = 1; i < x.length; i++) {
+        if (e.y <= x[i]) {
+          ypos = --i;
+          break;
+        }
+      }
+      this.x = x[xpos];
+      this.y = x[ypos];
+      console.log(this.x, this.y);
+      this.parentNode.collisionData[this.y / 32 + 1][this.x / 32 + 1] = 1;
+    });
+    map.addChild(s);
+
     var move = new MoveController();
     rzukin.addEventListener('enterframe', function() {
       if (move.hasNextOrder() && !rzukin.isMoving) {
@@ -123,6 +159,7 @@ window.onload = function() {
       this.frame = this.direction * 3 + this.walk;
       if (this.isMoving) {
         this.moveBy(this.vx, this.vy);
+        console.log(this.x, this.y);
         if (game.frame % 3 != 0) {
           this.walk++;
           this.walk %= 3;
