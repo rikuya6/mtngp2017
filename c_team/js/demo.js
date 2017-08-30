@@ -1,14 +1,14 @@
 enchant();
 
-const gameSize = [x = 320, y = 320];
-const spriteSize = [x = 32, y = 32];
+const gameSize = {x: 320, y: 320};
+const spriteSize = {x: 32, y: 32};
 
 window.onload = function() {
   var game = new Game(gameSize.x,gameSize.y);
   game.preload("RZukin.png", "edit_map.png");
 
   game.onload = function() {
-    let rzukin = new Sprite(32, 32);
+    let rzukin = new Sprite(spriteSize.x, spriteSize.y);
     rzukin.image = game.assets["RZukin.png"];
     rzukin.x = 0;
     rzukin.y = 0;
@@ -34,7 +34,7 @@ window.onload = function() {
     cont.stroke();
 
     var MapGroup = enchant.Class.mixClasses(Map, Group, true);
-    var map = new MapGroup(32, 32);
+    var map = new MapGroup(spriteSize.x, spriteSize.y);
     map.image = game.assets["edit_map.png"];
     map.loadData([
       [0,0,0,0,0,0,0,0,0,0],
@@ -61,7 +61,7 @@ window.onload = function() {
       [0,0,0,0,0,0,0,0,0,0]
     ];
 
-    var foregroundMap = new Map(32, 32);
+    var foregroundMap = new Map(spriteSize.x, spriteSize.y);
     foregroundMap.image = game.assets["edit_map.png"];
     foregroundMap.loadData([
       [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
@@ -107,11 +107,11 @@ window.onload = function() {
       this.frame = this.direction * 3 + this.walk;
       if (this.isMoving) {
         this.moveBy(this.vx, this.vy);
-        if (!(game.frame % 3)) {
+        if (game.frame % 3 != 0) {
           this.walk++;
           this.walk %= 3;
         }
-        if ((this.vx && (this.x) % 32 == 0) || (this.vy && this.y % 32 == 0)) {
+        if ((this.vx && (this.x) % spriteSize.x == 0) || (this.vy && this.y % spriteSize.y == 0)) {
           this.isMoving = false;
           this.walk = 1;
         }
@@ -132,11 +132,10 @@ window.onload = function() {
         }
         game.input.right = game.input.left = game.input.up = game.input.down = false;
         if (this.vx || this.vy) {
-          var x = this.x + (this.vx ? this.vx / Math.abs(this.vx) * 32 : 0) + 32;
-          var y = this.y + (this.vy ? this.vy / Math.abs(this.vy) * 32 : 0) + 32;
+          var x = this.x + (this.vx ? this.vx / Math.abs(this.vx) * spriteSize.x : 0) + spriteSize.x;
+          var y = this.y + (this.vy ? this.vy / Math.abs(this.vy) * spriteSize.y : 0) + spriteSize.y;
           if (0 <= x && x < map.width && 0 <= y && y < map.height && !map.hitTest(x, y)) {
             this.isMoving = true;
-            // game.input.right = game.input.left = game.input.up = game.input.down = false; // @TODO 暫定
             arguments.callee.call(this);
           }
         }
