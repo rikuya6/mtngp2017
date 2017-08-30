@@ -1,14 +1,14 @@
 enchant();
 
-const gameSize = [x = 320, y = 320];
-const spriteSize = [x = 32, y = 32];
+const gameSize = {x: 320, y: 320};
+const spriteSize = {x: 32, y: 32};
 
 window.onload = function() {
   var game = new Game(gameSize.x,gameSize.y);
   game.preload("RZukin.png", "edit_map.png");
 
   game.onload = function() {
-    let rzukin = new Sprite(32, 32);
+    let rzukin = new Sprite(spriteSize.x, spriteSize.y);
     rzukin.image = game.assets["RZukin.png"];
     rzukin.x = 0;
     rzukin.y = 0;
@@ -25,7 +25,7 @@ window.onload = function() {
     square.image = suef;
     let cont = suef.context;
     cont.beginPath();
-    for(i=-1; i < 320; i += 33){
+    for(i=-1; i <= 320; i += 33){
       cont.moveTo(i, 0);
       cont.lineTo(i, 320);
       cont.moveTo(0, i);
@@ -34,46 +34,49 @@ window.onload = function() {
     cont.stroke();
 
     var MapGroup = enchant.Class.mixClasses(Map, Group, true);
-    var map = new MapGroup(32, 32);
+    var map = new MapGroup(spriteSize.x, spriteSize.y);
     map.image = game.assets["edit_map.png"];
     map.loadData([
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0]
+      [0,0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0,0]
     ]);
     map.collisionData = [
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0]
+      [1,1,1,1,1,1,1,1,1,1,1],
+      [1,0,0,0,0,0,0,0,0,0,1],
+      [1,0,0,0,0,0,0,0,0,0,1],
+      [1,0,0,0,0,0,0,0,0,0,1],
+      [1,0,0,0,0,0,0,0,0,0,1],
+      [1,0,0,0,0,0,0,0,0,0,1],
+      [1,0,0,0,0,0,0,0,0,0,1],
+      [1,0,0,0,0,0,0,0,0,0,1],
+      [1,0,0,0,0,0,0,0,0,0,1],
+      [1,0,0,0,0,0,0,0,0,0,1],
+      [1,1,1,1,1,1,1,1,1,1,1]
     ];
 
-    var foregroundMap = new Map(32, 32);
+    var foregroundMap = new Map(spriteSize.x, spriteSize.y);
     foregroundMap.image = game.assets["edit_map.png"];
     foregroundMap.loadData([
-      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
-      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+      [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
     ]);
 
     map.addChild(rzukin);
@@ -87,31 +90,44 @@ window.onload = function() {
 
     button.ontouchstart = function() {
       this.text = "Running";
-      move.moveOneStepRight();
-      move.moveOneStepDown();
+      for(let i = 0; i < 2; i++) {
+        move.moveRight();
+        move.moveDown();
+        move.moveUp();
+        move.moveLeft();
+        move.moveLeft();
+        move.execute();
+      }
     };
-
 
     var move = new MoveController();
     rzukin.addEventListener('enterframe', function() {
-      if (move.isNextOrder()) {
+      if (move.hasNextOrder() && !rzukin.isMoving) {
         switch (move.nextOrder()) {
+          case 0:
+            game.input.up = true;
+            break;
           case 1:
             game.input.right = true;
             break;
           case 2:
             game.input.down = true;
             break;
+          case 3:
+            game.input.left = true;
+            break;
+          default:
+            throw new Error("想定外のorderです。");
         }
       }
       this.frame = this.direction * 3 + this.walk;
       if (this.isMoving) {
         this.moveBy(this.vx, this.vy);
-        if (!(game.frame % 3)) {
+        if (game.frame % 3 != 0) {
           this.walk++;
           this.walk %= 3;
         }
-        if ((this.vx && (this.x) % 32 == 0) || (this.vy && this.y % 32 == 0)) {
+        if ((this.vx && (this.x) % spriteSize.x == 0) || (this.vy && this.y % spriteSize.y == 0)) {
           this.isMoving = false;
           this.walk = 1;
         }
@@ -132,12 +148,14 @@ window.onload = function() {
         }
         game.input.right = game.input.left = game.input.up = game.input.down = false;
         if (this.vx || this.vy) {
-          var x = this.x + (this.vx ? this.vx / Math.abs(this.vx) * 32 : 0) + 32;
-          var y = this.y + (this.vy ? this.vy / Math.abs(this.vy) * 32 : 0) + 32;
+          var x = this.x + (this.vx ? this.vx / Math.abs(this.vx) * spriteSize.x : 0) + spriteSize.x;
+          var y = this.y + (this.vy ? this.vy / Math.abs(this.vy) * spriteSize.y : 0) + spriteSize.y;
           if (0 <= x && x < map.width && 0 <= y && y < map.height && !map.hitTest(x, y)) {
             this.isMoving = true;
-            // game.input.right = game.input.left = game.input.up = game.input.down = false; // @TODO 暫定
             arguments.callee.call(this);
+          }else{
+            move.stop();
+            alert("この先には進めません!");
           }
         }
       }
@@ -158,24 +176,59 @@ window.onload = function() {
 class MoveController{
   constructor() {
     this.orders = [];
+    this.finish = false;
   }
 
-  moveOneStepRight() {
+  moveUp() {
+    this.orders.push(0);
+    console.log("moveUp");
+  }
+
+  moveRight() {
     this.orders.push(1);
-    console.log("moveOneStepRight");
+    console.log("moveRight");
   }
 
-  moveOneStepDown() {
+  moveDown() {
     this.orders.push(2);
-    console.log("moveOneStepDown");
+    console.log("moveDown");
   }
 
-  isNextOrder() {
-    return this.orders.length > 0;
+  moveLeft() {
+    this.orders.push(3);
+    console.log("moveLeft");
+  }
+
+  hasNextOrder() {
+    return this.orders.length > 0 && this.finish;
   }
 
   nextOrder() {
-    if (!this.isNextOrder()) throw new Error("次のorderが空です。");
+    if (!this.hasNextOrder()) throw new Error("次のorderが空です。");
     return this.orders.shift();
+  }
+
+  execute() {
+    this.finish = true;
+  }
+
+  stop() {
+    this.finish = false;
+    this.deleteAllOrder();
+  }
+
+  deleteAllOrder() {
+    this.orders = [];
+  }
+
+  printAllOrder() {
+    for (var e in this.orders) {
+      console.log(this.orders[e]);
+    }
+  }
+
+  printNextOrder() {
+    if (this.hasNextOrder()) console.log(this.orders[0]);
+    else console.log("次のorderが空です。");
   }
 }
