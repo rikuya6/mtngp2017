@@ -87,8 +87,8 @@ window.onload = function() {
 
     button.ontouchstart = function() {
       this.text = "Running";
-      move.moveOneStepRight();
-      move.moveOneStepDown();
+      move.moveRight();
+      move.moveDown();
     };
 
 
@@ -160,14 +160,14 @@ class MoveController{
     this.orders = [];
   }
 
-  moveOneStepRight() {
+  moveRight() {
     this.orders.push(1);
-    console.log("moveOneStepRight");
+    console.log("moveRight");
   }
 
-  moveOneStepDown() {
+  moveDown() {
     this.orders.push(2);
-    console.log("moveOneStepDown");
+    console.log("moveDown");
   }
 
   isNextOrder() {
