@@ -102,37 +102,44 @@ window.onload = function() {
 
     var s = new Sprite(32, 32);
     // s.scale(0.2, 0.2);
-    var originX, originY;
+    var originX, originY, beforeX, beforey;
     s.image = game.assets["RZukin.png"];
     s.x = 64;
     s.addEventListener(enchant.Event.TOUCH_START, function(e){
       originX = e.x - this.x;
       originY = e.y - this.y;
+      beforeX = this.x;
+      beforeY = this.y;
     });
     s.addEventListener(enchant.Event.TOUCH_MOVE, function(e){
       this.x = e.x - originX;
       this.y = e.y - originY;
     });
     s.addEventListener(enchant.Event.TOUCH_END, function(e){
-      var x = [];
-      for (let i = 0; i <= 300; i+=32) x.push(i);
-      let xpos = 0, ypos = 0;
-      for (let i = 1; i < x.length; i++) {
-        if (e.x <= x[i]) {
-          xpos = --i;
+      let nx = 0, ny = 0;
+      for (let i = 0; i <= map.width; i+=32) {
+        if (e.x <= i) {
+          nx = i - 32;
           break;
         }
       }
-      for (let i = 1; i < x.length; i++) {
-        if (e.y <= x[i]) {
-          ypos = --i;
+      for (let i = 0; i <= map.width; i+=32) {
+        if (e.y <= i) {
+          ny = i - 32;
           break;
         }
       }
-      this.x = x[xpos];
-      this.y = x[ypos];
-      console.log(this.x, this.y);
-      this.parentNode.collisionData[this.y / 32 + 1][this.x / 32 + 1] = 1;
+      if (nx < 0 || nx > 256 || ny < 0 || ny > 256) {
+        alert("範囲外の指定です。"); // @TODO　仕様未決定
+        this.x = beforeX;
+        this.y = beforeY;
+        return;
+      }
+      console.log(nx, ny);
+      this.x = nx;
+      this.y = ny;
+      this.parentNode.collisionData[Math.floor(beforeY / 32) + 1][Math.floor(beforeX / 32) + 1] = 0; // 一つ前のマスを当たり判定なしにする
+      this.parentNode.collisionData[Math.floor(this.y / 32) + 1][Math.floor(this.x / 32) + 1] = 1;  // 現在のマスを当たり判定ありにする
     });
     map.addChild(s);
 
@@ -210,30 +217,31 @@ window.onload = function() {
   game.start();
 };
 
-class MoveController{
+class MoveController {
   constructor() {
+    this.label = ["moveUp", "moveRight", "moveDown", "moveLeft"];
     this.orders = [];
     this.finish = false;
   }
 
   moveUp() {
     this.orders.push(0);
-    console.log("moveUp");
+    console.log(this.label[0]);
   }
 
   moveRight() {
     this.orders.push(1);
-    console.log("moveRight");
+    console.log(this.label[1]);
   }
 
   moveDown() {
     this.orders.push(2);
-    console.log("moveDown");
+    console.log(this.label[2]);
   }
 
   moveLeft() {
     this.orders.push(3);
-    console.log("moveLeft");
+    console.log(this.label[3]);
   }
 
   hasNextOrder() {
@@ -260,12 +268,12 @@ class MoveController{
 
   printAllOrder() {
     for (var e in this.orders) {
-      console.log(this.orders[e]);
+      console.log(this.label[this.orders[e]]);
     }
   }
 
   printNextOrder() {
-    if (this.hasNextOrder()) console.log(this.orders[0]);
+    if (this.hasNextOrder()) console.log(this.label[this.orders[0]]);
     else console.log("次のorderが空です。");
   }
 }
