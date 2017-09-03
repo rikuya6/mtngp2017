@@ -62,21 +62,21 @@ window.onload = function() {
     map.addChild(s.getSprite());
     game.rootScene.addChild(map);
 
-    // var button = new Button("▶️");
-    // button.moveTo(140, 0);
-    // game.rootScene.addChild(button);
-    //
-    // button.ontouchstart = function() {
-    //   this.text = "Running";
-    //   for(let i = 0; i < 2; i++) {
-    //     rzukin.moveController.moveRight();
-    //     rzukin.moveController.moveDown();
-    //     rzukin.moveController.moveUp();
-    //     rzukin.moveController.moveLeft();
-    //     rzukin.moveController.moveLeft();
-    //     rzukin.moveController.execute();
-    //   }
-    // };
+    var button = new Button("▶️");
+    button.moveTo(140, 0);
+    game.rootScene.addChild(button);
+
+    button.ontouchstart = function() {
+      this.text = "Running";
+      for(let i = 0; i < 2; i++) {
+        rzukin.player.moveController.moveRight();
+        rzukin.player.moveController.moveDown();
+        rzukin.player.moveController.moveUp();
+        rzukin.player.moveController.moveLeft();
+        rzukin.player.moveController.moveLeft();
+        rzukin.player.moveController.execute();
+      }
+    };
   };
   game.start();
 };
@@ -207,7 +207,7 @@ class Player {
     this.player.walk = 1;
     this.player.moveController = new MoveController();
     this.player.move = function () {
-      if (this.moveController.hasNextOrder() && !this.player.isMoving) {
+      if (this.moveController.hasNextOrder() && !this.isMoving) {
         switch (this.moveController.nextOrder()) {
           case 0:
             game.input.up = true;
