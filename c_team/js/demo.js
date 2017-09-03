@@ -100,48 +100,7 @@ window.onload = function() {
       }
     };
 
-    var s = new Sprite(32, 32);
-    // s.scale(0.2, 0.2);
-    var originX, originY, beforeX, beforey;
-    s.image = game.assets["RZukin.png"];
-    s.x = 64;
-    s.addEventListener(enchant.Event.TOUCH_START, function(e){
-      originX = e.x - this.x;
-      originY = e.y - this.y;
-      beforeX = this.x;
-      beforeY = this.y;
-    });
-    s.addEventListener(enchant.Event.TOUCH_MOVE, function(e){
-      this.x = e.x - originX;
-      this.y = e.y - originY;
-    });
-    s.addEventListener(enchant.Event.TOUCH_END, function(e){
-      let nx = 0, ny = 0;
-      for (let i = 0; i <= map.width; i+=32) {
-        if (e.x <= i) {
-          nx = i - 32;
-          break;
-        }
-      }
-      for (let i = 0; i <= map.width; i+=32) {
-        if (e.y <= i) {
-          ny = i - 32;
-          break;
-        }
-      }
-      if (nx < 0 || nx > 256 || ny < 0 || ny > 256) {
-        alert("範囲外の指定です。"); // @TODO　仕様未決定
-        this.x = beforeX;
-        this.y = beforeY;
-        return;
-      }
-      console.log(nx, ny);
-      this.x = nx;
-      this.y = ny;
-      this.parentNode.collisionData[Math.floor(beforeY / 32) + 1][Math.floor(beforeX / 32) + 1] = 0; // 一つ前のマスを当たり判定なしにする
-      this.parentNode.collisionData[Math.floor(this.y / 32) + 1][Math.floor(this.x / 32) + 1] = 1;  // 現在のマスを当たり判定ありにする
-    });
-    map.addChild(s);
+    var s = new MapObject(game, map, "RZukin.png");
 
     var move = new MoveController();
     rzukin.addEventListener('enterframe', function() {
@@ -275,5 +234,54 @@ class MoveController {
   printNextOrder() {
     if (this.hasNextOrder()) console.log(this.label[this.orders[0]]);
     else console.log("次のorderが空です。");
+  }
+}
+
+class MapObject {
+  constructor(game, map, asset) {
+    this.sprite= new Sprite(32, 32);
+    this.originX = 0;
+    this.originY = 0;
+    this.beforeX = 0;
+    this.beforeY = 0;
+    this.sprite.image = game.assets[asset];
+    this.sprite.x = 64;
+    map.addChild(this.sprite);
+    this.sprite.addEventListener(enchant.Event.TOUCH_START, function(e){
+      this.originX = e.x - this.x;
+      this.originY = e.y - this.y;
+      this.beforeX = this.x;
+      this.beforeY = this.y;
+    });
+    this.sprite.addEventListener(enchant.Event.TOUCH_MOVE, function(e){
+      this.x = e.x - this.originX;
+      this.y = e.y - this.originY;
+    });
+    this.sprite.addEventListener(enchant.Event.TOUCH_END, function(e){
+      let nx = 0, ny = 0;
+      for (let i = 0; i <= map.width; i+=32) {
+        if (e.x <= i) {
+          nx = i - 32;
+          break;
+        }
+      }
+      for (let i = 0; i <= map.width; i+=32) {
+        if (e.y <= i) {
+          ny = i - 32;
+          break;
+        }
+      }
+      if (nx < 0 || nx > 256 || ny < 0 || ny > 256) {
+        alert("範囲外の指定です。"); // @TODO　仕様未決定
+        this.x = this.beforeX;
+        this.y = this.beforeY;
+        return;
+      }
+      console.log(nx, ny);
+      this.x = nx;
+      this.y = ny;
+      map.collisionData[Math.floor(this.beforeY / 32) + 1][Math.floor(this.beforeX / 32) + 1] = 0; // 一つ前のマスを当たり判定なしにする
+      map.collisionData[Math.floor(this.y / 32) + 1][Math.floor(this.x / 32) + 1] = 1;  // 現在のマスを当たり判定ありにする
+    });
   }
 }
