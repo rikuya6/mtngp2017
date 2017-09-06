@@ -2,8 +2,11 @@ enchant();
 
 const gameSize = {x: 320, y: 320};
 const spriteSize = {x: 32, y: 32};
-
 window.onload = function() {
+
+  store.set('user', { name:'Marcus' });
+  console.log(store.get('user').name);
+
   var game = new Game(gameSize.x,gameSize.y);
   game.preload("RZukin.png", "edit_map.png");
 
