@@ -4,4 +4,9 @@
 //= require bootstrap-sprockets
 //= require jquery_nested_form
 //= require turbolinks
-//= require_tree .
+//= require enchant/enchant
+//= require enchant/plugins/mixing.enchant
+//= require enchant/plugins/ui.enchant
+//= require store/store.modern.min
+//= require_tree ./application
+// require_tree .

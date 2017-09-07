@@ -8,11 +8,12 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :show, :destroy]
   end
 
+  get 'stages', to: 'stages#index'
+  get 'stages/demo', to: 'stages#demo', as: :demo
+
+
   namespace :admin do
     root to: 'users#index'
-    resources :users do
-      resources :orders
-    end
   end
 
   match '*anything' => 'top#not_found', via: [:get, :post, :patch, :delete]
