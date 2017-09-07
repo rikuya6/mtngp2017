@@ -20,7 +20,6 @@
 /.DS_Store
 /vendor/
 secret.key
-/public/*
 public/assets
 /doc/
 /.idea/
