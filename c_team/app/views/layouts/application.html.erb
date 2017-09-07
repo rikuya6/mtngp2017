@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= page_title %></title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+  </head>
+  <body>
+    <!-- ヘッダ -->
+    <div class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <%= render 'shared/header' %>
+      </div>
+    </div>
+    <!-- 本体 -->
+    <% unless current_user %>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <%= render 'shared/flash' %>
+          <%= yield %>
+        </div>
+        <div class="col-md-3">
+          <div class="well sidebar-nav">
+            <%= render 'shared/sidebar' %>
+          </div><!--/sidebar -->
+        </div>
+      </div><!--/row-->
+      <%= render 'shared/footer' %>
+    </div>
+    <% else %>
+    <div class="container">
+      <div class="row">
+        <%= render 'shared/flash' %>
+        <%= yield %>
+      </div>
+      <%= render 'shared/footer' %>
+    </div>
+    <% end %>
+  </body>
+</html>

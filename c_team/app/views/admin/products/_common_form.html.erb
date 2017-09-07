@@ -1,0 +1,59 @@
+<div class="form-group">
+  <%= f.label :name, class: 'control-label col-md-12' %>
+  <div class="col-md-12">
+    <%= f.text_field :name, class: 'form-control', disabled: show? %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :price, class: 'control-label col-md-12' %>
+  <div class="col-md-2">
+    <%= f.number_field :price, class: 'form-control', disabled: show? %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :weight, class: 'control-label col-md-12' %>
+  <div class="col-md-2">
+    <%= f.number_field :weight, class: 'form-control', disabled: show? %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :stock, class: 'control-label col-md-12' %>
+  <div class="col-md-2">
+    <%= f.number_field :stock, class: 'form-control', disabled: show? %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :note, class: 'control-label col-md-12' %>
+  <div class="col-md-12">
+    <%= f.text_area :note, class: 'form-control', disabled: show? %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :image, class: 'control-label col-md-12'  %>
+  <div class="col-md-4">
+    <%= image_tag(@product.image.url) %>
+    <%= f.file_field :image, disabled: show? %>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-12">カテゴリ</label>
+  <div class="chebox-inline col-md-12">
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |ff| %>
+      <%= ff.label { ff.check_box(disabled: show?) + ff.text } %>
+    <% end %>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-md-offset-10 col-md-2">
+    <%= link_to '編集', edit_admin_product_path(@product.id),
+      class: 'btn btn-default' if show? %>
+    <%= f.submit '更新', class: 'btn btn-primary' if edit_or_update? || edit_confirmation? %>
+    <%= f.submit '新規作成', class: 'btn btn-primary' if new_or_create? || new_confirmation? %>
+  </div>
+</div>

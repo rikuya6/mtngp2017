@@ -1,0 +1,8 @@
+<% title = params[:user_id].present? ? 'ユーザID' + params[:user_id] + 'の注文詳細' : '注文詳細' %>
+<% @page_title = '管理画面：' + title %>
+
+<div class="page-header">
+  <h1><%= title %></h1>
+</div>
+
+<%= render 'form' %>

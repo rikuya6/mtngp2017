@@ -1,0 +1,42 @@
+<% @page_title = '商品一覧' %>
+
+<div class="page-header">
+  <%= form_tag :products, method: :get , class: 'col-md-offset-2 col-md-10' do %>
+    <div class="col-md-8">
+      <%= text_field_tag 'keyword', params[:keyword], placeholder: 'キーワードを入力', class: 'form-control' %>
+    </div>
+    <div class="col-md-4">
+      <%= button_tag '<i class="glyphicon glyphicon-search"></i>'.html_safe,
+        type: 'submit', class: 'btn btn-info search' %>
+    </div>
+  <% end %>
+</div>
+
+<% if @products.present? %>
+<div class="panel-height col-md-12">
+  <% @products.each do |product| %>
+  <div class="panel panel-info col-md-6 ">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <%= link_to product.name, product_path(product) %>
+        <%= set_like_link(product) %>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <ul class="list-group">
+        <li class="list-group-item"><%= image_tag(product.image.url) %></li>
+        <li class="list-group-item">¥<%= number_with_delimiter(product.price) %></li>
+        <li class="list-group-item">重さ<%= number_with_delimiter(product.weight) %></li>
+        <li class="list-group-item"><%= product.note %></li>
+        <li class="list-group-item"><%= tag_label(product) %></li>
+      </ul>
+    </div>
+  </div>
+  <% end %>
+</div>
+<div class="col-md-12">
+  <%= paginate @products %>
+</div>
+<% else %>
+  <% flash.now[:info] = '商品が見つかりませんでした。検索ワードを変えて再度お探しください。' %>
+<% end %>

@@ -1,0 +1,11 @@
+<% @page_title = '商品詳細' %>
+
+<div class="page-header">
+  <h1>商品詳細</h1>
+</div>
+
+<%= render 'shared/errors', obj: @product %>
+
+<%= form_for @product, class: 'form-horizontal' do |f| %>
+  <%= render 'common_form', f:f %>
+<% end %>

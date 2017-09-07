@@ -1,0 +1,63 @@
+<% @page_title = '管理画面：登録確認' %>
+
+<%= form_for [:admin, @product], class: 'form-horizontal' do |f| %>
+<%= f.hidden_field :name %>
+<%= f.hidden_field :price %>
+<%= f.hidden_field :weight %>
+<%= f.hidden_field :stock %>
+<%= f.hidden_field :note %>
+<%= f.hidden_field :image_cache %>
+<% @product.category_ids.each do |id| %>
+  <%= hidden_field_tag 'product[category_ids][]', id %>
+<% end %>
+
+<h2>登録確認ページ</h2>
+
+<div>
+  <%= f.label :name, class: 'col-md-12' %>
+  <div class="col-md-12">
+    <%= @product.name %>
+  </div>
+</div>
+<div>
+  <%= f.label :price, class: 'col-md-12' %>
+  <div class="col-md-12">
+    <%= @product.price %>
+  </div>
+</div>
+<div>
+  <%= f.label :weight, class: 'col-md-12' %>
+  <div class="col-md-12">
+    <%= @product.weight %>
+  </div>
+</div>
+<div>
+  <%= f.label :stock, class: 'col-md-12' %>
+  <div class="col-md-12">
+    <%= @product.stock %>
+  </div>
+</div>
+<div>
+  <%= f.label :note, class: 'col-md-12' %>
+  <div class="col-md-12">
+    <%= @product.note %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :image, class: 'control-label col-md-12'  %>
+  <div class="col-md-3">
+    <%= image_tag(@product.image.url) %>
+    <% f.file_field :image %>
+  </div>
+</div>
+<div>
+  <label class="col-md-12">カテゴリ</label>
+  <div class="col-md-12">
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |ff| %>
+      <%= ff.label { ff.check_box(disabled: true) + ff.text } %>
+    <% end %>
+  </div>
+</div>
+<%= f.submit '戻る', name: :back, class: 'col-md-offset-10 col-md-2 btn, btn-default' %>
+<%= f.submit '登録する', class: 'col-md-offset-10 col-md-2 btn, btn-danger' %>
+<% end %>

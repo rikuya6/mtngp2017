@@ -1,0 +1,100 @@
+<%= form_for [:admin, @user, @order], class: 'form-horizontal' do |f| %>
+  <%= f.fields_for :product do |ff| %>
+
+    <%= f.fields_for :user do |ff| %>
+      <div class="form-group">
+        <%= ff.label :id, class: 'control-label col-md-12' %>
+        <div class="col-md-1">
+          <%= ff.number_field :id, class: 'form-control', disabled: true %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= ff.label :email, class: 'control-label col-md-12' %>
+        <div class="col-md-12">
+          <%= ff.text_field :email, class: 'form-control', disabled: true %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= ff.label :created_at, class: 'control-label col-md-12' %>
+      <div class="col-md-12">
+        <%= ff.text_field :created_at, class: 'form-control', disabled: true %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= ff.label '請求金額', class: 'control-label col-md-12' %>
+      <div class="col-md-12">
+        <%= ff.number_field :price, class: 'form-control', disabled: true %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :payment, class: 'control-label col-md-12' %>
+      <div class="col-md-12">
+        <%= f.select :payment, Order.payment.options, {}, class: 'form-control', disabled: true %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :zipcode, class: 'control-label col-md-12' %>
+      <div class="col-md-2">
+        <span>〒</span>
+        <%= f.text_field :zipcode, class: 'form-control', disabled: true %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :dest, class: 'control-label col-md-12' %>
+      <div class="col-md-12">
+        <%= f.text_field :dest, class: 'form-control', disabled: true %>
+      </div>
+    </div>
+
+    <%= f.fields_for :wrapping do |ff| %>
+      <div class="form-group">
+        <%= ff.label :name, class: 'control-label col-md-12' %>
+        <div class="col-md-12">
+          <%= ff.text_area :name, class: 'form-control', disabled: true %>
+        </div>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= ff.label :name, class: 'control-label col-md-12' %>
+      <div class="col-md-12">
+        <%= ff.text_field :name, class: 'form-control', disabled: true %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= ff.label :price, class: 'control-label col-md-12' %>
+      <div class="col-md-12">
+        <%= ff.number_field :price, class: 'form-control', disabled: true %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= ff.label :weight, class: 'control-label col-md-12' %>
+      <div class="col-md-12">
+        <%= ff.number_field :weight, class: 'form-control', disabled: true %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= ff.label :note, class: 'control-label col-md-2' %>
+      <div class="col-md-12">
+        <%= ff.text_area :note, class: 'form-control', disabled: true %>
+      </div>
+    </div>
+  <% end %>
+  <%= f.fields_for :product do |ff| %>
+    <div class="form-group">
+      <b class="col-md-12">カテゴリ</b>
+      <div class="chebox-inline col-md-12">
+        <%= ff.collection_check_boxes :category_ids, Category.all, :id, :name do |fff| %>
+          <%= fff.label { fff.check_box(disabled: true) + fff.text } %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,55 @@
+<div class="form-group">
+  <%= f.label :image, class: 'control-label col-md-12'  %>
+  <div class="col-md-12">
+    <%= image_tag(@product.image.url) %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :name, class: 'control-label col-md-2' %>
+  <div class="col-md-12">
+    <%= f.text_field :name, class: 'form-control', disabled: show? %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :price, class: 'control-label col-md-2' %>
+  <div class="col-md-12">
+    <%= f.number_field :price, class: 'form-control', disabled: show? %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :weight, class: 'control-label col-md-2' %>
+  <div class="col-md-12">
+    <%= f.number_field :weight, class: 'form-control', disabled: show? %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :stock, class: 'control-label col-md-2' %>
+  <div class="col-md-12">
+    <%= f.number_field :stock, class: 'form-control', disabled: show? %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :note, class: 'control-label col-md-2' %>
+  <div class="col-md-12">
+    <%= f.text_area :note, class: 'form-control', disabled: show? %>
+  </div>
+</div>
+
+<div class="form-group">
+  <b class="col-md-2">カテゴリ</b>
+  <div class="chebox-inline col-md-12">
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |ff| %>
+      <%= ff.label { ff.check_box(disabled: show?) + ff.text } %>
+    <% end %>
+  </div>
+</div>
+
+<div class="col-md-offset-10 col-md-3">
+  <%= link_to new_orders_path(product_id: @product), class: 'btn btn-info' do %>
+    <i class="glyphicon glyphicon-shopping-cart"></i>注文
+  <% end %>
+</div>

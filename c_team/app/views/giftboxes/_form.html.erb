@@ -1,0 +1,32 @@
+<% @page_title = 'ギフト注文' %>
+
+<h2>ギフト注文</h2>
+<p>ギフト注文する商品はこちらでよろしいでしょうか？</p>
+<%= render 'shared/errors', obj: @giftbox %>
+<%= nested_form_for @giftbox, url: {action: 'new_confirmation'} do |f| %>
+  <%= f.fields_for :box_details do |ff| %>
+    <%= ff.fields_for :product do |fff| %>
+      <%= ff.hidden_field :product_id %>
+      <div class="form-group">
+        <%= fff.label :name, class: 'control-label col-md-12' %>
+        <div class="col-md-12">
+          <%= fff.text_field :name, disabled: true %>
+          <div class="form-group">
+            <label class="col-md-12">カテゴリ</label>
+            <div class="chebox-inline col-md-12">
+              <%= fff.collection_check_boxes :category_ids, Category.where.not(id: 1), :id, :name do |ffff| %>
+                <%= ffff.label { ffff.check_box(disabled: true) + ffff.text } %>
+              <% end %>
+            </div>
+          </div>
+          <%= ff.link_to_remove '詰め合わせから外す' %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="form-group">
+    <div class="col-md-offset-10 col-md-2">
+      <%= f.submit 'ギフト注文', class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

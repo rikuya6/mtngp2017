@@ -1,0 +1,4 @@
+<%= render 'shared/errors', obj: @order %>
+<%= form_for @order, url: {action: 'new_confirmation'}, class: 'form-horizontal' do |f| %>
+  <%= render 'common_form', f:f %>
+<% end %>

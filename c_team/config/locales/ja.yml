@@ -1,0 +1,87 @@
+ja:
+  activerecord:
+    models:
+      user: '会員情報'
+      product: '商品'
+      order: '注文'
+      category: 'カテゴリ'
+      wrapping: 'ラッピング'
+      box: 'ボックス'
+      giftbox: 'ギフトボックス'
+      rule: '組み合わせ設定'
+    attributes:
+      user:
+        email: 'メールアドレス'
+        administrator: '管理者'
+        password: 'パスワード'
+        password_confirmation: 'パスワードの確認'
+        orders: '届け先'
+      product:
+        name: '商品名'
+        price: '価格'
+        weight: '重さ'
+        stock: '在庫数'
+        note: '商品説明'
+        image: '商品画像'
+        created_at: '注文日時'
+      category:
+        name: 'カテゴリ名'
+      wrapping:
+        name: 'ラッピング名'
+        dest: '届け先'
+        zipcode: '郵便番号'
+      order:
+        wrapping_id: 'ラッピング'
+        dest: '届け先'
+        zipcode: '郵便番号'
+        payment: '支払い方法'
+      giftbox:
+        box_id: 'ボックス'
+        bad_combinations: 'ギフトボックス：'
+      rule:
+        category1_id: '禁止対象カテゴリ1'
+        category2_id: '禁止対象カテゴリ2'
+        check_uniq: '組み合わせ禁止カテゴリ：'
+
+    errors:
+      messages:
+        expired_at_too_old: 'は掲載開始日より新しい日時にしてください。'
+        too_big_image: 'が大きすぎます(最大10MB)。'
+        invalid_image: 'の形式が違います(JPEG, GIF, PNGのいずれかにしてください)。'
+        bad_combinations: 'ギフトボックス：'
+
+
+        carrierwave_processing_error: failed to be processed
+        carrierwave_integrity_error: is not of an allowed file type
+        carrierwave_download_error: could not be downloaded
+        extension_whitelist_error: "You are not allowed to upload %{extension} files, allowed types: %{allowed_types}"
+        extension_blacklist_error: "You are not allowed to upload %{extension} files, prohibited types: %{prohibited_types}"
+        content_type_whitelist_error: "You are not allowed to upload %{content_type} files"
+        content_type_blacklist_error: "You are not allowed to upload %{content_type} files"
+        rmagick_processing_error: "Failed to manipulate with rmagick, maybe it is not an image?"
+        mini_magick_processing_error: "Failed to manipulate with MiniMagick, maybe it is not an image? Original Error: %{e}"
+        min_size_error: "File size should be greater than %{min_size}"
+        max_size_error: "File size should be less than %{max_size}"
+  views:
+    pagination:
+      first: '&laquo;'
+      last: '&raquo;'
+      previous: '&lsaquo;'
+      next: '&rsaquo;'
+      truncate: "..."
+  enumerize:
+    order:
+      payment:
+        cash: '現金払い'
+        credit: 'クレジット払い'
+        delivery: '代引き払い'
+  errors:
+    attributes:
+      payment:
+        blank: 'を選択してください'
+      wrapping_id:
+        blank: 'を選択してください'
+      zipcode:
+        invalid: 'の入力形式が異なります(例 123-4567)'
+      box_id:
+        blank: 'を選択してください'

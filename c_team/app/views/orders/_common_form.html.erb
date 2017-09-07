@@ -1,0 +1,59 @@
+<%= f.hidden_field :product_id %>
+
+<%= f.fields_for :product do |ff| %>
+  <%= ff.hidden_field :stock %>
+  <div class="form-group">
+    <%= ff.label :image, class: 'control-label col-md-12'  %>
+    <div class="col-md-12">
+      <%= image_tag(@order.product.image.url) %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= ff.label :name, class: 'control-label col-md-12' %>
+    <div class="col-md-12">
+      <%= ff.text_field :name, class: 'form-control', disabled: true %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= ff.label :price, class: 'control-label col-md-12' %>
+    <div class="col-md-2">
+      <%= ff.number_field :price, class: 'form-control', disabled: true %>
+    </div>
+  </div>
+<% end %>
+
+<div class="form-group">
+  <label class="control-label col-md-12">ラッピング</label>
+  <div class="col-md-3">
+    <%= f.select :wrapping_id, @wrapping, {prompt: true}, class: 'form-control' %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :zipcode, class: 'control-label col-md-12' %>
+  <div class="col-md-2">
+    <%= f.text_field :zipcode, placeholder: '〒 123-3456', class: 'form-control' %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :dest, class: 'control-label col-md-12' %>
+  <div class="col-md-12">
+    <%= f.text_field :dest, class: 'form-control' %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :payment, class: 'control-label col-md-12' %>
+  <div class="col-md-3">
+    <%= f.select :payment, Order.payment.options, {prompt: true},
+                 class: 'form-control' %>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-md-offset-10 col-md-2">
+    <%= f.submit '注文', class: 'btn btn-primary' if new_or_create? || new_confirmation? %>
+  </div>
+</div>
