@@ -1,12 +1,12 @@
 User.create!(
-  email: 'admin@gifthouse.com',
+  email: 'admin@mtng.com',
   password: 'password',
   password_confirmation: 'password',
   administrator: true
 )
 
 User.create!(
-  email: 'user1@gifthouse.com',
+  email: 'user1@mtng.com',
   password: 'password',
   password_confirmation: 'password'
 )

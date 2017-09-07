@@ -1,8 +1,8 @@
 module ApplicationHelper
 
   def page_title
-    title = 'ギフト家'
-    title = 'ギフト家' + ' | ' + @page_title if @page_title
+    title = '松永プロジェクト'
+    title = title + ' | ' + @page_title if @page_title
     title
   end
 
@@ -33,26 +33,4 @@ module ApplicationHelper
     time = "#{object.created_at.hour}:#{object.created_at.min}"
     year + month + day + time
   end
-
-  def admin_product_image_tag(product, opts = {})
-    if product.image.present?
-      path = admin_product_path(product, format: product.extension)
-      link_to(image_tag(path, { alt: product.name }.merge(opts)), path)
-    else
-      ''
-    end
-  end
-
-  def tag_label(product)
-    product.categories.map{|tag| "<span class=#{'"label label-primary"'}>#{tag.name}</span>" }.join(' ').html_safe
-  end
-
-  def rule_tag_label(rule)
-    category1_name = Category.find(rule.category1_id).name
-    category2_name = Category.find(rule.category2_id).name
-    html = "<span class=#{'"label label-primary"'}>#{category1_name}</span> "
-    html +=  "<span class=#{'"label label-primary"'}>#{category2_name}</span>"
-    html.html_safe
-  end
-
 end

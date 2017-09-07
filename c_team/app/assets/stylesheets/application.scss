@@ -1,12 +1,11 @@
 @import "bootstrap-sprockets";
-//@import "bootstrap";
-@import "honoka";
+@import "bootstrap";
 
-//$font: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', '游ゴシック  Medium', meiryo, sans-serif;
+$font: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', '游ゴシック  Medium', meiryo, sans-serif;
 
-// body{
-//   font-family: $font;
-// }
+body{
+  font-family: $font;
+}
 
 $gray-border: #bdc3c7;
 $gray-link: #7f8c8d;
@@ -35,19 +34,6 @@ footer {
   }
 }
 
-@mixin box_sizing {
-  -moz-box-sizing:    border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing:         border-box;
-}
-
-input, textarea, select, .uneditable-input {
-  border: 1px solid #bbb;
-  width: 100%;
-  margin-bottom: 15px;
-  @include box_sizing;
-}
-
 #error_explanation {
   color: red;
   ul {
@@ -61,22 +47,4 @@ input, textarea, select, .uneditable-input {
   .form-control {
     color: $state-danger-text;
   }
-}
-
-table {
-  margin-top: 10px;
-}
-
-.panel-height {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.category-radio {
-  margin-top: 10px;
-  padding: 5px;
-}
-
-.search {
-  margin-left: -30px;
 }

@@ -12,7 +12,5 @@ namespace :db do
     Rake::Task['db:create'].invoke
     Rake::Task['db:migrate'].invoke
     Rake::Task['db:seed'].invoke
-    puts 'assets:precompile'
-    Rake::Task['assets:precompile'].invoke
   end
 end
