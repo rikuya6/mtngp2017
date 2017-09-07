@@ -1,4 +1,4 @@
-class StagesController < MemberController
+class StagesController < GuestController
 
   def index
   end
