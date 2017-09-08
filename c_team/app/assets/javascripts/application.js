@@ -9,4 +9,3 @@
 //= require enchant/plugins/ui.enchant
 //= require store/store.modern.min
 //= require_tree ./application
-// require_tree .
