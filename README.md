@@ -6,3 +6,7 @@
 * 松永プロジェクト2017
 
 * ノベルゲームのテストは、MAMP等でサーバをたててから行う
+
+* デモページ
+
+  > https://desolate-temple-83192.herokuapp.com/
