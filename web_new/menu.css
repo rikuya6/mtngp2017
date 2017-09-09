@@ -114,15 +114,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
 @media screen and (orientation: landscape) {
 	#menu-box{
 		position: fixed;
@@ -157,7 +148,8 @@
 	  color: #94E3F7;
 	  text-align: center;
 	  text-decoration: none;
-	  font-size: 20px;
+	  font-size: 25px;
+	  font-weight: bold;
 	}
 	#menu li a:hover{
 	  background: #94E3F7;
