@@ -4,7 +4,7 @@ ja:
       user: '会員'
     attributes:
       user:
-        email: 'メールアドレス'
+        name: 'ユーザ名'
         administrator: '管理者'
         password: 'パスワード'
         password_confirmation: 'パスワードの確認'

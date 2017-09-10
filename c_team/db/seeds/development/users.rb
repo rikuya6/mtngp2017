@@ -1,19 +1,19 @@
 User.create!(
-  email: 'admin@mtng.com',
+  name: 'admin',
   password: 'password',
   password_confirmation: 'password',
   administrator: true
 )
 
 User.create!(
-  email: 'user1@mtng.com',
+  name: 'user1',
   password: 'password',
   password_confirmation: 'password'
 )
 
 1.upto(10) do |idx|
   User.create(
-    email: Faker::Internet.safe_email(Faker::Internet.user_name(Faker::StarWars.character, %w(. _ -))),
+    name: Faker::Internet.user_name(Faker::StarWars.character, %w(. _ -)),
     password: 'password',
     password_confirmation: 'password'
   )

@@ -9,7 +9,7 @@
     <thead>
       <tr>
         <th class="text-center">id</th>
-        <th class="text-center">メールアドレス</th>
+        <th class="text-center">ユーザ名</th>
         <th class="text-center">管理者</th>
         <th class="text-center"></th>
       </tr>
@@ -18,7 +18,7 @@
       <% @users.each do |user| %>
       <tr>
         <td class="text-center"><%= user.id %></td>
-        <td><%= user.email %></td>
+        <td><%= user.name %></td>
         <td class="text-center"><%= '✓' if user.administrator? %></td>
         <td>
           <%= link_to '編集', edit_admin_user_path(user.id), class: 'btn btn-default btn-xs',
