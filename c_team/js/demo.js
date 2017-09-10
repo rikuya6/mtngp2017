@@ -62,21 +62,47 @@ window.onload = function() {
     map.addChild(s.getSprite());
     game.rootScene.addChild(map);
 
-    var button = new Button("▶️");
-    button.moveTo(140, 0);
-    game.rootScene.addChild(button);
+    // var button = new Button("▶️");
+    // button.moveTo(140, 0);
+    // game.rootScene.addChild(button);
 
-    button.ontouchstart = function() {
-      this.text = "Running";
+    // button.ontouchstart = function() {
+    //   this.text = "Running";
+    //   for(let i = 0; i < 2; i++) {
+    //     rzukin.player.moveController.moveRight();
+    //     rzukin.player.moveController.moveDown();
+    //     rzukin.player.moveController.moveUp();
+    //     rzukin.player.moveController.moveLeft();
+    //     rzukin.player.moveController.moveLeft();
+    //     rzukin.player.moveController.execute();
+    //   }
+    // };
+
+    var button = new ButtonObject("▶️","Running", function(){
       for(let i = 0; i < 2; i++) {
-        rzukin.player.moveController.moveRight();
-        rzukin.player.moveController.moveDown();
-        rzukin.player.moveController.moveUp();
-        rzukin.player.moveController.moveLeft();
-        rzukin.player.moveController.moveLeft();
-        rzukin.player.moveController.execute();
-      }
-    };
+            rzukin.player.moveController.moveRight();
+            rzukin.player.moveController.moveDown();
+            rzukin.player.moveController.moveUp();
+            rzukin.player.moveController.moveLeft();
+            rzukin.player.moveController.moveLeft();
+            rzukin.player.moveController.execute();
+          }
+    });
+    button.move(140, 0);
+
+    var resetbutton = new ButtonObject("Reset","Running", function(){
+      for(let i = 0; i < 2; i++) {
+            rzukin.player.moveController.moveRight();
+            rzukin.player.moveController.moveDown();
+            rzukin.player.moveController.moveUp();
+            rzukin.player.moveController.moveLeft();
+            rzukin.player.moveController.moveLeft();
+            rzukin.player.moveController.execute();
+          }
+    });
+    button.move(140, 0);
+
+    game.rootScene.addChild(button.getButtonObject());
   };
   game.start();
 };
@@ -91,7 +117,7 @@ function getRuledLineSprite() {
   square.image = suef;
   let cont = suef.context;
   cont.beginPath();
-  for(let i=-1; i <= 320; i += 33){
+  for(let i=0; i <= 320; i += 32){
     cont.moveTo(i, 0);
     cont.lineTo(i, 320);
     cont.moveTo(0, i);
