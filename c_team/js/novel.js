@@ -12,6 +12,11 @@ window.onload = function(){
     scene.addChild(sprite);
     game.pushScene(scene);
 
+/*
+  文字消しに難あり
+  要バグ修正
+*/
+
 
     // enchant.ui.MutableTextはビットマップのフォントのみ使用可能
     // 日本語が一切表示不可能であることを確認した
@@ -21,7 +26,6 @@ window.onload = function(){
     game.pushScene(scene);
 
 
-
     // labelを使用した文字表示のほうが、日本語表示できることからも現実的？
     var label = new Label("アメンボ赤いなあいうえお");
     label.moveTo( 10, 50);
@@ -29,7 +33,7 @@ window.onload = function(){
     game.pushScene(scene);
     // 文字を消すには以下を使用
     //scene.removeChild(label);
-    
+
 
     var noveltext = [
       'おばあさんは突然病室を飛び出し',
