@@ -1,69 +1,78 @@
 enchant();
-window.onload = function() {
-  var game = new Game(240, 320);
-  game.fps = 20;
-  game.preload("edit_map.png");
+window.onload = function(){
+  var game = new Core(320, 320);
+  game.fps = 30;
+  game.rootScene.backgroundColor = "white";
+  game.preload("background.jpg");
 
-  game.onload = function() {
-    var bgSpace = new Sprite(240, 320);
-    bgSpace.image = game.assets["edit_map.png"];
-    game.rootScene.addChild(bgSpace);
+  game.onload = function(){
+    var scene = new Scene();
+    var sprite = new Sprite(320, 320);
+    sprite.image = game.assets['background.jpg'];
+    scene.addChild(sprite);
+    game.pushScene(scene);
 
-    // novel.enchant.js のインスタンス生成.
-    var novel = new Novel(0, 0, 240, 320);
-    novel.setFontSize(12);
-    novel.setLineHeight(20);
-    novel.setPadding(12, 12, 12, 12);
-    novel.setFontFamily("PixelMplus12");
-    game.rootScene.addChild(novel);
 
-    // 選択時のコールバック関数.
-    game.selectChoice = function(id, select) {
-      switch (id) {
-        case 1:
-          switch (select) {
-            case 1:
-              novel.setText("数多の惑星だってそうだ。");
-              novel.setText("地球も、地球の一生物に過ぎない人間も、そして僕も、意味があって存在している。");
-              novel.setText("何かを成す為に。");
-              novel.setText("（タッチで効果音「チャイム」を鳴動）");
-              // novel.setSE(SND_CHIME, 3000);
-              novel.setText("（鳴り終わりを待って次の文を表示）");
-              break;
-            case 2:
-              novel.setText("その惑星に生息する生物だってそうだ。");
-              novel.setText("地球も、地球の一生物に過ぎない人間も、そして僕も、意味があって存在している。");
-              novel.setText("何かを成す為に。");
-              novel.setText("（タッチで効果音「電話」を鳴動）");
-              // novel.setSE(SND_PHONE, 0);
-              novel.setText("（鳴り終わりを待たずに次の文を表示）");
-              break;
-            default:
-              break;
-          }
-          break;
-        default:
-          break;
+    // enchant.ui.MutableTextはビットマップのフォントのみ使用可能
+    // 日本語が一切表示不可能であることを確認した
+    var tex = enchant.ui.MutableText(0, 0, 0);
+    tex.setText("I AM SEVEN-ELEVEN.\n 日本語 isn't available.");
+    scene.addChild(tex);
+    game.pushScene(scene);
+
+
+
+    // labelを使用した文字表示のほうが、日本語表示できることからも現実的？
+    var label = new Label("アメンボ赤いなあいうえお");
+    label.moveTo( 10, 50);
+    scene.addChild(label);
+    game.pushScene(scene);
+    // 文字を消すには以下を使用
+    //scene.removeChild(label);
+    
+
+    var noveltext = [
+      'おばあさんは突然病室を飛び出し',
+      '東京駅へどこでもドアした。',
+      false,
+      '赤ずきん的にどこでもドアのあたりがツボで',
+      '病室で笑い転げ倒しまくった。',
+      false,
+      'おばあさんよ',
+      '早めに',
+      '帰ってきてください。',
+      '　　　赤ずきんより'
+    ];
+    sprite.addEventListener('touchstart', function() {
+      var len = scene.childNodes.length;
+      console.log(scene);
+      for(var i = 0; i < len; i++){
+        if(scene.childNodes[i]){
+          if(scene.childNodes[i]._text) // 何かテキストがセットされているならば
+            scene.removeChild(scene.childNodes[i]);
+        }
       }
-    };
 
-    novel.setText("僕はどこからどう見ても、紛れも無く人間だが、同時に、地球という惑星の、一生物に過ぎない。");
-    novel.setText("宇宙は何の意味もなく、ただ生まれただけなのだろうか、いや、僕はそうは思わない。");
-    novel.setText("宇宙は、”何か”によって求められて、何かを成す為に生まれてきたんだ。");
-    novel.setPageBreak();
-    novel.setChoice(1,
-      "数多の惑星だってそうだ。",
-      "その惑星に生息する生物だってそうだ。",
-      "",
-      "",
-      game.selectChoice);
+      var label = []; // 物語表示のため、配列を用意する。
+      while(true){
+        var work = noveltext[0];
+        noveltext.splice(0, 1); // noveltext０番目から１つ削除
+        if (!(work)) break;  // 配列noveltextにはfalseがある。
+        label.push(new Label(work)); // falseじゃないなら一度に表示する分追加
+      }
 
-    // 画面タッチで次へ.
-    game.rootScene.ontouchstart = function() {
-      novel.next();
-    };
-  };
+      // 表示の処理
+      for(var i = 0; i < label.length; i++){
+        label[i].moveTo( 10, 80 + i * 20);
+        scene.addChild(label[i]);
+        game.pushScene(scene);
+      }
 
-  // ゲームをスタート.
+        // 文字を消すには以下を使用
+        //scene.removeChild(label);
+
+    });
+  }
   game.start();
-};
+  window.scrollTo(0, 0);
+}
