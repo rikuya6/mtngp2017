@@ -17,7 +17,7 @@ window.onload = function(){
   要バグ修正
 */
 
-
+/*
     // enchant.ui.MutableTextはビットマップのフォントのみ使用可能
     // 日本語が一切表示不可能であることを確認した
     var tex = enchant.ui.MutableText(0, 0, 0);
@@ -33,8 +33,9 @@ window.onload = function(){
     game.pushScene(scene);
     // 文字を消すには以下を使用
     //scene.removeChild(label);
+*/
 
-
+    var label = []; // 物語表示のため、配列を用意する。
     var noveltext = [
       'おばあさんは突然病室を飛び出し',
       '東京駅へどこでもドアした。',
@@ -48,16 +49,13 @@ window.onload = function(){
       '　　　赤ずきんより'
     ];
     sprite.addEventListener('touchstart', function() {
-      var len = scene.childNodes.length;
-      console.log(scene);
+      var len = label.length;
       for(var i = 0; i < len; i++){
-        if(scene.childNodes[i]){
-          if(scene.childNodes[i]._text) // 何かテキストがセットされているならば
-            scene.removeChild(scene.childNodes[i]);
-        }
+        console.log(label[0]);
+        scene.removeChild(label[0]);
+        label.splice(0, 1);
       }
 
-      var label = []; // 物語表示のため、配列を用意する。
       while(true){
         var work = noveltext[0];
         noveltext.splice(0, 1); // noveltext０番目から１つ削除
