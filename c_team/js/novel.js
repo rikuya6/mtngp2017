@@ -13,11 +13,6 @@ window.onload = function(){
     game.pushScene(scene);
 
 /*
-  文字消しに難あり
-  要バグ修正
-*/
-
-/*
     // enchant.ui.MutableTextはビットマップのフォントのみ使用可能
     // 日本語が一切表示不可能であることを確認した
     var tex = enchant.ui.MutableText(0, 0, 0);
@@ -28,7 +23,7 @@ window.onload = function(){
 
     // labelを使用した文字表示のほうが、日本語表示できることからも現実的？
     var label = new Label("アメンボ赤いなあいうえお");
-    label.moveTo( 10, 50);
+    label.moveTo( 10, 50); //座標指定(X, Y)
     scene.addChild(label);
     game.pushScene(scene);
     // 文字を消すには以下を使用
@@ -48,7 +43,10 @@ window.onload = function(){
       '帰ってきてください。',
       '　　　赤ずきんより'
     ];
+
+    // 画面がクリックされたならば以下が呼び出される
     sprite.addEventListener('touchstart', function() {
+      // 既に表示されていた文字を消す
       var len = label.length;
       for(var i = 0; i < len; i++){
         console.log(label[0]);
@@ -56,6 +54,8 @@ window.onload = function(){
         label.splice(0, 1);
       }
 
+      // 文字表示するための処理
+      // labelという配列にどんどん追加していく
       while(true){
         var work = noveltext[0];
         noveltext.splice(0, 1); // noveltext０番目から１つ削除
@@ -66,14 +66,22 @@ window.onload = function(){
       // 表示の処理
       for(var i = 0; i < label.length; i++){
         label[i].moveTo( 10, 80 + i * 20);
+        label[i].font = "12px 'メイリオ'"; //表示するフォントの設定 イタリックなども指定可能
         scene.addChild(label[i]);
         game.pushScene(scene);
       }
-
-        // 文字を消すには以下を使用
-        //scene.removeChild(label);
-
     });
+
+/*
+    // 背景画像を変えたい
+    // window.onload内で以下を実行
+    game.preload("edit_map.png"); //ファイル名を指定し、ロードしておく
+
+    //その後、game.onload内で以下を実行
+    sprite.image = game.assets['edit_map.png']; //ここでもファイル名を指定
+    scene.addChild(sprite);
+    game.pushScene(scene);
+*/
   }
   game.start();
   window.scrollTo(0, 0);
