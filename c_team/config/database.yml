@@ -1,0 +1,41 @@
+# SQLite3
+default: &default
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: db/development.sqlite3
+
+test:
+  <<: *default
+  database: db/test.sqlite3
+
+production:
+  <<: *default
+  database: db/production.sqlite3
+
+
+# MySQL
+# default: &default
+#   adapter: mysql2
+#   encoding: utf8
+#   pool: 5
+#   username: root
+#   password: 'sanngatuusagi0088'
+#   host: localhost
+#
+# development:
+#   <<: *default
+#   database: gifthouse_dev
+#
+# test:
+#   <<: *default
+#   database: gifthouse_test
+#
+# production:
+#   adapter: sqlite3
+#   pool: 5
+#   timeout: 5000
+#   database: db/production.sqlite3
