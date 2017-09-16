@@ -6,4 +6,7 @@ class StagesController < GuestController
   def demo
     # render file: 'stages/demo/demo.html.erb'
   end
+
+  def demo2
+  end
 end

@@ -7,6 +7,9 @@ function main() {
   gameSize = {x: 320, y: 320};
   spriteSize = {x: 32, y: 32};
 
+  store.set('user', { name:'Marcus' });
+  console.log(store.get('user').name);
+
   var game = new Game(gameSize.x,gameSize.y);
   game.preload("demo/RZukin.png", "demo/edit_map.png");
 
@@ -58,15 +61,6 @@ function main() {
     ]);
     var ruledLine = getRuledLineSprite();
     var rzukin = new Player(game, map, "demo/RZukin.png");
-    rzukin.player.addEventListener('enterframe', function () {
-      if (this.x == 256 && this.y == 64) {
-        Cookies.set('user', { name:'Marcus' }); // データはJSON形式で保存する
-        var submit = document.getElementById("demo");
-        submit.submit();
-        console.log(Cookies.get('user').name);
-        game.pause();
-      }
-    });
     var s = new MapObject(game, map, "demo/RZukin.png");
     map.addChild(foregroundMap);
     map.addChild(ruledLine);
