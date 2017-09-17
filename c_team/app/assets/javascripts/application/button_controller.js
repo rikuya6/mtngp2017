@@ -1,4 +1,4 @@
-class ButtonObject {
+class ButtonController {
   constructor(beforText, afterText, callback){
     this.button = new Button(beforText);
     this.isPushed = false
