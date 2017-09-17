@@ -4,6 +4,7 @@
 #
 #  id              :integer          not null, primary key
 #  name            :string           not null
+#  data            :text
 #  administrator   :boolean          default(FALSE), not null
 #  password_digest :string           not null
 #  created_at      :datetime         not null
@@ -11,14 +12,13 @@
 #
 
 class User < ActiveRecord::Base
+  serialize :data
   # include EmailAddressChecker
 
   # before_save { email.downcase! }
 
 
   # 関連
-  has_many :orders
-
 
   # バリデーション
   # validate  :check_email
