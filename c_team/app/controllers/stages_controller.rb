@@ -1,10 +1,16 @@
-class StagesController < GuestController
+class StagesController < MemberController
+  after_action :save_data
 
   def index
   end
 
   def demo
-    cookies['status'] = JSON.generate({ demo: false })
+    cookies['status'] = if current_user.data.blank?
+                          JSON.generate({ demo: false })
+                        else
+                          current_user.data
+                        end
+
   end
 
   def demo2
@@ -17,4 +23,14 @@ class StagesController < GuestController
   rescue
     redirect_to demo_path
   end
+
+  def demo2_novel
+  end
+
+  private
+
+    def save_data
+      current_user.data = cookies['status']
+      current_user.save
+    end
 end
