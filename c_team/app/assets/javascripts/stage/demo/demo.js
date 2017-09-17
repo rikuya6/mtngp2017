@@ -58,12 +58,17 @@ function main() {
     ]);
     var ruledLine = getRuledLineSprite();
     var rzukin = new Player(game, map, "demo/RZukin.png");
+    // @TODO プレイヤーデータ移動
     rzukin.player.addEventListener('enterframe', function() {
+      let submit = document.getElementById("demo");
       if (this.x == 256 && this.y == 64) {
-        Cookies.set('user', { name:'Marcus' }); // データはJSON形式で保存する
-        var submit = document.getElementById("demo");
+        Cookies.set('status', { demo: 'top' }); // データはJSON形式で保存する
         submit.submit();
-        console.log(Cookies.get('user').name);
+        game.pause();
+      }
+      if (this.x == 256 && this.y == 256) {
+        Cookies.set('status', { demo: 'bottom' }); // データはJSON形式で保存する
+        submit.submit();
         game.pause();
       }
     });

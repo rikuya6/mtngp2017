@@ -3,6 +3,7 @@ class CreateBaseTables < ActiveRecord::Migration
     # ユーザ
     create_table :users do |t|
       t.string  :name,            null: false
+      t.text    :data
       t.boolean :administrator,    null: false, default: false
       t.string  :password_digest,  null: false
 
