@@ -17,7 +17,6 @@ class User < ActiveRecord::Base
 
 
   # 関連
-  has_many :orders
 
 
   # バリデーション
