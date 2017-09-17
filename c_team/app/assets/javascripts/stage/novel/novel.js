@@ -1,14 +1,18 @@
-enchant();
-window.onload = function(){
+$(document).ready(function() {
+  enchant();
+  main();
+});
+
+function main(){
   var game = new Core(320, 320);
   game.fps = 30;
   game.rootScene.backgroundColor = "white";
-  game.preload("background.jpg");
+  game.preload("novel/background.jpg");
 
   game.onload = function(){
     var scene = new Scene();
     var sprite = new Sprite(320, 320);
-    sprite.image = game.assets['background.jpg'];
+    sprite.image = game.assets['novel/background.jpg'];
     scene.addChild(sprite);
     game.pushScene(scene);
 
@@ -48,7 +52,7 @@ window.onload = function(){
     sprite.addEventListener('touchstart', function() {
       // 既に表示されていた文字を消す
       var len = label.length;
-      for(var i = 0; i < len; i++){
+      for(let i = 0; i < len; i++){
         console.log(label[0]);
         scene.removeChild(label[0]);
         label.splice(0, 1);
@@ -64,7 +68,7 @@ window.onload = function(){
       }
 
       // 表示の処理
-      for(var i = 0; i < label.length; i++){
+      for(let i = 0; i < label.length; i++){
         label[i].moveTo( 10, 80 + i * 20);
         label[i].font = "12px 'メイリオ'"; //表示するフォントの設定 イタリックなども指定可能
         scene.addChild(label[i]);
