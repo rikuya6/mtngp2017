@@ -7,4 +7,4 @@
 
 * デモページ
 
-  > https://desolate-temple-83192.herokuapp.com/
+  > https://mtng2017-c-team.herokuapp.com/
