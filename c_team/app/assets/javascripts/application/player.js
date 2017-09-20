@@ -1,9 +1,10 @@
 class Player {
-  constructor(game, map, asset) {
+  constructor(game, map, asset, sx, sy) {
     this.player = new Sprite(spriteSize.x, spriteSize.y);
     this.player.image = game.assets[asset];
-    this.player.x = 0;
-    this.player.y = 0;
+    this.player.x = sx;
+    this.player.y = sy;
+    // @TODO キャラクの上に障害物を置けないようにする。移動したときに判定を変える処理がない map.collisionData[Math.floor(sy / 32) + 1][Math.floor(sx / 32) + 1] = 1;
     this.player.frame = 1;
     this.player.isMoving = false;
     this.player.direction = 0;

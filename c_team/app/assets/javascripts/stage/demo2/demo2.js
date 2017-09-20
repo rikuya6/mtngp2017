@@ -57,7 +57,7 @@ function main() {
       [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
     ]);
     var ruledLine = getRuledLineSprite();
-    var rzukin = new Player(game, map, "demo/RZukin.png");
+    var rzukin = new Player(game, map, "demo/RZukin.png", 0, 0);
     // @TODO プレイヤーデータ移動
     var coordinate = Cookies.getJSON('coordinate');
     rzukin.player.moveTo(coordinate.x, coordinate.y);
