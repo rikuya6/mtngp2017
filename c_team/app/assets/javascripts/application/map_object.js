@@ -1,12 +1,16 @@
 class MapObject {
-  constructor(game, map, asset) {
+  constructor(game, map, asset, sx, sy) {
     this.sprite= new Sprite(32, 32);
     this.originX = 0;
     this.originY = 0;
     this.beforeX = 0;
     this.beforeY = 0;
     this.sprite.image = game.assets[asset];
-    this.sprite.x = 64;
+    this.sprite.x = sx;
+    this.sprite.y = sy;
+    this.sprite.changeCollisionData = function(x, y, state) {
+      map.collisionData[Math.floor(y / 32) + 1][Math.floor(x / 32) + 1] = state;
+    };
 
     this.sprite.addEventListener(enchant.Event.TOUCH_START, function(e){
       this.originX = e.x - this.x;
@@ -41,8 +45,8 @@ class MapObject {
       console.log(nx, ny);
       this.x = nx;
       this.y = ny;
-      map.collisionData[Math.floor(this.beforeY / 32) + 1][Math.floor(this.beforeX / 32) + 1] = 0; // 一つ前のマスを当たり判定なしにする
-      map.collisionData[Math.floor(this.y / 32) + 1][Math.floor(this.x / 32) + 1] = 1;  // 現在のマスを当たり判定ありにする
+      this.changeCollisionData(this.beforeX, this.beforeY, 0); // 一つ前のマスを当たり判定なしにする
+      this.changeCollisionData(this.x, this.y, 1); // 現在のマスを当たり判定ありにする
     });
   }
 

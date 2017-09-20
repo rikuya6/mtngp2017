@@ -62,7 +62,7 @@ function main() {
     var coordinate = Cookies.getJSON('coordinate');
     rzukin.player.moveTo(coordinate.x, coordinate.y);
 
-    var s = new MapObject(game, map, "demo/RZukin.png");
+    var s = new MapObject(game, map, "demo/RZukin.png", 64, 0);
     map.addChild(foregroundMap);
     map.addChild(ruledLine);
     map.addChild(rzukin.getSprite());

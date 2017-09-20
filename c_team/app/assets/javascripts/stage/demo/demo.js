@@ -72,7 +72,7 @@ function main() {
         game.pause();
       }
     });
-    var s = new MapObject(game, map, "demo/RZukin.png");
+    var s = new MapObject(game, map, "demo/RZukin.png", 64, 0);
     map.addChild(foregroundMap);
     map.addChild(ruledLine);
     map.addChild(rzukin.getSprite());
