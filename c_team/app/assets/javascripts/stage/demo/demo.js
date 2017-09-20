@@ -73,10 +73,12 @@ function main() {
       }
     });
     var s = new MapObject(game, map, "demo/RZukin.png", 64, 0);
+    var s2 = new MapObject(game, map, "demo/RZukin.png", 128, 0);
     map.addChild(foregroundMap);
     map.addChild(ruledLine);
     map.addChild(rzukin.getSprite());
     map.addChild(s.getSprite());
+    map.addChild(s2.getSprite());
     game.rootScene.addChild(map);
 
     var button = new ButtonObject("▶️", "Running", function() {

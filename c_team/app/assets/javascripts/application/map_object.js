@@ -43,6 +43,12 @@ class MapObject {
         this.y = this.beforeY;
         return;
       }
+      if (map.collisionData[Math.floor(ny / 32) + 1][Math.floor(nx / 32) + 1] == 1) {
+        // 障害物の上に別の障害物は置けない
+        this.x = this.beforeX;
+        this.y = this.beforeY;
+        return;
+      }
       console.log(nx, ny);
       this.x = nx;
       this.y = ny;
