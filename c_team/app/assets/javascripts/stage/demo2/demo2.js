@@ -86,7 +86,7 @@ function main() {
     };
   };
   game.start();
-};
+}
 
 function getRuledLineSprite() {
   // 罫線
