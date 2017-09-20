@@ -6,11 +6,12 @@ class MapObject {
     this.beforeX = 0;
     this.beforeY = 0;
     this.sprite.image = game.assets[asset];
-    this.sprite.x = sx;
-    this.sprite.y = sy;
     this.sprite.changeCollisionData = function(x, y, state) {
       map.collisionData[Math.floor(y / 32) + 1][Math.floor(x / 32) + 1] = state;
     };
+    this.sprite.x = sx;
+    this.sprite.y = sy;
+    this.sprite.changeCollisionData(sx, sy, 1);
 
     this.sprite.addEventListener(enchant.Event.TOUCH_START, function(e){
       this.originX = e.x - this.x;
