@@ -4,15 +4,15 @@ $(document).ready(function() {
 });
 
 function main(){
-  var game = new Core(320, 320);
+  var game = new Core(1200, 675);
   game.fps = 30;
   game.rootScene.backgroundColor = "white";
-  game.preload("novel/background.jpg");
+  game.preload("novel/nohara_bg.jpg");
 
   game.onload = function(){
     var scene = new Scene();
-    var sprite = new Sprite(320, 320);
-    sprite.image = game.assets['novel/background.jpg'];
+    var sprite = new Sprite(1200, 675);
+    sprite.image = game.assets['novel/nohara_bg.jpg'];
     scene.addChild(sprite);
     game.pushScene(scene);
 
@@ -64,17 +64,42 @@ function main(){
         var work = noveltext[0];
         noveltext.splice(0, 1); // noveltext０番目から１つ削除
         if (!(work)) break;  // 配列noveltextにはfalseがある。
-        label.push(new Label(work)); // falseじゃないなら一度に表示する分追加
+        var tex = new Label(work);
+        tex.width = 800;
+        label.push(tex); // falseじゃないなら一度に表示する分追加
       }
 
       // 表示の処理
       for(let i = 0; i < label.length; i++){
-        label[i].moveTo( 10, 80 + i * 20);
-        label[i].font = "12px 'メイリオ'"; //表示するフォントの設定 イタリックなども指定可能
+        label[i].moveTo( 40, 470 + i * 40);
+        label[i].font = "32px 'メイリオ'"; //表示するフォントの設定 イタリックなども指定可能
         scene.addChild(label[i]);
         game.pushScene(scene);
       }
     });
+
+    // 以下からテキストボックスの描画
+    // Spriteオブジェクトの作成
+    var sprite2 = new Sprite(1150, 200);
+    sprite2.x = 20;
+    sprite2.y = 450;
+    // spriteオブジェクトの背景色の指定
+    sprite2.backgroundColor = "rgba(100, 100, 255, 0.8)";
+    // Surfaceオブジェクトの作成
+    // Spriteの大きさ以上に指定しても範囲外には描画されない
+    var surface = new Surface(100, 100);
+    // SurfaceオブジェクトをSpriteオブジェクトのimageプロパティに代入
+    sprite2.image = surface;
+    // コンテキストを取得する
+    context = surface.context;
+    // パスの描画の初期化
+    context.beginPath();
+    // 描画開始位置の移動
+    context.moveTo(10, 10);
+    // 描画を行う
+    context.stroke();
+    scene.addChild(sprite2);
+    game.pushScene(scene);
 
 /*
     // 背景画像を変えたい
