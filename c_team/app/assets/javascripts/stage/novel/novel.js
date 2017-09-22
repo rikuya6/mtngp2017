@@ -16,6 +16,7 @@ function main(){
     scene.addChild(sprite);
     game.pushScene(scene);
 
+    // キャラクター画像の準備
     var cimg = [];
     for(var i = 1; i <= 3; i++){
       cimg[i] = new Sprite(135, 126);
@@ -23,6 +24,10 @@ function main(){
       cimg[i].moveTo(20 + i * 300, 250);
     }
 
+    // Cookieフラグ管理
+    var coordinate = Cookies.getJSON('n_flg');
+    console.log(Cookies.getJSON('status'));
+    console.log(coordinate);
 
     var label = []; // 物語表示のため、配列を用意する。
     var noveltext = [

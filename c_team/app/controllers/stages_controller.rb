@@ -24,7 +24,15 @@ class StagesController < MemberController
     redirect_to demo_path
   end
 
-  def demo2_novel
+  def novel
+    status = JSON.parse(cookies['status'])
+    if status['demo'] == 'top'
+      cookies['n_flg'] = JSON.generate({ flower: true, gamecenter: false });
+    elsif status['demo'] == 'bottom'
+      cookies['n_flg'] = JSON.generate({ flower: false, gamecenter: true });
+    end
+  rescue
+    redirect_to demo_path
   end
 
   private
