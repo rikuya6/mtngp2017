@@ -25,10 +25,8 @@ function main(){
     }
 
     // Cookieフラグ管理
-    var coordinate = Cookies.getJSON('n_flg');
-    console.log(Cookies.getJSON('status'));
-    
-    console.log(coordinate);
+    var n_flg = Cookies.getJSON('n_flg');
+
 
     var label = []; // 物語表示のため、配列を用意する。
     var noveltext = [
@@ -54,6 +52,23 @@ function main(){
       -3
     ];
 
+    // 以下、フラグごとの文章
+    var t_flower = [
+      'まぁ',
+      'お花どうもありがとう。',
+      false,
+      '冷蔵庫にりんごがあるから一緒に食べましょう？',
+      false
+    ];
+    var f_flower = [
+      '随分と遅かったね。',
+      '夜道は危ないよ。',
+      false,
+      'ゲームセンターで遊んでいたの？',
+      'ちょっとおばあちゃん、ママに電話してくるわね。',
+      false
+    ];
+
     // 画面がクリックされたならば以下が呼び出される
     sprite.addEventListener('touchstart', function() {
       // 既に表示されていた文字を消す
@@ -66,26 +81,72 @@ function main(){
 
       // 文字表示するための処理
       // labelという配列にどんどん追加していく
-      while(true){
-        var work = noveltext[0];
-        noveltext.splice(0, 1); // noveltext０番目から１つ削除
-        if (!(work)) break;  // 配列noveltextにはfalseがある。
+      if(!(n_flg)){ // n_flgに何もないなら通常テキストを表示
+        while(true){
+          var work = noveltext[0];
+          noveltext.splice(0, 1); // noveltext０番目から１つ削除
+          if (!(work)) break;  // 配列noveltextにはfalseがある。
 
-        // 以下、キャラクター表示の指示が来た場合の処理
-        if (!(isNaN(work))) {
-          if (work > 0){
-            scene.addChild(cimg[work]);
-            game.pushScene(scene);
-          }else{ // マイナスが来た場合、非表示にする
-            scene.removeChild(cimg[work * -1]);
+          // 以下、キャラクター表示の指示が来た場合の処理
+          if (!(isNaN(work))) {
+            if (work > 0){
+              scene.addChild(cimg[work]);
+              game.pushScene(scene);
+            }else{ // マイナスが来た場合、非表示にする
+              scene.removeChild(cimg[work * -1]);
+            }
+            break;
           }
-          break;
-        }
 
-        // 以下、通常通りテキストを表示する処理
-        var tex = new Label(work);
-        tex.width = 800;
-        label.push(tex); // falseじゃないなら一度に表示する分追加
+          // 以下、通常通りテキストを表示する処理
+          var tex = new Label(work);
+          tex.width = 800;
+          label.push(tex); // falseじゃないなら一度に表示する分追加
+        }
+      }else if(n_flg.flower){ // n_flgにあるflowerがtrueならそれ用のテキストを表示
+        while(true){
+          var work = t_flower[0];
+          t_flower.splice(0, 1); // noveltext０番目から１つ削除
+          if (!(work)) break;  // 配列noveltextにはfalseがある。
+
+          // 以下、キャラクター表示の指示が来た場合の処理
+          if (!(isNaN(work))) {
+            if (work > 0){
+              scene.addChild(cimg[work]);
+              game.pushScene(scene);
+            }else{ // マイナスが来た場合、非表示にする
+              scene.removeChild(cimg[work * -1]);
+            }
+            break;
+          }
+
+          // 以下、通常通りテキストを表示する処理
+          var tex = new Label(work);
+          tex.width = 800;
+          label.push(tex); // falseじゃないなら一度に表示する分追加
+        }
+      }else{
+        while(true){
+          var work = f_flower[0];
+          f_flower.splice(0, 1); // noveltext０番目から１つ削除
+          if (!(work)) break;  // 配列noveltextにはfalseがある。
+
+          // 以下、キャラクター表示の指示が来た場合の処理
+          if (!(isNaN(work))) {
+            if (work > 0){
+              scene.addChild(cimg[work]);
+              game.pushScene(scene);
+            }else{ // マイナスが来た場合、非表示にする
+              scene.removeChild(cimg[work * -1]);
+            }
+            break;
+          }
+
+          // 以下、通常通りテキストを表示する処理
+          var tex = new Label(work);
+          tex.width = 800;
+          label.push(tex); // falseじゃないなら一度に表示する分追加
+        }
       }
 
       // 表示の処理
