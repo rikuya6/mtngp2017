@@ -27,6 +27,7 @@ function main(){
     // Cookieフラグ管理
     var coordinate = Cookies.getJSON('n_flg');
     console.log(Cookies.getJSON('status'));
+    
     console.log(coordinate);
 
     var label = []; // 物語表示のため、配列を用意する。
