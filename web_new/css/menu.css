@@ -14,6 +14,7 @@ nav ul li {
   padding: 0;
   background-color: #fff;
   border: solid 2px #94E3F7;
+  border-left: none;
 }
 nav ul li a {
   display: block;
@@ -32,4 +33,7 @@ nav ul li a:hover {
 nav ul li a.active {
   background-color: #94E3F7;
   color: #fff;
+}
+nav ul li:first-child {
+  border-left: solid 2px #94E3F7;
 }
