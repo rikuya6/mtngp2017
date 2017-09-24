@@ -31,13 +31,13 @@ class MapObject {
           break;
         }
       }
-      for (let i = 0; i <= map.width; i+=32) {
+      for (let i = 0; i <= map.height; i+=32) {
         if (e.y <= i) {
           ny = i - 32;
           break;
         }
       }
-      if (nx < 0 || nx > 256 || ny < 0 || ny > 256) {
+      if (nx < 0 || nx > map.width || ny < 0 || ny > map.height) {
         alert("範囲外の指定です。"); // @TODO　仕様未決定
         this.x = this.beforeX;
         this.y = this.beforeY;
