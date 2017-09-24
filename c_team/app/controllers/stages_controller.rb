@@ -16,9 +16,9 @@ class StagesController < MemberController
   def demo2
     status = JSON.parse(cookies['status'])
     if status['demo'] == 'top'
-      cookies['coordinate'] = JSON.generate({ x: 128, y: 16 });
+      cookies['coordinate'] = JSON.generate({ x: 128, y: 0 });
     elsif status['demo'] == 'bottom'
-      cookies['coordinate'] = JSON.generate({ x: 128, y: 256 });
+      cookies['coordinate'] = JSON.generate({ x: 128, y: 288 });
     end
   rescue
     redirect_to demo_path

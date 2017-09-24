@@ -64,6 +64,7 @@ class Player {
             this.isMoving = true;
             this.move(); // 描画を1フレーム中に行う
           }else{
+            console.log(x, y, map.width, map.height);
             this.moveController.stop();
             alert("この先には進めません!");
           }
