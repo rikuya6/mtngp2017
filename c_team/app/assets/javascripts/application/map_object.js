@@ -1,13 +1,13 @@
 class MapObject {
   constructor(game, map, asset, sx, sy) {
-    this.sprite= new Sprite(32, 32);
+    this.sprite= new Sprite(spriteSize.x, spriteSize.y);
     this.originX = 0;
     this.originY = 0;
     this.beforeX = 0;
     this.beforeY = 0;
     this.sprite.image = game.assets[asset];
     this.sprite.changeCollisionData = function(x, y, state) {
-      map.collisionData[Math.floor(y / 32) + 1][Math.floor(x / 32) + 1] = state;
+      map.collisionData[Math.floor(y / spriteSize.y) + 1][Math.floor(x / spriteSize.x) + 1] = state;
     };
     this.sprite.x = sx;
     this.sprite.y = sy;
@@ -25,15 +25,15 @@ class MapObject {
     });
     this.sprite.addEventListener(enchant.Event.TOUCH_END, function(e){
       let nx = 0, ny = 0;
-      for (let i = 0; i <= map.width; i+=32) {
+      for (let i = 0; i <= map.width; i+=spriteSize.x) {
         if (e.x <= i) {
-          nx = i - 32;
+          nx = i - spriteSize.x;
           break;
         }
       }
-      for (let i = 0; i <= map.height; i+=32) {
+      for (let i = 0; i <= map.height; i+=spriteSize.y) {
         if (e.y <= i) {
-          ny = i - 32;
+          ny = i - spriteSize.y;
           break;
         }
       }
@@ -43,7 +43,7 @@ class MapObject {
         this.y = this.beforeY;
         return;
       }
-      if (map.collisionData[Math.floor(ny / 32) + 1][Math.floor(nx / 32) + 1] == 1) {
+      if (map.collisionData[Math.floor(ny / spriteSize.y) + 1][Math.floor(nx / spriteSize.x) + 1] == 1) {
         // 障害物の上に別の障害物は置けない
         this.x = this.beforeX;
         this.y = this.beforeY;

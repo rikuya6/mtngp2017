@@ -6,11 +6,11 @@ $(document).ready(function() {
 function main() {
   gameSize = {
     x: 1152,
-    y: 608
+    y: 640
   };
   spriteSize = {
-    x: 32,
-    y: 32
+    x: 64,
+    y: 64
   };
 
   var game = new Game(gameSize.x, gameSize.y);
@@ -68,14 +68,14 @@ function main() {
     // @TODO プレイヤーデータ移動
     rzukin.player.addEventListener('enterframe', function() {
       let submit = document.getElementById("demo");
-      if (this.x == 288 && this.y == 0) {
+      if (this.x == 576 && this.y == 0) {
         Cookies.set('status', {
           demo: 'top'
         }); // データはJSON形式で保存する
         submit.submit();
         game.pause();
       }
-      if (this.x == 288 && this.y == 288) {
+      if (this.x == 576 && this.y == 576) {
         Cookies.set('status', {
           demo: 'bottom'
         }); // データはJSON形式で保存する
@@ -132,7 +132,7 @@ function getRuledLineSprite() {
   square.image = suef;
   let cont = suef.context;
   cont.beginPath();
-  for (let i = 0; i <= gameSize.x; i += 32) {
+  for (let i = 0; i <= gameSize.x; i += spriteSize.x) {
     cont.moveTo(i, 0);
     cont.lineTo(i, gameSize.x);
     cont.moveTo(0, i);
