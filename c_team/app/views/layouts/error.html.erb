@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title><%= page_title %></title>
+  <%= stylesheet_link_tag "application" %>
+</head>
+<body>
+  <div id="container">
+    <div id="header">
+      <p><%= link_to "トップページ", root_path %></p>
+    </div>
+    <%= yield %>
+    <div id="footer">
+      <%= render "shared/footer" %>
+    </div>
+  </div>
+</body>
+</html>
