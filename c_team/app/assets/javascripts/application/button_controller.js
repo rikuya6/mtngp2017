@@ -1,7 +1,7 @@
 class ButtonController {
   constructor(beforText, afterText, callback){
     this.button = new Button(beforText);
-    this.isPushed = false
+    this.isPushed = false;
 
     this.button.ontouchstart = function() {
       if(!this.isPushed){
@@ -15,7 +15,7 @@ class ButtonController {
       }else{
         console.log('Disabled');
       }
-    }
+    };
   }
 
   move(x, y){
