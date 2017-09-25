@@ -92,7 +92,7 @@ function main() {
     map.addChild(s2.getSprite());
     game.rootScene.addChild(map);
 
-    var button = new ButtonObject("▶️", "Running", function() {
+    var button = new ButtonController("▶️", "Running", function() {
       for (let i = 0; i < 2; i++) {
         rzukin.player.moveController.moveRight();
         rzukin.player.moveController.moveDown();
@@ -104,7 +104,7 @@ function main() {
     });
     button.move(140, 120);
 
-    var resetbutton = new ButtonObject("Reset", "Running", function() {
+    var resetbutton = new ButtonController("Reset", "Running", function() {
       for (let i = 0; i < 2; i++) {
         rzukin.player.moveController.moveRight();
         rzukin.player.moveController.moveDown();
