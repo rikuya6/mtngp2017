@@ -8,33 +8,26 @@ body {
 }
 h2 {
   display: block;
-  background-color: orange;
+  background-color: #f90;
   width: 20%;
   padding: 10px;
 }
 header {
-  background-color: #94E3F7;
+  background-color: #9CF;
   padding-bottom: 5px;
 }
 div.button-orange {
   padding: 10px;
 }
 div.button-orange p {
-  background-color: orange;
+  background-color: #f90;
   font-size: 40px;
   color: #fff;
   width: 150px;
   border-radius: 10px 10px;
-  border: 2px solid orange;
+  border: 2px solid #f90;
   text-align: center;
   margin: auto;
-}
-div.button-orange::before {
-  position: absolute;
-  width: 100%;
-  x: -10;
-  background-color: black;
-  height: 150px;
 }
 .text-center {
   text-align: center;
