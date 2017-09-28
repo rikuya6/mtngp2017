@@ -1,5 +1,5 @@
 class Player {
-  constructor(game, map, asset, sx, sy) {
+  constructor(game, map, asset, sx, sy, direction) {
     this.player = new Sprite(spriteSize.x, spriteSize.y);
     this.player.image = game.assets[asset];
     this.player.x = sx;
@@ -7,26 +7,47 @@ class Player {
     // @TODO キャラクの上に障害物を置けないようにする。移動したときに判定を変える処理がない map.collisionData[Math.floor(sy / 32) + 1][Math.floor(sx / 32) + 1] = 1;
     this.player.frame = 1;
     this.player.isMoving = false;
-    this.player.direction = 0;
+    this.player.direction = direction;
     this.player.walk = 1;
+    this.player.angle = (45 * direction) % 360;
     this.player.moveController = new MoveController();
+    this.player.addAngle = function (add) {
+      if(this.angle + add >= 0) this.angle = (this.angle + add) % 360;
+      else this.angle = 360 + add;
+    };
     this.player.move = function () {
       if (this.moveController.hasNextOrder() && !this.isMoving) {
         switch (this.moveController.nextOrder()) {
-          case 0:
-            game.input.up = true;
+          case 0: // まっすぐ
             break;
-          case 1:
-            game.input.right = true;
+          case 1: // 右
+            this.addAngle(90);
             break;
           case 2:
-            game.input.down = true;
+            this.addAngle(180);
             break;
-          case 3:
-            game.input.left = true;
+          case 3: // 左
+            this.addAngle(-90);
             break;
           default:
             throw new Error("想定外のorderです。");
+        }
+        // console.log("angle", this.angle);
+        switch (this.angle) {
+          case 0:
+            game.input.up = true;
+            break;
+          case 90:
+            game.input.right = true;
+            break;
+          case 180:
+            game.input.down = true;
+            break;
+          case 270:
+            game.input.left = true;
+            break;
+          default:
+            throw new Error("想定外の向きです。" + this.angle);
         }
       }
       this.frame = this.direction * 3 + this.walk;

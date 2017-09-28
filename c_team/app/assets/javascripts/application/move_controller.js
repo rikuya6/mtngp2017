@@ -1,11 +1,11 @@
 class MoveController {
   constructor() {
-    this.label = ["moveUp", "moveRight", "moveDown", "moveLeft"];
+    this.label = ["moveStraight", "moveRight", "moveDown", "moveLeft"];
     this.orders = [];
     this.finish = false;
   }
 
-  moveUp() {
+  moveStraight() {
     this.orders.push(0);
     console.log(this.label[0]);
   }

@@ -9,8 +9,8 @@ function main() {
     y: 640
   };
   spriteSize = {
-    x: 64,
-    y: 64
+    x: 32,
+    y: 32
   };
 
   var game = new Game(gameSize.x, gameSize.y);
@@ -64,7 +64,7 @@ function main() {
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
     ]);
     var ruledLine = getRuledLineSprite();
-    var rzukin = new Player(game, map, "demo/RZukin.png", 0, 0);
+    var rzukin = new Player(game, map, "demo/RZukin.png", 0, 0, 0);
     // @TODO プレイヤーデータ移動
     rzukin.player.addEventListener('enterframe', function() {
       let submit = document.getElementById("demo");
@@ -93,11 +93,14 @@ function main() {
     game.rootScene.addChild(map);
 
     var button = new ButtonController("▶️", "Running", function() {
-      for (let i = 0; i < 2; i++) {
+      for (let i = 0; i < 1; i++) {
         rzukin.player.moveController.moveRight();
-        rzukin.player.moveController.moveDown();
-        rzukin.player.moveController.moveUp();
         rzukin.player.moveController.moveLeft();
+        rzukin.player.moveController.moveRight();
+        rzukin.player.moveController.moveRight();
+        rzukin.player.moveController.moveStraight();
+        rzukin.player.moveController.moveDown();
+        rzukin.player.moveController.moveDown();
         rzukin.player.moveController.moveLeft();
         rzukin.player.moveController.execute();
       }
@@ -108,7 +111,6 @@ function main() {
       for (let i = 0; i < 2; i++) {
         rzukin.player.moveController.moveRight();
         rzukin.player.moveController.moveDown();
-        rzukin.player.moveController.moveUp();
         rzukin.player.moveController.moveLeft();
         rzukin.player.moveController.moveLeft();
         rzukin.player.moveController.execute();

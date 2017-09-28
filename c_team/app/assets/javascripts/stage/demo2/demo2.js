@@ -65,7 +65,7 @@ function main() {
     ]);
     var ruledLine = getRuledLineSprite();
     var coordinate = Cookies.getJSON('coordinate');
-    var rzukin = new Player(game, map, "demo/RZukin.png", coordinate.x, coordinate.y);
+    var rzukin = new Player(game, map, "demo/RZukin.png", coordinate.x, coordinate.y, 0);
     // @TODO プレイヤーデータ移動
 
     var s = new MapObject(game, map, "demo/RZukin.png", 64, 0);
@@ -84,7 +84,6 @@ function main() {
       for(let i = 0; i < 2; i++) {
         rzukin.player.moveController.moveRight();
         rzukin.player.moveController.moveDown();
-        rzukin.player.moveController.moveUp();
         rzukin.player.moveController.moveLeft();
         rzukin.player.moveController.moveLeft();
         rzukin.player.moveController.execute();
