@@ -14,7 +14,7 @@ function main() {
   };
 
   var game = new Game(gameSize.x, gameSize.y);
-  game.preload("demo/RZukin.png", "demo/edit_map.png");
+  game.preload("demo/azuki_walk.png", "demo/edit_map.png");
 
   game.onload = function() {
     var MapGroup = enchant.Class.mixClasses(Map, Group, true);
@@ -64,7 +64,7 @@ function main() {
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
     ]);
     var ruledLine = getRuledLineSprite();
-    var rzukin = new Player(game, map, "demo/RZukin.png", 0, 0);
+    var rzukin = new Player(game, map, "demo/azuki_walk.png", 0, 0);
     // @TODO プレイヤーデータ移動
     rzukin.player.addEventListener('enterframe', function() {
       let submit = document.getElementById("demo");
@@ -83,8 +83,8 @@ function main() {
         game.pause();
       }
     });
-    var s = new MapObject(game, map, "demo/RZukin.png", 64, 0);
-    var s2 = new MapObject(game, map, "demo/RZukin.png", 128, 0);
+    var s = new MapObject(game, map, "demo/azuki_walk.png", 64, 0);
+    var s2 = new MapObject(game, map, "demo/azuki_walk.png", 128, 0);
     map.addChild(foregroundMap);
     map.addChild(ruledLine);
     map.addChild(rzukin.getSprite());
