@@ -17,14 +17,13 @@ h2 {
   font-size: 30px;
   color: #fff;
   background-color: #f90;
-  width: 400px;
+  width: 350px;
   padding: 10px;
   overflow: hidden;
 }
 h3 {
   text-align: center;
   width: auto;
-  border-bottom: 2px dashed #f90;
 }
 p {
   font-size: 20px;
@@ -35,9 +34,13 @@ img {
   margin: auto;
 }
 header {
-  background-color: #9CF;
+  background-color: #94E3F7;
   padding-bottom: 5px;
   padding-top: 60px;
+}
+header img {
+  max-width: 300px;
+  height: auto;
 }
 header h3 {
   width: auto;
@@ -45,10 +48,19 @@ header h3 {
   border: none;
 }
 .member-data {
+  border: 2px solid #f90;
+  margin-bottom: 30px;
   padding: 10px;
 }
 .member-data p {
   text-align: center;
+}
+.if_icon {
+  display: block;
+  max-width: 250px;
+  height: auto;
+  margin: auto;
+  margin-bottom: 30px;
 }
 .member-photo {
   display: block;
@@ -57,13 +69,16 @@ header h3 {
   margin: auto;
   margin-bottom: 10px;
 }
+footer {
+  background-color: #94E3F7;
+}
 footer p {
   margin: 50px;
   font-size: 15px;
   text-align: center;
 }
 div.button-orange {
-  padding: 10px;
+  padding: 15px;
 }
 div.button-orange p {
   background-color: #f90;
