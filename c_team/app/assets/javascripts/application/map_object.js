@@ -7,7 +7,13 @@ class MapObject {
     this.beforeY = 0;
     this.sprite.image = game.assets[asset];
     this.sprite.changeCollisionData = function(x, y, state) {
-      map.collisionData[Math.floor(y / spriteSize.y) + 1][Math.floor(x / spriteSize.x) + 1] = state;
+      var width = map._image.width;
+      var height = map._image.height;
+      var tileWidth = map._tileWidth || width;
+      var tileHeight = map._tileHeight || height;
+      x = x / tileWidth | 0;
+      y = y / tileHeight | 0;
+      map.collisionData[y + 1][x + 1] = state;
     };
     this.sprite.x = sx;
     this.sprite.y = sy;
