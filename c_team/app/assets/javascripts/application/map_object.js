@@ -1,5 +1,5 @@
 class MapObject {
-  constructor(game, map, asset, sx, sy) {
+  constructor(game, map, asset, sx, sy, hitStatus) {
     this.sprite= new Sprite(spriteSize.x, spriteSize.y);
     this.originX = 0;
     this.originY = 0;
@@ -18,7 +18,7 @@ class MapObject {
     };
     this.sprite.x = sx;
     this.sprite.y = sy;
-    this.sprite.changeCollisionData(sx, sy, 3);
+    this.sprite.changeCollisionData(sx, sy, hitStatus);
 
     this.sprite.addEventListener(enchant.Event.TOUCH_START, function(e){
       this.originX = e.x - this.x;

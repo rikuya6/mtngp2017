@@ -82,7 +82,7 @@ function main() {
     map.addChild(azuki.getSprite());
     game.rootScene.addChild(map);
 
-    var o1 = new MapObject(game, map, "azuki_walk.png", 1024, 64);
+    var o1 = new MapObject(game, map, "azuki_walk.png", 1024, 64, 3);
     map.addChild(o1.getSprite());
 
     var startButton = new ButtonController("▶️", "Running", function() {
