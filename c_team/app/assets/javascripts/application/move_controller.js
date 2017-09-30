@@ -56,7 +56,7 @@ class MoveController {
 
   nextOrder() {
     this.order_execute_counter++;
-    if (!this.hasNextOrder()) throw new Error("次のorderが空です。");
+    if (!this.hasNextOrder()) throw new Error("次のorderが空か、無限ループしています。");
     return this.orders.shift();
   }
 
