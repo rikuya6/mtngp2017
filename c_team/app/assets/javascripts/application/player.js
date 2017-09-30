@@ -76,16 +76,16 @@ class Player {
         this.vx = this.vy = 0;
         if (this.left || game.input.left) {
           this.direction = 1;
-          this.vx = -4;
+          this.vx = -16;
         } else if (this.right || game.input.right) {
           this.direction = 2;
-          this.vx = 4;
+          this.vx = 16;
         } else if (this.up || game.input.up) {
           this.direction = 3;
-          this.vy = -4;
+          this.vy = -16;
         } else if (this.down || game.input.down) {
           this.direction = 0;
-          this.vy = 4;
+          this.vy = 16;
         }
         this.right = this.left = this.up = this.down = false;
         if (this.vx || this.vy) {
