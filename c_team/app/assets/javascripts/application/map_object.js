@@ -13,11 +13,12 @@ class MapObject {
       var tileHeight = map._tileHeight || height;
       x = x / tileWidth | 0;
       y = y / tileHeight | 0;
+      if (map.collisionData[y + 1][x + 1] == 3) state = 3; // マップの外のため変更対象外
       map.collisionData[y + 1][x + 1] = state;
     };
     this.sprite.x = sx;
     this.sprite.y = sy;
-    this.sprite.changeCollisionData(sx, sy, 1);
+    this.sprite.changeCollisionData(sx, sy, 3);
 
     this.sprite.addEventListener(enchant.Event.TOUCH_START, function(e){
       this.originX = e.x - this.x;
@@ -49,7 +50,8 @@ class MapObject {
         this.y = this.beforeY;
         return;
       }
-      if (map.collisionData[Math.floor(ny / spriteSize.y) + 1][Math.floor(nx / spriteSize.x) + 1] == 1) {
+      var collision_num =  map.collisionData[Math.floor(ny / spriteSize.y) + 1][Math.floor(nx / spriteSize.x) + 1];
+      if (collision_num == 1 || collision_num == 2) {
         // 障害物の上に別の障害物は置けない
         this.x = this.beforeX;
         this.y = this.beforeY;

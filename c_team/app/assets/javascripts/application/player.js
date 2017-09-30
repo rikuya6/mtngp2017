@@ -95,12 +95,22 @@ class Player {
             this.isMoving = true;
             this.moving(); // 描画を1フレーム中に行う
           }else{
-            if (this.moveController.getHitTurnDirection() == 0) { // ぶつかったら、左に向く
-              this.addAngle(-90);
+            var width = map._image.width;
+            var height = map._image.height;
+            var tileWidth = map._tileWidth || width;
+            var tileHeight = map._tileHeight || height;
+            x = x / tileWidth | 0;
+            y = y / tileHeight | 0;
+            if (map.collisionData[y][x] >= 2) {
+              this.moveController.stop();
             }else{
-              this.addAngle(90);
+              if (this.moveController.getHitTurnDirection() == 0) { // ぶつかったら、左に向く
+                this.addAngle(-90);
+              }else{
+                this.addAngle(90);
+              }
+              this.move();
             }
-            this.move();
           }
         }
       }
