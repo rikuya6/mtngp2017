@@ -4,7 +4,7 @@ class StagesController < MemberController
   def index
   end
 
-  def demo
+  def tutorial1
     cookies['status'] = if current_user.data.blank?
                           JSON.generate({ demo: false })
                         else
@@ -25,7 +25,7 @@ class StagesController < MemberController
   end
 
   def novel
-    
+
     status = JSON.parse(cookies['status'])
     if status['demo'] == 'top'
       cookies['n_flg'] = JSON.generate({ flower: true, gamecenter: false });

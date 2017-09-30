@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :users
 
   get 'stages', to: 'stages#index'
-  get 'stages/demo', to: 'stages#demo', as: :demo
+  get 'stages/tutorial', to: 'stages#tutorial1', as: :tutorial
   get 'stages/demo2', to: 'stages#demo2', as: :demo2
   post 'stages/demo2', to: 'stages#demo2'#, as: :demo2
   get 'stages/novel', to: 'stages#novel', as: :novel
