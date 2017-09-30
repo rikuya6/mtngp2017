@@ -83,9 +83,7 @@ function main() {
 
     var startButton = new ButtonController("▶️", "Running", function() {
       azuki.player.moveController.setHitTurnRight();
-      for (let i = 0; i < 10; i++) {
-        azuki.player.moveController.moveStraight();
-      }
+      azuki.player.moveController.moveStraight();
       azuki.player.moveController.execute();
     });
     startButton.move(1024, 0);
