@@ -74,16 +74,16 @@ class Player {
         }
       } else {
         this.vx = this.vy = 0;
-        if (this.left) {
+        if (this.left || game.input.left) {
           this.direction = 1;
           this.vx = -4;
-        } else if (this.right) {
+        } else if (this.right || game.input.right) {
           this.direction = 2;
           this.vx = 4;
-        } else if (this.up) {
+        } else if (this.up || game.input.up) {
           this.direction = 3;
           this.vy = -4;
-        } else if (this.down) {
+        } else if (this.down || game.input.down) {
           this.direction = 0;
           this.vy = 4;
         }
