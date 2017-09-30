@@ -69,7 +69,7 @@ function main() {
     azuki.player.addEventListener('enterframe', function() {
       let submit = document.getElementById("tutorial2");
       if (this.x == 448 && this.y == 576) {
-        Cookies.set('status', {
+        Cookies.set('tutorial_status', {
           tutorial1: true,
           tutorial2: true
         }); // データはJSON形式で保存する
