@@ -8,8 +8,8 @@ Rails.application.routes.draw do
 
   get 'stages', to: 'stages#index'
   get 'stages/tutorial', to: 'stages#tutorial1', as: :tutorial
-  get 'stages/demo2', to: 'stages#demo2', as: :demo2
-  post 'stages/demo2', to: 'stages#demo2'#, as: :demo2
+  get 'stages/tutorial2', to: 'stages#tutorial2', as: :tutorial2
+  post 'stages/tutorial2', to: 'stages#tutorial2'#, as: :demo2
   get 'stages/novel', to: 'stages#novel', as: :novel
 
   namespace :admin do
