@@ -8,16 +8,19 @@ class Player {
     this.player.frame = 1;
     this.player.isMoving = false;
     this.player.direction = direction;
+    this.d = [180, 270, 90, 0];
+    this.player.angle = this.d[direction];
     this.player.walk = 1;
-    this.player.angle = (45 * direction) % 360;
     this.player.moveController = new MoveController();
     this.player.addAngle = function (add) {
       if(this.angle + add >= 0) this.angle = (this.angle + add) % 360;
-      else this.angle = 360 + add;
+      else this.angle = (360 + add) % 360;
     };
     this.player.move = function () {
       if (this.moveController.hasNextOrder() && !this.isMoving) {
-        switch (this.moveController.nextOrder()) {
+        var order = this.moveController.nextOrder();
+
+        switch (order) {
           case 0: // まっすぐ
             break;
           case 1: // 右

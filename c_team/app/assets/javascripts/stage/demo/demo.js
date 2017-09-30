@@ -64,7 +64,7 @@ function main() {
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
     ]);
     var ruledLine = getRuledLineSprite();
-    var rzukin = new Player(game, map, "demo/azuki_walk.png", 0, 0);
+    var rzukin = new Player(game, map, "demo/azuki_walk.png", 0, 0, 3);
     // @TODO プレイヤーデータ移動
     rzukin.player.addEventListener('enterframe', function() {
       let submit = document.getElementById("demo");
@@ -93,15 +93,13 @@ function main() {
     game.rootScene.addChild(map);
 
     var button = new ButtonController("▶️", "Running", function() {
-      for (let i = 0; i < 1; i++) {
-        rzukin.player.moveController.moveRight();
+      for (let i = 0; i < 2; i++) {
+        rzukin.player.moveController.moveDown();
         rzukin.player.moveController.moveLeft();
         rzukin.player.moveController.moveRight();
         rzukin.player.moveController.moveRight();
+        rzukin.player.moveController.moveDown();
         rzukin.player.moveController.moveStraight();
-        rzukin.player.moveController.moveDown();
-        rzukin.player.moveController.moveDown();
-        rzukin.player.moveController.moveLeft();
         rzukin.player.moveController.execute();
       }
     });
