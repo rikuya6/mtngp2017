@@ -1,6 +1,6 @@
 class ButtonController {
   constructor(beforText, afterText, callback){
-    this.button = new Button(beforText);
+    this.button = new Button(beforText, null, 64, 128);
     this.isPushed = false;
 
     this.button.ontouchstart = function() {

@@ -6,7 +6,7 @@ class StagesController < MemberController
 
   def tutorial1
     cookies['status'] = if current_user.data.blank?
-                          JSON.generate({ demo: false })
+                          JSON.generate({ tutorial1: false })
                         else
                           current_user.data
                         end
