@@ -93,7 +93,8 @@ function main() {
     game.rootScene.addChild(map);
 
     var button = new ButtonController("▶️", "Running", function() {
-      for (let i = 0; i < 2; i++) {
+      rzukin.player.moveController.setHitTurnRight();
+      for (let i = 0; i < 1; i++) {
         rzukin.player.moveController.moveDown();
         rzukin.player.moveController.moveLeft();
         rzukin.player.moveController.moveRight();

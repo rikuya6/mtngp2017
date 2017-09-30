@@ -11,46 +11,53 @@ class Player {
     this.d = [180, 270, 90, 0];
     this.player.angle = this.d[direction];
     this.player.walk = 1;
+    this.player.up = false;
+    this.player.right = false;
+    this.player.left = false;
+    this.player.down = false;
     this.player.moveController = new MoveController();
     this.player.addAngle = function (add) {
       if(this.angle + add >= 0) this.angle = (this.angle + add) % 360;
       else this.angle = (360 + add) % 360;
     };
     this.player.move = function () {
+      switch (this.angle) {
+        case 0:
+          this.up = true;
+          break;
+        case 90:
+          this.right = true;
+          break;
+        case 180:
+          this.down = true;
+          break;
+        case 270:
+          this.left = true;
+          break;
+        default:
+          throw new Error("想定外の向きです。" + this.angle);
+      }
+    };
+    this.player.moving = function () {
       if (this.moveController.hasNextOrder() && !this.isMoving) {
-        var order = this.moveController.nextOrder();
-
-        switch (order) {
+        switch (this.moveController.nextOrder()) {
           case 0: // まっすぐ
+            this.move();
             break;
           case 1: // 右
             this.addAngle(90);
+            this.move();
             break;
           case 2:
             this.addAngle(180);
+            this.move();
             break;
           case 3: // 左
             this.addAngle(-90);
+            this.move();
             break;
           default:
             throw new Error("想定外のorderです。");
-        }
-        // console.log("angle", this.angle);
-        switch (this.angle) {
-          case 0:
-            game.input.up = true;
-            break;
-          case 90:
-            game.input.right = true;
-            break;
-          case 180:
-            game.input.down = true;
-            break;
-          case 270:
-            game.input.left = true;
-            break;
-          default:
-            throw new Error("想定外の向きです。" + this.angle);
         }
       }
       this.frame = this.direction * 3 + this.walk;
@@ -67,36 +74,39 @@ class Player {
         }
       } else {
         this.vx = this.vy = 0;
-        if (game.input.left) {
+        if (this.left) {
           this.direction = 1;
           this.vx = -4;
-        } else if (game.input.right) {
+        } else if (this.right) {
           this.direction = 2;
           this.vx = 4;
-        } else if (game.input.up) {
+        } else if (this.up) {
           this.direction = 3;
           this.vy = -4;
-        } else if (game.input.down) {
+        } else if (this.down) {
           this.direction = 0;
           this.vy = 4;
         }
-        game.input.right = game.input.left = game.input.up = game.input.down = false;
+        this.right = this.left = this.up = this.down = false;
         if (this.vx || this.vy) {
           var x = this.x + (this.vx ? this.vx / Math.abs(this.vx) * spriteSize.x : 0) + spriteSize.x;
           var y = this.y + (this.vy ? this.vy / Math.abs(this.vy) * spriteSize.y : 0) + spriteSize.y;
           if (0 <= x && x < map.width && 0 <= y && y < map.height && !map.hitTest(x, y)) {
             this.isMoving = true;
-            this.move(); // 描画を1フレーム中に行う
+            this.moving(); // 描画を1フレーム中に行う
           }else{
-            console.log(x, y, map.width, map.height);
-            this.moveController.stop();
-            alert("この先には進めません!");
+            if (this.moveController.getHitTurnDirection() == 0) { // ぶつかったら、左に向く
+              this.addAngle(-90);
+            }else{
+              this.addAngle(90);
+            }
+            this.move();
           }
         }
       }
     };
     this.player.addEventListener('enterframe', function () {
-      this.move();
+      this.moving();
     });
   }
 
