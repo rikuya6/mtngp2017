@@ -116,6 +116,7 @@ class Player {
       }
     };
     this.player.addEventListener('enterframe', function () {
+      if (!this.moveController.finish) return;
       this.moving();
     });
   }

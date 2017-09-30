@@ -2,7 +2,9 @@ class MoveController {
   constructor() {
     this.label = ["moveStraight", "moveRight", "moveDown", "moveLeft", "setHitTurnLeft", "setHitTurnRight"];
     this.orders = [];
-    this.turn_direction = 0;
+    this.originOrders = null;
+    this.order_execute_counter = 0;
+    this.turn_direction = 0; // デフォルト: 左へ向きを変える
     this.finish = false;
   }
 
@@ -41,15 +43,29 @@ class MoveController {
   }
 
   hasNextOrder() {
-    return this.orders.length > 0 && this.finish;
+    if (!this.finish) return false;
+    if (this.order_execute_counter > 50) {
+      // @TODO 暫定実装, 無限ループの抑止
+      this.stop();
+      return false;
+    }
+    if (this.orders.length > 0) return true;
+    this.restoreOriginOrder(); // ゴールに辿り着くまで、命令を再実行する
+    return true;
   }
 
   nextOrder() {
+    this.order_execute_counter++;
     if (!this.hasNextOrder()) throw new Error("次のorderが空です。");
     return this.orders.shift();
   }
 
+  restoreOriginOrder() {
+    this.orders = [].concat(this.originOrders);
+  }
+
   execute() {
+    this.originOrders = [].concat(this.orders);
     this.finish = true;
   }
 
