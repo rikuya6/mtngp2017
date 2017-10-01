@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'stages/tutorial3', to: 'stages#tutorial3', as: :tutorial3
   post 'stages/tutorial3', to: 'stages#tutorial3'
   get 'stages/novel', to: 'stages#novel', as: :novel
+  get 'stages/novel2', to: 'stages#novel2', as: :novel2
 
   namespace :admin do
     root to: 'users#index'

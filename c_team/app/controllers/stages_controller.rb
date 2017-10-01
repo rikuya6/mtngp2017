@@ -29,6 +29,9 @@ class StagesController < MemberController
 
   def novel
 
+  end
+
+  def novel2
     status = JSON.parse(cookies['status'])
     if status['demo'] == 'top'
       cookies['n_flg'] = JSON.generate({ flower: true, gamecenter: false });

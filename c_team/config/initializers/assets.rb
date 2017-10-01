@@ -10,5 +10,5 @@ Rails.application.config.assets.version = '1.0'
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 Rails.application.config.assets.precompile << %w( stage/tutorial1/tutorial1.js stage/tutorial2/tutorial2.js
-                                                  stage/tutorial3/tutorial3.js stage/novel/novel.js
+                                                  stage/tutorial3/tutorial3.js stage/novel/novel.js stage/novel2/novel2.js
                                                 )

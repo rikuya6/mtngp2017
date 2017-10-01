@@ -3,70 +3,31 @@ $(document).ready(function() {
   main();
 });
 
+var screen_width = 1152; //ゲーム画面の幅
+var screen_height = 640; //ゲーム画面の高さ
+var tex_width = screen_width - 40; //ノベルテキストエリアの幅
+var tex_heigth = 200; //ノベルテキストエリアの高さ
+
 function main(){
-  var game = new Core(1200, 675);
+  var game = new Core(screen_width, screen_height);
   game.fps = 30;
   game.rootScene.backgroundColor = "white";
-  game.preload("novel/nohara_bg.jpg", "novel/1.png", "novel/2.png", "novel/3.png");
+  game.preload("novel/nohara_bg.jpg");
 
   game.onload = function(){
     var scene = new Scene();
-    var sprite = new Sprite(1200, 675);
+    var sprite = new Sprite(screen_width, screen_height);
     sprite.image = game.assets['novel/nohara_bg.jpg'];
     scene.addChild(sprite);
     game.pushScene(scene);
 
-    // キャラクター画像の準備
-    var cimg = [];
-    for(var i = 1; i <= 3; i++){
-      cimg[i] = new Sprite(135, 126);
-      cimg[i].image = game.assets["novel/"+i+".png"];
-      cimg[i].moveTo(20 + i * 300, 250);
-    }
-
-    // Cookieフラグ管理
-    var n_flg = Cookies.getJSON('n_flg');
-
-
     var label = []; // 物語表示のため、配列を用意する。
     var noveltext = [
-      'おばあさんは突然病室を飛び出し',
-      '東京駅へどこでもドアした。',
+      'チュートリアルをはじめます。',
       false,
-      1,  // 数字が来た場合、その番号のキャラクター画像を表示する。
-      'わお！',
-      'ダンボールくんが遊びに来てくれたよ！',
+      'この画面はチュートリアル前に使用するノベル画面です。',
+      'ここへ文章を追加してください。',
       false,
-      '赤ずきん的にどこでもドアのあたりがツボで',
-      '病室で笑い転げ倒しまくった。',
-      false,
-      2,
-      3,
-      'おばあさんよ',
-      '早めに',
-      '帰ってきてください。',
-      '　　　赤ずきんより',
-      false,
-      -1,  // マイナスが来た場合、その番号のキャラクターを非表示にする。
-      -2,
-      -3
-    ];
-
-    // 以下、フラグごとの文章
-    var t_flower = [
-      'まぁ',
-      'お花どうもありがとう。',
-      false,
-      '冷蔵庫にりんごがあるから一緒に食べましょう？',
-      false
-    ];
-    var f_flower = [
-      '随分と遅かったね。',
-      '夜道は危ないよ。',
-      false,
-      'ゲームセンターで遊んでいたの？',
-      'ちょっとおばあちゃん、ママに電話してくるわね。',
-      false
     ];
 
     // 画面がクリックされたならば以下が呼び出される
@@ -81,89 +42,37 @@ function main(){
 
       // 文字表示するための処理
       // labelという配列にどんどん追加していく
-      if(!(n_flg)){ // n_flgに何もないなら通常テキストを表示
-        while(true){
-          var work = noveltext[0];
-          noveltext.splice(0, 1); // noveltext０番目から１つ削除
-          if (!(work)) break;  // 配列noveltextにはfalseがある。
-
-          // 以下、キャラクター表示の指示が来た場合の処理
-          if (!(isNaN(work))) {
-            if (work > 0){
-              scene.addChild(cimg[work]);
-              game.pushScene(scene);
-            }else{ // マイナスが来た場合、非表示にする
-              scene.removeChild(cimg[work * -1]);
-            }
-            break;
-          }
-
-          // 以下、通常通りテキストを表示する処理
-          var tex = new Label(work);
-          tex.width = 800;
-          label.push(tex); // falseじゃないなら一度に表示する分追加
-        }
-      }else if(n_flg.flower){ // n_flgにあるflowerがtrueならそれ用のテキストを表示
-        while(true){
-          var work = t_flower[0];
-          t_flower.splice(0, 1); // noveltext０番目から１つ削除
-          if (!(work)) break;  // 配列noveltextにはfalseがある。
-
-          // 以下、キャラクター表示の指示が来た場合の処理
-          if (!(isNaN(work))) {
-            if (work > 0){
-              scene.addChild(cimg[work]);
-              game.pushScene(scene);
-            }else{ // マイナスが来た場合、非表示にする
-              scene.removeChild(cimg[work * -1]);
-            }
-            break;
-          }
-
-          // 以下、通常通りテキストを表示する処理
-          var tex = new Label(work);
-          tex.width = 800;
-          label.push(tex); // falseじゃないなら一度に表示する分追加
-        }
-      }else{
-        while(true){
-          var work = f_flower[0];
-          f_flower.splice(0, 1); // noveltext０番目から１つ削除
-          if (!(work)) break;  // 配列noveltextにはfalseがある。
-
-          // 以下、キャラクター表示の指示が来た場合の処理
-          if (!(isNaN(work))) {
-            if (work > 0){
-              scene.addChild(cimg[work]);
-              game.pushScene(scene);
-            }else{ // マイナスが来た場合、非表示にする
-              scene.removeChild(cimg[work * -1]);
-            }
-            break;
-          }
-
-          // 以下、通常通りテキストを表示する処理
-          var tex = new Label(work);
-          tex.width = 800;
-          label.push(tex); // falseじゃないなら一度に表示する分追加
-        }
+      while(true){
+        var work = noveltext[0];
+        noveltext.splice(0, 1); // noveltext０番目から１つ削除
+        if (!(work)) break;  // 配列noveltextにはfalseがある。
+        // 以下、通常通りテキストを表示する処理
+        var tex = new Label(work);
+        tex.width = tex_width;
+        label.push(tex); // falseじゃないなら一度に表示する分追加
       }
 
       // 表示の処理
       for(let i = 0; i < label.length; i++){
-        label[i].moveTo( 40, 470 + i * 40);
+        label[i].moveTo( 40, 440 + i * 40);
         label[i].font = "32px 'メイリオ'"; //表示するフォントの設定 イタリックなども指定可能
         scene.addChild(label[i]);
         game.pushScene(scene);
+      }
+
+      if(noveltext.length == 0){
+        let submit = document.getElementById("novel");
+        submit.submit();
+        game.pause();
       }
     });
 
     /* 以下からテキストボックスの描画 */
 
     // Spriteオブジェクトの作成
-    var sprite2 = new Sprite(1150, 200);
+    var sprite2 = new Sprite(tex_width, tex_heigth);
     sprite2.x = 20;
-    sprite2.y = 450;
+    sprite2.y = 420;
     // spriteオブジェクトの背景色の指定
     sprite2.backgroundColor = "rgba(100, 100, 255, 0.8)";
     // Surfaceオブジェクトの作成
@@ -182,34 +91,6 @@ function main(){
     scene.addChild(sprite2);
     game.pushScene(scene);
 
-    /*
-        // enchant.ui.MutableTextはビットマップのフォントのみ使用可能
-        // 日本語が一切表示不可能であることを確認した
-        var tex = enchant.ui.MutableText(0, 0, 0);
-        tex.setText("I AM SEVEN-ELEVEN.\n 日本語 isn't available.");
-        scene.addChild(tex);
-        game.pushScene(scene);
-
-
-        // labelを使用した文字表示のほうが、日本語表示できることからも現実的？
-        var label = new Label("アメンボ赤いなあいうえお");
-        label.moveTo( 10, 50); //座標指定(X, Y)
-        scene.addChild(label);
-        game.pushScene(scene);
-        // 文字を消すには以下を使用
-        //scene.removeChild(label);
-    */
-
-/*
-    // 背景画像を変えたい
-    // window.onload内で以下を実行
-    game.preload("edit_map.png"); //ファイル名を指定し、ロードしておく
-
-    //その後、game.onload内で以下を実行
-    sprite.image = game.assets['edit_map.png']; //ここでもファイル名を指定
-    scene.addChild(sprite);
-    game.pushScene(scene);
-*/
   }
   game.start();
   window.scrollTo(0, 0);
