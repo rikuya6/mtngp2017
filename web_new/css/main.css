@@ -1,0 +1,40 @@
+@charset "utf-8";
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  padding-top: 55px;
+}
+h2 {
+  display: block;
+  background-color: #f90;
+  width: 20%;
+  padding: 10px;
+}
+header {
+  background-color: #9CF;
+  padding-bottom: 5px;
+}
+div.button-orange {
+  padding: 10px;
+}
+div.button-orange p {
+  background-color: #f90;
+  font-size: 40px;
+  color: #fff;
+  width: 150px;
+  border-radius: 10px 10px;
+  border: 2px solid #f90;
+  text-align: center;
+  margin: auto;
+}
+.text-center {
+  text-align: center;
+}
+.position-center {
+  margin: auto;
+}
+.display-block {
+  display: block;
+}
