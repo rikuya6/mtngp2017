@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url(http://fonts.googleapis.com/earlyaccess/notosansjp.css);
 nav {
   position: fixed;
   height: 55px;
@@ -13,27 +14,27 @@ nav ul li {
   margin: 0;
   padding: 0;
   background-color: #fff;
-  border: solid 2px #9CF;
+  border: solid 2px #94E3F7;
   border-left: none;
 }
 nav ul li a {
   display: block;
   padding: 5px;
   text-align: center;
-  color: #9CF;
+  color: #94E3F7;
   font-weight: bold;
   font-size: 28px;
   transition: all .25s linear;
 }
 nav ul li a:hover {
-  background-color: #9CF;
+  background-color: #94E3F7;
   color: #fff;
   text-decoration: none;
 }
 nav ul li a.active {
-  background-color: #9CF;
+  background-color: #94E3F7;
   color: #fff;
 }
 nav ul li:first-child {
-  border-left: solid 2px #9CF;
+  border-left: solid 2px #94E3F7;
 }
