@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20170000000001) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                            null: false
+    t.text     "tutorial_data"
     t.text     "data"
     t.boolean  "administrator",   default: false, null: false
     t.string   "password_digest",                 null: false

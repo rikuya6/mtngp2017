@@ -4,7 +4,7 @@ $(document).ready(function() {
 });
 
 function main(){
-  var game = new Core(1200, 675);
+  var game = new Core(1152, 640);
   game.fps = 30;
   game.rootScene.backgroundColor = "white";
   game.preload("novel/nohara_bg.jpg", "novel/1.png", "novel/2.png", "novel/3.png");
@@ -151,7 +151,7 @@ function main(){
 
       // 表示の処理
       for(let i = 0; i < label.length; i++){
-        label[i].moveTo( 40, 470 + i * 40);
+        label[i].moveTo( 40, 440 + i * 40);
         label[i].font = "32px 'メイリオ'"; //表示するフォントの設定 イタリックなども指定可能
         scene.addChild(label[i]);
         game.pushScene(scene);
@@ -161,9 +161,9 @@ function main(){
     /* 以下からテキストボックスの描画 */
 
     // Spriteオブジェクトの作成
-    var sprite2 = new Sprite(1150, 200);
+    var sprite2 = new Sprite(1112, 200);
     sprite2.x = 20;
-    sprite2.y = 450;
+    sprite2.y = 420;
     // spriteオブジェクトの背景色の指定
     sprite2.backgroundColor = "rgba(100, 100, 255, 0.8)";
     // Surfaceオブジェクトの作成

@@ -4,6 +4,7 @@
 #
 #  id              :integer          not null, primary key
 #  name            :string           not null
+#  tutorial_data   :text
 #  data            :text
 #  administrator   :boolean          default(FALSE), not null
 #  password_digest :string           not null
@@ -12,6 +13,7 @@
 #
 
 class User < ActiveRecord::Base
+  serialize :tutorial_data
   serialize :data
   # include EmailAddressChecker
 
