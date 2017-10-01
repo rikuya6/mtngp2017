@@ -15,20 +15,19 @@ class StagesController < MemberController
 
   def tutorial2
     tutorial_status = JSON.parse(cookies['tutorial_status'])
-    redirect_to tutorial_path unless tutorial_status['tutorial1']
+    redirect_to tutorial1_path unless tutorial_status['tutorial1']
   rescue
-    redirect_to tutorial_path
+    redirect_to tutorial1_path
   end
 
   def tutorial3
     tutorial_status = JSON.parse(cookies['tutorial_status'])
     redirect_to tutoria2_path unless tutorial_status['tutorial1'] && tutorial_status['tutorial2']
   rescue
-    redirect_to tutorial_path
+    redirect_to tutorial1_path
   end
 
-  def novel
-
+  def tutorial1_novel
   end
 
   def novel2
@@ -41,6 +40,7 @@ class StagesController < MemberController
   rescue
     redirect_to demo_path
   end
+
 
   private
 

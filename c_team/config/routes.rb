@@ -7,10 +7,10 @@ Rails.application.routes.draw do
   resources :users
 
   get 'stages', to: 'stages#index'
-  get 'stages/tutorial', to: 'stages#tutorial1', as: :tutorial
+  get 'stages/tutorial', to: 'stages#tutorial1', as: :tutorial1
   get 'stages/tutorial2', to: 'stages#tutorial2', as: :tutorial2
   get 'stages/tutorial3', to: 'stages#tutorial3', as: :tutorial3
-  get 'stages/novel', to: 'stages#novel', as: :novel
+  get 'stages/tutorial1_novel', to: 'stages#tutorial1_novel', as: :tutorial1_novel
   get 'stages/novel2', to: 'stages#novel2', as: :novel2
 
   namespace :admin do

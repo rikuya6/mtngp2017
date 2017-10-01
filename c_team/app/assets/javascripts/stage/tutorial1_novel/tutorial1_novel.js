@@ -12,12 +12,12 @@ function main(){
   var game = new Core(screen_width, screen_height);
   game.fps = 30;
   game.rootScene.backgroundColor = "white";
-  game.preload("novel/nohara_bg.jpg");
+  game.preload("tutorial1_novel/nohara_bg.jpg");
 
   game.onload = function(){
     var scene = new Scene();
     var sprite = new Sprite(screen_width, screen_height);
-    sprite.image = game.assets['novel/nohara_bg.jpg'];
+    sprite.image = game.assets['tutorial1_novel/nohara_bg.jpg'];
     scene.addChild(sprite);
     game.pushScene(scene);
 
@@ -55,13 +55,13 @@ function main(){
       // 表示の処理
       for(let i = 0; i < label.length; i++){
         label[i].moveTo( 40, 440 + i * 40);
-        label[i].font = "32px 'メイリオ'"; //表示するフォントの設定 イタリックなども指定可能
+        label[i].font = "32px 'メイリオ'"; // @TODO フォントの指定　表示するフォントの設定 イタリックなども指定可能
         scene.addChild(label[i]);
         game.pushScene(scene);
       }
 
       if(noveltext.length == 0){
-        let submit = document.getElementById("novel");
+        let submit = document.getElementById("tutorial1_novel");
         submit.submit();
         game.pause();
       }
@@ -91,7 +91,7 @@ function main(){
     scene.addChild(sprite2);
     game.pushScene(scene);
 
-  }
+  };
   game.start();
   window.scrollTo(0, 0);
 }
