@@ -9,9 +9,7 @@ Rails.application.routes.draw do
   get 'stages', to: 'stages#index'
   get 'stages/tutorial', to: 'stages#tutorial1', as: :tutorial
   get 'stages/tutorial2', to: 'stages#tutorial2', as: :tutorial2
-  post 'stages/tutorial2', to: 'stages#tutorial2'
   get 'stages/tutorial3', to: 'stages#tutorial3', as: :tutorial3
-  post 'stages/tutorial3', to: 'stages#tutorial3'
   get 'stages/novel', to: 'stages#novel', as: :novel
   get 'stages/novel2', to: 'stages#novel2', as: :novel2
 
