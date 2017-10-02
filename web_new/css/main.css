@@ -42,10 +42,9 @@ header img {
   max-width: 300px;
   height: auto;
 }
+header h1,
 header h3 {
-  width: auto;
-  text-align: center;
-  border: none;
+  color: #666;
 }
 .member-data {
   border: 2px solid #f90;
