@@ -14,5 +14,6 @@ Rails.application.config.assets.precompile << %w( stage/tutorial1/tutorial1.js s
                                                   stage/tutorial1_novel/tutorial1_novel.js
                                                   stage/tutorial2_novel/tutorial2_novel.js
                                                   stage/tutorial3_novel/tutorial3_novel.js
+                                                  stage/tutorial3A_novel/tutorial3A_novel.js
                                                   stage/novel2/novel2.js
                                                 )
