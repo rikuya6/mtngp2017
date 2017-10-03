@@ -38,3 +38,8 @@ nav ul li a.active {
 nav ul li:first-child {
   border-left: solid 2px #94E3F7;
 }
+@media screen and (max-width: 991px) {
+  nav {
+    height: 100px;
+  }
+}
