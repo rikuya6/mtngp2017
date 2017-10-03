@@ -5,29 +5,41 @@ $(document).ready(function() {
 
 var screen_width = 1152; //ゲーム画面の幅
 var screen_height = 640; //ゲーム画面の高さ
-var tex_width = screen_width - 40; //ノベルテキストエリアの幅
+var tex_width = screen_width - 80; //ノベルテキストエリアの幅
 var tex_heigth = 200; //ノベルテキストエリアの高さ
 
 function main(){
   var game = new Core(screen_width, screen_height);
   game.fps = 30;
-  game.rootScene.backgroundColor = "white";
-  game.preload("tutorial1_novel/nohara_bg.jpg");
+  game.rootScene.backgroundColor = "black";
 
   game.onload = function(){
     var scene = new Scene();
     var sprite = new Sprite(screen_width, screen_height);
-    sprite.image = game.assets['tutorial1_novel/nohara_bg.jpg'];
     scene.addChild(sprite);
     game.pushScene(scene);
 
     var label = []; // 物語表示のため、配列を用意する。
     var noveltext = [
-      'チュートリアルをはじめます。',
+      '絵本描き「やぁ。君が僕の本を手伝ってくれるって子かい？」',
       false,
-      'この画面はチュートリアル前に使用するノベル画面です。',
-      'ここへ文章を追加してください。',
+      '絵本描き「僕はここでずっと絵本を書いているんだ。」',
       false,
+      '絵本描き「これから君には僕の絵本の登場人物を動かすのを手伝って',
+      '　　　　　もらうよ。」',
+      false,
+      '絵本描き「まずは聞くよりやってみよう。この子を動かして前に進めて',
+      '　　　　　やってくれ。」',
+      false,
+      'stage1  実行しよう',
+      ' ',
+      '数マス前のゴールに進むコードが設定されているので、実行を押して',
+      'ゴールに行かせてあげよう。',
+      false,
+      '？「登場人物は左のブロックの通りに動きます。実行ボタンを押すと',
+      '　　その通りに動くよ。動かしてみよう。」',
+      false,
+      false
     ];
 
     // 画面がクリックされたならば以下が呼び出される
@@ -55,7 +67,8 @@ function main(){
       // 表示の処理
       for(let i = 0; i < label.length; i++){
         label[i].moveTo( 40, 440 + i * 40);
-        label[i].font = "32px 'メイリオ'"; // @TODO フォントの指定　表示するフォントの設定 イタリックなども指定可能
+        label[i].font = "32px 'メイリオ'";
+        label[i].color = "white";
         scene.addChild(label[i]);
         game.pushScene(scene);
       }
@@ -66,30 +79,6 @@ function main(){
         game.pause();
       }
     });
-
-    /* 以下からテキストボックスの描画 */
-
-    // Spriteオブジェクトの作成
-    var sprite2 = new Sprite(tex_width, tex_heigth);
-    sprite2.x = 20;
-    sprite2.y = 420;
-    // spriteオブジェクトの背景色の指定
-    sprite2.backgroundColor = "rgba(100, 100, 255, 0.8)";
-    // Surfaceオブジェクトの作成
-    // Spriteの大きさ以上に指定しても範囲外には描画されない
-    var surface = new Surface(100, 100);
-    // SurfaceオブジェクトをSpriteオブジェクトのimageプロパティに代入
-    sprite2.image = surface;
-    // コンテキストを取得する
-    context = surface.context;
-    // パスの描画の初期化
-    context.beginPath();
-    // 描画開始位置の移動
-    context.moveTo(10, 10);
-    // 描画を行う
-    context.stroke();
-    scene.addChild(sprite2);
-    game.pushScene(scene);
 
   };
   game.start();
