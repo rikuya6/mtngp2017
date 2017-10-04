@@ -28,8 +28,7 @@ function main(){
       '「僕はここでずっと絵本を書いているんだ。」',
       false,
       '絵本描き',
-      '「これから君には僕の絵本の登場人物を動かすのを手伝って',
-      '　もらうよ。」',
+      '「これから君には僕の絵本の登場人物を動かすのを手伝ってもらうよ。」',
       false,
       '絵本描き',
       '「まずは聞くよりやってみよう。この子を動かして前に進めて',
@@ -73,7 +72,7 @@ function main(){
     sprite3.x = 25;
     sprite3.y = 392;
     // spriteオブジェクトの背景色の指定
-    sprite3.backgroundColor = "rgba(255, 100, 255, 0.8)";
+    sprite3.backgroundColor = "rgba(50, 50, 255, 1)";
     // Surfaceオブジェクトの作成
     // Spriteの大きさ以上に指定しても範囲外には描画されない
     var surface = new Surface(100, 100);
