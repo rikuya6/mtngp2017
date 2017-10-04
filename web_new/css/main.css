@@ -49,6 +49,9 @@ header h1,
 header h3 {
   color: #666;
 }
+.product {
+  margin-bottom: 30px;
+}
 .member-data {
   margin-bottom: 30px;
 }
