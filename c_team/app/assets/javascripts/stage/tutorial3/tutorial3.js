@@ -69,7 +69,7 @@ function main() {
     azuki.player.addEventListener('enterframe', function() {
       let submit = document.getElementById("tutorial3");
       if (this.x == 256 && this.y == 128) {
-        if (azuki.moveController.getMoveCount() <= 6) {
+        if (azuki.player.moveController.getMoveCount() <= 6) {
           Cookies.set('tutorial_status', {
             tutorial1: true,
             tutorial2: true,
