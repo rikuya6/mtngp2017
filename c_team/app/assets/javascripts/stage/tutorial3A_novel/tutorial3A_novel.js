@@ -21,7 +21,6 @@ function main(){
 
     // Cookieフラグ管理
     var status = Cookies.getJSON('tutorial_status');
-    status.novel3 = false;
 
     var label = []; // 物語表示のため、配列を用意する。
     var noveltext = [];
