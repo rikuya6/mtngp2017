@@ -78,6 +78,10 @@ class MoveController {
     this.orders = [];
   }
 
+  getMoveCount() {
+    return this.order_execute_counter;
+  }
+
   printAllOrder() {
     for (var e in this.orders) {
       console.log(this.label[this.orders[e]]);

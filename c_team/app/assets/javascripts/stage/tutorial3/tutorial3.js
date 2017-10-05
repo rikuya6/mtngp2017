@@ -69,11 +69,21 @@ function main() {
     azuki.player.addEventListener('enterframe', function() {
       let submit = document.getElementById("tutorial3");
       if (this.x == 256 && this.y == 128) {
-        Cookies.set('tutorial_status', {
-          tutorial1: true,
-          tutorial2: true,
-          tutorial3: true
-        }); // データはJSON形式で保存する
+        if (azuki.moveController.getMoveCount() <= 6) {
+          Cookies.set('tutorial_status', {
+            tutorial1: true,
+            tutorial2: true,
+            tutorial3: true,
+            novel3: true
+          });
+        }else{
+          Cookies.set('tutorial_status', {
+            tutorial1: true,
+            tutorial2: true,
+            tutorial3: true,
+            novel3: false
+          });
+        }
         submit.submit();
         game.pause();
       }
