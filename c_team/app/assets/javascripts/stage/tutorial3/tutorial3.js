@@ -105,7 +105,7 @@ function main() {
     map.addChild(o8.getSprite());
 
     var startButton = new ButtonController("▶️", "Running", function() {
-      azuki.player.moveController.setHitTurnLeftOrRight();
+      azuki.player.moveController.setHitTurnRightOrLeft();
       azuki.player.moveController.moveStraight();
       azuki.player.moveController.execute();
     });

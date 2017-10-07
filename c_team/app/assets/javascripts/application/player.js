@@ -145,7 +145,33 @@ class Player {
                   }
                   this.tx = this.ty = 0;
                   break;
-                case 3: // ぶつかったら、右を向く。移動できない場合は右を向く
+                case 3: // ぶつかったら、右を向く。移動できない場合は左を向く
+                  if (this.ty == -16) {        // angle 0 の場合
+                    target_map_x = map_x + spriteSize.x;
+                    target_map_y = map_y + spriteSize.y;
+                  } else if (this.tx == 16) {  // angle 90 の場合
+                    target_map_x = map_x - spriteSize.x;
+                    target_map_y = map_y + spriteSize.y;
+                  } else if (this.ty == 16) { // angle 180 の場合
+                    target_map_x = map_x - spriteSize.x;
+                    target_map_y = map_y - spriteSize.y;
+                  } else if (this.tx == -16) { // angle 270 の場合
+                    target_map_x = map_x + spriteSize.x;
+                    target_map_y = map_y - spriteSize.y;
+                  }
+                  target_array_x = (target_map_x / tileWidth) <= 0 ? 0 : target_map_x / tileWidth;
+                  target_array_y = (target_map_y / tileHeight) <= 0 ? 0 : target_map_y / tileHeight;
+                  if (0 <= target_array_x && target_array_x < map.width / spriteSize.x && 0 <= target_array_y && target_array_y < map.height) {
+                    // console.log("t", target_array_x, target_array_y);
+                    // console.log("map_co[t_a_y]", map.collisionData[target_array_y]);
+                    // if (this.tx == -16) debugger;
+                    if (map.collisionData[target_array_y][target_array_x] == 0) {
+                      this.addAngle(90); // 右に曲がれるなら、右に曲がる
+                    } else {
+                      this.addAngle(-90);  // 右に曲がれないなら、左に曲がる
+                    }
+                  }
+                  this.tx = this.ty = 0;
                   break;
                 default:
               }
