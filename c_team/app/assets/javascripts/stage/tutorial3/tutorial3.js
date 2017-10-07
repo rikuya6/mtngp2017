@@ -34,18 +34,18 @@ function main() {
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0]
     ]);
     map.collisionData = [
-      [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3],
-      [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
-      [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
-      [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
-      [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
-      [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
-      [2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
-      [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
-      [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
-      [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
-      [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
-      [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3]
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
+      [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3]
     ];
 
     var foregroundMap = new Map(spriteSize.x, spriteSize.y);
@@ -65,7 +65,7 @@ function main() {
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
     ]);
     var ruledLine = getRuledLineSprite();
-    var azuki = new Player(game, map, "azuki_walk.png", 0, 0, 0);
+    var azuki = new Player(game, map, "azuki_walk.png", 0, 0, 2);
     azuki.player.addEventListener('enterframe', function() {
       let submit = document.getElementById("tutorial3");
       if (this.x == 256 && this.y == 128) {
@@ -93,10 +93,10 @@ function main() {
     map.addChild(azuki.getSprite());
     game.rootScene.addChild(map);
 
-    var o1 = new MapObject(game, map, "azuki_walk.png", 256, 0, 2);
-    var o2 = new MapObject(game, map, "azuki_walk.png", 256, 64, 2);
-    var o3 = new MapObject(game, map, "azuki_walk.png", 256, 192, 2);
-    var o4 = new MapObject(game, map, "azuki_walk.png", 256, 256, 2);
+    var o1 = new MapObject(game, map, "azuki_walk.png", 256, 0, 1);
+    var o2 = new MapObject(game, map, "azuki_walk.png", 256, 64, 1);
+    var o3 = new MapObject(game, map, "azuki_walk.png", 256, 192, 1);
+    var o4 = new MapObject(game, map, "azuki_walk.png", 256, 256, 1);
     var o8 = new MapObject(game, map, "azuki_walk.png", 1024, 64, 3);
     map.addChild(o1.getSprite());
     map.addChild(o2.getSprite());
@@ -105,7 +105,7 @@ function main() {
     map.addChild(o8.getSprite());
 
     var startButton = new ButtonController("▶️", "Running", function() {
-      azuki.player.moveController.setHitTurnLeft();
+      azuki.player.moveController.setHitTurnLeftOrRight();
       azuki.player.moveController.moveStraight();
       azuki.player.moveController.execute();
     });

@@ -1,6 +1,7 @@
 class MoveController {
   constructor() {
-    this.label = ["moveStraight", "moveRight", "moveDown", "moveLeft", "setHitTurnLeft", "setHitTurnRight"];
+    this.label = ["moveStraight", "moveRight", "moveDown", "moveLeft", "setHitTurnLeft", "setHitTurnRight",
+                  "setHitTurnLeftOrRight", "setHitTurnRightOrLeft"];
     this.orders = [];
     this.originOrders = null;
     this.order_execute_counter = 0;
@@ -36,6 +37,16 @@ class MoveController {
   setHitTurnRight() {
     this.turn_direction = 1;
     console.log(this.label[5]);
+  }
+
+  setHitTurnLeftOrRight() {
+    this.turn_direction = 2;
+    console.log(this.label[6]);
+  }
+
+  setHitTurnRightOrLeft() {
+    this.turn_direction = 3;
+    console.log(this.label[7]);
   }
 
   getHitTurnDirection() {
