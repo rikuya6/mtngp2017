@@ -7,31 +7,38 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/main.css" />
-    <link rel="stylesheet" href="./css/menu.css" />
+    <!-- <link rel="stylesheet" href="./css/menu.css" /> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="./js/main.js"></script>
   </head>
   <body>
     <div class="container-fluid">
-      <nav class="navbar-fixed-top">
-        <!-- <div id="toggle"><a href="#">menu</a></div> -->
-        <ul>
-          <li><a class="nav-button" href="#top">松永プロ2017</a></li>
-          <li><a class="nav-button" href="#project">project</a></li>
-          <li><a class="nav-button" href="#contents">contents</a></li>
-          <li><a class="nav-button" href="#member">member</a></li>
-          <li><a class="nav-button" href="#news">news</a></li>
-        </ul>
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-header">
+    			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+    				<span class="sr-only">Toggle navigation</span>
+    				<span class="icon-bar"></span>
+    				<span class="icon-bar"></span>
+    				<span class="icon-bar"></span>
+    			</button>
+    			<a class="navbar-brand nav-button">松永プロ2017</a>
+    		</div>
+        <div class="collapse navbar-collapse" id="navigation">
+    			<ul class="nav navbar-nav">
+            <li><a class="nav-button">project</a></li>
+            <li><a class="nav-button">contents</a></li>
+            <li><a class="nav-button">member</a></li>
+            <li><a class="nav-button">news</a></li>
+    			</ul>
+    		</div>
       </nav>
     </div>
 
-    <header class="content-head" id="top">
-      <div id="title">
-        <h3 class="text-center">松永プロジェクト2017</h3>
-        <h1 class="text-center">遊んで身につけるプログラミング的思考</h1>
-          <img class="position-center" src="image/piyo00.png" alt="松永プロジェクトロゴ" />
-      </div>
+    <header class="content-head">
+      <h3 class="text-center">松永プロジェクト2017</h3>
+      <h1 class="text-center">遊んで身につけるプログラミング的思考</h1>
+      <img class="position-center" src="image/piyo00.png" alt="松永プロジェクトロゴ" />
       <div class="button-orange triangle-down">
         <p>
           START
@@ -42,7 +49,7 @@
     <div class="container-fluid">
       <div class="row content-head">
         <h2>プロジェクト概要</h2>
-        <div class="col-sm-offset-2 col-sm-8" id="project">
+        <div class="col-sm-offset-2 col-sm-8">
           <div class="content-border">
             <p>
               このプロジェクトは2020年の学習指導要領改訂でのプログラミング必修化に合わせ、ゲームの中でプログラミング的思考を目的としたコンテンツの企画・制作を行なっています。遊んでいる感覚で論理的思考や創造力を育てられる、そんなコンテンツの完成を目標に日々活動しています。
@@ -57,7 +64,7 @@
 
       <div class="row content-head">
         <h2>コンテンツ紹介</h2>
-        <div class="col-md-offset-1 col-md-10" id="contents">
+        <div class="col-md-offset-1 col-md-10">
           <div class="row">
             <div class="product col-xs-12 col-md-6">
               <div class="content-border">
@@ -80,7 +87,7 @@
       <div class="row content-head">
         <h2>メンバー紹介</h2>
         <img src="image/teacher.svg" class="if_icon" alt="教員" />
-        <div class="col-md-offset-1 col-md-10" id="member">
+        <div class="col-md-offset-1 col-md-10">
           <div class="row">
             <div class="col-xs-12 col-md-offset-3 col-md-6">
               <div class="member-data content-border">
@@ -161,7 +168,7 @@
 
       <div class="row content-head">
         <h2>ニュース</h2>
-        <div class="col-md-offset-1 col-md-10" id="news">
+        <div class="col-md-offset-1 col-md-10">
           <div id="newses">
             <div class="row">
               <div class="col-xs-12 col-md-offset-3 col-md-6">
