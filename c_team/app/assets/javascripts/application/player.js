@@ -2,6 +2,9 @@ class Player {
   constructor(game, map, asset, sx, sy, direction) {
     this.player = new Sprite(spriteSize.x, spriteSize.y);
     this.player.image = game.assets[asset];
+    this.player.startX = sx;
+    this.player.startY = sy;
+    this.player.startDirection = direction;
     this.player.x = sx;
     this.player.y = sy;
     // @TODO キャラクの上に障害物を置けないようにする。移動したときに判定を変える処理がない map.collisionData[Math.floor(sy / 32) + 1][Math.floor(sx / 32) + 1] = 1;
@@ -187,5 +190,12 @@ class Player {
 
   getSprite() {
     return this.player;
+  }
+
+  resetPosition() {
+    this.player.x = this.player.startX;
+    this.player.y = this.player.startY;
+    this.player.direction = this.player.startDirection;
+    this.player.isMoving = false;
   }
 }

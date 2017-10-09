@@ -1,21 +1,40 @@
 class ButtonController {
-  constructor(beforText, afterText, callback){
-    this.button = new Button(beforText, null, 64, 128);
-    this.isPushed = false;
+  constructor(beforeText, afterText, disable, theme, callback){
+    this.button = new Button(beforeText, theme, 64, 128);
+    this.button.theme = theme;
+    this.button.beforeText = beforeText;    
+    this.button.afterText = afterText;
+    this.button.startDisable = disable;
+    this.button.disable = disable;
+    this.button.current_theme = 0; // デフォルト normal  
+    this.button.isDisabled = function () {
+      return this.disable;
+    };
 
-    this.button.ontouchstart = function() {
-      if(!this.isPushed){
-        this.isPushed = true;
-        this.text = afterText;
-        console.log("Pushed");
+    this.button.addEventListener("touchstart", function() {
+      if(!this.isDisabled()){
         callback();
-        console.log("Finish");
-        this.isPushed = false;
-        this.text = beforText;
       }else{
         console.log('Disabled');
       }
-    };
+    });
+
+    this.button.addEventListener("enterframe", function() {
+      if (!this.isDisabled()) {
+        this.text = this.beforeText;
+        if (this.current_theme != 0) {
+          this._applyTheme(this.theme.normal);
+          this.current_theme = 0;
+        }
+
+      } else {
+        this.text = this.afterText;
+        if (this.current_theme != 1) {
+          this._applyTheme(this.theme.active);
+          this.current_theme = 1;
+        }
+      }
+    });
   }
 
   move(x, y){
@@ -24,5 +43,17 @@ class ButtonController {
 
   getButtonObject(){
     return this.button;
+  }
+
+  enable() {
+    this.button.disable = false;
+  }
+
+  disable() {
+    this.button.disable = true;
+  }
+
+  reset() {
+    this.button.disable = this.button.startDisable;
   }
 }
