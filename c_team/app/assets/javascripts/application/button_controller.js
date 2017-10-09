@@ -21,18 +21,15 @@ class ButtonController {
 
     this.button.addEventListener("enterframe", function() {
       if (!this.isDisabled()) {
+        if (this.current_theme == 0) return;
         this.text = this.beforeText;
-        if (this.current_theme != 0) {
-          this._applyTheme(this.theme.normal);
-          this.current_theme = 0;
-        }
-
+        this._applyTheme(this.theme.normal);
+        this.current_theme = 0;
       } else {
-        this.text = this.afterText;
-        if (this.current_theme != 1) {
-          this._applyTheme(this.theme.active);
-          this.current_theme = 1;
-        }
+        if (this.current_theme == 1) return;
+        this.text = this.afterText;  
+        this._applyTheme(this.theme.active);
+        this.current_theme = 1;
       }
     });
   }
