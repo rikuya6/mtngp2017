@@ -1,45 +1,15 @@
 @charset "UTF-8";
 @import url(http://fonts.googleapis.com/earlyaccess/notosansjp.css);
-nav {
-  position: fixed;
-  height: 55px;
-}
-nav ul {
-  padding: 0;
-}
-nav ul li {
-  display: block;
-  width: 20%;
-  float: left;
-  margin: 0;
-  padding: 0;
-  background-color: #fff;
-  border: solid 2px #94E3F7;
-  border-left: none;
-}
-nav ul li a {
-  display: block;
-  padding: 5px;
-  text-align: center;
-  color: #94E3F7;
-  font-weight: bold;
-  font-size: 28px;
-  transition: all .25s linear;
-}
-nav ul li a:hover {
+.navbar-default-blue {
+  font-family: "Noto Sans JP";
   background-color: #94E3F7;
-  color: #fff;
-  text-decoration: none;
+  border-color: #35caf0;
+  font-size: 20px;
 }
-nav ul li a.active {
-  background-color: #94E3F7;
-  color: #fff;
+.navbar-default-blue .navbar-toggle-blue:hover,
+.navbar-default-blue .navbar-toggle-blue:focus {
+  background-color: #65d7f3;
 }
-nav ul li:first-child {
-  border-left: solid 2px #94E3F7;
-}
-@media screen and (max-width: 991px) {
-  nav {
-    height: 100px;
-  }
+.navbar-brand-blue {
+  font-size: 25px;
 }

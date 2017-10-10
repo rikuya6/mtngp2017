@@ -32,6 +32,10 @@ img {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+img.nav-triangle {
+  margin: 50px auto 50px;
+  width: 100px;
+}
 .content-border {
   border: 5px solid #f90;
   padding: 20px;
