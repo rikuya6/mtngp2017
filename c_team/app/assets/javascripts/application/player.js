@@ -196,6 +196,7 @@ class Player {
     this.player.x = this.player.startX;
     this.player.y = this.player.startY;
     this.player.direction = this.player.startDirection;
+    this.player.angle = this.d[this.player.startDirection];
     this.player.isMoving = false;
   }
 }
