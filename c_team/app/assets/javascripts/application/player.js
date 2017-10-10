@@ -146,7 +146,6 @@ class Player {
                       this.addAngle(90);  // 左に曲がれないなら、右に曲がる
                     }
                   }
-                  this.tx = this.ty = 0;
                   break;
                 case 3: // ぶつかったら、右を向く。移動できない場合は左を向く
                   if (this.ty == -16) {        // angle 0 の場合
@@ -174,7 +173,6 @@ class Player {
                       this.addAngle(-90);  // 右に曲がれないなら、左に曲がる
                     }
                   }
-                  this.tx = this.ty = 0;
                   break;
                 default:
               }
