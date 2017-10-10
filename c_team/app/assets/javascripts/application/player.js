@@ -76,7 +76,7 @@ class Player {
           this.walk = 1;
         }
       } else {
-        this.vx = this.vy = 0;
+        this.vx = this.vy = this.tx = this.ty = 0;
         if (this.left || game.input.left) {
           this.direction = 1;
           this.vx = -16;
@@ -112,7 +112,7 @@ class Player {
               this.moveController.stop();
             }else{
               // 障害物や壁にぶつかった場合
-              let target_map_x, target_map_y, target_array_x, target_array_y;
+              let target_map_x = 0, target_map_y = 0, target_array_x = 0, target_array_y = 0;
               switch (this.moveController.getHitTurnDirection()) {
                 case 0: // ぶつかったら、左に向く
                   this.addAngle(-90);
@@ -192,11 +192,23 @@ class Player {
     return this.player;
   }
 
+  reset() { 
+    this.player.moveController.reset();
+    this.resetPosition();
+  }
+
   resetPosition() {
     this.player.x = this.player.startX;
     this.player.y = this.player.startY;
     this.player.direction = this.player.startDirection;
     this.player.angle = this.d[this.player.startDirection];
+    this.player.walk = 1;
     this.player.isMoving = false;
+    this.player.frame = 1;
+    this.player.up = false;
+    this.player.right = false;
+    this.player.left = false;
+    this.player.down = false;
+    this.player.vx = this.player.vy = this.ty = this.tx = 0;
   }
 }

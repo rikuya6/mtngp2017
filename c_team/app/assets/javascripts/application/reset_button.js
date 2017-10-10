@@ -37,7 +37,8 @@ class RsetButton {
     this.button.disable();
   }
 
-  reset() {
+  reset(player) {
+    player.reset();
     this.button.reset();
   }
 }

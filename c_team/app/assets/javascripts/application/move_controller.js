@@ -106,7 +106,7 @@ class MoveController {
 
   reset() {
     this.stop();
-    this.restoreOriginOrder();
+    this.originOrders = null;
     this.order_execute_counter = 0;
   }
 }

@@ -111,10 +111,8 @@ function main() {
       startButton.disable();
     });
     var resetButton = new RsetButton(function () {
-      azuki.player.moveController.stop();
-      azuki.resetPosition();
       startButton.reset();
-      resetButton.reset();
+      resetButton.reset(azuki);
     });
     startButton.move(1024, 0);
     resetButton.move(1024, 64);
