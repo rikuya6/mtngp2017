@@ -93,11 +93,11 @@ function main() {
     map.addChild(azuki.getSprite());
     game.rootScene.addChild(map);
 
-    var o1 = new MapObject(game, map, "azuki_walk.png", 256, 0, 1);
-    var o2 = new MapObject(game, map, "azuki_walk.png", 256, 64, 1);
-    var o3 = new MapObject(game, map, "azuki_walk.png", 256, 192, 1);
-    var o4 = new MapObject(game, map, "azuki_walk.png", 256, 256, 1);
-    var o8 = new MapObject(game, map, "azuki_walk.png", 1024, 128, 3);
+    var o1 = new MapObject(game, map, azuki.player.moveController, "azuki_walk.png", 256, 0, 1);
+    var o2 = new MapObject(game, map, azuki.player.moveController, "azuki_walk.png", 256, 64, 1);
+    var o3 = new MapObject(game, map, azuki.player.moveController, "azuki_walk.png", 256, 192, 1);
+    var o4 = new MapObject(game, map, azuki.player.moveController, "azuki_walk.png", 256, 256, 1);
+    var o8 = new MapObject(game, map, azuki.player.moveController, "azuki_walk.png", 1024, 128, 3);
     map.addChild(o1.getSprite());
     map.addChild(o2.getSprite());
     map.addChild(o3.getSprite());

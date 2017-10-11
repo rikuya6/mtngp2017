@@ -1,5 +1,5 @@
 class MapObject {
-  constructor(game, map, asset, sx, sy, hitStatus) {
+  constructor(game, map, moveController, asset, sx, sy, hitStatus) {
     this.sprite= new Sprite(spriteSize.x, spriteSize.y);
     this.originX = 0;
     this.originY = 0;
@@ -20,17 +20,20 @@ class MapObject {
     this.sprite.y = sy;
     this.sprite.changeCollisionData(sx, sy, hitStatus);
 
-    this.sprite.addEventListener(enchant.Event.TOUCH_START, function(e){
+    this.sprite.addEventListener(enchant.Event.TOUCH_START, function(e) {
+      if (moveController.hasNextOrder()) return; // 移動を開始していたら、マップオブジェクトは動かせない 
       this.originX = e.x - this.x;
       this.originY = e.y - this.y;
       this.beforeX = this.x;
       this.beforeY = this.y;
     });
     this.sprite.addEventListener(enchant.Event.TOUCH_MOVE, function(e){
+      if (moveController.hasNextOrder()) return; // 移動を開始していたら、マップオブジェクトは動かせない
       this.x = e.x - this.originX;
       this.y = e.y - this.originY;
     });
     this.sprite.addEventListener(enchant.Event.TOUCH_END, function(e){
+      if (moveController.hasNextOrder()) return; // 移動を開始していたら、マップオブジェクトは動かせない
       let nx = 0, ny = 0;
       for (let i = 0; i <= map.width; i+=spriteSize.x) {
         if (e.x <= i) {
