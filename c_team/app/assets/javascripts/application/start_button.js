@@ -1,6 +1,6 @@
-class StartButton {
+class StartButton extends ButtonController {
   constructor(callback) {
-    this.theme = {
+    const theme = {
       normal: {
         color: '#fff',
         background: { type: 'linear-gradient', start: '#04f', end: '#04c' },
@@ -16,28 +16,12 @@ class StartButton {
         boxShadow: { offsetX: 0, offsetY: 1, blur: 0, color: 'rgba(255, 255, 255, 0.3)' }
       }
     };
-    this.beforeText = "▶実行";
-    this.afterText  = "実行中";
-    this.button = new ButtonController(this.beforeText, this.afterText, false, this.theme, callback);
-  }
-
-  getButtonObject() {
-    return this.button.getButtonObject();
-  }
-
-  move(x, y) {
-    this.button.move(x, y);
-  }
-
-  enable() {
-    this.button.enable();
-  }
-
-  disable() {
-    this.button.disable();
+    const beforeText = "▶実行";
+    const afterText  = "実行中";
+    super(beforeText, afterText, false, theme, callback);
   }
 
   reset() {
-    this.button.reset();
+    super.reset();
   }
 }
