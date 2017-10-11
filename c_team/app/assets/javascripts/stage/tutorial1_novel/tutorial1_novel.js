@@ -13,7 +13,7 @@ function main(){
   game.fps = 30;
   game.rootScene.backgroundColor = "black";
 
-  game.preload("tutorial1_novel/nohara_bg.jpg", "tutorial1_novel/1.png", "tutorial1_novel/background.jpg");
+  game.preload("tutorial1_novel/nohara_bg.jpg", "tutorial1_novel/1.png", "tutorial1_novel/101.png", "tutorial1_novel/background.jpg");
 
   game.onload = function(){
     var scene = new Scene();
@@ -45,14 +45,16 @@ function main(){
       '「まずは聞くよりやってみよう。この子を動かして前に進めて',
       '　やってくれ。」',
       false,
-      'stage1  実行しよう',
-      ' ',
-      '数マス前のゴールに進むコードが設定されているので、実行を押して',
-      'ゴールに行かせてあげよう。',
+      1,
+      101,
+      '<br><br>',
+      '<stage1  実行しよう>',
+      '<br>数マス前のゴールに進むコードが設定されているので、実行を押して',
+      '<br>ゴールに行かせてあげよう。',
       false,
       '？',
-      '「登場人物は左のブロックの通りに動きます。実行ボタンを押すと',
-      '　その通りに動くよ。動かしてみよう。」',
+      '「登場人物は左のブロックの通りに動きます。',
+      '　実行ボタンを押すとその通りに動くよ。動かしてみよう。」',
       false,
       false
     ];
@@ -164,7 +166,9 @@ function main(){
 
         // 以下、キャラクター表示の指示が来た場合の処理
         if (!(isNaN(work))) {
-          if (work > 0){
+          if (work > 100) {
+            sprite.image = game.assets['tutorial1_novel/' + work + '.png'];
+          }else if (work > 0){
             scene.removeChild(sprite2);
             scene.addChild(cimg[work]);
             game.pushScene(scene);
@@ -197,6 +201,10 @@ function main(){
         submit.submit();
         game.pause();
       }
+
+      // バグ防止
+      scene.addChild(sprite4);
+      game.pushScene(scene);
     });
   };
   game.start();
