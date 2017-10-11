@@ -13,11 +13,22 @@ function main(){
   game.fps = 30;
   game.rootScene.backgroundColor = "black";
 
+  game.preload("tutorial1_novel/nohara_bg.jpg", "tutorial1_novel/1.png", "tutorial1_novel/background.jpg");
+
   game.onload = function(){
     var scene = new Scene();
     var sprite = new Sprite(screen_width, screen_height);
+    // sprite.image = game.assets['tutorial1_novel/background.jpg'];
     scene.addChild(sprite);
     game.pushScene(scene);
+
+    // キャラクター画像の準備
+    var cimg = [];
+    for(var i = 1; i <= 1; i++){
+      cimg[i] = new Sprite(300, 450);
+      cimg[i].image = game.assets["tutorial1_novel/"+i+".png"];
+      cimg[i].moveTo(20 + i * 300, 70);
+    }
 
     var label = []; // 物語表示のため、配列を用意する。
     var noveltext = [
@@ -95,6 +106,21 @@ function main(){
       var work = noveltext[0];
       noveltext.splice(0, 1); // noveltext０番目から１つ削除
       if (!(work)) break;  // 配列noveltextにはfalseがある。
+
+      // 以下、キャラクター表示の指示が来た場合の処理
+      if (!(isNaN(work))) {
+        if (work > 0){
+          scene.removeChild(sprite2);
+          scene.addChild(cimg[work]);
+          game.pushScene(scene);
+          scene.addChild(sprite2);
+          game.pushScene(scene);
+        }else{ // マイナスが来た場合、非表示にする
+          scene.removeChild(cimg[work * -1]);
+        }
+        break;
+      }
+
       // 以下、通常通りテキストを表示する処理
       var tex = new Label(work);
       tex.width = tex_width;
@@ -106,6 +132,7 @@ function main(){
       label[i].moveTo( 40, 400 + i * 40);
       label[i].font = "32px 'メイリオ'";
       label[i].color = "white";
+      // if(i % 2 == 0)   label[i].color = "red";
       scene.addChild(label[i]);
       game.pushScene(scene);
     }
@@ -118,6 +145,8 @@ function main(){
 
     // 画面がクリックされたならば以下が呼び出される
     sprite4.addEventListener('touchstart', function() {
+      // sprite.image = game.assets['tutorial1_novel/nohara_bg.jpg'];
+
       // 既に表示されていた文字を消す
       var len = label.length;
       for(let i = 0; i < len; i++){
@@ -132,6 +161,21 @@ function main(){
         var work = noveltext[0];
         noveltext.splice(0, 1); // noveltext０番目から１つ削除
         if (!(work)) break;  // 配列noveltextにはfalseがある。
+
+        // 以下、キャラクター表示の指示が来た場合の処理
+        if (!(isNaN(work))) {
+          if (work > 0){
+            scene.removeChild(sprite2);
+            scene.addChild(cimg[work]);
+            game.pushScene(scene);
+            scene.addChild(sprite2);
+            game.pushScene(scene);
+          }else{ // マイナスが来た場合、非表示にする
+            scene.removeChild(cimg[work * -1]);
+          }
+          break;
+        }
+
         // 以下、通常通りテキストを表示する処理
         var tex = new Label(work);
         tex.width = tex_width;
@@ -143,6 +187,7 @@ function main(){
         label[i].moveTo( 40, 400 + i * 40);
         label[i].font = "32px 'メイリオ'";
         label[i].color = "white";
+        // if(i % 2 == 0)   label[i].color = "red";
         scene.addChild(label[i]);
         game.pushScene(scene);
       }
