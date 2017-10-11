@@ -113,6 +113,7 @@ class Player {
             }else{
               // 障害物や壁にぶつかった場合
               let target_map_x = 0, target_map_y = 0, target_array_x = 0, target_array_y = 0;
+              this.moveController.decrementMoveCounter(); // 方向をを変えただけは移動数には含まれない。
               switch (this.moveController.getHitTurnDirection()) {
                 case 0: // ぶつかったら、左に向く
                   this.addAngle(-90);

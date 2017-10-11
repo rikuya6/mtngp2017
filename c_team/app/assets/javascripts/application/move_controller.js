@@ -90,7 +90,11 @@ class MoveController {
   }
 
   getMoveCount() {
-    return this.order_execute_counter - 1;
+    return this.order_execute_counter;
+  }
+
+  decrementMoveCounter() {
+    this.order_execute_counter--;
   }
 
   printAllOrder() {
