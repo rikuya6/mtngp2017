@@ -13,7 +13,7 @@ function main(){
   game.fps = 30;
   game.rootScene.backgroundColor = "black";
 
-  game.preload("tutorial1_novel/nohara_bg.jpg", "tutorial1_novel/1.png", "tutorial1_novel/101.png", "tutorial1_novel/background.jpg");
+  game.preload("novel/nohara_bg.jpg", "novel/1.png", "novel/101.png", "novel/background.jpg");
 
   game.onload = function(){
     var scene = new Scene();
@@ -26,7 +26,7 @@ function main(){
     var cimg = [];
     for(var i = 1; i <= 1; i++){
       cimg[i] = new Sprite(300, 450);
-      cimg[i].image = game.assets["tutorial1_novel/"+i+".png"];
+      cimg[i].image = game.assets["novel/"+i+".png"];
       cimg[i].moveTo(20 + i * 300, 70);
     }
 
@@ -165,7 +165,7 @@ function main(){
         // 以下、キャラクター表示の指示が来た場合の処理
         if (!(isNaN(work))) {
           if (work > 100) {
-            sprite.image = game.assets['tutorial1_novel/' + work + '.png'];
+            sprite.image = game.assets['novel/' + work + '.png'];
           }else if (work > 0){
             scene.removeChild(sprite2);
             scene.addChild(cimg[work]);

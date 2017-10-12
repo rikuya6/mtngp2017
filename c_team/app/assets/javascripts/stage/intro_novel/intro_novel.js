@@ -13,7 +13,9 @@ function main(){
   game.fps = 30;
   game.rootScene.backgroundColor = "black";
 
-  game.preload("tutorial1_novel/nohara_bg.jpg", "tutorial1_novel/1.png", "tutorial1_novel/101.png", "tutorial1_novel/background.jpg");
+  for(var i = 1; i <= 13; i++){
+    game.preload("novel/" + i + ".png");
+  }
 
   game.onload = function(){
     var scene = new Scene();
@@ -24,36 +26,84 @@ function main(){
 
     // キャラクター画像の準備
     var cimg = [];
-    for(var i = 1; i <= 1; i++){
-      cimg[i] = new Sprite(300, 450);
-      cimg[i].image = game.assets["tutorial1_novel/"+i+".png"];
-      cimg[i].moveTo(20 + i * 300, 70);
+    for(var i = 1; i <= 13; i++){
+      let p = i % 4 + 1;
+      cimg[i] = new Sprite(595, 842);
+      cimg[i].image = game.assets["novel/"+i+".png"];
+      console.log(i + ".png = " + p);
+      cimg[i].moveTo(p * 100, -100);
     }
+    console.log(cimg);
 
     var label = []; // 物語表示のため、配列を用意する。
     var noveltext = [
-      '絵本描き',
-      '「やぁ。君が僕の本を手伝ってくれるって子かい？',
-      false,
-      '絵本描き',
-      '「僕はここでずっと絵本を書いているんだ。」',
-      false,
-      '絵本描き',
-      '「これから君には僕の絵本の登場人物を動かすのを手伝ってもらうよ。」',
-      false,
-      '絵本描き',
-      '「まずは聞くよりやってみよう。この子を動かして前に進めて',
-      '　やってくれ。」',
-      false,
-      101,
       '<br><br>',
-      '<stage1  実行しよう>',
-      '<br>数マス前のゴールに進むコードが設定されているので、実行を押して',
-      '<br>ゴールに行かせてあげよう。',
+      'あるところに　あずきという　女の子がいました。',
+      '<br><br>',
+      'あずきのお父さんとお母さんは　お仕事があるので',
+      '学校から帰ってくると　家にはいつもおばあちゃんがいました。',
+      1,
+      '<br><br>',
+      'ところがある日、　おばあちゃんは　入院することになって',
+      'しまいました。',
+      '<br><br>',
+      'おばあちゃんが　入院してから　数日後のことです。',
+      9,
       false,
-      '？',
-      '「登場人物は左のブロックの通りに動きます。',
-      '　実行ボタンを押すとその通りに動くよ。動かしてみよう。」',
+      'あずき',
+      '「やっぱり　おばあちゃんに　会えないのはさびしい…',
+      '　そうだ、　おばあちゃんに　会いに行けばいいんだ！」',
+      false,
+      '<br><br>',
+      'そう思い立ったところで　あずきは　病院への行き方を　知りません。',
+      '<br><br>',
+      'そこで　お母さんに　相談することに　しました。',
+      false,
+      'あずき',
+      '「ねえお母さん、　私、　おばあちゃんに　会えなくてさびしい…',
+      '　おばあちゃんに　会いに行けないの？」',
+      false,
+      'お母さん',
+      '「そうね…　さびしいのも　わかるけれど、',
+      '　お母さんたち　今日は　お仕事があるから　一緒に行くことが',
+      '　できないの」',
+      false,
+      'あずき',
+      '「私　ひとりでも　行く！　病院には　どうやって行くの？」',
+      -9,
+      1,
+      false,
+      'お母さん',
+      '「病院へは　バスを使って　行くのよ',
+      '　家のそばの　バス停から　「総合病院行き」　に乗って',
+      '　５個目で　バス停を降りるの」',
+      false,
+      'お母さん',
+      '「そこから　１０分くらいのところに　おばあちゃんのいる',
+      '　病院があるわ',
+      '　おばあちゃんの病室は　207号室なんだけど…」',
+      false,
+      'お母さん',
+      '「一回で　覚えられるわけ　ないわね　メモを書いてあげるから',
+      '　待ってなさい」',
+      false,
+      '<br><br>',
+      'あずきは　お母さんから　病院までの　行き方が書いてある',
+      'メモをもらいました。',
+      false,
+      'あずき',
+      '「ありがとう」',
+      false,
+      'お母さん',
+      '「もしあずきに　余裕があるなら　行く途中にある',
+      '　お花屋さんで　お花を買っていったら　おばあちゃん喜ぶと思うよ」',
+      false,
+      'あずき',
+      '「うん　わかった」',
+      false,
+      '<br><br>',
+      'あずきは　身支度を済ませると　おばあちゃんのいる',
+      '病院へ向かうべく　家を出ました。',
       false,
       false
     ];
@@ -165,7 +215,8 @@ function main(){
         // 以下、キャラクター表示の指示が来た場合の処理
         if (!(isNaN(work))) {
           if (work > 100) {
-            sprite.image = game.assets['tutorial1_novel/' + work + '.png'];
+            sprite.image = game.assets['novel/' + work + '.png'];
+            break;
           }else if (work > 0){
             scene.removeChild(sprite2);
             scene.addChild(cimg[work]);
@@ -175,7 +226,7 @@ function main(){
           }else{ // マイナスが来た場合、非表示にする
             scene.removeChild(cimg[work * -1]);
           }
-          break;
+          continue;
         }
 
         // 以下、通常通りテキストを表示する処理
@@ -195,7 +246,7 @@ function main(){
       }
 
       if(noveltext.length == 0){
-        let submit = document.getElementById("tutorial1_novel");
+        let submit = document.getElementById("intro_novel");
         submit.submit();
         game.pause();
       }
