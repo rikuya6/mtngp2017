@@ -1,15 +1,1 @@
-@charset "UTF-8";
-@import url(http://fonts.googleapis.com/earlyaccess/notosansjp.css);
-.navbar-default-blue {
-  font-family: "Noto Sans JP";
-  background-color: #94E3F7;
-  border-color: #35caf0;
-  font-size: 20px;
-}
-.navbar-default-blue .navbar-toggle-blue:hover,
-.navbar-default-blue .navbar-toggle-blue:focus {
-  background-color: #65d7f3;
-}
-.navbar-brand-blue {
-  font-size: 25px;
-}
+@charset "UTF-8";@import url(http://fonts.googleapis.com/earlyaccess/notosansjp.css);*{font-family:"Noto Sans JP"}body{padding-top:55px}h1{font-size:45px}h2{display:block;font-size:30px;color:#fff;background-color:#f90;width:350px;padding:10px;overflow:hidden}h3{text-align:center;width:auto}p{font-size:20px}img{display:block;width:100%;margin:auto;margin-top:20px;margin-bottom:20px}img.nav-triangle{margin:50px auto 50px;width:100px}.content-border{border:5px solid #f90;padding:20px}header{background-color:#94E3F7;padding-bottom:5px;padding-top:60px}header img{max-width:400px;height:auto}header h1,header h3{color:#666}.product{margin-bottom:30px}.member-data{margin-bottom:30px}.member-data p{text-align:center}.if_icon{display:block;max-width:250px;height:auto;margin:auto;margin-bottom:30px}.member-photo{display:block;max-width:250px;height:auto;margin:auto;margin-bottom:10px}.tw-timeline{width:100%;height:400px}footer{margin-top:30px}footer p{font-size:15px;text-align:center}div.button-orange{padding:15px}div.button-orange p{background-color:#f90;font-size:40px;color:#fff;width:150px;border-radius:10px 10px;border:2px solid #f90;text-align:center;margin:auto}.text-center{text-align:center}.position-center{margin:auto}.display-block{display:block}nav{position:fixed;height:55px}nav ul{padding:0}nav ul li{display:block;width:20%;float:left;margin:0;padding:0;background-color:#fff;border:solid 2px #94E3F7;border-left:none}nav ul li a{display:block;padding:5px;text-align:center;color:#94E3F7;font-weight:bold;font-size:28px;transition:all .25s linear}nav ul li a:hover{background-color:#94E3F7;color:#fff;text-decoration:none}nav ul li a.active{background-color:#94E3F7;color:#fff}nav ul li:first-child{border-left:solid 2px #94E3F7}

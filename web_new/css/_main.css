@@ -1,0 +1,192 @@
+@charset "UTF-8";
+@import url(http://fonts.googleapis.com/earlyaccess/notosansjp.css);
+* {
+  font-family: "Noto Sans JP";
+  box-sizing: border-box;
+}
+body {
+  background-color: #FFF;
+  font-size: 20px;
+}
+img {
+  display: block;
+  max-width: 100%;
+  margin: auto;
+}
+img.triangle {
+  width: 100px;
+  margin: 50px auto 50px;
+  cursor: pointer;
+}
+img.diamond {
+  max-width: 250px;
+  margin: auto;
+  margin-bottom: 30px;
+}
+.cl-header {
+  height: auto;
+  padding-top: 60px;
+  text-align: center;
+  color: #555;
+  background-color: #94E3F7;
+}
+header {
+  display: flex;
+  justify-content: center;
+  height: 55px;
+  margin: 0px;
+  padding: 0px;
+  background-color: transparent;
+}
+header a {
+  flex: 1;
+  text-align: center;
+  background-color: #FFF;
+}
+header a.nav-bt {
+  padding: 5px;
+  color: #94E3F7;
+  border: 2px solid #94E3F7;
+  border-right-width: 0px;
+  background-color: #FFF;
+  font-size: 25px;
+}
+header a.nav-bt:last-child {
+  border-right-width: 2px;
+}
+header a.nav-bt:hover {
+  color: #FFF;
+  background-color: #94E3F7;
+}
+@media screen and (max-width: 600px) {
+  header a:first-child {
+    display: none;
+  }
+}
+h2 {
+  width: 300px;
+  margin: 0px;
+  padding: 5px 15px 5px;
+  color: #FFF;
+  background-color: #f90;
+}
+.head {
+  margin-bottom: 50px;
+  padding-top: 60px;
+  padding-bottom: 15px;
+  text-align: center;
+  background-color: #94E3F7;
+}
+.head h1,
+.head h3 {
+  color: #777;
+}
+.head img {
+  width: 400px;
+}
+.head img.triangle {
+  width: 100px;
+  margin: 50px auto 50px;
+  cursor: pointer;
+}
+.flex-box {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+  margin: auto;
+  margin: 10px auto 80px auto;
+  padding: 15px;
+  border: 5px solid #f90;
+}
+.content {
+  width: 80%;
+  margin: 10px auto 80px auto;
+  padding: 15px;
+  border: 5px solid #f90;
+}
+div.flex-box .content {
+  flex: 1;
+  margin: auto;
+  border: none;
+}
+.member {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+  margin: auto;
+  margin: 10px auto 80px auto;
+  padding: 15px;
+  border: 5px solid #f90;
+  border: none;
+  flex-wrap: wrap;
+}
+.personal-data {
+  text-align: center;
+  padding: 20px;
+  border: 5px solid #f90;
+  margin-bottom: 20px;
+}
+.teacher-data {
+  flex-basis: 300px;
+  flex-shrink: 0;
+  text-align: center;
+  padding: 20px;
+  border: 5px solid #f90;
+  margin-bottom: 20px;
+}
+.member-data {
+  flex-basis: 225px;
+  flex-shrink: 0;
+  text-align: center;
+  padding: 20px;
+  border: 5px solid #f90;
+  margin-bottom: 20px;
+}
+.twitter {
+  max-width: 500px;
+}
+footer {
+  text-align: center;
+  color: #000;
+  background-color: inherit;
+}
+@media screen and (max-width: 600px) {
+  .content,
+  .member,
+  .flex-box,
+  .member {
+    width: 100%;
+    border-left-width: 0px;
+    border-right-width: 0px;
+  }
+  .personal-data {
+    text-align: center;
+    padding: 20px;
+    border: 5px solid #f90;
+    margin-bottom: 20px;
+  }
+  .teacher-data {
+    flex-basis: 300px;
+    flex-shrink: 0;
+    text-align: center;
+    padding: 20px;
+    border: 5px solid #f90;
+    margin-bottom: 20px;
+  }
+  .member-data {
+    flex-basis: 250px;
+    flex-basis: 160px;
+    flex-shrink: 0;
+    text-align: center;
+    padding: 20px;
+    border: 5px solid #f90;
+    margin-bottom: 20px;
+  }
+  .member-data img {
+    display: none;
+  }
+  .twitter {
+    border-left-width: 5px;
+    border-right-width: 5px;
+  }
+}
