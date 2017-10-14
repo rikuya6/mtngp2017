@@ -12,11 +12,7 @@
   </head>
   <body>
     <!-- ヘッダ -->
-    <div class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <%= render 'shared/header' %>
-      </div>
-    </div>
+    <%= render 'shared/header' %>
     <!-- 本体 -->
     <% unless current_user %>
     <div class="container">
@@ -34,13 +30,9 @@
       <%= render 'shared/footer' %>
     </div>
     <% else %>
-    <div class="container">
-      <div class="row">
-        <%= render 'shared/flash' %>
-        <%= yield %>
-      </div>
-      <%= render 'shared/footer' %>
-    </div>
+      <%= render 'shared/flash' %>
+      <%= yield %>
+      <%# render 'shared/footer' %>
     <% end %>
   </body>
 </html>
