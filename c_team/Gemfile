@@ -20,6 +20,7 @@ gem 'enumerize'
 gem 'faker'
 gem 'nested_form'
 #gem 'mysql2'
+gem 'babel-transpiler'
 
 group :test do
   gem 'factory_girl_rails'
