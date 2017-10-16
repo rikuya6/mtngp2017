@@ -107,6 +107,15 @@ footer {
   nav {
     background-color: #FFF;
   }
+  nav a:first-child::after {
+    position: absolute;
+    right: 10px;
+    bottom: 11px;
+    content: "\f0c9";
+    color: #94E3F7;
+    font-family: "FontAwesome";
+    font-size: 30px;
+  }
   .diamond {
     width: 250px;
   }
@@ -118,9 +127,12 @@ footer {
   }
 }
 @media screen and (max-width: 425px) {
+  h2 {
+    width: 100%;
+  }
   nav {
-    flex-flow: column;
     overflow: visible;
+    flex-flow: column;
   }
   nav a:nth-child(n+2) {
     display: none;
