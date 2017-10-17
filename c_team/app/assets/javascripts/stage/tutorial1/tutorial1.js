@@ -3,16 +3,16 @@ $(document).ready(function() {
   main();
 });
 
-function main() {
-  gameSize = {
-    x: 1152,
-    y: 640
-  };
-  spriteSize = {
-    x: 64,
-    y: 64
-  };
+var gameSize = {
+  x: 1152,
+  y: 640
+};
+var spriteSize = {
+  x: 64,
+  y: 64
+};
 
+function main() {
   var game = new Game(gameSize.x, gameSize.y);
   game.preload("azuki_walk.png", "road.png");
 
