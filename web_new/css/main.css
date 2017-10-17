@@ -4,7 +4,6 @@
   box-sizing: content-box;
   margin: 0;
   padding: 0;
-  font-family: "Noto Sans JP";
 }
 h1 {
   font-size: 45px;
@@ -27,6 +26,7 @@ p {
 }
 img {
   display: block;
+  margin: auto;
   max-width: 100%;
 }
 .triangle {
@@ -65,25 +65,26 @@ nav a:nth-child(2) {
 }
 header {
   margin-bottom: 20px;
-  padding: 60px 0px 5px 0px;
+  padding: 160px 0px 5px 0px;
   text-align: center;
   background-color: #94E3F7;
 }
 header h1,
 header h3 {
-  color: #666;
+  color: #8f8f8f;
 }
 .flex-box {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  width: 80%;
+  width: 85%;
   margin: 40px auto;
 }
 .content {
   width: 80%;
   margin: 40px auto;
   padding: 15px;
+  text-align: center;
   border: 5px solid #f90;
 }
 .flex-box .content {
@@ -91,14 +92,14 @@ header h3 {
   margin: 20px 10px;
 }
 .personal-data {
-  flex-basis: 200px;
+  flex-basis: 250px;
   margin-bottom: 20px;
   padding: 15px;
   text-align: center;
   border: 5px solid #f90;
 }
 .twitter {
-  width: 400px;
+  width: 500px;
 }
 footer {
   text-align: center;
@@ -106,15 +107,6 @@ footer {
 @media screen and (max-width: 768px) {
   nav {
     background-color: #FFF;
-  }
-  nav a:first-child::after {
-    position: absolute;
-    right: 10px;
-    bottom: 11px;
-    content: "\f0c9";
-    color: #94E3F7;
-    font-family: "FontAwesome";
-    font-size: 30px;
   }
   .diamond {
     width: 250px;
@@ -125,19 +117,47 @@ footer {
   .personal-data img {
     display: none;
   }
+  .twitter {
+    width: 85%;
+  }
 }
 @media screen and (max-width: 425px) {
+  header {
+    padding-top: 30px;
+  }
   h2 {
     width: 100%;
   }
   nav {
     overflow: visible;
-    flex-flow: column;
+    flex-flow: column-reverse;
+    bottom: 0;
+  }
+  nav a:first-child::after {
+    position: absolute;
+    right: 10px;
+    bottom: 11px;
+    content: "\f0c9";
+    color: #94E3F7;
+    font-family: "FontAwesome";
+    font-size: 30px;
   }
   nav a:nth-child(n+2) {
     display: none;
     text-align: left;
     font-size: 30px;
+  }
+  nav a:nth-child(2) {
+    order: 4;
+  }
+  nav a:nth-child(3) {
+    order: 3;
+  }
+  nav a:nth-child(4) {
+    order: 2;
+  }
+  nav a:nth-child(5) {
+    order: 1;
   }
   .flex-box,
   .content,

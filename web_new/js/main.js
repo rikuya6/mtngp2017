@@ -7,6 +7,7 @@ $(function() {
   $(".nav-bt").click(function () {
     let i = $(".nav-bt").index(this);
     let p = (i==0)? 0 : $("h2").eq(i-1).offset().top - 60;
+    p += ($(window).width() <= 425 && i != 0)? 40 : 0;
     $('html,body').animate({ scrollTop: p }, 800, 'swing');
       if($(window).width() <= 425){
         $('.nav-bt').slideToggle();
