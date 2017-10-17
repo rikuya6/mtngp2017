@@ -42,6 +42,10 @@ GEM
     arel (6.0.4)
     autoprefixer-rails (7.1.4)
       execjs
+    babel-source (5.8.35)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -259,6 +263,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  babel-transpiler
   bcrypt (~> 3.1.7)
   bootstrap-sass
   bullet
