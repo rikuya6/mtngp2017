@@ -4,6 +4,7 @@
   box-sizing: content-box;
   margin: 0;
   padding: 0;
+  font-family: "Noto Sans JP", sans-serif;
 }
 h1 {
   font-size: 45px;
@@ -130,8 +131,7 @@ footer {
   }
   nav {
     overflow: visible;
-    flex-flow: column-reverse;
-    bottom: 0;
+    flex-flow: column;
   }
   nav a:first-child::after {
     position: absolute;
@@ -146,18 +146,6 @@ footer {
     display: none;
     text-align: left;
     font-size: 30px;
-  }
-  nav a:nth-child(2) {
-    order: 4;
-  }
-  nav a:nth-child(3) {
-    order: 3;
-  }
-  nav a:nth-child(4) {
-    order: 2;
-  }
-  nav a:nth-child(5) {
-    order: 1;
   }
   .flex-box,
   .content,
