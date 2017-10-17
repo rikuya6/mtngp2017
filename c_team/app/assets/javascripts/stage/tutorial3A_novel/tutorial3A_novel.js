@@ -76,7 +76,7 @@ function main(){
     // SurfaceオブジェクトをSpriteオブジェクトのimageプロパティに代入
     sprite2.image = surface;
     // コンテキストを取得する
-    context = surface.context;
+    var context = surface.context;
     // パスの描画の初期化
     context.beginPath();
     // 描画開始位置の移動
@@ -90,7 +90,7 @@ function main(){
     sprite3.backgroundColor = "rgba(50, 50, 255, 1)";
     // Surfaceオブジェクトの作成
     // Spriteの大きさ以上に指定しても範囲外には描画されない
-    var surface = new Surface(100, 100);
+    surface = new Surface(100, 100);
     // SurfaceオブジェクトをSpriteオブジェクトのimageプロパティに代入
     sprite3.image = surface;
     // コンテキストを取得する
