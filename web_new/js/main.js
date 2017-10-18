@@ -7,17 +7,15 @@ $(function() {
   $(".nav-bt").click(function () {
     let i = $(".nav-bt").index(this);
     let p = (i==0)? 0 : $("h2").eq(i-1).offset().top - 60;
-    p += ($(window).width() <= 425 && i != 0)? 40 : 0;
     $('html,body').animate({ scrollTop: p }, 800, 'swing');
-      if($(window).width() <= 425){
+      if($(window).width() <= 768){
         $('.nav-bt').slideToggle();
       }
     return false;
   });
 
   $(".title").click(function () {
-    if($(window).width() <= 425){
-      // console.log("width <= 425px");
+    if ($(window).width() <= 768){
       $('.nav-bt').slideToggle();
     }else{
       $('html,body').animate({ scrollTop: 0 }, 800, 'swing');
