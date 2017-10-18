@@ -13,7 +13,7 @@ function main(){
   game.fps = 30;
   game.rootScene.backgroundColor = "black";
 
-  for(var i = 1; i <= 13; i++){
+  for(let i = 1; i <= 13; i++){
     game.preload("novel/" + i + ".png");
   }
 
@@ -26,12 +26,16 @@ function main(){
 
     // キャラクター画像の準備
     var cimg = [];
-    for(var i = 1; i <= 13; i++){
-      let p = i % 4 + 1;
+    cimg[0] = false;
+    for(let i = 1; i <= 13; i++){
       cimg[i] = new Sprite(595, 842);
       cimg[i].image = game.assets["novel/"+i+".png"];
-      console.log(i + ".png = " + p);
-      cimg[i].moveTo(p * 100, -100);
+      console.log(cimg[i].image);
+      if(i == 1 || i == 5 || i == 9 || i == 13) {
+        cimg[i].moveTo(100, -100);
+      }else{
+        cimg[i].moveTo(400, -100);
+      }
     }
     console.log(cimg);
 
@@ -39,15 +43,15 @@ function main(){
     var noveltext = [
       '<br><br>',
       'あるところに　あずきという　女の子がいました。',
-      '<br><br>',
       'あずきのお父さんとお母さんは　お仕事があるので',
       '学校から帰ってくると　家にはいつもおばあちゃんがいました。',
       1,
       '<br><br>',
-      'ところがある日、　おばあちゃんは　入院することになって',
-      'しまいました。',
+      'ところがある日、　おばあちゃんは',
+      '入院することになって　しまいました。',
       '<br><br>',
       'おばあちゃんが　入院してから　数日後のことです。',
+      -1,
       9,
       false,
       'あずき',
@@ -56,17 +60,17 @@ function main(){
       false,
       '<br><br>',
       'そう思い立ったところで　あずきは　病院への行き方を　知りません。',
-      '<br><br>',
       'そこで　お母さんに　相談することに　しました。',
       false,
       'あずき',
       '「ねえお母さん、　私、　おばあちゃんに　会えなくてさびしい…',
       '　おばあちゃんに　会いに行けないの？」',
+      2,
       false,
       'お母さん',
       '「そうね…　さびしいのも　わかるけれど、',
-      '　お母さんたち　今日は　お仕事があるから　一緒に行くことが',
-      '　できないの」',
+      '　お母さんたち　今日は　お仕事があるから',
+      '　一緒に行くことが　できないの」',
       false,
       'あずき',
       '「私　ひとりでも　行く！　病院には　どうやって行くの？」',
@@ -79,17 +83,17 @@ function main(){
       '　５個目で　バス停を降りるの」',
       false,
       'お母さん',
-      '「そこから　１０分くらいのところに　おばあちゃんのいる',
-      '　病院があるわ',
+      '「そこから　１０分くらいのところに',
+      '　おばあちゃんのいる　病院があるわ',
       '　おばあちゃんの病室は　207号室なんだけど…」',
       false,
       'お母さん',
-      '「一回で　覚えられるわけ　ないわね　メモを書いてあげるから',
-      '　待ってなさい」',
+      '「一回で　覚えられるわけ　ないわね',
+      '　メモを書いてあげるから　待ってなさい」',
       false,
       '<br><br>',
-      'あずきは　お母さんから　病院までの　行き方が書いてある',
-      'メモをもらいました。',
+      'あずきは　お母さんから　病院までの',
+      '行き方が書いてある　メモをもらいました。',
       false,
       'あずき',
       '「ありがとう」',
@@ -137,11 +141,11 @@ function main(){
     sprite3.backgroundColor = "rgba(50, 50, 255, 1)";
     // Surfaceオブジェクトの作成
     // Spriteの大きさ以上に指定しても範囲外には描画されない
-    var surface = new Surface(100, 100);
+    surface = new Surface(100, 100);
     // SurfaceオブジェクトをSpriteオブジェクトのimageプロパティに代入
     sprite3.image = surface;
     // コンテキストを取得する
-    context = surface.context;
+    var context = surface.context;
     // パスの描画の初期化
     context.beginPath();
     // 描画開始位置の移動
@@ -154,7 +158,7 @@ function main(){
 
     /* 最初のテキストの表示 */
     while(true){
-      var work = noveltext[0];
+      let work = noveltext[0];
       noveltext.splice(0, 1); // noveltext０番目から１つ削除
       if (!(work)) break;  // 配列noveltextにはfalseがある。
 
@@ -208,12 +212,13 @@ function main(){
       // 文字表示するための処理
       // labelという配列にどんどん追加していく
       while(true){
-        var work = noveltext[0];
+        let work = noveltext[0];
         noveltext.splice(0, 1); // noveltext０番目から１つ削除
         if (!(work)) break;  // 配列noveltextにはfalseがある。
 
         // 以下、キャラクター表示の指示が来た場合の処理
         if (!(isNaN(work))) {
+          console.log("work:" + work);
           if (work > 100) {
             sprite.image = game.assets['novel/' + work + '.png'];
             break;
