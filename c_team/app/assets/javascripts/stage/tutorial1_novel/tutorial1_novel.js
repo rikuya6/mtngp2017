@@ -34,11 +34,7 @@ function main(){
       cimg[i] = new Sprite(595, 842);
       cimg[i].image = game.assets["novel/"+i+".png"];
       console.log(cimg[i].image);
-      if(i == 1 || i == 5 || i == 9 || i == 13) {
-        cimg[i].moveTo(100, -100);
-      }else{
-        cimg[i].moveTo(400, -100);
-      }
+      cimg[i].moveTo((screen_width / 4) - 50, -100);
     }
     console.log(cimg);
 
@@ -47,6 +43,7 @@ function main(){
       102,
       '絵本描き',
       '「やぁ。君が僕の本を手伝ってくれるって子かい？',
+      2,
       false,
       '絵本描き',
       '「僕はここでずっと絵本を書いているんだ。」',
@@ -124,18 +121,22 @@ function main(){
       // 以下、キャラクター表示の指示が来た場合の処理
       if (!(isNaN(work))) {
         console.log("work:" + work);
+        // キャラクターがボックスの前に来ちゃうので一度取り除く
+        scene.removeChild(sprite2);
+        scene.removeChild(sprite3);
         if (work > 100) {
           sprite.image = game.assets['novel/' + work + '.png'];
           //break;
         }else if (work > 0){
-          scene.removeChild(sprite2);
           scene.addChild(cimg[work]);
-          game.pushScene(scene);
-          scene.addChild(sprite2);
           game.pushScene(scene);
         }else{ // マイナスが来た場合、非表示にする
           scene.removeChild(cimg[work * -1]);
         }
+        // 再度ボックス表示
+        scene.addChild(sprite2);
+        scene.addChild(sprite3);
+        game.pushScene(scene);
         continue;
       }
 
@@ -182,18 +183,22 @@ function main(){
         // 以下、キャラクター表示の指示が来た場合の処理
         if (!(isNaN(work))) {
           console.log("work:" + work);
+          // キャラクターがボックスの前に来ちゃうので一度取り除く
+          scene.removeChild(sprite2);
+          scene.removeChild(sprite3);
           if (work > 100) {
             sprite.image = game.assets['novel/' + work + '.png'];
-            // break;
+            //break;
           }else if (work > 0){
-            scene.removeChild(sprite2);
             scene.addChild(cimg[work]);
-            game.pushScene(scene);
-            scene.addChild(sprite2);
             game.pushScene(scene);
           }else{ // マイナスが来た場合、非表示にする
             scene.removeChild(cimg[work * -1]);
           }
+          // 再度ボックス表示
+          scene.addChild(sprite2);
+          scene.addChild(sprite3);
+          game.pushScene(scene);
           continue;
         }
 
