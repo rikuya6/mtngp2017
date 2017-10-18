@@ -16,7 +16,7 @@ function main(){
   for(let i = 1; i <= 13; i++){
     game.preload("novel/" + i + ".png");
   }
-  for(let i = 101; i <= 102; i++){
+  for(let i = 101; i <= 103; i++){
     game.preload("novel/" + i + ".png");
   }
 
@@ -170,18 +170,22 @@ function main(){
       // 以下、キャラクター表示の指示が来た場合の処理
       if (!(isNaN(work))) {
         console.log("work:" + work);
+        // キャラクターがボックスの前に来ちゃうので一度取り除く
+        scene.removeChild(sprite2);
+        scene.removeChild(sprite3);
         if (work > 100) {
           sprite.image = game.assets['novel/' + work + '.png'];
           //break;
         }else if (work > 0){
-          scene.removeChild(sprite2);
           scene.addChild(cimg[work]);
-          game.pushScene(scene);
-          scene.addChild(sprite2);
           game.pushScene(scene);
         }else{ // マイナスが来た場合、非表示にする
           scene.removeChild(cimg[work * -1]);
         }
+        // 再度ボックス表示
+        scene.addChild(sprite2);
+        scene.addChild(sprite3);
+        game.pushScene(scene);
         continue;
       }
 
@@ -228,18 +232,22 @@ function main(){
         // 以下、キャラクター表示の指示が来た場合の処理
         if (!(isNaN(work))) {
           console.log("work:" + work);
+          // キャラクターがボックスの前に来ちゃうので一度取り除く
+          scene.removeChild(sprite2);
+          scene.removeChild(sprite3);
           if (work > 100) {
             sprite.image = game.assets['novel/' + work + '.png'];
-            // break;
+            //break;
           }else if (work > 0){
-            scene.removeChild(sprite2);
             scene.addChild(cimg[work]);
-            game.pushScene(scene);
-            scene.addChild(sprite2);
             game.pushScene(scene);
           }else{ // マイナスが来た場合、非表示にする
             scene.removeChild(cimg[work * -1]);
           }
+          // 再度ボックス表示
+          scene.addChild(sprite2);
+          scene.addChild(sprite3);
+          game.pushScene(scene);
           continue;
         }
 
