@@ -1,6 +1,6 @@
-class RsetButton {
+class RsetButton extends ButtonController {
   constructor(callback) {
-    this.theme = {
+    const theme = {
       normal: {
         color: '#fff',
         background: { type: 'linear-gradient', start: '#04f', end: '#04c' },
@@ -16,29 +16,13 @@ class RsetButton {
         boxShadow: { offsetX: 0, offsetY: 1, blur: 0, color: 'rgba(255, 255, 255, 0.3)' }
       }
     };
-    this.beforeText = "リセット!";
-    this.afterText  = "リセット!";
-    this.button = new ButtonController(this.beforeText, this.afterText, true, this.theme, callback);
-  }
-
-  getButtonObject() {
-    return this.button.getButtonObject();
-  }
-
-  move(x, y) {
-    this.button.move(x, y);
-  }
-
-  enable() {
-    this.button.enable();
-  }
-
-  disable() {
-    this.button.disable();
+    const beforeText = "リセット!";
+    const afterText  = "リセット!";
+    super(beforeText, afterText, true, theme, callback);
   }
 
   reset(player) {
     player.reset();
-    this.button.reset();
+    super.reset();
   }
 }

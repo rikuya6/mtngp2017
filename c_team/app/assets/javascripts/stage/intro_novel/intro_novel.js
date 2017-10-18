@@ -127,7 +127,7 @@ function main(){
     // SurfaceオブジェクトをSpriteオブジェクトのimageプロパティに代入
     sprite2.image = surface;
     // コンテキストを取得する
-    context = surface.context;
+    var context = surface.context;
     // パスの描画の初期化
     context.beginPath();
     // 描画開始位置の移動
