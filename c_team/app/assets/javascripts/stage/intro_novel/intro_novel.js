@@ -16,6 +16,9 @@ function main(){
   for(let i = 1; i <= 13; i++){
     game.preload("novel/" + i + ".png");
   }
+  for(let i = 101; i <= 102; i++){
+    game.preload("novel/" + i + ".png");
+  }
 
   game.onload = function(){
     var scene = new Scene();
@@ -41,22 +44,24 @@ function main(){
 
     var label = []; // 物語表示のため、配列を用意する。
     var noveltext = [
+      103,
+      1,
       '<br><br>',
       'あるところに　あずきという　女の子がいました。',
       'あずきのお父さんとお母さんは　お仕事があるので',
       '学校から帰ってくると　家にはいつもおばあちゃんがいました。',
-      1,
+      false,
       '<br><br>',
       'ところがある日、　おばあちゃんは',
       '入院することになって　しまいました。',
       '<br><br>',
       'おばあちゃんが　入院してから　数日後のことです。',
-      -1,
-      9,
       false,
       'あずき',
       '「やっぱり　おばあちゃんに　会えないのはさびしい…',
       '　そうだ、　おばあちゃんに　会いに行けばいいんだ！」',
+      -1,
+      5,
       false,
       '<br><br>',
       'そう思い立ったところで　あずきは　病院への行き方を　知りません。',
@@ -74,7 +79,7 @@ function main(){
       false,
       'あずき',
       '「私　ひとりでも　行く！　病院には　どうやって行くの？」',
-      -9,
+      -5,
       1,
       false,
       'お母さん',
@@ -164,7 +169,11 @@ function main(){
 
       // 以下、キャラクター表示の指示が来た場合の処理
       if (!(isNaN(work))) {
-        if (work > 0){
+        console.log("work:" + work);
+        if (work > 100) {
+          sprite.image = game.assets['novel/' + work + '.png'];
+          //break;
+        }else if (work > 0){
           scene.removeChild(sprite2);
           scene.addChild(cimg[work]);
           game.pushScene(scene);
@@ -173,7 +182,7 @@ function main(){
         }else{ // マイナスが来た場合、非表示にする
           scene.removeChild(cimg[work * -1]);
         }
-        break;
+        continue;
       }
 
       // 以下、通常通りテキストを表示する処理
@@ -221,7 +230,7 @@ function main(){
           console.log("work:" + work);
           if (work > 100) {
             sprite.image = game.assets['novel/' + work + '.png'];
-            break;
+            // break;
           }else if (work > 0){
             scene.removeChild(sprite2);
             scene.addChild(cimg[work]);

@@ -13,7 +13,12 @@ function main(){
   game.fps = 30;
   game.rootScene.backgroundColor = "black";
 
-  game.preload("novel/nohara_bg.jpg", "novel/1.png", "novel/101.png", "novel/background.jpg");
+  for(let i = 1; i <= 13; i++){
+    game.preload("novel/" + i + ".png");
+  }
+  for(let i = 101; i <= 102; i++){
+    game.preload("novel/" + i + ".png");
+  }
 
   game.onload = function(){
     var scene = new Scene();
@@ -24,14 +29,22 @@ function main(){
 
     // キャラクター画像の準備
     var cimg = [];
-    for(var i = 1; i <= 1; i++){
-      cimg[i] = new Sprite(300, 450);
+    cimg[0] = false;
+    for(let i = 1; i <= 13; i++){
+      cimg[i] = new Sprite(595, 842);
       cimg[i].image = game.assets["novel/"+i+".png"];
-      cimg[i].moveTo(20 + i * 300, 70);
+      console.log(cimg[i].image);
+      if(i == 1 || i == 5 || i == 9 || i == 13) {
+        cimg[i].moveTo(100, -100);
+      }else{
+        cimg[i].moveTo(400, -100);
+      }
     }
+    console.log(cimg);
 
     var label = []; // 物語表示のため、配列を用意する。
     var noveltext = [
+      102,
       '絵本描き',
       '「やぁ。君が僕の本を手伝ってくれるって子かい？',
       false,
@@ -91,7 +104,7 @@ function main(){
     // SurfaceオブジェクトをSpriteオブジェクトのimageプロパティに代入
     sprite3.image = surface;
     // コンテキストを取得する
-    context = surface.context;
+    var context = surface.context;
     // パスの描画の初期化
     context.beginPath();
     // 描画開始位置の移動
@@ -104,13 +117,17 @@ function main(){
 
     /* 最初のテキストの表示 */
     while(true){
-      var work = noveltext[0];
+      let work = noveltext[0];
       noveltext.splice(0, 1); // noveltext０番目から１つ削除
       if (!(work)) break;  // 配列noveltextにはfalseがある。
 
       // 以下、キャラクター表示の指示が来た場合の処理
       if (!(isNaN(work))) {
-        if (work > 0){
+        console.log("work:" + work);
+        if (work > 100) {
+          sprite.image = game.assets['novel/' + work + '.png'];
+          //break;
+        }else if (work > 0){
           scene.removeChild(sprite2);
           scene.addChild(cimg[work]);
           game.pushScene(scene);
@@ -119,7 +136,7 @@ function main(){
         }else{ // マイナスが来た場合、非表示にする
           scene.removeChild(cimg[work * -1]);
         }
-        break;
+        continue;
       }
 
       // 以下、通常通りテキストを表示する処理
@@ -158,14 +175,16 @@ function main(){
       // 文字表示するための処理
       // labelという配列にどんどん追加していく
       while(true){
-        var work = noveltext[0];
+        let work = noveltext[0];
         noveltext.splice(0, 1); // noveltext０番目から１つ削除
         if (!(work)) break;  // 配列noveltextにはfalseがある。
 
         // 以下、キャラクター表示の指示が来た場合の処理
         if (!(isNaN(work))) {
+          console.log("work:" + work);
           if (work > 100) {
             sprite.image = game.assets['novel/' + work + '.png'];
+            // break;
           }else if (work > 0){
             scene.removeChild(sprite2);
             scene.addChild(cimg[work]);
@@ -175,7 +194,7 @@ function main(){
           }else{ // マイナスが来た場合、非表示にする
             scene.removeChild(cimg[work * -1]);
           }
-          break;
+          continue;
         }
 
         // 以下、通常通りテキストを表示する処理
