@@ -12,5 +12,21 @@
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
   </head>
   <body>
+    <!-- ヘッダ -->
+    <div class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <%= render 'shared/header' %>
+      </div>
+    </div>
+    <!-- 本体 -->
+    <%= yield %>
+    <!-- sidebar -->
+    <% unless current_user %>
+      <div class="col-md-3">
+        <div class="well sidebar-nav">
+          <%= render 'shared/sidebar' %>
+        </div>
+      </div>
+    <% end %>
   </body>
 </html>
