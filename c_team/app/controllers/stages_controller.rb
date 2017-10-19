@@ -1,5 +1,6 @@
 class StagesController < MemberController
   after_action :save_tutorial_data, only: [:tutorial1, :tutorial2, :tutorial3]
+  layout 'stage'
 
   def index
   end
