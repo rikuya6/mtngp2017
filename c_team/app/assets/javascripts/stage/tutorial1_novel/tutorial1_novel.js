@@ -13,7 +13,12 @@ function main(){
   game.fps = 30;
   game.rootScene.backgroundColor = "black";
 
-  game.preload("tutorial1_novel/nohara_bg.jpg", "tutorial1_novel/1.png", "tutorial1_novel/background.jpg");
+  for(let i = 1; i <= 13; i++){
+    game.preload("novel/" + i + ".png");
+  }
+  for(let i = 101; i <= 103; i++){
+    game.preload("novel/" + i + ".png");
+  }
 
   game.onload = function(){
     var scene = new Scene();
@@ -24,16 +29,21 @@ function main(){
 
     // キャラクター画像の準備
     var cimg = [];
-    for(var i = 1; i <= 1; i++){
-      cimg[i] = new Sprite(300, 450);
-      cimg[i].image = game.assets["tutorial1_novel/"+i+".png"];
-      cimg[i].moveTo(20 + i * 300, 70);
+    cimg[0] = false;
+    for(let i = 1; i <= 13; i++){
+      cimg[i] = new Sprite(595, 842);
+      cimg[i].image = game.assets["novel/"+i+".png"];
+      console.log(cimg[i].image);
+      cimg[i].moveTo((screen_width / 4) - 50, -100);
     }
+    console.log(cimg);
 
     var label = []; // 物語表示のため、配列を用意する。
     var noveltext = [
+      102,
       '絵本描き',
       '「やぁ。君が僕の本を手伝ってくれるって子かい？',
+      2,
       false,
       '絵本描き',
       '「僕はここでずっと絵本を書いているんだ。」',
@@ -45,14 +55,15 @@ function main(){
       '「まずは聞くよりやってみよう。この子を動かして前に進めて',
       '　やってくれ。」',
       false,
-      'stage1  実行しよう',
-      ' ',
-      '数マス前のゴールに進むコードが設定されているので、実行を押して',
-      'ゴールに行かせてあげよう。',
+      101,
+      '<br><br>',
+      '<stage1  実行しよう>',
+      '<br>数マス前のゴールに進むコードが設定されているので、実行を押して',
+      '<br>ゴールに行かせてあげよう。',
       false,
       '？',
-      '「登場人物は左のブロックの通りに動きます。実行ボタンを押すと',
-      '　その通りに動くよ。動かしてみよう。」',
+      '「登場人物は左のブロックの通りに動きます。',
+      '　実行ボタンを押すとその通りに動くよ。動かしてみよう。」',
       false,
       false
     ];
@@ -72,7 +83,7 @@ function main(){
     // SurfaceオブジェクトをSpriteオブジェクトのimageプロパティに代入
     sprite2.image = surface;
     // コンテキストを取得する
-    context = surface.context;
+    var context = surface.context;
     // パスの描画の初期化
     context.beginPath();
     // 描画開始位置の移動
@@ -86,11 +97,11 @@ function main(){
     sprite3.backgroundColor = "rgba(50, 50, 255, 1)";
     // Surfaceオブジェクトの作成
     // Spriteの大きさ以上に指定しても範囲外には描画されない
-    var surface = new Surface(100, 100);
+    surface = new Surface(100, 100);
     // SurfaceオブジェクトをSpriteオブジェクトのimageプロパティに代入
     sprite3.image = surface;
     // コンテキストを取得する
-    context = surface.context;
+    var context = surface.context;
     // パスの描画の初期化
     context.beginPath();
     // 描画開始位置の移動
@@ -103,22 +114,30 @@ function main(){
 
     /* 最初のテキストの表示 */
     while(true){
-      var work = noveltext[0];
+      let work = noveltext[0];
       noveltext.splice(0, 1); // noveltext０番目から１つ削除
       if (!(work)) break;  // 配列noveltextにはfalseがある。
 
       // 以下、キャラクター表示の指示が来た場合の処理
       if (!(isNaN(work))) {
-        if (work > 0){
-          scene.removeChild(sprite2);
+        console.log("work:" + work);
+        // キャラクターがボックスの前に来ちゃうので一度取り除く
+        scene.removeChild(sprite2);
+        scene.removeChild(sprite3);
+        if (work > 100) {
+          sprite.image = game.assets['novel/' + work + '.png'];
+          //break;
+        }else if (work > 0){
           scene.addChild(cimg[work]);
-          game.pushScene(scene);
-          scene.addChild(sprite2);
           game.pushScene(scene);
         }else{ // マイナスが来た場合、非表示にする
           scene.removeChild(cimg[work * -1]);
         }
-        break;
+        // 再度ボックス表示
+        scene.addChild(sprite2);
+        scene.addChild(sprite3);
+        game.pushScene(scene);
+        continue;
       }
 
       // 以下、通常通りテキストを表示する処理
@@ -136,7 +155,6 @@ function main(){
       scene.addChild(label[i]);
       game.pushScene(scene);
     }
-
 
     /* どこをクリックしてもすすめるようにするためのすぷらいとくん */
     var sprite4 = new Sprite(screen_width, screen_height);
@@ -158,22 +176,30 @@ function main(){
       // 文字表示するための処理
       // labelという配列にどんどん追加していく
       while(true){
-        var work = noveltext[0];
+        let work = noveltext[0];
         noveltext.splice(0, 1); // noveltext０番目から１つ削除
         if (!(work)) break;  // 配列noveltextにはfalseがある。
 
         // 以下、キャラクター表示の指示が来た場合の処理
         if (!(isNaN(work))) {
-          if (work > 0){
-            scene.removeChild(sprite2);
+          console.log("work:" + work);
+          // キャラクターがボックスの前に来ちゃうので一度取り除く
+          scene.removeChild(sprite2);
+          scene.removeChild(sprite3);
+          if (work > 100) {
+            sprite.image = game.assets['novel/' + work + '.png'];
+            //break;
+          }else if (work > 0){
             scene.addChild(cimg[work]);
-            game.pushScene(scene);
-            scene.addChild(sprite2);
             game.pushScene(scene);
           }else{ // マイナスが来た場合、非表示にする
             scene.removeChild(cimg[work * -1]);
           }
-          break;
+          // 再度ボックス表示
+          scene.addChild(sprite2);
+          scene.addChild(sprite3);
+          game.pushScene(scene);
+          continue;
         }
 
         // 以下、通常通りテキストを表示する処理
@@ -197,6 +223,10 @@ function main(){
         submit.submit();
         game.pause();
       }
+
+      // バグ防止
+      scene.addChild(sprite4);
+      game.pushScene(scene);
     });
   };
   game.start();

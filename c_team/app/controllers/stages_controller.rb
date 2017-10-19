@@ -1,9 +1,12 @@
 class StagesController < MemberController
   after_action :save_tutorial_data, only: [:tutorial1, :tutorial2, :tutorial3]
+  layout 'stage'
 
+  # チュートリアルと本編の選択ページ
   def index
   end
 
+  # チュートリアル
   def tutorial1
     cookies['tutorial_status'] = if current_user.data.blank?
                           JSON.generate({ tutorial1: false })
@@ -37,6 +40,11 @@ class StagesController < MemberController
   end
 
   def tutorial3A_novel
+  end
+
+
+  # 本編
+  def intro_novel
   end
 
   def novel2

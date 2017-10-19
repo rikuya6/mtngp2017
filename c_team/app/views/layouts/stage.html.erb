@@ -13,20 +13,11 @@
   </head>
   <body>
     <!-- ヘッダ -->
-    <div class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <%= render 'shared/header' %>
-      </div>
-    </div>
+    <%= render 'shared/stage_header' %>
     <!-- 本体 -->
+    <%= render 'shared/flash' %>
     <%= yield %>
-    <!-- sidebar -->
-    <% unless current_user %>
-      <div class="col-md-3">
-        <div class="well sidebar-nav">
-          <%= render 'shared/sidebar' %>
-        </div>
-      </div>
-    <% end %>
+    <!-- フッタ -->
+    <%# render 'shared/footer' %>
   </body>
 </html>
