@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'stages/tutorial2_novel', to: 'stages#tutorial2_novel', as: :tutorial2_novel
   get 'stages/tutorial3_novel', to: 'stages#tutorial3_novel', as: :tutorial3_novel
   get 'stages/tutorial3A_novel', to: 'stages#tutorial3A_novel', as: :tutorial3A_novel
+  get 'stages/intro_novel', to: 'stages#intro_novel', as: :intro_novel
   get 'stages/novel2', to: 'stages#novel2', as: :novel2
 
   namespace :admin do
