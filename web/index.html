@@ -1,143 +1,135 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html lang="ja">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/jquery.fullPage.css">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/base.css">
-  <script src="js/jquery-3.2.1.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.fullPage.min.js"></script>
-  <script src="js/base.js"></script>
-  <title>松永プロジェクト2017</title>
-</head>
-<body>
-  <ul id="myMenu">
-    <li data-menuanchor="topPage" id="first"><a href="#topPage">トップ</a></li>
-    <li data-menuanchor="firstPage"><a href="#firstPage">プロジェクト概要</a></li>
-    <li data-menuanchor="secondPage"><a href="#secondPage">コンテンツについて</a></li>
-    <li data-menuanchor="thirdPage"><a href="#thirdPage">メンバー</a></li>
-    <li data-menuanchor="fourthPage"><a href="#fourthPage">Twitter</a></li>
-  </ul>
-  <div id="mov"><img src="image/move.gif" id="switch"></div>
-  <div id="fullpage">
-    <div class="section">
-      <div class="contain">
-        <img src="image/puzzle01.jpg" id="top_back" />
-        <div id="top">
-          <h3>プログラミング的思考を育てる</h3>
-          <h1>松永プロジェクト2017</h1>
-        </div>
-      </div>
-    </div>
-    <div class="section">
-      <div id="pro">
-        <div id="hasira01">
-        </div>
-        <div class="container container-fluid">
-          <h2 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">プロジェクト概要</h2>
-          <div class="col-xs-10 col-sm-6 col-md-6 col-lg-6 box" style="height: 200px;">
-            <p>このプロジェクトは2020年の学習指導要領改訂でのプログラミング必修化に合わせ、ゲームの中でプログラミング的思考を目的としたコンテンツの企画・制作を行なっています。遊んでいる感覚で論理的思考や創造力を育てられる、そんなコンテンツの完成を目標に日々活動しています。</p>
-          </div>
-          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <img src="image/no.jpg" alt="" width="100%" height="" class="image">
-          </div>
-          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <img src="image/no.jpg" alt="" width="100%" height="" class="image">
-          </div>
-          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 box" style="height: 430px;">
-            <p>私たちのコンテンツは、目的を達成するためのプロセスを考える論理的思考力や目的をイメージして表現する創造力、問題を発見し思考錯誤して解決する課題解決能力等の能力を育てることを目的としています。<br>これらの能力（プログラミング的思考）を身に付けることが今回のプログラミング必修化の目的であると判断し、その目的に適したコンテンツになるよう意識した活動を行なっています。</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="section" id="02">
-      <div id="contents">
-        <div id="hasira02">
-        </div>
-        <div class="container">
-          <h2>コンテンツ</h2>
-          <div class="box_cont">
-            <h3>コードカスタム（仮）</h3>
-            <img src="image/no.jpg" alt="" width="40%">
-            <br/>
-            <p>童話の主人公をプログラムで動かすゲーム。実行した結果で物語の展開が変わる？</p>
-            <button class="btn" disabled>詳細へ！</button>
-          </div>
-          <div class="box_cont">
-            <h3>すごろく（仮）</h3>
-            <img src="image/no.jpg" alt="" width="40%">
-            <br/>
-            <p>料理を作るためにおつかいへ。早く料理を作るにはどうプログラムを組めばいいかな？</p>
-            <button class="btn" disabled>詳細へ！</button>
-          </div>
-        </div>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>松永プロ2017</title>
 
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/main.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./js/main.js"></script>
+  </head>
+  <body>
+    <nav>
+      <a class="title">松永プロ2017</a>
+      <span>
+        <ul>
+          <li><a class="nav-bt">TOP</a></li>
+          <li><a class="nav-bt">project</a></li>
+          <li><a class="nav-bt">contents</a></li>
+          <li><a class="nav-bt">member</a></li>
+          <li><a class="nav-bt">news</a></li>
+        </ul>
+      </span>
+    </nav>
+
+    <header>
+      <h3>松永プロジェクト2017</h3>
+      <h1>遊んで身につけるプログラミング的思考</h1>
+      <img src="image/logo.svg" class="logo" alt="松永プロジェクトロゴ" />
+      <img src="image/elgnairt.svg" class="triangle" alt="下三角" />
+    </header>
+
+    <h2>プロジェクト概要</h2>
+    <div class="content">
+      <p>
+        このプロジェクトは2020年の学習指導要領改訂でのプログラミング必修化に合わせ、ゲームの中でプログラミング的思考を目的としたコンテンツの企画・制作を行なっています。遊んでいる感覚で論理的思考や創造力を育てられる、そんなコンテンツの完成を目標に日々活動しています。
+      </p>
+      <img alt="画像" src="image/piyo00.png">
+      <p>
+        私たちのコンテンツは、目的を達成するためのプロセスを考える論理的思考力や目的をイメージして表現する創造力、問題を発見し思考錯誤して解決する課題解決能力等の能力を育てることを目的としています。これらの能力(プログラミング的思考)を身に付けることが今回のプログラミング必修化の目的であると判断し、その目的に適したコンテンツになるよう意識した活動を行なっています。
+      </p>
+    </div>
+
+    <h2>コンテンツ紹介</h2>
+    <div class="flex-box">
+      <div class="content">
+        <h3>ボードゲーム</h3>
+        <img alt="写真" src="image/piyo00.png">
+        <p>料理を作るためにおつかいへ。早く料理を作るにはどのようにプログラムを組めばいいかな?</p>
+      </div>
+      <div class="content">
+        <h3>webゲーム</h3>
+        <img alt="写真" src="image/piyo00.png">
+        <p>童話の主人公をプログラムで動かすゲーム。実行した結果で物語の展開が変わる?</p>
       </div>
     </div>
-    <div class="section" id="03">
-      <div id="member">
-        <div id="hasira03">
-        </div>
-        <div class="container">
-          <div id="member">
-            <h2>メンバー</h2>
-            <div class="who"><img alt="" src="image/icon.jpg">
-              <p>松永賢次</p>
-              <p style="font-size: 0.8em; width: 160px; margin: 10px auto;">ネットワーク情報学部教授</p>
-            </div>
-            <div class="who"><img alt="" src="image/icon.jpg">
-              <p>峯岸朋弥</p>
-              <p style="font-size: 0.8em; width: 160px; margin: 10px auto;">SD NS プロジェクト代表</p>
-            </div>
-            <div class="who"><img alt="" src="image/icon.jpg">
-              <p>小金井美里</p>
-              <p style="font-size: 0.8em; width: 160px; margin: 10px auto;">IxD CD プロジェクトリーダー</p>
-            </div>
-            <div class="who"><img alt="" src="image/icon.jpg">
-              <p>越川拓実</p>
-              <p style="font-size: 0.8em; width: 40px; margin: 10px auto;">IxD CD</p>
-            </div>
-            <div class="who"><img alt="" src="image/icon.jpg">
-              <p>諸星南菜</p>
-              <p style="font-size: 0.8em; width: 40px; margin: 10px auto;">IxD IB</p>
-            </div>
-            <div class="who"><img alt="" src="image/icon.jpg">
-              <p>山下修平</p>
-              <p style="font-size: 0.8em; width: 40px; margin: 10px auto;">IxD IS</p>
-            </div>
-            <div class="who"><img alt="" src="image/icon.jpg">
-              <p>齋藤陸弥</p>
-              <p style="font-size: 0.8em; width: 40px; margin: 10px auto;">SD NS</p>
-            </div>
-            <div class="who"><img alt="" src="image/icon.jpg">
-              <p>小原拓哉</p>
-              <p style="font-size: 0.8em; width: 40px; margin: 10px auto;">IxD SI</p>
-            </div>
-            <div class="who"><img alt="" src="image/icon.jpg">
-              <p>宮崎龍一</p>
-              <p style="font-size: 0.8em; width: 50px; margin: 10px auto;">SD NS</p>
-            </div>
-            <div class="who"><img alt="" src="image/icon.jpg">
-              <p>一ノ瀬早紀</p>
-              <p style="font-size: 0.8em; width: 40px; margin: 10px auto;">IxD CD</p>
-            </div>
-          </div>
-        </div>
+
+    <h2>メンバー紹介</h2>
+    <img src="image/teacher.svg" class="diamond" alt="教員" />
+    <div class="flex-box">
+      <div class="personal-data">
+        <img alt="メンバーの写真" src="image/mem_icon.svg" >
+        <p>松永 賢次</p>
+        <p>担当教員</p>
       </div>
     </div>
-    <div class="section" id="04">
-      <div id="hasira04">
-      </div>
-      <div id="twi">
-        <a class="twitter-timeline" href="https://twitter.com/mtngP_2017" data-height="800px">Tweets by mtngP_2017</a>
-        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-      </div>
-      <div id="hasira05">
+
+    <img src="image/student.svg" class="diamond" alt="生徒" />
+    <div class="flex-box">
+      <div class="personal-data">
+        <img alt="メンバーの写真" src="image/mem_icon.svg">
+        <p>峯岸 朋弥</p>
+        <p>代表</p>
+        <p>SD - NS</p>
       </div>
     </div>
-  </div>
-</body>
+    <div class="flex-box left-flex">
+      <div class="personal-data">
+        <img alt="メンバーの写真" src="image/mem_icon.svg" >
+        <p>一之瀬 早紀</p>
+        <p>IxD - CD</p>
+      </div>
+      <div class="personal-data">
+        <img alt="メンバーの写真" src="image/mem_icon.svg" >
+        <p>小原 拓哉</p>
+        <p>IxD - SI</p>
+      </div>
+      <div class="personal-data">
+        <img alt="メンバーの写真" src="image/mem_icon.svg" >
+        <p>小金井 美里</p>
+        <p>IxD - CD</p>
+      </div>
+      <div class="personal-data">
+        <img alt="メンバーの写真" src="image/mem_icon.svg" >
+        <p>越川 拓実</p>
+        <p>IxD - CD</p>
+      </div>
+      <div class="personal-data">
+        <img alt="メンバーの写真" src="image/mem_icon.svg" >
+        <p>齋藤 陸弥</p>
+        <p>SD - NS</p>
+      </div>
+      <div class="personal-data">
+        <img alt="メンバーの写真" src="image/mem_icon.svg" >
+        <p>宮﨑 龍一</p>
+        <p>SD - NS</p>
+      </div>
+      <div class="personal-data">
+        <img alt="メンバーの写真" src="image/mem_icon.svg" >
+        <p>諸星 南菜</p>
+        <p>IxD - IB</p>
+      </div>
+      <div class="personal-data">
+        <img alt="メンバーの写真" src="image/mem_icon.svg" >
+        <p>山下 修平</p>
+        <p>IxD - IS</p>
+      </div>
+    </div>
+
+    <h2>ニュース</h2>
+    <div class="content twitter">
+      <p>Twitter</p>
+      <a class="twitter-timeline" data-tweet-limit="5" href="https://twitter.com/mtngP_2017">
+        Tweets by mtngP_2017
+      </a>
+      <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+
+    <footer>
+      <img src="image/triangle.svg" class="triangle" alt="三角" />
+      <p>松永プロジェクト</p>
+    </footer>
+  </body>
 </html>
