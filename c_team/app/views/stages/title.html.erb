@@ -1,0 +1,22 @@
+<% @page_title = '小豆ちゃんのお見舞い' %>
+
+<% content_for :stage_header do %>
+  <p id="story">小豆ちゃんのお見舞い</p>
+<% end %>
+
+<div id="motion">
+</div>
+
+<div id="enchant-stage">
+  <%= javascript_include_tag 'stage/title/title' %>
+</div>
+
+<div>
+  <form id="intro_novel" action="/stages/intro_novel" accept-charset="UTF-8" method="get">
+  </form>
+</div>
+
+<div>
+  <form id="tutorial1_novel" action="/stages/tutorial1_novel" accept-charset="UTF-8" method="get">
+  </form>
+</div>
