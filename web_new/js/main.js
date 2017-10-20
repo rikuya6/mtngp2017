@@ -7,16 +7,17 @@ $(function() {
   $(".nav-bt").click(function () {
     let i = $(".nav-bt").index(this);
     let p = (i==0)? 0 : $("h2").eq(i-1).offset().top - 60;
+    // console.log( i + " : " + p);
     $('html,body').animate({ scrollTop: p }, 800, 'swing');
       if($(window).width() <= 768){
-        $('.nav-bt').slideToggle();
+        $('nav span').fadeToggle('fast');
       }
     return false;
   });
 
   $(".title").click(function () {
     if ($(window).width() <= 768){
-      $('.nav-bt').slideToggle();
+      $('nav span').fadeToggle('fast');
     }else{
       $('html,body').animate({ scrollTop: 0 }, 800, 'swing');
     }
@@ -30,6 +31,6 @@ $(function() {
   });
 
   $(window).resize(function () {
-    $(".nav-bt").removeAttr("style");
+      $("nav span").removeAttr("style");
   });
 });
