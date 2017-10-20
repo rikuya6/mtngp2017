@@ -6,6 +6,10 @@ class StagesController < MemberController
   def index
   end
 
+  # タイトル画面
+  def title
+  end
+
   # チュートリアル
   def tutorial1
     cookies['tutorial_status'] = if current_user.data.blank?

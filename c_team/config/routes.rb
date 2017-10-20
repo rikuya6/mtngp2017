@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users
 
   get 'stages', to: 'stages#index'
+  get 'stages/title', to: 'stages#title', as: :title
   get 'stages/tutorial', to: 'stages#tutorial1', as: :tutorial1
   get 'stages/tutorial2', to: 'stages#tutorial2', as: :tutorial2
   get 'stages/tutorial3', to: 'stages#tutorial3', as: :tutorial3
