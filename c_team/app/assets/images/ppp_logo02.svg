@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="レイヤー_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 128 128" style="enable-background:new 0 0 128 128;" xml:space="preserve">
+<style type="text/css">
+	.st0{clip-path:url(#SVGID_2_);}
+	.st1{fill:#82CEE5;}
+	.st2{fill:#FFFFFF;}
+	.st3{font-family:'Avenir-Medium';}
+	.st4{font-size:178.3567px;}
+	.st5{fill:none;stroke:#81CDE5;stroke-miterlimit:10;}
+	.st6{fill:#81CDE5;}
+</style>
+<g>
+	<defs>
+		<rect id="SVGID_1_" width="128" height="128"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+	</clipPath>
+	<g class="st0">
+		<rect y="0.2" class="st1" width="128" height="127.8"/>
+		<text transform="matrix(1.0015 0 0 1 -15.1089 127.3379)" class="st2 st3 st4">P</text>
+		<g>
+			<rect x="94.7" y="60.7" class="st2" width="16.7" height="16.6"/>
+			<rect x="94.7" y="44" class="st2" width="16.7" height="16.6"/>
+			<rect x="111.3" y="60.7" class="st2" width="16.7" height="16.6"/>
+			<rect x="94.7" y="77.3" class="st2" width="16.7" height="16.6"/>
+			<rect x="78" y="60.7" class="st2" width="16.7" height="16.6"/>
+		</g>
+		<g>
+			<rect x="61.4" y="94.2" class="st2" width="16.7" height="16.6"/>
+			<rect x="61.4" y="77.6" class="st2" width="16.7" height="16.6"/>
+			<rect x="78" y="94.2" class="st2" width="16.7" height="16.6"/>
+			<rect x="61.4" y="110.9" class="st2" width="16.7" height="16.6"/>
+			<rect x="44.7" y="94.2" class="st2" width="16.7" height="16.6"/>
+		</g>
+	</g>
+</g>
+<polygon class="st2" points="61.4,77.6 78,77.6 78,94.2 94.7,94.2 94.7,110.9 78,110.9 78,127.5 61.4,127.5 61.4,110.9 44.7,110.9 
+	44.7,94.2 61.4,94.2 "/>
+<polygon class="st2" points="94.7,44 111.3,44 111.3,60.7 128,60.7 128,77.3 111.3,77.3 111.3,93.9 94.7,93.9 94.7,77.3 78,77.3 
+	78,60.7 94.7,60.7 "/>
+<g>
+	<g>
+		<line class="st5" x1="69.7" y1="102.5" x2="102" y2="70.2"/>
+		<g>
+			<polygon class="st6" points="104.5,74.8 107.1,65.1 97.5,67.7 			"/>
+		</g>
+	</g>
+</g>
+</svg>
