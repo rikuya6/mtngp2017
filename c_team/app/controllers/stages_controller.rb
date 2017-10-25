@@ -47,6 +47,9 @@ class StagesController < MemberController
   def intro_novel
   end
 
+  def stage1
+  end
+
   def novel2
     status = JSON.parse(cookies['status'])
     if status['demo'] == 'top'
