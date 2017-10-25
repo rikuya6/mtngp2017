@@ -24,9 +24,9 @@ function main(){
 
     /* チュートリアルへのボタン */
     // Spriteオブジェクトの作成
-    var sprite2 = new Sprite(screen_width - 200, 100);
-    sprite2.x = 100;
-    sprite2.y = 370;
+    var sprite2 = new Sprite(screen_width - 500, 70);
+    sprite2.x = 400;
+    sprite2.y = 420;
     // spriteオブジェクトの背景色の指定
     sprite2.backgroundColor = "rgba(255, 175, 0, 0.6)";
     // Surfaceオブジェクトの作成
@@ -42,8 +42,8 @@ function main(){
     context.moveTo(10, 10);
 
     /* 本編へのボタン */
-    var sprite3 = new Sprite(screen_width - 200, 100);
-    sprite3.x = 100;
+    var sprite3 = new Sprite(screen_width - 500, 70);
+    sprite3.x = 400;
     sprite3.y = 520;
     // spriteオブジェクトの背景色の指定
     sprite3.backgroundColor = "rgba(50, 50, 255, 0.6)";
@@ -69,8 +69,8 @@ function main(){
     var tex2 = new Label("ゲームをはじめる");
     tex.width = tex_width;
     tex2.width = tex_width;
-    tex.moveTo( 140, 400);
-    tex2.moveTo( 140, 550);
+    tex.moveTo( 440, 435);
+    tex2.moveTo( 440, 535);
     tex.font = "32px 'Meiryo'";
     tex2.font = "32px 'Meiryo'";
     tex.color = "white";
@@ -81,9 +81,9 @@ function main(){
     game.pushScene(scene);
 
     /* バグ対策 */
-    var sprite4 = new Sprite(screen_width - 200, 100);
-    sprite4.x = 100;
-    sprite4.y = 370;
+    var sprite4 = new Sprite(screen_width - 500, 70);
+    sprite4.x = 400;
+    sprite4.y = 420;
     sprite4.backgroundColor = "rgba(0, 0, 0, 0)";
     var surface = new Surface(100, 100);
     sprite4.image = surface;
@@ -91,8 +91,8 @@ function main(){
     context.beginPath();
     context.moveTo(10, 10);
 
-    var sprite5 = new Sprite(screen_width - 200, 100);
-    sprite5.x = 100;
+    var sprite5 = new Sprite(screen_width - 500, 70);
+    sprite5.x = 400;
     sprite5.y = 520;
     sprite5.backgroundColor = "rgba(0, 0, 0, 0)";
     surface = new Surface(100, 100);
