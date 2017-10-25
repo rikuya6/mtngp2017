@@ -80,14 +80,39 @@ function main(){
     scene.addChild(tex2);
     game.pushScene(scene);
 
+    /* バグ対策 */
+    var sprite4 = new Sprite(screen_width - 200, 100);
+    sprite4.x = 100;
+    sprite4.y = 370;
+    sprite4.backgroundColor = "rgba(0, 0, 0, 0)";
+    var surface = new Surface(100, 100);
+    sprite4.image = surface;
+    var context = surface.context;
+    context.beginPath();
+    context.moveTo(10, 10);
+
+    var sprite5 = new Sprite(screen_width - 200, 100);
+    sprite5.x = 100;
+    sprite5.y = 520;
+    sprite5.backgroundColor = "rgba(0, 0, 0, 0)";
+    surface = new Surface(100, 100);
+    sprite5.image = surface;
+    var context = surface.context;
+    context.beginPath();
+    context.moveTo(10, 10);
+    context.stroke();
+    scene.addChild(sprite4);
+    scene.addChild(sprite5);
+    game.pushScene(scene);
+
     // 画面がクリックされたならば以下が呼び出される
-    sprite2.addEventListener('touchstart', function() {
+    sprite4.addEventListener('touchstart', function() {
       let submit = document.getElementById("tutorial1_novel");
       submit.submit();
       game.pause();
     });
 
-    sprite3.addEventListener('touchstart', function() {
+    sprite5.addEventListener('touchstart', function() {
       let submit = document.getElementById("intro_novel");
       submit.submit();
       game.pause();
