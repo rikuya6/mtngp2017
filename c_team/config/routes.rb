@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'top#index'
   get 'about'  => 'top#about', as: 'about'
   resource :sessions, only: [:create, :destroy], as: 'login', path: 'login'
+  get 'login' => 'sessions#login_form', as: 'login_form'
   delete 'logout' => 'sessions#destroy', as: 'logout'
 
   resources :users
