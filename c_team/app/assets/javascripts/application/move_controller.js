@@ -1,6 +1,7 @@
 class MoveController {
   constructor() {
-    this.label = ["moveStraight", "moveRight", "moveDown", "moveLeft", "setHitTurnLeft", "setHitTurnRight"];
+    this.label = ["moveStraight", "moveRight", "moveDown", "moveLeft", "setHitTurnLeft", "setHitTurnRight",
+                  "setHitTurnLeftOrRight", "setHitTurnRightOrLeft"];
     this.orders = [];
     this.originOrders = null;
     this.order_execute_counter = 0;
@@ -38,13 +39,23 @@ class MoveController {
     console.log(this.label[5]);
   }
 
+  setHitTurnLeftOrRight() {
+    this.turn_direction = 2;
+    console.log(this.label[6]);
+  }
+
+  setHitTurnRightOrLeft() {
+    this.turn_direction = 3;
+    console.log(this.label[7]);
+  }
+
   getHitTurnDirection() {
     return this.turn_direction;
   }
 
   hasNextOrder() {
     if (!this.finish) return false;
-    if (this.order_execute_counter > 50) {
+    if (this.order_execute_counter > 200) {
       // @TODO 暫定実装, 無限ループの抑止
       this.stop();
       return false;
@@ -56,7 +67,7 @@ class MoveController {
 
   nextOrder() {
     this.order_execute_counter++;
-    if (!this.hasNextOrder()) throw new Error("次のorderが空か、無限ループしています。");
+    // if (!this.hasNextOrder()) throw new Error("次のorderが空か、無限ループしています。");
     return this.orders.shift();
   }
 
@@ -78,6 +89,14 @@ class MoveController {
     this.orders = [];
   }
 
+  getMoveCount() {
+    return this.order_execute_counter;
+  }
+
+  decrementMoveCounter() {
+    this.order_execute_counter--;
+  }
+
   printAllOrder() {
     for (var e in this.orders) {
       console.log(this.label[this.orders[e]]);
@@ -87,5 +106,11 @@ class MoveController {
   printNextOrder() {
     if (this.hasNextOrder()) console.log(this.label[this.orders[0]]);
     else console.log("次のorderが空です。");
+  }
+
+  reset() {
+    this.stop();
+    this.originOrders = null;
+    this.order_execute_counter = 0;
   }
 }

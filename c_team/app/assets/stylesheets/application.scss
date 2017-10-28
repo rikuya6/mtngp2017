@@ -1,5 +1,5 @@
 @import "bootstrap-sprockets";
-@import "bootstrap";
+@import "honoka";
 
 $font: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', '游ゴシック  Medium', meiryo, sans-serif;
 
@@ -48,3 +48,119 @@ footer {
     color: $state-danger-text;
   }
 }
+
+
+// ステージUI
+html, body{
+  overflow: hidden;
+}
+
+h3{
+  width: 100%;
+  text-align: center;
+  margin-top: 5px;
+  padding: 5px 0px;
+  font-family:"ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
+}
+
+#head{
+  background: #FFFFFF;
+  border: 2px solid #aaaaaa;
+  height: 10vh;
+
+}
+
+#logo{
+  height: 99%;
+  margin-left: 2px;
+  margin-right: 20px;
+  float: left;
+}
+
+#link{
+  height: 99%;
+  margin: auto 10px;
+  float: right;
+  width: 200px;
+}
+
+#mis{
+  height: 40%;
+  color: #000;
+  background: #ffffff;
+  font-size: 1.2em;
+  font-weight: 100;
+  width: 400px;
+  display: flex;
+  align-items: center;
+  margin: 5px 10px;
+  font-family:"ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
+  padding-left: 20px;
+}
+
+#story{
+  height: 40%;
+  color: #FFF;
+  font-size: 1.4em;
+  font-weight: 100;
+  background: #ff0000;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  margin: 7px 10px;
+  font-family:"ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
+}
+
+#motion{
+  border: 2px solid #aaaaaa;
+  border-top: none;
+  border-bottom: none;
+  width: 15%;
+  height: 90vh;
+  float: left;
+}
+
+#enchant-stage{
+  width: 85%;
+  height: 90vh;
+  float: left;
+}
+
+#puzz{
+  width: 100%;
+  height: 50vh;
+  border-bottom: 1px solid #aaaaaa;
+}
+
+#help{
+  width: 100%;
+  height: 40vh;
+}
+
+.balloon{
+  font-size: 14px;
+  font-weight: bold;
+  width: 90%;
+  margin: 5px auto;
+  position: relative;
+  padding: 20px;
+  background: #dddddd;
+  border-radius: 10px;
+  font-family:"ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
+}
+
+.balloon::before{
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  left: 20px;
+  bottom: -15px;
+  border-top: 15px solid #dddddd;
+  border-right: 15px solid transparent;
+  border-left: 15px solid transparent;
+}
+

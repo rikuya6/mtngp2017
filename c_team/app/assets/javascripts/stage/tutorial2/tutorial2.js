@@ -3,16 +3,16 @@ $(document).ready(function() {
   main();
 });
 
-function main() {
-  gameSize = {
-    x: 1152,
-    y: 640
-  };
-  spriteSize = {
-    x: 64,
-    y: 64
-  };
+var gameSize = {
+  x: 1152,
+  y: 640
+};
+var spriteSize = {
+  x: 64,
+  y: 64
+};
 
+function main() {
   var game = new Game(gameSize.x, gameSize.y);
   game.preload("azuki_walk.png", "tutorial1/edit_map.png");
 
@@ -82,16 +82,23 @@ function main() {
     map.addChild(azuki.getSprite());
     game.rootScene.addChild(map);
 
-    var o1 = new MapObject(game, map, "azuki_walk.png", 1024, 64, 3);
+    var o1 = new MapObject(game, map, azuki.player.moveController, "azuki_walk.png", 1024, 128, 3);
     map.addChild(o1.getSprite());
-
-    var startButton = new ButtonController("▶️", "Running", function() {
+    var startButton = new StartButton(function() {
       azuki.player.moveController.setHitTurnRight();
       azuki.player.moveController.moveStraight();
       azuki.player.moveController.execute();
+      resetButton.enable();
+      startButton.disable();
+    });
+    var resetButton = new RsetButton(function () {
+      startButton.reset();
+      resetButton.reset(azuki);
     });
     startButton.move(1024, 0);
+    resetButton.move(1024, 64);
     game.rootScene.addChild(startButton.getButtonObject());
+    game.rootScene.addChild(resetButton.getButtonObject());
   };
   game.start();
 }

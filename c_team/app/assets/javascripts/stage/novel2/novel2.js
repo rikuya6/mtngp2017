@@ -7,12 +7,12 @@ function main(){
   var game = new Core(1152, 640);
   game.fps = 30;
   game.rootScene.backgroundColor = "white";
-  game.preload("novel/nohara_bg.jpg", "novel/1.png", "novel/2.png", "novel/3.png");
+  game.preload("tutorial1_novel/nohara_bg.jpg", "tutorial1_novel/1.png", "tutorial1_novel/2.png", "tutorial1_novel/3.png");
 
   game.onload = function(){
     var scene = new Scene();
     var sprite = new Sprite(1200, 675);
-    sprite.image = game.assets['novel/nohara_bg.jpg'];
+    sprite.image = game.assets['tutorial1_novel/nohara_bg.jpg'];
     scene.addChild(sprite);
     game.pushScene(scene);
 
@@ -20,8 +20,8 @@ function main(){
     var cimg = [];
     for(var i = 1; i <= 3; i++){
       cimg[i] = new Sprite(135, 126);
-      cimg[i].image = game.assets["novel/"+i+".png"];
-      cimg[i].moveTo(20 + i * 300, 250);
+      cimg[i].image = game.assets["tutorial1_novel/"+i+".png"];
+      cimg[i].moveTo(20 + i * 300, 450);
     }
 
     // Cookieフラグ管理
@@ -90,7 +90,10 @@ function main(){
           // 以下、キャラクター表示の指示が来た場合の処理
           if (!(isNaN(work))) {
             if (work > 0){
+              scene.removeChild(sprite2);
               scene.addChild(cimg[work]);
+              game.pushScene(scene);
+              scene.addChild(sprite2);            
               game.pushScene(scene);
             }else{ // マイナスが来た場合、非表示にする
               scene.removeChild(cimg[work * -1]);
@@ -166,6 +169,7 @@ function main(){
     sprite2.y = 420;
     // spriteオブジェクトの背景色の指定
     sprite2.backgroundColor = "rgba(100, 100, 255, 0.8)";
+
     // Surfaceオブジェクトの作成
     // Spriteの大きさ以上に指定しても範囲外には描画されない
     var surface = new Surface(100, 100);

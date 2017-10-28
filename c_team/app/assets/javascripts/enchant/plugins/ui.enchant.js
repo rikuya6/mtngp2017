@@ -303,11 +303,11 @@ enchant.ui.Button = enchant.Class.create(enchant.Entity, {
         // デフォルトのスタイル (テーマで上書き可能)
         var style = this._style;
         style["display"] = "inline-block";
-        style["font-size"] = "12px";
+        style["font-size"] = "24px"; // 変更済み
         style["height"] = "2em";
         style["line-height"] = "2em";
         style["min-width"] = "2em";
-        style["padding"] = "2px 10px";
+        style["padding"] = "5px 10px"; // 変更済み
         style["text-align"] = "center";
         style["font-weight"] = "bold";
         style["border-radius"] = "0.5em";
@@ -335,7 +335,7 @@ enchant.ui.Button = enchant.Class.create(enchant.Entity, {
 
         // タッチが離されたときの挙動
         this.addEventListener("touchend", function() {
-            this._applyTheme(this.theme.normal);
+            // this._applyTheme(this.theme.normal); // テーマ切り替えは利用者側で行う
             this.pressed = false;
             this.y--;
         });

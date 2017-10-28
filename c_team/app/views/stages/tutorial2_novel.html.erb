@@ -1,0 +1,13 @@
+<% @page_title = 'チュートリアル2' %>
+
+<% content_for :stage_header do %>
+  <p id="story">チュートリアル2</p>
+<% end %>
+
+<div id="motion">
+</div>
+
+<div id="enchant-stage">
+  <%= javascript_include_tag 'stage/tutorial2_novel/tutorial2_novel' %>
+</div>
+<%= form_tag tutorial2_path, id: :tutorial2_novel, method: :get %>

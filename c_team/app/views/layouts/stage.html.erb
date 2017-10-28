@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-language" content="ja">
+    <title><%= page_title %></title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application' %>
+    <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+  </head>
+  <body>
+    <!-- ヘッダ -->
+    <%= render 'shared/stage_header' %>
+    <!-- 本体 -->
+    <%= render 'shared/flash' %>
+    <%= yield %>
+    <!-- フッタ -->
+    <%# render 'shared/footer' %>
+  </body>
+</html>
