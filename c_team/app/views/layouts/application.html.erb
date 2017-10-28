@@ -20,13 +20,5 @@
     </div>
     <!-- 本体 -->
     <%= yield %>
-    <!-- sidebar -->
-    <% unless current_user %>
-      <div class="col-md-3">
-        <div class="well sidebar-nav">
-          <%= render 'shared/sidebar' %>
-        </div>
-      </div>
-    <% end %>
   </body>
 </html>

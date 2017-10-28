@@ -1,9 +1,13 @@
 <div>
   <h1>ログイン</h1>
   <%= form_tag :login, method: :post do %>
-    <%= text_field_tag 'name' %>
-    <%= password_field_tag 'password' %>
+    <div class="form-group">
+      <%= text_field_tag 'name', '', class: 'form-control', placeholder: 'ログイン名' %>
+    </div>
+    <div class="form-group">
+      <%= password_field_tag 'password', '', class: 'form-control', placeholder: 'パスワード' %>
+    </div>
+    <%= link_to '新規登録', new_user_path, class: 'btn btn-success' %>
     <%= submit_tag 'ログイン', class: 'btn btn-primary' %>
   <% end %>
-  <%= link_to '新規登録', new_user_path %>
 </div>
