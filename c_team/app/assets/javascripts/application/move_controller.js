@@ -55,7 +55,7 @@ class MoveController {
 
   hasNextOrder() {
     if (!this.finish) return false;
-    if (this.order_execute_counter > 50) {
+    if (this.order_execute_counter > 200) {
       // @TODO 暫定実装, 無限ループの抑止
       this.stop();
       return false;
