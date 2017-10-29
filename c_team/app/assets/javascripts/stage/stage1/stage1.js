@@ -81,7 +81,7 @@ function main() {
       if ((this.x == 576 && this.y == 576) || (this.x == 640 && this.y == 576)) library = true;
       if (this.x == 960 && this.y == 576) {
         Cookies.set('status', {
-          tutorial1: true,
+          stage1: true,
           flower_flg: flower_shop,
           park_flg: park,
           library_flg: library
