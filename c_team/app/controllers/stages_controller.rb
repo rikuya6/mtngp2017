@@ -69,6 +69,9 @@ class StagesController < MemberController
     redirect_to stage1
   end
 
+  def novel3
+  end
+
 
   private
 

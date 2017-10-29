@@ -64,19 +64,34 @@ function main() {
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
     ]);
     var ruledLine = getRuledLineSprite();
-    var bus = new Player(game, map, "stage2/bus.png", 832, 576, 3);
+    var bus = new Player(game, map, "stage2/bus.png", 832, 576, 2);
     let submit = document.getElementById("stage2");
-    let bus_stop1 = false;
+    let bus_stop = [false, false, false, false];
     bus.player.addEventListener('enterframe', function () {
       // バス停1
-      if (this.x == 832 && this.y == 256) flower_shop = true;
-      if ((this.x == 576 && this.y == 576) || (this.x == -10 && this.y == 576)) library = true;
-      if (this.x == 960 && this.y == 576) {
+      if (this.x == 384 && this.y == 320) {
+        for (let i = 1; i < bus_stop.length; i++)
+          if (bus_stop[i]) bus_stop[0] = false; // 先に他のバス停を通過している
+          else bus_stop[0] = true;
+      }
+      // バス停2
+      if (this.x == 576 && this.y == 576) {
+        if (bus_stop[0]) bus_stop[1] = true; // バス停1を通過していたらtrue
+      }
+      // バス停3
+      if (this.x == 64 && this.y == 448) {
+        if (bus_stop[1]) bus_stop[2] = true; // バス停2を通過していたらtrue
+      }
+      // バス停4
+      if (this.x == 832 && this.y == 128) {
+        if (bus_stop[2]) bus_stop[3] = true; // バス停3を通過していたらtrue
+      }
+      // ゴール(バス停5)
+      if (this.x == 320 && this.y == 64) {
         Cookies.set('status', {
-          tutorial1: true,
-          flower_flg: flower_shop,
-          park_flg: park,
-          library_flg: library
+          stage1: true,
+          stage2: true,
+          bus_stop_flg: bus_stop
         }); // データはJSON形式で保存する
         submit.submit();
         game.pause();
@@ -89,6 +104,7 @@ function main() {
     var o5 = new MapObject(game, map, bus.player.moveController, "color_cone.png", 1024, 256, 3);
     var o6 = new MapObject(game, map, bus.player.moveController, "color_cone.png", 1088, 256, 3);
     var o7 = new MapObject(game, map, bus.player.moveController, "color_cone.png", 1024, 320, 3);
+    var o8 = new MapObject(game, map, bus.player.moveController, "color_cone.png", 1088, 320, 3);
     map.addChild(foregroundMap);
     // map.addChild(ruledLine);
     map.addChild(bus.getSprite());
@@ -99,6 +115,7 @@ function main() {
     map.addChild(o5.getSprite());
     map.addChild(o6.getSprite());
     map.addChild(o7.getSprite());
+    map.addChild(o8.getSprite());
     game.rootScene.addChild(map);
 
     var startButton = new StartButton(function () {

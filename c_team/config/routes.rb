@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   get 'stages/stage1', to: 'stages#stage1', as: :stage1
   get 'stages/stage2', to: 'stages#stage2', as: :stage2
   get 'stages/novel2', to: 'stages#novel2', as: :novel2
-  get 'stages/novel3', to: 'stages#novel2', as: :novel3
+  get 'stages/novel3', to: 'stages#novel3', as: :novel3
 
   namespace :admin do
     root to: 'users#index'
