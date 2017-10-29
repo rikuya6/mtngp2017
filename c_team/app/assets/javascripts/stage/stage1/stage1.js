@@ -14,7 +14,7 @@ var spriteSize = {
 
 function main() {
   var game = new Game(gameSize.x, gameSize.y);
-  game.preload("azuki_walk.png", "road.png", "objects.png");
+  game.preload("azuki_walk.png", "road.png", "objects.png", "color_cone.png");
 
   game.onload = function () {
     var MapGroup = enchant.Class.mixClasses(Map, Group, true);
@@ -59,7 +59,7 @@ function main() {
       [-1,  5,  5,  5, -1, -1,  3,  4, -1,  5, -1, -1, -1, -1, -1, -1, -1, -1],
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
       [ 5,  5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  5,  5, -1, -1],
-      [ 5,  5,  5,  5, -1,  5,  5,  5,  5,  7,  7, -1, -1, -1,  5,  5, -1, -1],
+      [ 5,  5,  5,  5, -1, 14, 14, 14, 14, 12, 13, -1, -1, -1,  5,  5, -1, -1],
       [ 5,  5,  5,  5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
     ]);
@@ -75,11 +75,11 @@ function main() {
         game.pause();
       }
     });
-    var o1 = new MapObject(game, map, azuki.player.moveController, "azuki_walk.png", 1024, 128, 3);
-    var o2 = new MapObject(game, map, azuki.player.moveController, "azuki_walk.png", 1088, 128, 3);
-    var o3 = new MapObject(game, map, azuki.player.moveController, "azuki_walk.png", 1024, 192, 3);
-    var o4 = new MapObject(game, map, azuki.player.moveController, "azuki_walk.png", 1088, 192, 3);
-    var o5 = new MapObject(game, map, azuki.player.moveController, "azuki_walk.png", 1024, 256, 3);
+    var o1 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1024, 128, 3);
+    var o2 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1088, 128, 3);
+    var o3 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1024, 192, 3);
+    var o4 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1088, 192, 3);
+    var o5 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1024, 256, 3);
     map.addChild(foregroundMap);
     // map.addChild(ruledLine);
     map.addChild(azuki.getSprite());
