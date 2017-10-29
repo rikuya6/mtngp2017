@@ -65,11 +65,26 @@ function main() {
     ]);
     var ruledLine = getRuledLineSprite();
     var azuki = new Player(game, map, "azuki_walk.png", 0, 64, 0);
+    let submit = document.getElementById("stage1");
+    let flower_shop = false;
+    let park = false;
+    let library = false;
     azuki.player.addEventListener('enterframe', function () {
-      let submit = document.getElementById("stage1");
+      // 花屋
+      if (this.x == 832 && this.y == 256) flower_shop = true;
+      // 公園
+      if ((this.x == 384 && this.y == 384) || (this.x == 448 && this.y == 384) || (this.x == 512 && this.y == 320 ||
+            (this.x == 512 && this.y == 256) || (this.x == 320 && this.y == 256) || (this.x == 320 && this.y == 320))) {
+        park = true;
+      }
+      // 図書館
+      if ((this.x == 576 && this.y == 576) || (this.x == 640 && this.y == 576)) library = true;
       if (this.x == 960 && this.y == 576) {
-        Cookies.set('tutorial_status', {
-          tutorial1: true
+        Cookies.set('status', {
+          tutorial1: true,
+          flower_flg: flower_shop,
+          park_flg: park,
+          library_flg: library
         }); // データはJSON形式で保存する
         submit.submit();
         game.pause();
