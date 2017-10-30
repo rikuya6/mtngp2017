@@ -289,9 +289,9 @@ function main(){
 
     // Cookieフラグ管理
     var status = Cookies.getJSON('status');
-    if (status.flower_flg) noveltext = flower;
     if (status.park_flg) noveltext = park;
     if (status.library_flg) noveltext = library;
+    if (status.flower_flg) noveltext = flower;
 
     /* 以下からテキストボックスの描画 */
 
