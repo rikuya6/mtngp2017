@@ -55,23 +55,11 @@ class StagesController < MemberController
   def stage1
   end
 
+  def stage1_novel
+  end
+
   def stage2
   end
-
-  def novel2
-    # status = JSON.parse(cookies['status'])
-    # if status['demo'] == 'top'
-    #   cookies['n_flg'] = JSON.generate({ flower: true, gamecenter: false });
-    # elsif status['demo'] == 'bottom'
-    #   cookies['n_flg'] = JSON.generate({ flower: false, gamecenter: true });
-    # end
-  rescue
-    redirect_to stage1
-  end
-
-  def novel3
-  end
-
 
   private
 
