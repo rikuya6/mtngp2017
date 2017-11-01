@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       flash[:notice] = 'ログインしました。'
     else
       flash[:alert] = 'ユーザ名とパスワードが一致しません'
-      redirect_to :root
+      redirect_to login_form_path
     end
   end
 
