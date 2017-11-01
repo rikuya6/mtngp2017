@@ -1,5 +1,4 @@
-class StagesController < MemberController
-  after_action :save_tutorial_data, only: [:tutorial1, :tutorial2, :tutorial3, :tutorial1_novel, :tutorial2_novel, :tutorial3_novel, :tutorial3A_novel]
+class StagesController < GuestController
   layout 'stage'
 
   # タイトル画面
@@ -17,11 +16,8 @@ class StagesController < MemberController
   end
 
   def tutorial1_novel
-    cookies['tutorial_status'] = if current_user.tutorial_data.blank?
-                                   JSON.generate({ tutorial1: false })
-                                 else
-                                   current_user.tutorial_data
-                                 end
+    cookies['tutorial_status'] = JSON.generate({ tutorial1: false })
+
     status = JSON.parse cookies['tutorial_status']
     if status['tutorial3']
       status['tutorial1'] = false
@@ -60,11 +56,4 @@ class StagesController < MemberController
 
   def stage2
   end
-
-  private
-
-    def save_tutorial_data
-      current_user.tutorial_data = cookies['tutorial_status']
-      current_user.save
-    end
 end
