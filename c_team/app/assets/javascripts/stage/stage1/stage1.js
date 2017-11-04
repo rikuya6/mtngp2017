@@ -113,6 +113,9 @@ function main() {
       startButton.disable();
     });
     var resetButton = new RsetButton(function () {
+      flower_shop = false;
+      park = false;
+      library = false;
       startButton.reset();
       resetButton.reset(azuki);
     });
