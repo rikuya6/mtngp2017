@@ -61,6 +61,15 @@ class StagesController < MemberController
   def stage2
   end
 
+  def stage2_novel
+  end
+
+  def stage3_novel
+  end
+
+  def ending_novel
+  end
+
   private
 
     def save_tutorial_data
