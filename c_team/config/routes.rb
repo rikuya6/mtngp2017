@@ -1,11 +1,6 @@
 Rails.application.routes.draw do
   root 'top#index'
   get 'about'  => 'top#about', as: 'about'
-  resource :sessions, only: [:create, :destroy], as: 'login', path: 'login'
-  get 'login' => 'sessions#login_form', as: 'login_form'
-  delete 'logout' => 'sessions#destroy', as: 'logout'
-
-  resources :users
 
   get 'stages/title', to: 'stages#title', as: :title
 
@@ -28,11 +23,6 @@ Rails.application.routes.draw do
   get 'stages/stage3_novel', to: 'stages#stage3_novel', as: :stage3_novel
 
   get 'stages/ending_novel', to: 'stages#ending_novel', as: :ending_novel
-
-  namespace :admin do
-    root to: 'users#index'
-    resources :users
-  end
 
   match '*anything' => 'top#not_found', via: [:get, :post, :patch, :delete]
 end
