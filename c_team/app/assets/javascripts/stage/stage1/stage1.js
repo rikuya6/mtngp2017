@@ -73,8 +73,7 @@ function main() {
       // 花屋
       if (this.x == 832 && this.y == 256) flower_shop = true;
       // 公園
-      if ((this.x == 384 && this.y == 384) || (this.x == 448 && this.y == 384) || (this.x == 512 && this.y == 320 ||
-            (this.x == 512 && this.y == 256) || (this.x == 320 && this.y == 256) || (this.x == 320 && this.y == 320))) {
+      if ((this.x == 384 && this.y == 384) || (this.x == 448 && this.y == 384)) {
         park = true;
       }
       // 図書館

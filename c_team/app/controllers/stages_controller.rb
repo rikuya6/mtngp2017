@@ -49,4 +49,13 @@ class StagesController < GuestController
 
   def stage2
   end
+
+  def stage2_novel
+  end
+
+  def stage3_novel
+  end
+
+  def ending_novel
+  end
 end
