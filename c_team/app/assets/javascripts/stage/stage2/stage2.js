@@ -65,7 +65,7 @@ function main() {
     ]);
     var ruledLine = getRuledLineSprite();
     var bus = new Player(game, map, "stage2/bus.png", 832, 576, 2);
-    let submit = document.getElementById("stage2");
+    let submit = document.getElementById("stage3_novel");
     let bus_stop = [false, false, false, false];
     bus.player.addEventListener('enterframe', function () {
       // バス停1
