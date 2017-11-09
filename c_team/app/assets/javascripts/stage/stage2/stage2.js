@@ -63,7 +63,7 @@ function main() {
       [ 5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  5, -1, -1, -1, -1, -1, -1],
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
     ]);
-    var ruledLine = getRuledLineSprite();
+    // var ruledLine = (new RuledLine()).getSprite();
     var bus = new Player(game, map, "stage2/bus.png", 832, 576, 2);
     let submit = document.getElementById("stage3_novel");
     let bus_stop = [false, false, false, false];
