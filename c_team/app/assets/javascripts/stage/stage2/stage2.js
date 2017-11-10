@@ -126,6 +126,7 @@ function main() {
       startButton.disable();
     });
     var resetButton = new RsetButton(function () {
+      bus_stop = [false, false, false, false];
       startButton.reset();
       resetButton.reset(bus);
     });
