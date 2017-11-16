@@ -12,12 +12,14 @@
     <%= favicon_link_tag 'favicon.png', :rel => 'shortcut icon' %>
   </head>
   <body>
-    <!-- ヘッダ -->
-    <%= render 'shared/stage_header' %>
-    <!-- 本体 -->
-    <%= render 'shared/flash' %>
-    <%= yield %>
-    <!-- フッタ -->
-    <%# render 'shared/footer' %>
+    <div class="stagewrapper">
+      <!-- ヘッダ -->
+      <%= render 'shared/stage_header' %>
+      <!-- 本体 -->
+      <%= render 'shared/flash' %>
+      <%= yield %>
+      <!-- フッタ -->
+      <%# render 'shared/footer' %>
+    </div>
   </body>
 </html>
