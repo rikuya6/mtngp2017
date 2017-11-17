@@ -85,7 +85,7 @@ function main() {
     var o1 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1024, 128, 3);
     map.addChild(o1.getSprite());
     var startButton = new StartButton(function() {
-      azuki.player.moveController.setHitTurnRight();
+      azuki.player.moveController.setHitTurnRightOrLeft();
       azuki.player.moveController.moveStraight();
       azuki.player.moveController.execute();
       resetButton.enable();
