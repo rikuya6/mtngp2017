@@ -51,7 +51,7 @@ function main() {
     var foregroundMap = new Map(spriteSize.x, spriteSize.y);
     foregroundMap.image = game.assets["objects.png"];
     foregroundMap.loadData([
-      [-1, -1, -1, -1, -1, -1, -1, -1, 26, -1, -1, -1, -1, -1, -1, -1, 17, 17],
+      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17],
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17],
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17],
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17],
@@ -63,7 +63,7 @@ function main() {
       [-1, -1, -1, -1, -1, -1, -1, 24, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17],
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17]
     ]);
-    var ruledLine = getRuledLineSprite();
+    var ruledLine = (new RuledLine()).getSprite();
     var azuki = new Player(game, map, "azuki_walk.png", 0, 0, 2);
     let submit = document.getElementById("tutorial2");
     azuki.player.addEventListener('enterframe', function() {

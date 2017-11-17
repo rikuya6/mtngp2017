@@ -9,15 +9,17 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application' %>
-    <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+    <%= favicon_link_tag 'favicon.png', :rel => 'shortcut icon' %>
   </head>
   <body>
-    <!-- ヘッダ -->
-    <%= render 'shared/stage_header' %>
-    <!-- 本体 -->
-    <%= render 'shared/flash' %>
-    <%= yield %>
-    <!-- フッタ -->
-    <%# render 'shared/footer' %>
+    <div class="stagewrapper">
+      <!-- ヘッダ -->
+      <%= render 'shared/stage_header' %>
+      <!-- 本体 -->
+      <%= render 'shared/flash' %>
+      <%= yield %>
+      <!-- フッタ -->
+      <%# render 'shared/footer' %>
+    </div>
   </body>
 </html>
