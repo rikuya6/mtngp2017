@@ -80,20 +80,20 @@ class Player {
         this.vx = this.vy = this.tx = this.ty = 0;
         if (this.left || game.input.left) {
           this.direction = 1;
-          this.vx = -moveSpeed;
-          this.tx = -moveSpeed;
+          this.vx = -this.moveSpeed;
+          this.tx = -this.moveSpeed;
         } else if (this.right || game.input.right) {
           this.direction = 2;
-          this.vx = moveSpeed;
-          this.tx = moveSpeed;
+          this.vx = this.moveSpeed;
+          this.tx = this.moveSpeed;
         } else if (this.up || game.input.up) {
           this.direction = 3;
-          this.vy = -moveSpeed;
-          this.ty = -moveSpeed;
+          this.vy = -this.moveSpeed;
+          this.ty = -this.moveSpeed;
         } else if (this.down || game.input.down) {
           this.direction = 0;
-          this.vy = moveSpeed;
-          this.ty = moveSpeed;
+          this.vy = this.moveSpeed;
+          this.ty = this.moveSpeed;
         }
         this.right = this.left = this.up = this.down = false;
         if (this.vx || this.vy) {
@@ -120,16 +120,16 @@ class Player {
                 this.addAngle(90);
                 break;
               case 2: // ぶつかったら、左を向く。移動できない場合は右を向く
-                if (this.ty == -moveSpeed) {        // angle 0 の場合
+                if (this.ty == -this.moveSpeed) {        // angle 0 の場合
                   target_map_x = map_x - spriteSize.x;
                   target_map_y = map_y + spriteSize.y;
-                } else if (this.tx == moveSpeed) {  // angle 90 の場合
+                } else if (this.tx == this.moveSpeed) {  // angle 90 の場合
                   target_map_x = map_x - spriteSize.x;
                   target_map_y = map_y - spriteSize.y;
-                } else if (this.ty == moveSpeed) { // angle 180 の場合
+                } else if (this.ty == this.moveSpeed) { // angle 180 の場合
                   target_map_x = map_x + spriteSize.x;
                   target_map_y = map_y - spriteSize.y;
-                } else if (this.tx == -moveSpeed) { // angle 270 の場合
+                } else if (this.tx == -this.moveSpeed) { // angle 270 の場合
                   target_map_x = map_x + spriteSize.x;
                   target_map_y = map_y + spriteSize.y;
                 }
@@ -138,7 +138,7 @@ class Player {
                 if (0 <= target_array_x && target_array_x < map.width / spriteSize.x && 0 <= target_array_y && target_array_y < map.height) {
                   // console.log("t", target_array_x, target_array_y);
                   // console.log("map_co[t_a_y]", map.collisionData[target_array_y]);
-                  // if (this.tx == -moveSpeed) debugger;
+                  // if (this.tx == -this.moveSpeed) debugger;
                   if (map.collisionData[target_array_y][target_array_x] == 0) {
                     this.addAngle(-90); // 左に曲がれるなら、左に曲がる
                   } else {
@@ -147,16 +147,16 @@ class Player {
                 }
                 break;
               case 3: // ぶつかったら、右を向く。移動できない場合は左を向く
-                if (this.ty == -moveSpeed) {        // angle 0 の場合
+                if (this.ty == -this.moveSpeed) {        // angle 0 の場合
                   target_map_x = map_x + spriteSize.x;
                   target_map_y = map_y + spriteSize.y;
-                } else if (this.tx == moveSpeed) {  // angle 90 の場合
+                } else if (this.tx == this.moveSpeed) {  // angle 90 の場合
                   target_map_x = map_x - spriteSize.x;
                   target_map_y = map_y + spriteSize.y;
-                } else if (this.ty == moveSpeed) { // angle 180 の場合
+                } else if (this.ty == this.moveSpeed) { // angle 180 の場合
                   target_map_x = map_x - spriteSize.x;
                   target_map_y = map_y - spriteSize.y;
-                } else if (this.tx == -moveSpeed) { // angle 270 の場合
+                } else if (this.tx == -this.moveSpeed) { // angle 270 の場合
                   target_map_x = map_x + spriteSize.x;
                   target_map_y = map_y - spriteSize.y;
                 }
@@ -165,7 +165,7 @@ class Player {
                 if (0 <= target_array_x && target_array_x < map.width / spriteSize.x && 0 <= target_array_y && target_array_y < map.height) {
                   // console.log("t", target_array_x, target_array_y);
                   // console.log("map_co[t_a_y]", map.collisionData[target_array_y]);
-                  // if (this.tx == -moveSpeed) debugger;
+                  // if (this.tx == -this.moveSpeed) debugger;
                   if (map.collisionData[target_array_y][target_array_x] == 0) {
                     this.addAngle(90); // 右に曲がれるなら、右に曲がる
                   } else {
@@ -206,5 +206,47 @@ class Player {
     this.player.left = false;
     this.player.down = false;
     this.player.vx = this.player.vy = this.ty = this.tx = 0;
+  }
+
+  debugSpeedMode(game, player_obj) {
+    game.debugUp = 0;
+    game.debugDown = 0;
+    game.debugLeft = 0;
+    game.debugRight = 0;
+    game.debugA = 0;
+    game.debugB = 0;
+    game.debugS = false;
+    game.keybind('A'.charCodeAt(0), 'A');
+    game.keybind('B'.charCodeAt(0), 'B');
+    game.keybind('S'.charCodeAt(0), 'S');
+    game.addEventListener('Abuttondown', function() {
+      game.debugA++;
+    });
+    game.addEventListener('Bbuttondown', function() {
+      game.debugB++;
+    });
+    game.addEventListener('upbuttondown', function() {
+      game.debugUp++;
+    });
+    game.addEventListener('downbuttondown', function() {
+      game.debugDown++;
+    });
+    game.addEventListener('rightbuttondown', function() {
+      game.debugRight++;
+    });
+    game.addEventListener('leftbuttondown', function() {
+      game.debugLeft++;
+    });
+    game.addEventListener('leftbuttondown', function() {
+      game.debugLeft++;
+    });
+    game.addEventListener('Sbuttondown', function() {
+      game.debugS = true;
+    });
+    game.addEventListener('enterframe', function() {
+      if ((game.debugUp >= 2 && game.debugDown >= 2 && game.debugLeft >= 2 && game.debugRight >= 2 && game.debugA >= 1 && game.debugB >= 1) || game.debugS) {
+        player_obj.player.moveSpeed = 16;
+      }
+    });
   }
 }

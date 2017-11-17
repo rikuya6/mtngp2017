@@ -65,6 +65,7 @@ function main() {
     ]);
     var ruledLine = (new RuledLine()).getSprite();
     var azuki = new Player(game, map, "azuki_walk.png", 0, 0, 2);
+    azuki.debugSpeedMode(game, azuki); // コメントアウトすること
     let submit = document.getElementById("tutorial2");
     azuki.player.addEventListener('enterframe', function() {
       if (this.x == 448 && this.y == 576) {
