@@ -129,6 +129,10 @@ h3 {
     float: left;
 }
 
+#motion-pic {
+    width: inherit;
+}
+
 #enchant-stage {
     width: 85%;
     height: 90vh;
@@ -175,7 +179,7 @@ body {
     background-color: #FFF;
 }
 
-$btn-color: rgb(255, 72, 0);
+$btn-color: #00e1ff;
 
 header {
     display: flex;
@@ -186,10 +190,17 @@ header {
     border-bottom: 2px solid $btn-color;
     justify-content: center;
     align-items: center;
+    flex-grow: 0;
     &.v-bottom {
         height: 150px;
         margin-bottom: 10px;
         align-items: flex-end;
+    }
+
+    & .title-b {
+      background-color: #FFF;
+      border-radius: 10px;
+      padding: 20px;
     }
 }
 
@@ -210,7 +221,7 @@ header {
     right: 100px;
     top: 150px;
     &:hover {
-        background: $btn-color;
+        background-color: $btn-color;
         color: #FFF;
         border-color: #FFF;
         text-decoration: none;
@@ -224,4 +235,8 @@ p {
 .content {
   width: 1000px;
   margin: auto;
+}
+
+footer {
+  text-align: center;
 }
