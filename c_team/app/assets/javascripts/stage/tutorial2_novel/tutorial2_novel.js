@@ -16,7 +16,7 @@ function main(){
   for(let i = 1; i <= 13; i++){
     game.preload("novel/" + i + ".png");
   }
-  for(let i = 101; i <= 103; i++){
+  for(let i = 101; i <= 115; i++){
     game.preload("novel/" + i + ".png");
   }
 
@@ -54,6 +54,7 @@ function main(){
       false,
       '？',
       '「このブロックはもし○○なら○○するっていうブロックなんだ。」',
+      114,
       false,
       '？',
       '「前に進めなかった右に曲がる、とか左に曲がるって登場人物の',

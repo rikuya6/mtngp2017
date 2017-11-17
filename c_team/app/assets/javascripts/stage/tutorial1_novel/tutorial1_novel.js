@@ -16,7 +16,7 @@ function main(){
   for(let i = 1; i <= 13; i++){
     game.preload("novel/" + i + ".png");
   }
-  for(let i = 101; i <= 103; i++){
+  for(let i = 101; i <= 115; i++){
     game.preload("novel/" + i + ".png");
   }
 
@@ -55,7 +55,7 @@ function main(){
       '「まずは聞くよりやってみよう。この子を動かして前に進めて',
       '　やってくれ。」',
       false,
-      101,
+      113,
       '<br><br>',
       '<stage1  実行しよう>',
       '<br>数マス前のゴールに進むコードが設定されているので、実行を押して',
