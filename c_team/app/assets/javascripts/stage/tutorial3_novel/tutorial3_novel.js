@@ -16,7 +16,7 @@ function main(){
   for(let i = 1; i <= 13; i++){
     game.preload("novel/" + i + ".png");
   }
-  for(let i = 101; i <= 103; i++){
+  for(let i = 101; i <= 115; i++){
     game.preload("novel/" + i + ".png");
   }
 
@@ -55,6 +55,7 @@ function main(){
       'stage3',
       '「前に進めないと左に曲がる」をずっと繰り返している子がいるよ',
       'ゴールに着くにはどうすれば良いかな？',
+      115,
       false,
       false
     ];
