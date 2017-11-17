@@ -310,7 +310,7 @@ enchant.ui.Button = enchant.Class.create(enchant.Entity, {
         style["padding"] = "5px 10px"; // 変更済み
         style["text-align"] = "center";
         style["font-weight"] = "bold";
-        style["border-radius"] = "0.5em";
+        style["border-radius"] = "0px"; // 変更済み
 
         // テーマの指定がなければ "dark" を使う
         theme = theme || "dark";
