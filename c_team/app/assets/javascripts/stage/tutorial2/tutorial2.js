@@ -51,7 +51,7 @@ function main() {
     var foregroundMap = new Map(spriteSize.x, spriteSize.y);
     foregroundMap.image = game.assets["objects.png"];
     foregroundMap.loadData([
-      [-1, -1, -1, -1, -1, -1, -1, -1, 26, -1, -1, -1, -1, -1, -1, -1, 17, 17],
+      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17],
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17],
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17],
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17],
@@ -63,8 +63,9 @@ function main() {
       [-1, -1, -1, -1, -1, -1, -1, 24, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17],
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17]
     ]);
-    var ruledLine = getRuledLineSprite();
+    var ruledLine = (new RuledLine()).getSprite();
     var azuki = new Player(game, map, "azuki_walk.png", 0, 0, 2);
+    azuki.debugSpeedMode(game, azuki); // コメントアウトすること
     let submit = document.getElementById("tutorial2");
     azuki.player.addEventListener('enterframe', function() {
       if (this.x == 448 && this.y == 576) {
@@ -84,7 +85,7 @@ function main() {
     var o1 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1024, 128, 3);
     map.addChild(o1.getSprite());
     var startButton = new StartButton(function() {
-      azuki.player.moveController.setHitTurnRight();
+      azuki.player.moveController.setHitTurnRightOrLeft();
       azuki.player.moveController.moveStraight();
       azuki.player.moveController.execute();
       resetButton.enable();

@@ -13,7 +13,7 @@ function main(){
   game.fps = 30;
   game.rootScene.backgroundColor = "black";
 
-  for(let i = 1; i <= 14; i++){
+  for(let i = 1; i <= 13; i++){
     game.preload("novel/" + i + ".png");
   }
   for(let i = 101; i <= 112; i++){
@@ -30,7 +30,7 @@ function main(){
     // キャラクター画像の準備
     var cimg = [];
     cimg[0] = false;
-    for(let i = 1; i <= 14; i++){
+    for(let i = 1; i <= 13; i++){
       cimg[i] = new Sprite(595, 842);
       cimg[i].image = game.assets["novel/"+i+".png"];
       console.log(cimg[i].image);
@@ -45,7 +45,7 @@ function main(){
     var label = []; // 物語表示のため、配列を用意する。
     var noveltext = [
       'あずき',
-      '「よし、このルートで向かおう！」',
+      '「よし、このルートで向かおう！」', //ああああああ
       13,
       104,
       false,
@@ -63,7 +63,7 @@ function main(){
       111,
       false,
       'あずき',
-      '「和菓子屋さんだ！　おばあちゃん、苺大福が好きだったよね…',
+      '「ずんだ堂だ！　おばあちゃん、苺大福が好きだったよね…',
       '　やっぱり　お花以外にも　持って行ってあげよう！」',
       false,
       '<br><br>',
@@ -128,7 +128,7 @@ function main(){
       false,
       '？？',
       '「あ、ごめんね！　その果物　私のなの！」',
-      14,
+      8,
       false,
       '<br><br>',
       '果物を　拾っているあずきに　声をかけてくる人が　いました。',
@@ -166,7 +166,7 @@ function main(){
       'あずき',
       '「ありがとうございます！」',
       -1,
-      -14,
+      -8,
       13,
       false,
       '<br><br>',

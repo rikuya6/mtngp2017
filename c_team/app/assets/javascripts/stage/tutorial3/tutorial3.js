@@ -55,16 +55,17 @@ function main() {
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 14, 17, 17],
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 14, 17, 17],
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 14, 17, 17],
-      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 26, 14, 17, 17],
+      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 14, 17, 17],
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 24, 17, 17],
-      [26, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 14, 17, 17],
+      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 14, 17, 17],
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 14, 17, 17],
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 14, 17, 17],
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 14, 17, 17],
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 14, 17, 17]
     ]);
-    var ruledLine = getRuledLineSprite();
+    var ruledLine = (new RuledLine()).getSprite();
     var azuki = new Player(game, map, "azuki_walk.png", 0, 0, 0);
+    azuki.debugSpeedMode(game, azuki); // コメントアウトすること
     let submit = document.getElementById("tutorial3");
     azuki.player.addEventListener('enterframe', function () {
       if (this.x == 960 && this.y == 320) {
@@ -110,24 +111,4 @@ function main() {
     game.rootScene.addChild(resetButton.getButtonObject());
   };
   game.start();
-}
-
-function getRuledLineSprite() {
-  // 罫線
-  let square = new Sprite(gameSize.x, gameSize.y);
-  square.x = 0;
-  square.y = 0;
-
-  let suef = new Surface(gameSize.x, gameSize.y);
-  square.image = suef;
-  let cont = suef.context;
-  cont.beginPath();
-  for (let i = 0; i <= gameSize.x; i += spriteSize.x) {
-    cont.moveTo(i, 0);
-    cont.lineTo(i, gameSize.x);
-    cont.moveTo(0, i);
-    cont.lineTo(gameSize.x, i);
-  }
-  cont.stroke();
-  return square;
 }
