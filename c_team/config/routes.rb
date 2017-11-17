@@ -18,6 +18,11 @@ Rails.application.routes.draw do
   get 'stages/stage1', to: 'stages#stage1', as: :stage1
   get 'stages/stage1_novel', to: 'stages#stage1_novel', as: :stage1_novel
   get 'stages/stage2', to: 'stages#stage2', as: :stage2
+  get 'stages/stage2_novel', to: 'stages#stage2_novel', as: :stage2_novel
+
+  get 'stages/stage3_novel', to: 'stages#stage3_novel', as: :stage3_novel
+
+  get 'stages/ending_novel', to: 'stages#ending_novel', as: :ending_novel
 
   match '*anything' => 'top#not_found', via: [:get, :post, :patch, :delete]
 end

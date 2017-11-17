@@ -16,7 +16,7 @@ function main(){
   for(let i = 1; i <= 13; i++){
     game.preload("novel/" + i + ".png");
   }
-  for(let i = 101; i <= 103; i++){
+  for(let i = 101; i <= 110; i++){
     game.preload("novel/" + i + ".png");
   }
 
@@ -34,55 +34,39 @@ function main(){
       cimg[i] = new Sprite(595, 842);
       cimg[i].image = game.assets["novel/"+i+".png"];
       console.log(cimg[i].image);
-      cimg[i].moveTo((screen_width / 4) - 50, -100);
+      if(i == 1 || i == 5 || i == 9 || i == 13) {
+        cimg[i].moveTo(100, -100);
+      }else{
+        cimg[i].moveTo(400, -100);
+      }
     }
     console.log(cimg);
 
-    // Cookieフラグ管理
-    var status = Cookies.getJSON('tutorial_status');
-
     var label = []; // 物語表示のため、配列を用意する。
-    var noveltext = [];
-    var Ttext = [
-      102,
-      '絵本描き',
-      '「完璧だね。登場人物の○○したいって気持ちや、迷っている',
-      '　理由を考えて、これからも手伝いをしてくれると嬉しいな。」',
-      2,
+    var noveltext = [
+      '<br><br>',
+      'ところが大変！',
+      'バスの運転手さんが　道を間違えているみたいです。',
+      'このままだと　あずきは病院に　行けないかも　しれません。',
       false,
-      '絵本描き',
-      '「次からは君の手伝いで絵本の中身が変わっちゃうから、',
-      '　登場人物が幸せになるように頑張ってくれ。」',
+      '<br><br>',
+      '＜ステージ２の説明＞',
+      'あずきが　病院に向かえるように　ルートを考えてあげましょう！',
+      101,
       false,
-      '絵本描き',
-      '「じゃあ、また会おう。',
-      '　次は君が手伝いとして立派になった時だ。」',
       false,
-      false
-    ];
-    var Ftext = [
-      102,
-      '絵本描き',
-      '「うん、よく出来たね。でも、もう少し登場人物が簡単に',
-      '　ゴールに着くことが出来たかな」',
-      2,
-      false,
-      '絵本描き',
-      '「これからもたくさん手伝いをしてもらう。僕の物語が',
-      '　良くなるように頑張って欲しい。」',
-      false,
-      '絵本描き',
-      '「さぁ、これからは君が考えて登場人物を動かすんだ。',
-      '　気持ちを考えることを忘れちゃいけないよ。」',
-      false,
-      '絵本描き',
-      '「また会おう。次は立派なお手伝いとしてね。」',
-      false,
-      false
     ];
 
-    noveltext = Ftext;
-    if (status.novel3) noveltext = Ttext;
+    // Cookieフラグ管理
+/*    var status = Cookies.getJSON('status');
+    console.log(status);
+    if (status.flower_flg && !(status.park_flg) && !(status.library_flg)) noveltext = flower;
+    else {
+      // if (status.flower_flg) noveltext = flower;
+      if (status.park_flg) noveltext = park;
+      if (status.library_flg) noveltext = library;
+    }
+*/
 
     /* 以下からテキストボックスの描画 */
 
@@ -235,7 +219,7 @@ function main(){
       }
 
       if(noveltext.length == 0){
-        let submit = document.getElementById("tutorial3A_novel");
+        let submit = document.getElementById("stage2");
         submit.submit();
         game.pause();
       }

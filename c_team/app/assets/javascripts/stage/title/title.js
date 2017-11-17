@@ -151,12 +151,15 @@ function main(){
     });
 
     sprite5.addEventListener('touchstart', function() {
+      // 「さいしょからはじめる」
+      Cookies.remove('status'); // データの消去を行う
       let submit = document.getElementById("intro_novel");
       submit.submit();
       game.pause();
     });
 
     sprite6.addEventListener('touchstart', function() {
+      // 「つづきからはじめる
       let submit = document.getElementById("intro_novel");
       submit.submit();
       game.pause();

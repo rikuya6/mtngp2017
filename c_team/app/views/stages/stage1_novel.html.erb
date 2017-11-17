@@ -1,7 +1,7 @@
-<% @page_title = '小豆ちゃんのお見舞い' %>
+<% @page_title = 'あずきのおみまい' %>
 
 <% content_for :stage_header do %>
-  <p id="story">小豆ちゃんのお見舞い</p>
+  <p id="story">あずきのおみまい</p>
 <% end %>
 
 <div id="motion">
@@ -10,4 +10,4 @@
 <div id="enchant-stage">
   <%= javascript_include_tag 'stage/stage1_novel/stage1_novel' %>
 </div>
-<%= form_tag stage2_path, id: :stage2, method: :get %>
+<%= form_tag stage2_novel_path, id: :stage2_novel, method: :get %>
