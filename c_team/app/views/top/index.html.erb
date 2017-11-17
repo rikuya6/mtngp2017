@@ -1,8 +1,10 @@
 <% @page_title = 'TOP' %>
 <header>
-  <div class="container">
-    <h4>松永プロジェクト</h4>
-    <h1>あずきのおみまい</h1>
+  <%# <div class="container"> %>
+    <div class="title-b">
+      <h4>松永プロジェクト</h4>
+      <h1>あずきのおみまい</h1>
+    <%# </div> %>
 <%= link_to 'ゲームを始める', title_path, class: 'start_btn'%>    
   </div>
 </header>
@@ -17,27 +19,11 @@
   <section>
     <h2>必須動作環境</h2>
     <p>
-    画面解像度が1366x768以上必要です。
+    画面解像度が1366x768以上必要です。<br />
     それ以下の場合、画面の表示が崩れる場合があります。
     </p>
   </section>
-  <section>
-    <h2>動作確認環境</h2>
-    あずきのおみまいは以下の環境で動作確認を行なっています。
-    <h3>OS</h3>
-    <p>
-      Windows 10 Fall Creators Update
-      macOS High Sierra
-    </p>
-    <h3>ブラウザ</h3>
-    <p>
-      GoogleChrome, FireFox, Safari, Edge 各最新版
-    </p>
-    <h3></h3>
-    <p>
-    </p>
-    <h3></h3>
-    <p>
-    </p>
-  </section>
+  <footer>
+    <a href="http://www.ne.senshu-u.ac.jp/~proj29-20/">松永プロジェクト2017</a>
+  </footer>
 </div>
