@@ -221,7 +221,7 @@ header {
     right: 100px;
     top: 150px;
     &:hover {
-        background: $btn-color;
+        background-color: $btn-color;
         color: #FFF;
         border-color: #FFF;
         text-decoration: none;
@@ -235,4 +235,8 @@ p {
 .content {
   width: 1000px;
   margin: auto;
+}
+
+footer {
+  text-align: center;
 }
