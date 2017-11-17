@@ -19,6 +19,7 @@ class Player {
     this.player.right = false;
     this.player.left = false;
     this.player.down = false;
+    this.player.isDebugMode = false; // default: false
     this.player.moveController = new MoveController();
     this.player.addAngle = function (add) {
       if(this.angle + add >= 0) this.angle = (this.angle + add) % 360;
@@ -67,7 +68,6 @@ class Player {
       this.frame = this.direction * 3 + this.walk;
       if (this.isMoving) {
         this.moveBy(this.vx, this.vy);
-        console.log(this.x, this.y);
         if (game.frame % 3 != 0) {
           this.walk++;
           this.walk %= 3;
@@ -78,19 +78,19 @@ class Player {
         }
       } else {
         this.vx = this.vy = this.tx = this.ty = 0;
-        if (this.left || game.input.left) {
+        if (this.left || (this.isDebugMode && game.input.left)) {
           this.direction = 1;
           this.vx = -this.moveSpeed;
           this.tx = -this.moveSpeed;
-        } else if (this.right || game.input.right) {
+        } else if (this.right || (this.isDebugMode && game.input.right)) {
           this.direction = 2;
           this.vx = this.moveSpeed;
           this.tx = this.moveSpeed;
-        } else if (this.up || game.input.up) {
+        } else if (this.up || (this.isDebugMode && game.input.up)) {
           this.direction = 3;
           this.vy = -this.moveSpeed;
           this.ty = -this.moveSpeed;
-        } else if (this.down || game.input.down) {
+        } else if (this.down || (this.isDebugMode && game.input.down)) {
           this.direction = 0;
           this.vy = this.moveSpeed;
           this.ty = this.moveSpeed;
@@ -182,6 +182,7 @@ class Player {
     this.player.addEventListener('enterframe', function () {
       this.moving();
     });
+    this.debugSpeedMode(game, this.player); // デバック用関数
   }
 
   getSprite() {
@@ -208,7 +209,7 @@ class Player {
     this.player.vx = this.player.vy = this.ty = this.tx = 0;
   }
 
-  debugSpeedMode(game, player_obj) {
+  debugSpeedMode(game, player) {
     game.debugUp = 0;
     game.debugDown = 0;
     game.debugLeft = 0;
@@ -245,7 +246,9 @@ class Player {
     });
     game.addEventListener('enterframe', function() {
       if ((game.debugUp >= 2 && game.debugDown >= 2 && game.debugLeft >= 2 && game.debugRight >= 2 && game.debugA >= 1 && game.debugB >= 1) || game.debugS) {
-        player_obj.player.moveSpeed = 16;
+        player.isDebugMode = true;
+        player.moveSpeed = 16;
+        if (player.isMoving) console.log(player.x, player.y); // 現在のplayer座標
       }
     });
   }

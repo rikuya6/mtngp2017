@@ -65,7 +65,6 @@ function main() {
     ]);
     // var ruledLine = (new RuledLine()).getSprite();
     var azuki = new Player(game, map, "azuki_walk.png", 0, 64, 0);
-    azuki.debugSpeedMode(game, azuki); // コメントアウトすること
     let submit = document.getElementById("stage1");
     let flower_shop = false;
     let park = false;
