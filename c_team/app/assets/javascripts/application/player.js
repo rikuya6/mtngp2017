@@ -182,7 +182,7 @@ class Player {
     this.player.addEventListener('enterframe', function () {
       this.moving();
     });
-    this.debugSpeedMode(game, this.player); // デバック用関数
+    this.debugMode(game, this.player); // デバック用関数
   }
 
   getSprite() {
@@ -209,43 +209,14 @@ class Player {
     this.player.vx = this.player.vy = this.ty = this.tx = 0;
   }
 
-  debugSpeedMode(game, player) {
-    game.debugUp = 0;
-    game.debugDown = 0;
-    game.debugLeft = 0;
-    game.debugRight = 0;
-    game.debugA = 0;
-    game.debugB = 0;
+  debugMode(game, player) {
     game.debugS = false;
-    game.keybind('A'.charCodeAt(0), 'A');
-    game.keybind('B'.charCodeAt(0), 'B');
     game.keybind('S'.charCodeAt(0), 'S');
-    game.addEventListener('Abuttondown', function() {
-      game.debugA++;
-    });
-    game.addEventListener('Bbuttondown', function() {
-      game.debugB++;
-    });
-    game.addEventListener('upbuttondown', function() {
-      game.debugUp++;
-    });
-    game.addEventListener('downbuttondown', function() {
-      game.debugDown++;
-    });
-    game.addEventListener('rightbuttondown', function() {
-      game.debugRight++;
-    });
-    game.addEventListener('leftbuttondown', function() {
-      game.debugLeft++;
-    });
-    game.addEventListener('leftbuttondown', function() {
-      game.debugLeft++;
-    });
     game.addEventListener('Sbuttondown', function() {
       game.debugS = true;
     });
     game.addEventListener('enterframe', function() {
-      if ((game.debugUp >= 2 && game.debugDown >= 2 && game.debugLeft >= 2 && game.debugRight >= 2 && game.debugA >= 1 && game.debugB >= 1) || game.debugS) {
+      if (game.debugS) {
         player.isDebugMode = true;
         player.moveSpeed = 16;
         if (player.isMoving) console.log(player.x, player.y); // 現在のplayer座標
