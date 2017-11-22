@@ -8,6 +8,9 @@ var screen_height = 640; //ゲーム画面の高さ
 var tex_width = screen_width - 80; //ノベルテキストエリアの幅
 var tex_heigth = 200; //ノベルテキストエリアの高さ
 
+var col = []; // 文字色
+col[1001] = "red";
+
 function main(){
   var game = new Core(screen_width, screen_height);
   game.fps = 30;
@@ -218,7 +221,7 @@ function main(){
       label[i].moveTo( 40, 400 + i * 40);
       label[i].font = "32px 'メイリオ'";
       label[i].color = "white";
-      if(label[i] == 1001) label[i + 1].color = "red";
+      // if(i % 2 == 0)   label[i].color = "red";
       scene.addChild(label[i]);
       game.pushScene(scene);
     }
@@ -253,7 +256,9 @@ function main(){
           // キャラクターがボックスの前に来ちゃうので一度取り除く
           scene.removeChild(sprite2);
           scene.removeChild(sprite3);
-          if (work > 100) {
+          if (work > 1000) { // 1000以上は文字色管理
+            label.push(work);
+          }else if (work > 100) {
             sprite.image = game.assets['novel/' + work + '.png'];
             //break;
           }else if (work > 0){
@@ -276,13 +281,23 @@ function main(){
       }
 
       // 表示の処理
+      var index = 0; // インデックス管理に必須
       for(let i = 0; i < label.length; i++){
-        label[i].moveTo( 40, 400 + i * 40);
+        if (label[i] > 1000){ //文字色変更信号
+          // console.log(col[label[i]]);
+          continue;
+        }else if (label[i - 1] > 1000){
+          label[i].color = col[label[i-1]];
+        }else{
+          label[i].color = "white"; // 通常色
+        }
+        label[i].moveTo( 40, 400 + index * 40);
         label[i].font = "32px 'メイリオ'";
-        label[i].color = "white";
+        // label[i].color = "white";
         // if(i % 2 == 0)   label[i].color = "red";
         scene.addChild(label[i]);
         game.pushScene(scene);
+        index++;
       }
 
       if(noveltext.length == 0){
