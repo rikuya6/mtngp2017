@@ -82,7 +82,7 @@ function main(){
       false,
       'お母さん',
       '「病院へは　バスを使って　行くのよ',
-      '　家のそばの　バス停から　「総合病院行き」　に乗って',
+      '　家のそばの　バス停から　『総合病院行き』　に乗って',
       '　５個目で　バス停を降りるの」',
       false,
       'お母さん',
@@ -103,7 +103,9 @@ function main(){
       false,
       'お母さん',
       '「もしあずきに　余裕があるなら　行く途中にある',
-      '　お花屋さんで　お花を買っていったら　おばあちゃん喜ぶと思うよ」',
+      1001,
+      '　お花屋さんで　お花を買っていったら',
+      '　おばあちゃん喜ぶと思うよ」',
       false,
       'あずき',
       '「うん　わかった」',
@@ -216,7 +218,7 @@ function main(){
       label[i].moveTo( 40, 400 + i * 40);
       label[i].font = "32px 'メイリオ'";
       label[i].color = "white";
-      // if(i % 2 == 0)   label[i].color = "red";
+      if(label[i] == 1001) label[i + 1].color = "red";
       scene.addChild(label[i]);
       game.pushScene(scene);
     }
