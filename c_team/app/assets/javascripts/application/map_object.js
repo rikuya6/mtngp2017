@@ -18,10 +18,11 @@ class MapObject {
     };
     this.sprite.x = sx;
     this.sprite.y = sy;
-    this.sprite.changeCollisionData(sx, sy, hitStatus);
+    this.sprite.defaultHitStatus = hitStatus;
+    this.sprite.changeCollisionData(sx, sy, this.sprite.defaultHitStatus);
 
     this.sprite.addEventListener(enchant.Event.TOUCH_START, function(e) {
-      if (moveController.hasNextOrder()) return; // 移動を開始していたら、マップオブジェクトは動かせない 
+      if (moveController.hasNextOrder()) return; // 移動を開始していたら、マップオブジェクトは動かせない
       this.originX = e.x - this.x;
       this.originY = e.y - this.y;
       this.beforeX = this.x;
@@ -64,7 +65,18 @@ class MapObject {
       this.x = nx;
       this.y = ny;
       this.changeCollisionData(this.beforeX, this.beforeY, 0); // 一つ前のマスを当たり判定なしにする
-      this.changeCollisionData(this.x, this.y, 1); // 現在のマスを当たり判定ありにする
+      // 現在のマスを当たり判定ありにする
+      // 通常1。defaultHitStatusが4の場合は特殊。
+      let changeStatus;
+      switch (this.defaultHitStatus) {
+        case 4:
+          changeStatus = 4;
+          break;
+        default:
+          changeStatus = 1;
+          break;
+      }
+      this.changeCollisionData(this.x, this.y, changeStatus);
     });
   }
 
