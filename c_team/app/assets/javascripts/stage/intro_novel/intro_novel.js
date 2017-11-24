@@ -9,7 +9,7 @@ var tex_width = screen_width - 80; //ノベルテキストエリアの幅
 var tex_heigth = 200; //ノベルテキストエリアの高さ
 
 var col = []; // 文字色
-col[1001] = "red";
+col[1001] = "orange";
 
 function main(){
   var game = new Core(screen_width, screen_height);
@@ -146,7 +146,7 @@ function main(){
     sprite2.x = 20;
     sprite2.y = 420;
     // spriteオブジェクトの背景色の指定
-    sprite2.backgroundColor = "rgba(100, 100, 255, 0.8)";
+    sprite2.backgroundColor = "rgba(0, 191, 255, 0.8)";
     // Surfaceオブジェクトの作成
     // Spriteの大きさ以上に指定しても範囲外には描画されない
     var surface = new Surface(100, 100);
