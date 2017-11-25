@@ -80,9 +80,8 @@ function main() {
     map.addChild(ruledLine);
     map.addChild(azuki.getSprite());
     game.rootScene.addChild(map);
+    (new MapObject(game, map, azuki.player.moveController, "color_cone.png", 3)).appendMap(map);
 
-    var o1 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1024, 128, 3);
-    map.addChild(o1.getSprite());
     var startButton = new StartButton(function() {
       azuki.player.moveController.setHitTurnRightOrLeft();
       azuki.player.moveController.moveStraight();

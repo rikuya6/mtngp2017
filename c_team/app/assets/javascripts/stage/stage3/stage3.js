@@ -84,26 +84,15 @@ function main() {
         game.pause();
       }
     });
-    var o1 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1024, 128, 3);
-    var o2 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1088, 128, 3);
-    var o3 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1024, 192, 3);
-    var o4 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1088, 192, 3);
-    var o5 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1024, 256, 3);
-    var o6 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1088, 256, 3);
-    var o7 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1024, 320, 3);
-    var o8 = new MapObject(game, map, azuki.player.moveController, "stage3/signboard_right.png", 1088, 320, 4);
+
     map.addChild(foregroundMap);
     // map.addChild(ruledLine);
     map.addChild(azuki.getSprite());
-    map.addChild(o1.getSprite());
-    map.addChild(o2.getSprite());
-    map.addChild(o3.getSprite());
-    map.addChild(o4.getSprite());
-    map.addChild(o5.getSprite());
-    map.addChild(o6.getSprite());
-    map.addChild(o7.getSprite());
-    map.addChild(o8.getSprite());
     game.rootScene.addChild(map);
+
+    for(let i = 0; i < 7; i++)
+      (new MapObject(game, map, azuki.player.moveController, "color_cone.png", 3)).appendMap(map);
+    (new MapObject(game, map, azuki.player.moveController, "stage3/signboard_right.png", 4)).appendMap(map);
 
     var startButton = new StartButton(function () {
       azuki.player.moveController.setHitTurnLeftOrRight();
