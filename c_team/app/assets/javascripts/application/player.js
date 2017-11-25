@@ -82,6 +82,7 @@ class Player {
       this.frame = this.direction * 3 + this.walk;
       if (this.isMoving) {
         this.moveBy(this.vx, this.vy);
+        if (this.isDebugMode) console.log(this.x, this.y); // 現在のplayer座標
         if (game.frame % 3 != 0) {
           this.walk++;
           this.walk %= 3;
@@ -241,7 +242,6 @@ class Player {
       if (game._debugS) {
         player.isDebugMode = true;
         player.moveSpeed = 16;
-        if (player.isMoving) console.log(player.x, player.y); // 現在のplayer座標
       } else {
         player.isDebugMode = false;
         player.moveSpeed = game._default_moevSpeed;

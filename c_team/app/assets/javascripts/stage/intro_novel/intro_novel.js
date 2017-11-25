@@ -301,7 +301,7 @@ function main(){
       }
 
       if(noveltext.length == 0){
-        let submit = document.getElementById("intro_novel");
+        let submit = document.getElementById("stage1");
         submit.submit();
         game.pause();
       }

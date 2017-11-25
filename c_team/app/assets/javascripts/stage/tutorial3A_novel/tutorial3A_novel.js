@@ -235,7 +235,7 @@ function main(){
       }
 
       if(noveltext.length == 0){
-        let submit = document.getElementById("tutorial3A_novel");
+        let submit = document.getElementById("title");
         submit.submit();
         game.pause();
       }

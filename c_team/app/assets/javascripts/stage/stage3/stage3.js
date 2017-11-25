@@ -14,7 +14,7 @@ var spriteSize = {
 
 function main() {
   var game = new Game(gameSize.x, gameSize.y);
-  game.preload("azuki_walk.png", "road.png", "objects.png", "color_cone.png");
+  game.preload("azuki_walk.png", "road.png", "objects.png", "color_cone.png", "stage3/signboard_right.png");
 
   game.onload = function () {
     var MapGroup = enchant.Class.mixClasses(Map, Group, true);
@@ -35,55 +35,50 @@ function main() {
     ]);
     map.collisionData = [
       [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-      [2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2],
-      [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 2, 2],
-      [2, 0, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 0, 3, 3],
-      [2, 0, 2, 2, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 3, 3],
-      [2, 0, 2, 2, 2, 0, 0, 2, 2, 0, 2, 0, 0, 0, 0, 0, 0, 3, 3],
-      [2, 0, 2, 2, 2, 0, 0, 2, 2, 0, 2, 0, 0, 0, 0, 0, 0, 3, 3],
-      [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
-      [2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 3, 3],
-      [2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 0, 0, 0, 2, 2, 3, 3],
-      [2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
+      [2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2],
+      [2, 2, 2, 2, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2],
+      [2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 0, 3, 3],
+      [2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 0, 3, 3],
+      [2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
+      [2, 2, 0, 0, 2, 0, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0, 3, 3],
+      [2, 0, 0, 0, 2, 0, 2, 2, 0, 2, 2, 0, 2, 0, 2, 2, 0, 3, 3],
+      [2, 0, 0, 0, 2, 0, 2, 2, 0, 2, 2, 0, 0, 0, 2, 2, 0, 3, 3],
+      [2, 0, 2, 0, 2, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 3, 3],
+      [2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 3, 3],
       [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3]
     ];
 
     var foregroundMap = new Map(spriteSize.x, spriteSize.y);
     foregroundMap.image = game.assets["objects.png"];
     foregroundMap.loadData([
-      [2,   5,  5,  5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17],
-      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  5,  5, -1, 17, 17],
-      [-1,  5,  5,  5, -1,  5,  5,  5,  5,  5,  5,  5, -1,  5,  5, -1, 17, 17],
-      [-1,  5,  5,  5, -1, -1, -1, -1, -1,  5, -1, -1, -1,  6, -1, -1, 17, 17],
-      [-1,  5,  5,  5, -1, -1,  0,  1, -1,  5, -1, -1, -1, -1, -1, -1, 17, 17],
-      [-1,  5,  5,  5, -1, -1,  3,  4, -1,  5, -1, -1, -1, -1, -1, -1, 17, 17],
-      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17],
-      [ 5,  5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  5,  5, 17, 17],
-      [ 5,  5,  5,  5, -1, 14, 14, 14, 14, 15, 16, -1, -1, -1,  5, 18, 17, 17],
-      [ 5,  5,  5,  5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 25, 17, 17],
-      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17]
+      [ 5,  5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 12, 13,  5,  5, -1, -1],
+      [ 5,  5, 18, -1, -1, -1, -1, -1,  5,  5, -1, -1, -1, -1, -1, -1, -1, -1],
+      [ 5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  5,  5,  5,  5, -1, -1, -1],
+      [ 5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  5,  5,  5,  5, -1, -1, -1],
+      [ 5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+      [ 5, -1, -1,  5, -1,  5,  5, -1, -1, -1, -1, -1, -1,  5,  5, -1, -1, -1],
+      [-1, -1, -1,  5, -1,  5,  5, -1,  5,  5, -1, 29, -1,  5,  5, -1, -1, -1],
+      [-1, -1, -1,  5, -1,  5,  5, -1,  5,  5, -1, -1, -1,  5,  5, -1, -1, -1],
+      [-1, 28, -1,  5, -1, -1, -1, -1,  5,  5, -1, -1, -1, -1, -1, -1, -1, -1],
+      [-1, -1, -1, -1, -1, -1, -1, -1,  5,  5, -1, -1, -1, -1, -1, -1, -1, -1],
+      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
     ]);
     // var ruledLine = (new RuledLine()).getSprite();
-    var azuki = new Player(game, map, "azuki_walk.png", 0, 64, 0);
-    let submit = document.getElementById("stage1_novel");
-    let flower_shop = false;
-    let park = false;
-    let library = false;
+    let azuki = new Player(game, map, "azuki_walk.png", 128, 128, 2);
+    let submit = document.getElementById("ending_novel");
+    let zunda_flag = false;
+    let supermarket_flag = false;
     azuki.player.addEventListener('enterframe', function () {
-      // 花屋
-      if (this.x == 832 && this.y == 256) flower_shop = true;
-      // 公園
-      if ((this.x == 384 && this.y == 384) || (this.x == 448 && this.y == 384)) {
-        park = true;
-      }
-      // 図書館
-      if ((this.x == 576 && this.y == 576) || (this.x == 640 && this.y == 576)) library = true;
-      if (this.x == 960 && this.y == 576) {
+      // ずんだ堂
+      if (this.x == 64 && this.y == 576) zunda_flag = true;
+      // スーパーマーケット
+      if (this.x == 764 && this.y == 448) supermarket_flag = true;
+      // 病院
+      if ((this.x == 768 && this.y == 64) || (this.x == 832 && this.y == 64))  {
         Cookies.set('status', {
           stage1: true,
-          flower_flg: flower_shop,
-          park_flg: park,
-          library_flg: library
+          stage2: true,
+          stage3: { clear: true, zunda: zunda_flag, supermarket: supermarket_flag }
         }); // データはJSON形式で保存する
         submit.submit();
         game.pause();
@@ -94,6 +89,9 @@ function main() {
     var o3 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1024, 192, 3);
     var o4 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1088, 192, 3);
     var o5 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1024, 256, 3);
+    var o6 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1088, 256, 3);
+    var o7 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1024, 320, 3);
+    var o8 = new MapObject(game, map, azuki.player.moveController, "stage3/signboard_right.png", 1088, 320, 4);
     map.addChild(foregroundMap);
     // map.addChild(ruledLine);
     map.addChild(azuki.getSprite());
@@ -102,6 +100,9 @@ function main() {
     map.addChild(o3.getSprite());
     map.addChild(o4.getSprite());
     map.addChild(o5.getSprite());
+    map.addChild(o6.getSprite());
+    map.addChild(o7.getSprite());
+    map.addChild(o8.getSprite());
     game.rootScene.addChild(map);
 
     var startButton = new StartButton(function () {
@@ -112,9 +113,6 @@ function main() {
       startButton.disable();
     });
     var resetButton = new RsetButton(function () {
-      flower_shop = false;
-      park = false;
-      library = false;
       startButton.reset();
       resetButton.reset(azuki);
     });
