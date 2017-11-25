@@ -5,5 +5,5 @@
 //= require enchant/enchant
 //= require enchant/plugins/mixing.enchant
 //= require enchant/plugins/ui.enchant
-//= require store/js.cookie
+//= require js.cookie
 //= require_tree ./application
