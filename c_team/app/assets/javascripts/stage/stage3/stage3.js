@@ -66,20 +66,23 @@ function main() {
     // var ruledLine = (new RuledLine()).getSprite();
     let azuki = new Player(game, map, "azuki_walk.png", 128, 128, 2);
     let submit = document.getElementById("ending_novel");
-    let zunda_flag = false;
-    let supermarket_flag = false;
+    let zunda_flg = false;
+    let supermarket_flg = false;
     azuki.player.addEventListener('enterframe', function () {
       // ずんだ堂
-      if (this.x == 64 && this.y == 576) zunda_flag = true;
+      if (this.x == 64 && this.y == 576) zunda_flg = true;
       // スーパーマーケット
-      if (this.x == 764 && this.y == 448) supermarket_flag = true;
+      if (this.x == 764 && this.y == 448) supermarket_flg = true;
       // 病院
       if ((this.x == 768 && this.y == 64) || (this.x == 832 && this.y == 64))  {
-        Cookies.set('status', {
-          stage1: true,
-          stage2: true,
-          stage3: { clear: true, zunda: zunda_flag, supermarket: supermarket_flag }
-        });
+        let status = Cookies.getJSON('status');
+        let addStatus = {
+          stage3: true,
+          zunda: zunda_flg,
+          supermarket: supermarket_flg
+        };
+        Object.assign(status, addStatus);
+        Cookies.set('status', status);
         submit.submit();
         game.pause();
       }

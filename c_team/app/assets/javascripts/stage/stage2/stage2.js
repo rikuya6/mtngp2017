@@ -88,11 +88,13 @@ function main() {
       }
       // ゴール(バス停5)
       if (this.x == 256 && this.y == 64) {
-        Cookies.set('status', {
-          stage1: true,
+        let status = Cookies.getJSON('status');
+        let addStatus = {
           stage2: true,
           bus_stop_flg: bus_stop
-        }); // データはJSON形式で保存する
+        };
+        Object.assign(status, addStatus);
+        Cookies.set('status', status);
         submit.submit();
         game.pause();
       }
