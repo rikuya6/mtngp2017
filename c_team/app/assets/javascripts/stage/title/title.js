@@ -159,7 +159,7 @@ function main(){
     });
 
     sprite6.addEventListener('touchstart', function() {
-      // 「つづきからはじめる
+      // 「つづきからはじめる」
       let submit = document.getElementById("intro_novel");
       submit.submit();
       game.pause();

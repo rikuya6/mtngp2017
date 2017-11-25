@@ -35,15 +35,15 @@ function main() {
     ]);
     map.collisionData = [
       [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-      [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2],
-      [2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 0, 2, 2],
-      [2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
-      [2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 0, 2, 0, 2, 2, 2, 3, 3],
+      [2, 0, 0, 0, 0, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2],
+      [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 2, 2],
+      [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
+      [2, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 2, 3, 3],
       [2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
       [2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 3, 3],
-      [2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 0, 0, 2, 2, 0, 3, 3],
-      [2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 2, 0, 3, 3],
-      [2, 0, 2, 0, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 2, 2, 0, 3, 3],
+      [2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 0, 0, 0, 0, 0, 3, 3],
+      [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 3, 3],
+      [2, 0, 0, 0, 2, 0, 0, 2, 2, 2, 2, 0, 0, 0, 2, 2, 0, 3, 3],
       [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 3, 3],
       [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3]
     ];
@@ -51,20 +51,20 @@ function main() {
     var foregroundMap = new Map(spriteSize.x, spriteSize.y);
     foregroundMap.image = game.assets["objects.png"];
     foregroundMap.loadData([
-      [ 5,  5,  5,  5, 23,  5,  5,  5,  5, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-      [ 5,  5,  5,  5, 27, -1, -1, -1, -1, -1,  5,  5, 22,  5,  5, -1, -1, -1],
-      [ 5,  5,  5, -1, -1, -1, -1, -1, -1, -1, -1, -1, 27, -1, -1, -1, -1, -1],
-      [ 5,  5,  5, -1,  5,  5, 19,  5,  5,  5, -1,  5, -1,  5,  5,  5, -1, -1],
-      [ 5,  5, 21, -1, -1, -1, 27, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-      [ 5,  5, 27, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  5,  5, -1, -1, -1],
-      [-1, -1, -1, -1, -1, -1, -1,  5,  5,  5, 20, -1, -1,  5,  5, -1, -1, -1],
-      [-1,  5, -1, -1, -1, -1, -1, -1, -1, -1, 27,  5, -1,  5,  5, -1, -1, -1],
-      [-1,  5, -1,  5,  5,  5,  5,  5,  5,  5, -1, -1, -1, 18,  5, -1, -1, -1],
-      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  5, -1, 27, -1, -1, -1, -1],
-      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+      [-1, -1, -1, -1, 23,  5,  5,  5,  5, -1, -1, -1, -1, -1, -1, -1, 17, 17],
+      [-1, -1, -1, -1, 27, -1, -1, -1, -1, -1,  5, -1, 22, -1, -1, -1, 17, 17],
+      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 27, -1, -1, -1, 17, 17],
+      [-1, -1, -1, -1,  5,  5, 19,  5,  5,  5, -1, -1, -1, -1, -1,  5, 17, 17],
+      [ 5,  5, 21, -1, -1, -1, 27, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17],
+      [ 5,  5, 27, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  5,  5, -1, 17, 17],
+      [-1, -1, -1, -1, -1, -1, -1,  5,  5,  5, 20, -1, -1, -1, -1, -1, 17, 17],
+      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 27,  5, -1, -1, -1, -1, 17, 17],
+      [-1, -1, -1,  5, -1, -1,  5,  5,  5,  5, -1, -1, -1, 18,  5, -1, 17, 17],
+      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  5, -1, 27, -1, -1, 17, 17],
+      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17]
     ]);
     // var ruledLine = (new RuledLine()).getSprite();
-    let bus = new Player(game, map, "stage2/bus.png", 832, 576, 2);
+    let bus = new Player(game, map, "stage2/bus.png", 832, 576, 1);
     let submit = document.getElementById("stage3_novel");
     let bus_stop = [false, false, false, false];
     bus.player.addEventListener('enterframe', function () {
@@ -88,35 +88,33 @@ function main() {
       }
       // ゴール(バス停5)
       if (this.x == 256 && this.y == 64) {
-        Cookies.set('status', {
-          stage1: true,
-          stage2: true,
-          bus_stop_flg: bus_stop
-        }); // データはJSON形式で保存する
-        submit.submit();
-        game.pause();
+        let reset_flg = false;
+        for (let i = 0; i < bus_stop.length; i++) {
+          if (!bus_stop[i]) reset_flg = true;
+        }
+        if (reset_flg) {
+          // 正しくバス停を通れていない
+          restartStage2(game);
+        } else {
+          let status = Cookies.getJSON('status');
+          let addStatus = {
+            stage2: true,
+            bus_stop_flg: bus_stop
+          };
+          Object.assign(status, addStatus);
+          Cookies.set('status', status);
+          submit.submit();
+          game.pause();
+        }
       }
     });
-    var o1 = new MapObject(game, map, bus.player.moveController, "color_cone.png", 1024, 128, 3);
-    var o2 = new MapObject(game, map, bus.player.moveController, "color_cone.png", 1088, 128, 3);
-    var o3 = new MapObject(game, map, bus.player.moveController, "color_cone.png", 1024, 192, 3);
-    var o4 = new MapObject(game, map, bus.player.moveController, "color_cone.png", 1088, 192, 3);
-    var o5 = new MapObject(game, map, bus.player.moveController, "color_cone.png", 1024, 256, 3);
-    var o6 = new MapObject(game, map, bus.player.moveController, "color_cone.png", 1088, 256, 3);
-    var o7 = new MapObject(game, map, bus.player.moveController, "color_cone.png", 1024, 320, 3);
-    var o8 = new MapObject(game, map, bus.player.moveController, "color_cone.png", 1088, 320, 3);
     map.addChild(foregroundMap);
     // map.addChild(ruledLine);
     map.addChild(bus.getSprite());
-    map.addChild(o1.getSprite());
-    map.addChild(o2.getSprite());
-    map.addChild(o3.getSprite());
-    map.addChild(o4.getSprite());
-    map.addChild(o5.getSprite());
-    map.addChild(o6.getSprite());
-    map.addChild(o7.getSprite());
-    map.addChild(o8.getSprite());
     game.rootScene.addChild(map);
+
+    for(let i = 0; i < 6; i++)
+      (new MapObject(game, map, bus.player.moveController, "color_cone.png", 3)).appendMap(map);
 
     var startButton = new StartButton(function () {
       bus.player.moveController.setHitTurnLeftOrRight();
@@ -138,22 +136,26 @@ function main() {
   game.start();
 }
 
-function getRuledLineSprite() {
-  // 罫線
-  let square = new Sprite(gameSize.x, gameSize.y);
-  square.x = 0;
-  square.y = 0;
+function restartStage2(game) {
+  let scene = new Scene();
+  let sprite = new Sprite(1112, 200);
+  sprite.x = 20;
+  sprite.y = 420;
+  sprite.backgroundColor = "rgba(0, 191, 255, 0.8)";
+  scene.addChild(sprite);
+  let noveltext = 'すべての バス停 を 順番に 通ろう!';
+  let textLavel = new Label(noveltext);
+  textLavel.moveTo(40, 400 + 40);
+  textLavel.font = "32px 'メイリオ'";
+  textLavel.color = "white";
+  textLavel.width = 1072;
+  scene.addChild(textLavel);
+  // 画面をクリック出来るようにする
+  let sprite2 = new Sprite(1152, 640);
+  scene.addChild(sprite2);
+  game.pushScene(scene);
 
-  let suef = new Surface(gameSize.x, gameSize.y);
-  square.image = suef;
-  let cont = suef.context;
-  cont.beginPath();
-  for (let i = 0; i <= gameSize.x; i += spriteSize.x) {
-    cont.moveTo(i, 0);
-    cont.lineTo(i, gameSize.x);
-    cont.moveTo(0, i);
-    cont.lineTo(gameSize.x, i);
-  }
-  cont.stroke();
-  return square;
+  sprite2.addEventListener('touchstart', function () {
+    location.reload();
+  });
 }

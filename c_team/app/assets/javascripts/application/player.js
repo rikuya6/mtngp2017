@@ -25,6 +25,20 @@ class Player {
       if(this.angle + add >= 0) this.angle = (this.angle + add) % 360;
       else this.angle = (360 + add) % 360;
     };
+    this.player.changeAngleDown = function () {
+      switch (this.angle) {
+        case 0:
+        case 180:
+          this.addAngle(180);
+          break;
+        case 90:
+          this.addAngle(90);
+          break;
+        case 270:
+          this.addAngle(-90);
+          break;
+      }
+    };
     this.player.move = function () {
       switch (this.angle) {
         case 0:
@@ -68,6 +82,7 @@ class Player {
       this.frame = this.direction * 3 + this.walk;
       if (this.isMoving) {
         this.moveBy(this.vx, this.vy);
+        if (this.isDebugMode) console.log(this.x, this.y); // 現在のplayer座標
         if (game.frame % 3 != 0) {
           this.walk++;
           this.walk %= 3;
@@ -97,20 +112,23 @@ class Player {
         }
         this.right = this.left = this.up = this.down = false;
         if (this.vx || this.vy) {
-          let map_x = this.x + (this.vx ? this.vx / Math.abs(this.vx) * spriteSize.x : 0) + spriteSize.x;
-          let map_y = this.y + (this.vy ? this.vy / Math.abs(this.vy) * spriteSize.y : 0) + spriteSize.y;
-          if (0 <= map_x && map_x < map.width && 0 <= map_y && map_y < map.height && !map.hitTest(map_x, map_y)) {
+          // front_map_x, front_map_y は予定移動先(正面)の座標を得る
+          let front_map_x = this.x + (this.vx ? this.vx / Math.abs(this.vx) * spriteSize.x : 0) + spriteSize.x;
+          let front_map_y = this.y + (this.vy ? this.vy / Math.abs(this.vy) * spriteSize.y : 0) + spriteSize.y;
+          if (0 <= front_map_x && front_map_x < map.width && 0 <= front_map_y && front_map_y < map.height && !map.hitTest(front_map_x, front_map_y)) {
             this.isMoving = true;
             this.moving(); // 描画を1フレーム中に行う
           }else{
+            // 障害物や壁にぶつかった場合
             let width = map._image.width;
             let height = map._image.height;
             let tileWidth = map._tileWidth || width;
             let tileHeight = map._tileHeight || height;
-            let array_x = map_x / tileWidth | 0;
-            let array_y = map_y / tileHeight | 0;
-            // 障害物や壁にぶつかった場合
-            let target_map_x = 0, target_map_y = 0, target_array_x = 0, target_array_y = 0;
+            let left_map_x = 0, left_map_y = 0, left_array_x = 0, left_array_y = 0;
+            let right_map_x = 0, right_map_y = 0, right_array_x = 0, right_array_y = 0;
+            let front_array_x = (front_map_x / tileWidth) <= 0 ? 0 : front_map_x / tileWidth;
+            let front_array_y = (front_map_y / tileHeight) <= 0 ? 0 : front_map_y / tileHeight;
+            let front_collision_flag = map.collisionData[front_array_y][front_array_x];
             this.moveController.decrementMoveCounter(); // 方向をを変えただけは移動数には含まれない。
             switch (this.moveController.getHitTurnDirection()) {
               case 0: // ぶつかったら、左に向く
@@ -120,60 +138,64 @@ class Player {
                 this.addAngle(90);
                 break;
               case 2: // ぶつかったら、左を向く。移動できない場合は右を向く
+                // キャラクタから見て左側のマス上の座標を得る(left_map_x, left_map_y)
                 if (this.ty == -this.moveSpeed) {        // angle 0 の場合
-                  target_map_x = map_x - spriteSize.x;
-                  target_map_y = map_y + spriteSize.y;
+                  left_map_x = front_map_x - spriteSize.x;
+                  left_map_y = front_map_y + spriteSize.y;
                 } else if (this.tx == this.moveSpeed) {  // angle 90 の場合
-                  target_map_x = map_x - spriteSize.x;
-                  target_map_y = map_y - spriteSize.y;
+                  left_map_x = front_map_x - spriteSize.x;
+                  left_map_y = front_map_y - spriteSize.y;
                 } else if (this.ty == this.moveSpeed) { // angle 180 の場合
-                  target_map_x = map_x + spriteSize.x;
-                  target_map_y = map_y - spriteSize.y;
+                  left_map_x = front_map_x + spriteSize.x;
+                  left_map_y = front_map_y - spriteSize.y;
                 } else if (this.tx == -this.moveSpeed) { // angle 270 の場合
-                  target_map_x = map_x + spriteSize.x;
-                  target_map_y = map_y + spriteSize.y;
+                  left_map_x = front_map_x + spriteSize.x;
+                  left_map_y = front_map_y + spriteSize.y;
                 }
-                target_array_x = (target_map_x / tileWidth) <= 0 ? 0 : target_map_x / tileWidth;
-                target_array_y = (target_map_y / tileHeight) <= 0 ? 0 : target_map_y / tileHeight;
-                if (0 <= target_array_x && target_array_x < map.width / spriteSize.x && 0 <= target_array_y && target_array_y < map.height) {
-                  // console.log("t", target_array_x, target_array_y);
-                  // console.log("map_co[t_a_y]", map.collisionData[target_array_y]);
-                  // if (this.tx == -this.moveSpeed) debugger;
-                  if (map.collisionData[target_array_y][target_array_x] == 0) {
+                // left_array_X, left_array_yはキャラクタからみて、左のマスのindexを指し示す
+                left_array_x = (left_map_x / tileWidth) <= 0 ? 0 : left_map_x / tileWidth;
+                left_array_y = (left_map_y / tileHeight) <= 0 ? 0 : left_map_y / tileHeight;
+                let left_collision_flag = map.collisionData[left_array_y][left_array_x];
+                if (0 <= left_array_x && left_array_x < map.width / spriteSize.x && 0 <= left_array_y && left_array_y < map.height) {
+                  if (front_collision_flag == 4) {
+                    // 4 は下を向く
+                    this.changeAngleDown();
+                  } else if (left_collision_flag == 0) {
                     this.addAngle(-90); // 左に曲がれるなら、左に曲がる
                   } else {
                     this.addAngle(90);  // 左に曲がれないなら、右に曲がる
                   }
                 }
-                break;
+                break; // case2のbreak;
               case 3: // ぶつかったら、右を向く。移動できない場合は左を向く
+                // キャラクタから見て右側のマス上の座標を得る(right_map_x, right_map_y)
                 if (this.ty == -this.moveSpeed) {        // angle 0 の場合
-                  target_map_x = map_x + spriteSize.x;
-                  target_map_y = map_y + spriteSize.y;
+                  right_map_x = front_map_x + spriteSize.x;
+                  right_map_y = front_map_y + spriteSize.y;
                 } else if (this.tx == this.moveSpeed) {  // angle 90 の場合
-                  target_map_x = map_x - spriteSize.x;
-                  target_map_y = map_y + spriteSize.y;
+                  right_map_x = front_map_x - spriteSize.x;
+                  right_map_y = front_map_y + spriteSize.y;
                 } else if (this.ty == this.moveSpeed) { // angle 180 の場合
-                  target_map_x = map_x - spriteSize.x;
-                  target_map_y = map_y - spriteSize.y;
+                  right_map_x = front_map_x - spriteSize.x;
+                  right_map_y = front_map_y - spriteSize.y;
                 } else if (this.tx == -this.moveSpeed) { // angle 270 の場合
-                  target_map_x = map_x + spriteSize.x;
-                  target_map_y = map_y - spriteSize.y;
+                  right_map_x = front_map_x + spriteSize.x;
+                  right_map_y = front_map_y - spriteSize.y;
                 }
-                target_array_x = (target_map_x / tileWidth) <= 0 ? 0 : target_map_x / tileWidth;
-                target_array_y = (target_map_y / tileHeight) <= 0 ? 0 : target_map_y / tileHeight;
-                if (0 <= target_array_x && target_array_x < map.width / spriteSize.x && 0 <= target_array_y && target_array_y < map.height) {
-                  // console.log("t", target_array_x, target_array_y);
-                  // console.log("map_co[t_a_y]", map.collisionData[target_array_y]);
-                  // if (this.tx == -this.moveSpeed) debugger;
-                  if (map.collisionData[target_array_y][target_array_x] == 0) {
+                right_array_x = (right_map_x / tileWidth) <= 0 ? 0 : right_map_x / tileWidth;
+                right_array_y = (right_map_y / tileHeight) <= 0 ? 0 : right_map_y / tileHeight;
+                let right_collision_flag = map.collisionData[right_array_y][right_array_x];
+                if (0 <= right_array_x && right_array_x < map.width / spriteSize.x && 0 <= right_array_y && right_array_y < map.height) {
+                  if (front_collision_flag == 4) {
+                    // 4 は下を向く
+                    this.changeAngleDown();
+                  } else if (right_collision_flag == 0) {
                     this.addAngle(90); // 右に曲がれるなら、右に曲がる
                   } else {
                     this.addAngle(-90);  // 右に曲がれないなら、左に曲がる
                   }
                 }
-                break;
-              default:
+                break; // case3のbreak;
             }
           }
         }
@@ -182,7 +204,7 @@ class Player {
     this.player.addEventListener('enterframe', function () {
       this.moving();
     });
-    this.debugSpeedMode(game, this.player); // デバック用関数
+    this.debugMode(game, this.player); // デバック用関数
   }
 
   getSprite() {
@@ -209,46 +231,20 @@ class Player {
     this.player.vx = this.player.vy = this.ty = this.tx = 0;
   }
 
-  debugSpeedMode(game, player) {
-    game.debugUp = 0;
-    game.debugDown = 0;
-    game.debugLeft = 0;
-    game.debugRight = 0;
-    game.debugA = 0;
-    game.debugB = 0;
-    game.debugS = false;
-    game.keybind('A'.charCodeAt(0), 'A');
-    game.keybind('B'.charCodeAt(0), 'B');
+  debugMode(game, player) {
+    game._debugS = false;
+    game._default_moevSpeed = player.moveSpeed;
     game.keybind('S'.charCodeAt(0), 'S');
-    game.addEventListener('Abuttondown', function() {
-      game.debugA++;
-    });
-    game.addEventListener('Bbuttondown', function() {
-      game.debugB++;
-    });
-    game.addEventListener('upbuttondown', function() {
-      game.debugUp++;
-    });
-    game.addEventListener('downbuttondown', function() {
-      game.debugDown++;
-    });
-    game.addEventListener('rightbuttondown', function() {
-      game.debugRight++;
-    });
-    game.addEventListener('leftbuttondown', function() {
-      game.debugLeft++;
-    });
-    game.addEventListener('leftbuttondown', function() {
-      game.debugLeft++;
-    });
     game.addEventListener('Sbuttondown', function() {
-      game.debugS = true;
+      game._debugS = !game._debugS;
     });
     game.addEventListener('enterframe', function() {
-      if ((game.debugUp >= 2 && game.debugDown >= 2 && game.debugLeft >= 2 && game.debugRight >= 2 && game.debugA >= 1 && game.debugB >= 1) || game.debugS) {
+      if (game._debugS) {
         player.isDebugMode = true;
         player.moveSpeed = 16;
-        if (player.isMoving) console.log(player.x, player.y); // 現在のplayer座標
+      } else {
+        player.isDebugMode = false;
+        player.moveSpeed = game._default_moevSpeed;
       }
     });
   }

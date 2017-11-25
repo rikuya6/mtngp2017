@@ -20,12 +20,6 @@ class ApplicationController < ActionController::Base
   # プライベートメソッド
   private
 
-  def debug(object)
-    Rails.logger.debug '*' * 50
-    Rails.logger.debug object
-    Rails.logger.debug '*' * 50
-  end
-
   def rescue_400(exception)
     render 'errors/bad_request', status: 400, layout: 'error', formats: [:html]
   end
@@ -42,19 +36,8 @@ class ApplicationController < ActionController::Base
     render 'errors/internal_server_error', status: 500, layout: 'error', formats: [:html]
   end
 
-  def current_user
-    @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
-  end
-  helper_method :current_user
-
   def redirect_back_or(default)
     redirect_to(session[:back_url] || default)
     session.delete(:back_url)
   end
-
-  def save_location
-    session[:back_url] = request.url if request.get?
-    session[:back_url] = products_path if params[:action] == 'check_product'
-  end
-
 end
