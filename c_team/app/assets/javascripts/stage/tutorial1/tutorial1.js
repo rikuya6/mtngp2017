@@ -70,7 +70,7 @@ function main() {
       if (this.x == 448 && this.y == 576) {
         Cookies.set('tutorial_status', {
           tutorial1: true
-        }); // データはJSON形式で保存する
+        });
         submit.submit();
         game.pause();
       }

@@ -84,7 +84,7 @@ function main() {
           flower_flg: flower_shop,
           park_flg: park,
           library_flg: library
-        }); // データはJSON形式で保存する
+        });
         submit.submit();
         game.pause();
       }

@@ -71,7 +71,7 @@ function main() {
         Cookies.set('tutorial_status', {
           tutorial1: true,
           tutorial2: true
-        }); // データはJSON形式で保存する
+        });
         submit.submit();
         game.pause();
       }

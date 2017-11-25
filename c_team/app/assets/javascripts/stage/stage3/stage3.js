@@ -79,7 +79,7 @@ function main() {
           stage1: true,
           stage2: true,
           stage3: { clear: true, zunda: zunda_flag, supermarket: supermarket_flag }
-        }); // データはJSON形式で保存する
+        });
         submit.submit();
         game.pause();
       }
