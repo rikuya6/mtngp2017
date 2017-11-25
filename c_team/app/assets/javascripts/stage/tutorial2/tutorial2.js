@@ -65,7 +65,7 @@ function main() {
     ]);
     var ruledLine = (new RuledLine()).getSprite();
     var azuki = new Player(game, map, "azuki_walk.png", 0, 0, 2);
-    let submit = document.getElementById("tutorial2");
+    let submit = document.getElementById("tutorial3_novel");
     azuki.player.addEventListener('enterframe', function() {
       if (this.x == 448 && this.y == 576) {
         Cookies.set('tutorial_status', {
@@ -80,9 +80,8 @@ function main() {
     map.addChild(ruledLine);
     map.addChild(azuki.getSprite());
     game.rootScene.addChild(map);
+    (new MapObject(game, map, azuki.player.moveController, "color_cone.png", 3)).appendMap(map);
 
-    var o1 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1024, 128, 3);
-    map.addChild(o1.getSprite());
     var startButton = new StartButton(function() {
       azuki.player.moveController.setHitTurnRightOrLeft();
       azuki.player.moveController.moveStraight();
@@ -100,24 +99,4 @@ function main() {
     game.rootScene.addChild(resetButton.getButtonObject());
   };
   game.start();
-}
-
-function getRuledLineSprite() {
-  // 罫線
-  let square = new Sprite(gameSize.x, gameSize.y);
-  square.x = 0;
-  square.y = 0;
-
-  let suef = new Surface(gameSize.x, gameSize.y);
-  square.image = suef;
-  let cont = suef.context;
-  cont.beginPath();
-  for (let i = 0; i <= gameSize.x; i += spriteSize.x) {
-    cont.moveTo(i, 0);
-    cont.lineTo(i, gameSize.x);
-    cont.moveTo(0, i);
-    cont.lineTo(gameSize.x, i);
-  }
-  cont.stroke();
-  return square;
 }

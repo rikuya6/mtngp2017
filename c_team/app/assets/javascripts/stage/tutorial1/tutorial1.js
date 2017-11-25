@@ -65,7 +65,7 @@ function main() {
     ]);
     var ruledLine = (new RuledLine()).getSprite();
     var azuki = new Player(game, map, "azuki_walk.png", 448, 0, 0);
-    let submit = document.getElementById("tutorial1");
+    let submit = document.getElementById("tutorial2_novel");
     azuki.player.addEventListener('enterframe', function() {
       if (this.x == 448 && this.y == 576) {
         Cookies.set('tutorial_status', {

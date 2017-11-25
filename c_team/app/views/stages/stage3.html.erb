@@ -1,14 +1,13 @@
-<% @page_title = 'チュートリアル2' %>
+<% @page_title = 'ステージ3' %>
 
 <% content_for :stage_header do %>
-  <p id="story">チュートリアル2</p>
+  <p id="story">ステージ3</p>
   <p id="mis">ミッション：主人公をゴールに届けよう!!</p>
 <% end %>
 
 <div id="motion">
   <div id="puzz">
     <h3>〜動き方〜</h3>
-    <%= image_tag('tutorial2_and_3_motion.png', id: 'motion-pic') %>
   </div>
   <div id="help">
     <h3>〜ヘルプ〜</h3>
@@ -17,6 +16,6 @@
 </div>
 
 <div id="enchant-stage">
-  <%= javascript_include_tag 'stage/tutorial2/tutorial2' %>
+  <%= javascript_include_tag 'stage/stage3/stage3' %>
 </div>
-<%= form_tag tutorial3_novel_path, id: :tutorial3_novel, method: :get %>
+<%= form_tag ending_novel_path, id: :ending_novel, method: :get %>

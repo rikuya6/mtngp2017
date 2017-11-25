@@ -222,7 +222,7 @@ function main(){
       }
 
       if(noveltext.length == 0){
-        let submit = document.getElementById("tutorial2_novel");
+        let submit = document.getElementById("tutorial2");
         submit.submit();
         game.pause();
       }

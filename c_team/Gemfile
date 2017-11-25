@@ -19,9 +19,10 @@ gem 'puma'
 # gem 'mini_magick'
 gem 'enumerize'
 gem 'faker'
-gem 'nested_form'
+# gem 'nested_form'
 #gem 'mysql2'
 gem 'babel-transpiler'
+gem 'js_cookie_rails'
 
 group :test do
   gem 'factory_girl_rails'
