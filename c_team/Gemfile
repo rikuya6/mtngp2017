@@ -19,7 +19,7 @@ gem 'puma'
 # gem 'mini_magick'
 gem 'enumerize'
 gem 'faker'
-gem 'nested_form'
+# gem 'nested_form'
 #gem 'mysql2'
 gem 'babel-transpiler'
 

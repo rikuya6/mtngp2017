@@ -138,7 +138,6 @@ GEM
       ruby-progressbar
     multi_json (1.12.2)
     nenv (0.3.0)
-    nested_form (0.3.2)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
     notiffany (0.1.1)
@@ -270,7 +269,6 @@ DEPENDENCIES
   kaminari
   mini_backtrace
   minitest-reporters
-  nested_form
   pg
   pry-byebug
   pry-doc
