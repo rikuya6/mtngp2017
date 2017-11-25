@@ -33,8 +33,9 @@ class StagesController < GuestController
   def intro_novel
     cookies['status'] = JSON.generate({ stage1: false }) unless cookies['status']
     status = JSON.parse cookies['status']
-    redirect_to stage1_novel_path if status['stage1'] && !status['stage2']
-    # redirect_to stage2_novel_path if status['stage2']
+    # 下記のstatusがある場合、「つづきからはじめる」を選択したことになる
+    redirect_to stage1_novel_path if status['stage1'] && !status['stage2'] # ステージ1のみクリア
+    redirect_to stage3_novel_path if status['stage1'] && status['stage2'] && !status['stage3'] # ステージ2までクリア
   end
 
   def stage1
@@ -47,15 +48,38 @@ class StagesController < GuestController
     redirect_to title_path
   end
 
-  def stage2
+  def stage2_novel
+    status = JSON.parse cookies['status']
+    redirect_to title_path unless status['stage1']
+  rescue
+    redirect_to title_path
   end
 
-  def stage2_novel
+  def stage2
+    status = JSON.parse cookies['status']
+    redirect_to title_path unless status['stage1']
+  rescue
+    redirect_to title_path
   end
 
   def stage3_novel
+    status = JSON.parse cookies['status']
+    redirect_to title_path unless status['stage1'] && status['stage2']
+  rescue
+    redirect_to title_path
+  end
+
+  def stage3
+    status = JSON.parse cookies['status']
+    redirect_to title_path unless status['stage1'] && status['stage2']
+  rescue
+    redirect_to title_path
   end
 
   def ending_novel
+    status = JSON.parse cookies['status']
+    redirect_to title_path unless status['stage1'] && status['stage2'] && status['stage3']
+  rescue
+    redirect_to title_path
   end
 end
