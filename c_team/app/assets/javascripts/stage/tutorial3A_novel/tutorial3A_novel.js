@@ -17,7 +17,7 @@ function main(){
     game.preload("novel/" + i + ".png");
   }
   for(let i = 101; i <= 103; i++){
-    game.preload("novel/" + i + ".png");
+    game.preload("novel/" + i + ".jpg");
   }
 
   game.onload = function(){
@@ -92,7 +92,7 @@ function main(){
     sprite2.x = 20;
     sprite2.y = 420;
     // spriteオブジェクトの背景色の指定
-    sprite2.backgroundColor = "rgba(100, 100, 255, 0.8)";
+    sprite2.backgroundColor = "rgba(50, 50, 255, 0.8)";
     // Surfaceオブジェクトの作成
     // Spriteの大きさ以上に指定しても範囲外には描画されない
     var surface = new Surface(100, 100);
@@ -141,7 +141,7 @@ function main(){
         scene.removeChild(sprite2);
         scene.removeChild(sprite3);
         if (work > 100) {
-          sprite.image = game.assets['novel/' + work + '.png'];
+          sprite.image = game.assets['novel/' + work + '.jpg'];
           //break;
         }else if (work > 0){
           scene.addChild(cimg[work]);
@@ -203,7 +203,7 @@ function main(){
           scene.removeChild(sprite2);
           scene.removeChild(sprite3);
           if (work > 100) {
-            sprite.image = game.assets['novel/' + work + '.png'];
+            sprite.image = game.assets['novel/' + work + '.jpg'];
             //break;
           }else if (work > 0){
             scene.addChild(cimg[work]);
