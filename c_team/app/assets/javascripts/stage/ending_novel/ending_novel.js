@@ -457,11 +457,11 @@ function main(){
 
       if (status.flower_flg) Array.prototype.push.apply(noveltext, flower);
 
-      if (status.zunda && status.supermarket && !(status.flower_flg)) {
+      if ((status.zunda || status.supermarket) && !(status.flower_flg)) {
         Array.prototype.push.apply(noveltext, nonflower);
         Array.prototype.push.apply(noveltext, grandmom2);
         Array.prototype.push.apply(noveltext, nomal);
-      } else if (status.zunda && status.supermarket) {
+      } else if (status.zunda && status.supermarket && status.flower_flg) {
         Array.prototype.push.apply(noveltext, snack);
         Array.prototype.push.apply(noveltext, apple);
         Array.prototype.push.apply(noveltext, grandmom2);
@@ -472,6 +472,9 @@ function main(){
         Array.prototype.push.apply(noveltext, nomal);
       } else if (status.supermarket && !(status.zunda)) {
         Array.prototype.push.apply(noveltext, apple);
+        Array.prototype.push.apply(noveltext, grandmom2);
+        Array.prototype.push.apply(noveltext, nomal);
+      } else {
         Array.prototype.push.apply(noveltext, grandmom2);
         Array.prototype.push.apply(noveltext, nomal);
       }
