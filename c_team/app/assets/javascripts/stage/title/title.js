@@ -13,12 +13,12 @@ function main(){
   game.fps = 30;
   game.rootScene.backgroundColor = "black";
 
-  game.preload("novel/title.png");
+  game.preload("novel/title.jpg");
 
   game.onload = function(){
     var scene = new Scene();
     var sprite = new Sprite(screen_width, screen_height);
-    sprite.image = game.assets['novel/title.png'];
+    sprite.image = game.assets['novel/title.jpg'];
     scene.addChild(sprite);
     game.pushScene(scene);
 

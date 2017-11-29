@@ -17,7 +17,7 @@ function main(){
     game.preload("novel/" + i + ".png");
   }
   for(let i = 101; i <= 112; i++){
-    game.preload("novel/" + i + ".png");
+    game.preload("novel/" + i + ".jpg");
   }
 
   game.onload = function(){
@@ -367,7 +367,7 @@ function main(){
         scene.removeChild(sprite2);
         scene.removeChild(sprite3);
         if (work > 100) {
-          sprite.image = game.assets['novel/' + work + '.png'];
+          sprite.image = game.assets['novel/' + work + '.jpg'];
           //break;
         }else if (work > 0){
           scene.addChild(cimg[work]);
@@ -429,7 +429,7 @@ function main(){
           scene.removeChild(sprite2);
           scene.removeChild(sprite3);
           if (work > 100) {
-            sprite.image = game.assets['novel/' + work + '.png'];
+            sprite.image = game.assets['novel/' + work + '.jpg'];
             //break;
           }else if (work > 0){
             scene.addChild(cimg[work]);
