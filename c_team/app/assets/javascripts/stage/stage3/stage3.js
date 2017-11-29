@@ -72,7 +72,7 @@ function main() {
       // ずんだ堂
       if (this.x == 64 && this.y == 576) zunda_flg = true;
       // スーパーマーケット
-      if (this.x == 764 && this.y == 448) supermarket_flg = true;
+      if (this.x == 704 && this.y == 448) supermarket_flg = true;
       // 病院
       if ((this.x == 768 && this.y == 64) || (this.x == 832 && this.y == 64))  {
         let status = Cookies.getJSON('status');
