@@ -49,6 +49,10 @@ function main(){
       13,
       104,
       false,
+      -13,
+    ];
+
+    var zundatext = [
       '<br><br>',
       '　・',
       '　・',
@@ -94,6 +98,8 @@ function main(){
       110,
       -1,
       false,
+    ];
+    var supertext = [
       '<br><br>',
       'あずきが　病院に向かって　歩いていると、',
       '大きなスーパーを　見つけました。',
@@ -180,6 +186,8 @@ function main(){
       110,
       -13,
       false,
+    ];
+    var hosptext = [
       'あずき',
       '「ここが　おばあちゃんのいる病院か…',
       '　たしか病室は　207号室だったよね　早く行こうっと！」',
@@ -202,6 +210,9 @@ function main(){
       9,
       109,
       false,
+    ];
+
+    var grandmom = [
       'おばあちゃん',
       '「あら　あずき！　よくここに来れたわね！',
       '　さあ　こっちにおいで」',
@@ -220,16 +231,31 @@ function main(){
       false,
       'おばあちゃん',
       '「あら、一人で来たの？　遠いのによく来れたわねぇ',
-      '　それに　いろいろ持ってきてくれたの？」',
+      '　あら　そっちに持ってるものはなあに？」',
       false,
       '<br><br>',
       'あずきはそう聞かれて　病院に来るまでに用意したものを',
       'おばあちゃんに手渡しました。',
       false,
+    ];
+
+    var flower = [
       'あずき',
-      '「はい！　おばあちゃんが好きかなって思って、＊色の花束にしたの！',
+      '「はい！　おばあちゃんが好きかなって思って、赤色の花束にしたの！',
+    ];
+    var snack = [
       '　あと、苺大福も好きだよね！',
+    ];
+    var apple = [
       '　この果物は　お手伝いしたから　お礼にもらったんだよ！」',
+    ];
+    var nonflower = [
+      'あずき',
+      '「お花は持ってこれなかったけど　おばあちゃんの好きな',
+      '　いちご大福と　果物持ってきたよ！」',
+    ];
+
+    var grandmom2 = [
       -13,
       1,
       false,
@@ -247,6 +273,9 @@ function main(){
       -1,
       9,
       false,
+    ];
+
+    var good = [
       '<br><br>',
       'そうあずきが聞くと　おばあちゃんは嬉しそうに笑って　言いました。',
       false,
@@ -296,19 +325,162 @@ function main(){
       -1,
       -6,
       false,
+    ];
+    var nomal = [
+      '<br><br>',
+      'そうあずきが聞くと　おばあちゃんは少し困ったように',
+      '笑って言いました。',
+      false,
+      'おばあちゃん',
+      '「そうね… すぐにはおうちに帰れないみたい」',
+      false,
+      'おばあちゃん',
+      '「でもね　心配しないで',
+      '　ちゃんと良くなるって　お医者さん言ってたから」',
+      false,
+      'あずき',
+      '「ほんとう…？」',
+      -9,
+      13,
+      false,
+      'おばあちゃん',
+      '「おばあちゃんは　あずきに嘘なんて　言わないわ',
+      '　また今度　あずきが来れる時に　また来てくれると嬉しいわ」',
+      -13,
+      1,
+      false,
+      'あずき',
+      '「もちろん！　すぐにまた来るよ',
+      '　その時は　今日よりいろんなもの持ってくるね！」',
+      -1,
+      5,
+      false,
+      '<br><br>',
+      'あずきは　またおばあちゃんに　会いに行こうと決心しました。',
+      false,
+      'あずき',
+      '「おばあちゃん　また来るね！」',
+      -5,
+      1,
+      false,
+      '<br><br>',
+      '　・',
+      '　・',
+      '　・',
+      '　・',
+      110,
+      -1,
+      -6,
+      false,
+    ];
+    var bad = [
+      '<br><br>',
+      'あずきは　おばあちゃんのいる病室に　向かうことができました。',
+      'ところが　あずきが声をかけても　返事がないようです。',
+      false,
+      'あずき',
+      '「おばあちゃん…？',
+      '　なんで　返事してくれないの…？',
+      false,
+      'おばあちゃん',
+      '「………」',
+      false,
+      'あずき',
+      '「おばあちゃん…',
+      '　なんで何も言ってくれないの…？」',
+      -9,
+      5,
+      false,
+      'あずき',
+      '「あずきが　悪いのかな',
+      '　お母さんが　お花を持って行きなさい　とか　寄り道はダメだよ',
+      '　とか言ってたの　守らなかったから…？」',
+      false,
+      '<br><br>',
+      'あずきは　だんだんと　悲しい気持ちになってきました。',
+      'あずきが話しかけた時は　いつも返事をしてくれるのに',
+      '今日のおばあちゃんは　何も話してくれません。',
+      false,
+      'あずき',
+      '「やだよ…こんなの嫌だ！！」',
+      false,
+      '<br><br>',
+      '　・',
+      '　・',
+      '　・',
+      '　・',
+      -5,
+      110,
+      false,
+      'あずき',
+      '「………あれ…？　今のは何だったの…？',
+      '　なんかすごく　嫌な夢を見ていた気がする……',
+      '　おばあちゃんが　いなくなっちゃうような…？」',
+      9,
+      103,
+      false,
+      '<br><br>',
+      'あずきは　ついさっきの事を思い出そうとしますが',
+      'なかなか思い出すことができません。',
+      false,
+      'あずき',
+      '「何だったんだろう…？',
+      '　でもとにかく　お母さんの言うことは',
+      '　しっかり守らないといけないような気がする…」',
+      false,
+      '<br><br>',
+      'あずきがそうやって考え込んでいた時のことです。',
+      false,
+      'お母さん',
+      '「あずき！　聞いて！',
+      '　おばあちゃんがね　入院することになっちゃったの！」',
+      3,
+      false,
+      'あずき',
+      '「え…？　それって…！」',
+      false,
+    ]
+
+    var end = [
       false,
     ];
 
     // Cookieフラグ管理
-/*    var status = Cookies.getJSON('status');
+    var status = Cookies.getJSON('status');
     console.log(status);
-    if (status.flower_flg && !(status.park_flg) && !(status.library_flg)) noveltext = flower;
-    else {
-      // if (status.flower_flg) noveltext = flower;
-      if (status.park_flg) noveltext = park;
-      if (status.library_flg) noveltext = library;
+
+    if (!(status.library_flg) && (status.zunda || status.supermarket || status.flower_flg)) {
+      if (status.zunda) Array.prototype.push.apply(noveltext, zundatext);
+      if (status.supermarket) Array.prototype.push.apply(noveltext, supertext);
+      Array.prototype.push.apply(noveltext, hosptext);
+      Array.prototype.push.apply(noveltext, grandmom);
+
+      if (status.flower_flg) Array.prototype.push.apply(noveltext, flower);
+
+      if (status.zunda && status.supermarket && !(status.flower_flg)) {
+        Array.prototype.push.apply(noveltext, nonflower);
+        Array.prototype.push.apply(noveltext, grandmom2);
+        Array.prototype.push.apply(noveltext, nomal);
+      } else if (status.zunda && status.supermarket) {
+        Array.prototype.push.apply(noveltext, snack);
+        Array.prototype.push.apply(noveltext, apple);
+        Array.prototype.push.apply(noveltext, grandmom2);
+        Array.prototype.push.apply(noveltext, good);
+      } else if (status.zunda && !(status.supermarket)) {
+        Array.prototype.push.apply(noveltext, snack);
+        Array.prototype.push.apply(noveltext, grandmom2);
+        Array.prototype.push.apply(noveltext, nomal);
+      } else if (status.supermarket && !(status.zunda)) {
+        Array.prototype.push.apply(noveltext, apple);
+        Array.prototype.push.apply(noveltext, grandmom2);
+        Array.prototype.push.apply(noveltext, nomal);
+      }
+    } else {
+      Array.prototype.push.apply(noveltext, hosptext);
+      Array.prototype.push.apply(noveltext, bad);
     }
-*/
+    Array.prototype.push.apply(noveltext, end);
+
 
     /* 以下からテキストボックスの描画 */
 
