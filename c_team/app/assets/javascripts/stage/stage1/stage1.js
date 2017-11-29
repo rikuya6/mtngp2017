@@ -79,6 +79,7 @@ function main() {
       // 図書館
       if ((this.x == 576 && this.y == 576) || (this.x == 640 && this.y == 576)) library = true;
       if (this.x == 960 && this.y == 576) {
+        if (park || library) flower_shop = false; // 公園または、図書館を通っていた場合、花屋のフラグは無効とする。
         Cookies.set('status', {
           stage1: true,
           flower_flg: flower_shop,
