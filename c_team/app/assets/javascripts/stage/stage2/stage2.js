@@ -141,7 +141,7 @@ function restartStage2(game) {
   let sprite = new Sprite(1112, 200);
   sprite.x = 20;
   sprite.y = 420;
-  sprite.backgroundColor = "rgba(0, 191, 255, 0.8)";
+  sprite.backgroundColor = "rgba(50, 50, 255, 0.8)";
   scene.addChild(sprite);
   let noveltext = 'すべての バス停 を 順番に 通ろう!';
   let textLavel = new Label(noveltext);
