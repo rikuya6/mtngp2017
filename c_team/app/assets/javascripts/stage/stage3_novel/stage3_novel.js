@@ -86,7 +86,7 @@ function main(){
     sprite2.x = 20;
     sprite2.y = 420;
     // spriteオブジェクトの背景色の指定
-    sprite2.backgroundColor = "rgba(100, 100, 255, 0.8)";
+    sprite2.backgroundColor = "rgba(50, 50, 255, 0.8)";
     // Surfaceオブジェクトの作成
     // Spriteの大きさ以上に指定しても範囲外には描画されない
     var surface = new Surface(100, 100);
