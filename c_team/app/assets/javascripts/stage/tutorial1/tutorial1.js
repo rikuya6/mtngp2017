@@ -96,12 +96,3 @@ function main() {
   };
   game.start();
 }
-
-// 「ヘルプ」の表示
-function help_button () {
-  // ヘルプの表示
-  let helpTextBefore = document.getElementById("help_text_before");
-  helpTextBefore.parentNode.removeChild(helpTextBefore);
-  let helpTextAfter = document.getElementById("help_text_after");
-  helpTextAfter.style.display = null;
-}
