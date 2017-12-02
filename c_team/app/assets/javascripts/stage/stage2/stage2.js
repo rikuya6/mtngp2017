@@ -113,7 +113,7 @@ function main() {
     map.addChild(bus.getSprite());
     game.rootScene.addChild(map);
 
-    for(let i = 0; i < 6; i++)
+    for(let i = 0; i < 8; i++)
       (new MapObject(game, map, bus.player.moveController, "color_cone.png", 3)).appendMap(map);
 
     var startButton = new StartButton(function () {

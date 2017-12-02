@@ -241,7 +241,7 @@ class Player {
     game.addEventListener('enterframe', function() {
       if (game._debugS) {
         player.isDebugMode = true;
-        player.moveSpeed = 16;
+        player.moveSpeed = 64;
       } else {
         player.isDebugMode = false;
         player.moveSpeed = game._default_moevSpeed;
