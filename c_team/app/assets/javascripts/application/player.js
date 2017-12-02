@@ -1,6 +1,7 @@
 class Player extends MapObject {
   constructor(game, map, asset, sx, sy, direction) {
     super(game, map, asset, 1);
+    this.sprite.self = this;
     this.sprite.startX = sx;
     this.sprite.startY = sy;
     this.sprite.startDirection = direction;
@@ -20,6 +21,7 @@ class Player extends MapObject {
     this.sprite.down = false;
     this.sprite.isDebugMode = false; // default: false
     this.sprite.moveController = new MoveController();
+    this.changeCollisionData(this.sprite.x, this.sprite.y, this.sprite.defaultHitStatus);
     this.sprite.addAngle = function (add) {
       if(this.angle + add >= 0) this.angle = (this.angle + add) % 360;
       else this.angle = (360 + add) % 360;
@@ -58,6 +60,7 @@ class Player extends MapObject {
     };
     this.sprite.moving = function () {
       if (this.moveController.hasNextOrder() && !this.isMoving) {
+        this.self.changeCollisionData(this.startX, this.startY, 0);
         switch (this.moveController.nextOrder()) {
           case 0: // まっすぐ
             this.move();
@@ -208,6 +211,7 @@ class Player extends MapObject {
 
   reset() {
     this.sprite.moveController.reset();
+    this.changeCollisionData(this.sprite.startX, this.sprite.startY, 1);
     this.resetPosition();
   }
 
@@ -237,6 +241,7 @@ class Player extends MapObject {
       if (game._debugS) {
         sprite.isDebugMode = true;
         sprite.moveSpeed = 64;
+        sprite.self.changeCollisionData(sprite.startX, sprite.startY, 0);
       } else {
         sprite.isDebugMode = false;
         sprite.moveSpeed = game._default_moevSpeed;

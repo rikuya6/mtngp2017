@@ -7,6 +7,7 @@ class MapObstacle extends MapObject {
     this.beforeX = 0;
     this.beforeY = 0;
     this.initCoordinate(map);
+    this.changeCollisionData(this.sprite.x, this.sprite.y, this.sprite.defaultHitStatus);
     this.sprite.addEventListener(enchant.Event.TOUCH_START, function(e) {
       if (moveController.hasNextOrder()) return; // 移動を開始していたら、マップオブジェクトは動かせない
       this.originX = e.x - this.x;

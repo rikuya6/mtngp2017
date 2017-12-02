@@ -1,10 +1,9 @@
 class MapObject {
   constructor(game, map, asset, hitStatus) {
-    this.sprite= new Sprite(spriteSize.x, spriteSize.y);
+    this.sprite = new Sprite(spriteSize.x, spriteSize.y);
     this.sprite.image = game.assets[asset];
     this.sprite.defaultHitStatus = hitStatus;
     this.map = map;
-    this.changeCollisionData(this.sprite.x, this.sprite.y, this.sprite.defaultHitStatus);
   }
 
   getSprite() {
