@@ -1,4 +1,4 @@
-class MapObject {
+class MapObstacle {
   constructor(game, map, moveController, asset, hitStatus) {
     this.sprite= new Sprite(spriteSize.x, spriteSize.y);
     this.originX = 0;
