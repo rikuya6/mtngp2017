@@ -16,8 +16,8 @@ function main(){
   for(let i = 1; i <= 13; i++){
     game.preload("novel/" + i + ".png");
   }
-  for(let i = 101; i <= 103; i++){
-    game.preload("novel/" + i + ".png");
+  for(let i = 101; i <= 115; i++){
+    game.preload("novel/" + i + ".jpg");
   }
 
   game.onload = function(){
@@ -42,28 +42,28 @@ function main(){
     var noveltext = [
       102,
       '絵本描き',
-      '「やぁ。君が僕の本を手伝ってくれるって子かい？',
+      '「やぁ。君が僕の本を　手伝ってくれるって子かい？',
       2,
       false,
       '絵本描き',
-      '「僕はここでずっと絵本を書いているんだ。」',
+      '「僕はここで　ずっと絵本を　書いているんだ。」',
       false,
       '絵本描き',
-      '「これから君には僕の絵本の登場人物を動かすのを手伝ってもらうよ。」',
+      '「これから君には　僕の絵本の登場人物を　動かすのを',
+      '　手伝ってもらうよ。」',
       false,
       '絵本描き',
-      '「まずは聞くよりやってみよう。この子を動かして前に進めて',
-      '　やってくれ。」',
+      '「まずは聞くよりやってみよう。この子を動かしてみてみよう。」',
       false,
-      101,
+      113,
       '<br><br>',
-      '<stage1  実行しよう>',
-      '<br>数マス前のゴールに進むコードが設定されているので、実行を押して',
-      '<br>ゴールに行かせてあげよう。',
+      '<チュートリアル1  実行しよう>',
+      '『前に進む』という　コードが設定されているよ。',
+      '実行を押して　ゴールに行かせてあげよう。',
       false,
-      '？',
-      '「登場人物は左のブロックの通りに動きます。',
-      '　実行ボタンを押すとその通りに動くよ。動かしてみよう。」',
+      '絵本描き',
+      '「登場人物は左の『〜動き方〜』の通りに動くよ。',
+      '　実行ボタンを押して、動かしてみよう。」',
       false,
       false
     ];
@@ -76,7 +76,7 @@ function main(){
     sprite2.x = 20;
     sprite2.y = 420;
     // spriteオブジェクトの背景色の指定
-    sprite2.backgroundColor = "rgba(100, 100, 255, 0.8)";
+    sprite2.backgroundColor = "rgba(50, 50, 255, 0.8)";
     // Surfaceオブジェクトの作成
     // Spriteの大きさ以上に指定しても範囲外には描画されない
     var surface = new Surface(100, 100);
@@ -125,7 +125,7 @@ function main(){
         scene.removeChild(sprite2);
         scene.removeChild(sprite3);
         if (work > 100) {
-          sprite.image = game.assets['novel/' + work + '.png'];
+          sprite.image = game.assets['novel/' + work + '.jpg'];
           //break;
         }else if (work > 0){
           scene.addChild(cimg[work]);
@@ -187,7 +187,7 @@ function main(){
           scene.removeChild(sprite2);
           scene.removeChild(sprite3);
           if (work > 100) {
-            sprite.image = game.assets['novel/' + work + '.png'];
+            sprite.image = game.assets['novel/' + work + '.jpg'];
             //break;
           }else if (work > 0){
             scene.addChild(cimg[work]);

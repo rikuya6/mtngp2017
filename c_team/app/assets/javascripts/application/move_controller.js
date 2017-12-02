@@ -55,11 +55,11 @@ class MoveController {
 
   hasNextOrder() {
     if (!this.finish) return false;
-    if (this.order_execute_counter > 200) {
-      // @TODO 暫定実装, 無限ループの抑止
-      this.stop();
-      return false;
-    }
+    // if (this.order_execute_counter > 200) {
+    //   // @TODO 暫定実装, 無限ループの抑止
+    //   this.stop();
+    //   return false;
+    // }
     if (this.orders.length > 0) return true;
     this.restoreOriginOrder(); // ゴールに辿り着くまで、命令を再実行する
     return true;

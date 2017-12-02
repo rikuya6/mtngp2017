@@ -1,0 +1,13 @@
+<% @page_title = 'あずきのおみまい' %>
+
+<% content_for :stage_header do %>
+  <p id="story">あずきのおみまい</p>
+<% end %>
+
+<div id="motion">
+</div>
+
+<div id="enchant-stage">
+  <%= javascript_include_tag 'stage/stage3_novel/stage3_novel' %>
+</div>
+<%= form_tag stage3_path, id: :stage3, method: :get %>

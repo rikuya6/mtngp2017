@@ -8,6 +8,9 @@ var screen_height = 640; //ゲーム画面の高さ
 var tex_width = screen_width - 80; //ノベルテキストエリアの幅
 var tex_heigth = 200; //ノベルテキストエリアの高さ
 
+var col = []; // 文字色
+col[1001] = "orange";
+
 function main(){
   var game = new Core(screen_width, screen_height);
   game.fps = 30;
@@ -17,7 +20,7 @@ function main(){
     game.preload("novel/" + i + ".png");
   }
   for(let i = 101; i <= 103; i++){
-    game.preload("novel/" + i + ".png");
+    game.preload("novel/" + i + ".jpg");
   }
 
   game.onload = function(){
@@ -82,7 +85,7 @@ function main(){
       false,
       'お母さん',
       '「病院へは　バスを使って　行くのよ',
-      '　家のそばの　バス停から　「総合病院行き」　に乗って',
+      '　家のそばの　バス停から　『総合病院行き』　に乗って',
       '　５個目で　バス停を降りるの」',
       false,
       'お母さん',
@@ -103,7 +106,9 @@ function main(){
       false,
       'お母さん',
       '「もしあずきに　余裕があるなら　行く途中にある',
-      '　お花屋さんで　お花を買っていったら　おばあちゃん喜ぶと思うよ」',
+      1001,
+      '　お花屋さんで　お花を買っていったら',
+      '　おばあちゃん喜ぶと思うよ」',
       false,
       'あずき',
       '「うん　わかった」',
@@ -141,7 +146,7 @@ function main(){
     sprite2.x = 20;
     sprite2.y = 420;
     // spriteオブジェクトの背景色の指定
-    sprite2.backgroundColor = "rgba(100, 100, 255, 0.8)";
+    sprite2.backgroundColor = "rgba(50, 50, 255, 0.8)";
     // Surfaceオブジェクトの作成
     // Spriteの大きさ以上に指定しても範囲外には描画されない
     var surface = new Surface(100, 100);
@@ -190,7 +195,7 @@ function main(){
         scene.removeChild(sprite2);
         scene.removeChild(sprite3);
         if (work > 100) {
-          sprite.image = game.assets['novel/' + work + '.png'];
+          sprite.image = game.assets['novel/' + work + '.jpg'];
           //break;
         }else if (work > 0){
           scene.addChild(cimg[work]);
@@ -251,8 +256,10 @@ function main(){
           // キャラクターがボックスの前に来ちゃうので一度取り除く
           scene.removeChild(sprite2);
           scene.removeChild(sprite3);
-          if (work > 100) {
-            sprite.image = game.assets['novel/' + work + '.png'];
+          if (work > 1000) { // 1000以上は文字色管理
+            label.push(work);
+          }else if (work > 100) {
+            sprite.image = game.assets['novel/' + work + '.jpg'];
             //break;
           }else if (work > 0){
             scene.addChild(cimg[work]);
@@ -274,17 +281,27 @@ function main(){
       }
 
       // 表示の処理
+      var index = 0; // インデックス管理に必須
       for(let i = 0; i < label.length; i++){
-        label[i].moveTo( 40, 400 + i * 40);
+        if (label[i] > 1000){ //文字色変更信号
+          // console.log(col[label[i]]);
+          continue;
+        }else if (label[i - 1] > 1000){
+          label[i].color = col[label[i-1]];
+        }else{
+          label[i].color = "white"; // 通常色
+        }
+        label[i].moveTo( 40, 400 + index * 40);
         label[i].font = "32px 'メイリオ'";
-        label[i].color = "white";
+        // label[i].color = "white";
         // if(i % 2 == 0)   label[i].color = "red";
         scene.addChild(label[i]);
         game.pushScene(scene);
+        index++;
       }
 
       if(noveltext.length == 0){
-        let submit = document.getElementById("intro_novel");
+        let submit = document.getElementById("stage1");
         submit.submit();
         game.pause();
       }

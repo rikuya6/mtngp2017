@@ -1,0 +1,26 @@
+<% @page_title = 'ステージ3' %>
+
+<% content_for :stage_header do %>
+  <p id="story">ステージ3</p>
+  <p id="mis">ミッション：主人公をゴールに届けよう!!</p>
+<% end %>
+
+<div id="motion">
+  <div id="puzz">
+    <h3>〜動き方〜</h3>
+    <%= image_tag('motion03.png', id: 'motion-pic') %>
+  </div>
+  <div id="help">
+    <h3>〜ヘルプ〜</h3>
+    <div class="balloon" onclick="help_button()">
+      <p id="help_text_before">ここをクリックしたら「ヘルプ」が表示されるよ！</p>
+      <p id="help_text_after" style="display: none"></p>
+    </div>
+    <%= image_tag('favicon.png', id: 'help-pic') %>
+  </div>
+</div>
+
+<div id="enchant-stage">
+  <%= javascript_include_tag 'stage/stage3/stage3' %>
+</div>
+<%= form_tag ending_novel_path, id: :ending_novel, method: :get %>

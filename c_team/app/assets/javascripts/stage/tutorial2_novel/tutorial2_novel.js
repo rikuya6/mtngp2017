@@ -16,8 +16,8 @@ function main(){
   for(let i = 1; i <= 13; i++){
     game.preload("novel/" + i + ".png");
   }
-  for(let i = 101; i <= 103; i++){
-    game.preload("novel/" + i + ".png");
+  for(let i = 101; i <= 115; i++){
+    game.preload("novel/" + i + ".jpg");
   }
 
   game.onload = function(){
@@ -42,28 +42,28 @@ function main(){
     var noveltext = [
       102,
       '絵本描き',
-      '「よく出来たね。これが登場人物を動かすってことなんだ。」',
+      '「よく出来たね。',
+      '　これが登場人物を　動かすってことなんだ。」',
       2,
       false,
       '絵本描き',
-      '「じゃあ次の子も挑戦してみようか。」',
+      '「じゃあ次の子も　挑戦してみようか。」',
       false,
       '絵本描き',
-      '「次の子は迷子になっているから、ゴールに着くように助けて',
-      '　あげよう。」',
+      '「次の子は迷子になっているから　ゴールに着くように',
+      '　助けてあげよう。」',
       false,
-      '？',
-      '「このブロックはもし○○なら○○するっていうブロックなんだ。」',
+      '絵本描き',
+      '「次は、『もし前へ進めないなら　右へ曲がる』っていう',
+      '　コードが　設定されているよ。」',
+      114,
       false,
-      '？',
-      '「前に進めなかった右に曲がる、とか左に曲がるって登場人物の',
-      '　気持ちが書かれているよ。」',
+      '絵本描き',
+      '「赤いパイロンを置いて　ゴール着くようにしよう。」',
       false,
-      '？',
-      '「岩を置いてゴール着くようにしよう。」',
-      false,
-      'stage2',
-      'もし前に進めないなら左に曲がる子をゴールに届けよう',
+      '<br><br>',
+      '<チュートリアル2>',
+      'もし　前に進めないなら右に曲がる子を　ゴールに届けよう',
       false,
       false
     ];
@@ -76,7 +76,7 @@ function main(){
     sprite2.x = 20;
     sprite2.y = 420;
     // spriteオブジェクトの背景色の指定
-    sprite2.backgroundColor = "rgba(100, 100, 255, 0.8)";
+    sprite2.backgroundColor = "rgba(50, 50, 255, 0.8)";
     // Surfaceオブジェクトの作成
     // Spriteの大きさ以上に指定しても範囲外には描画されない
     var surface = new Surface(100, 100);
@@ -125,7 +125,7 @@ function main(){
         scene.removeChild(sprite2);
         scene.removeChild(sprite3);
         if (work > 100) {
-          sprite.image = game.assets['novel/' + work + '.png'];
+          sprite.image = game.assets['novel/' + work + '.jpg'];
           //break;
         }else if (work > 0){
           scene.addChild(cimg[work]);
@@ -187,7 +187,7 @@ function main(){
           scene.removeChild(sprite2);
           scene.removeChild(sprite3);
           if (work > 100) {
-            sprite.image = game.assets['novel/' + work + '.png'];
+            sprite.image = game.assets['novel/' + work + '.jpg'];
             //break;
           }else if (work > 0){
             scene.addChild(cimg[work]);
@@ -219,7 +219,7 @@ function main(){
       }
 
       if(noveltext.length == 0){
-        let submit = document.getElementById("tutorial2_novel");
+        let submit = document.getElementById("tutorial2");
         submit.submit();
         game.pause();
       }

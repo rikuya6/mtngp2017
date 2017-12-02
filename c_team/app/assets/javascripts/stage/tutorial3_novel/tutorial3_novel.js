@@ -16,8 +16,8 @@ function main(){
   for(let i = 1; i <= 13; i++){
     game.preload("novel/" + i + ".png");
   }
-  for(let i = 101; i <= 103; i++){
-    game.preload("novel/" + i + ".png");
+  for(let i = 101; i <= 115; i++){
+    game.preload("novel/" + i + ".jpg");
   }
 
   game.onload = function(){
@@ -42,18 +42,24 @@ function main(){
     var noveltext = [
       102,
       '絵本描き',
-      '「よく出来たね。登場人物には、もし○○出来るなら○○しよう',
-      '　って決めている子がいるから、その子の気持ちを変えずに',
-      '　道を変えてあげるのが大事だよ。」',
+      '「よく出来たね。',
+      '　登場人物には、『もし○○ならxxしよう』',
+      '　って決めている　子がいるよ。」',
       2,
       false,
       '絵本描き',
-      '「さて、最後の練習だ。この子はくりかえしの迷路に入って',
-      '　しまったみたいだ。ゴールにたどり着くにはどうすれば',
-      '　良いかな？」',
+      '「その子の　気持ちを変えずに',
+      '　道を　変えてあげるのが　大事だよ。」',
       false,
-      'stage3',
-      '「前に進めないと左に曲がる」をずっと繰り返している子がいるよ',
+      '絵本描き',
+      '「さて、最後の練習だ。この子は　くりかえしの迷路に入って',
+      '　しまったみたいだ。ゴールに　たどり着くには　どうすれば',
+      '　良いかな？」',
+      115,
+      false,
+      '<br><br>',
+      '<チュートリアル3>',
+      '『前に進めないと右に曲がる』をずっと　くりかえしている子がいるよ',
       'ゴールに着くにはどうすれば良いかな？',
       false,
       false
@@ -67,7 +73,7 @@ function main(){
     sprite2.x = 20;
     sprite2.y = 420;
     // spriteオブジェクトの背景色の指定
-    sprite2.backgroundColor = "rgba(100, 100, 255, 0.8)";
+    sprite2.backgroundColor = "rgba(50, 50, 255, 0.8)";
     // Surfaceオブジェクトの作成
     // Spriteの大きさ以上に指定しても範囲外には描画されない
     var surface = new Surface(100, 100);
@@ -116,7 +122,7 @@ function main(){
         scene.removeChild(sprite2);
         scene.removeChild(sprite3);
         if (work > 100) {
-          sprite.image = game.assets['novel/' + work + '.png'];
+          sprite.image = game.assets['novel/' + work + '.jpg'];
           //break;
         }else if (work > 0){
           scene.addChild(cimg[work]);
@@ -178,7 +184,7 @@ function main(){
           scene.removeChild(sprite2);
           scene.removeChild(sprite3);
           if (work > 100) {
-            sprite.image = game.assets['novel/' + work + '.png'];
+            sprite.image = game.assets['novel/' + work + '.jpg'];
             //break;
           }else if (work > 0){
             scene.addChild(cimg[work]);
@@ -210,7 +216,7 @@ function main(){
       }
 
       if(noveltext.length == 0){
-        let submit = document.getElementById("tutorial3_novel");
+        let submit = document.getElementById("tutorial3");
         submit.submit();
         game.pause();
       }

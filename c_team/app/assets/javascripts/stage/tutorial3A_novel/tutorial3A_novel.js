@@ -17,7 +17,7 @@ function main(){
     game.preload("novel/" + i + ".png");
   }
   for(let i = 101; i <= 103; i++){
-    game.preload("novel/" + i + ".png");
+    game.preload("novel/" + i + ".jpg");
   }
 
   game.onload = function(){
@@ -46,35 +46,38 @@ function main(){
     var Ttext = [
       102,
       '絵本描き',
-      '「完璧だね。登場人物の○○したいって気持ちや、迷っている',
-      '　理由を考えて、これからも手伝いをしてくれると嬉しいな。」',
+      '「かんぺきだね。',
+      '　登場人物の『○○したい』って気持ちや　迷っている',
+      '　理由を考えて　これからも手伝いを　してくれると嬉しいな。」',
       2,
       false,
       '絵本描き',
-      '「次からは君の手伝いで絵本の中身が変わっちゃうから、',
-      '　登場人物が幸せになるように頑張ってくれ。」',
+      '「次からは　君の手伝いで　絵本の中身が変わっちゃうから、',
+      '　登場人物が　幸せになるように　頑張ってくれ。」',
       false,
       '絵本描き',
       '「じゃあ、また会おう。',
-      '　次は君が手伝いとして立派になった時だ。」',
+      '　次は君が手伝いとして　りっぱになったときだ。」',
       false,
       false
     ];
     var Ftext = [
+      102,
       '絵本描き',
-      '「うん、よく出来たね。でも、もう少し登場人物が簡単に',
-      '　ゴールに着くことが出来たかな」',
+      '「うん、よく出来たね。でも　もう少し登場人物が簡単に',
+      '　ゴールに着くことが　できたかな」',
+      2,
       false,
       '絵本描き',
-      '「これからもたくさん手伝いをしてもらう。僕の物語が',
-      '　良くなるように頑張って欲しい。」',
+      '「これからも　たくさん手伝いをしてもらう。',
+      '　僕の物語が　良くなるように頑張って欲しい。」',
       false,
       '絵本描き',
-      '「さぁ、これからは君が考えて登場人物を動かすんだ。',
-      '　気持ちを考えることを忘れちゃいけないよ。」',
+      '「さぁ、これからは　君が考えて登場人物を動かすんだ。',
+      '　気持ちを考えることを　忘れちゃいけないよ。」',
       false,
       '絵本描き',
-      '「また会おう。次は立派なお手伝いとしてね。」',
+      '「また会おう。次はりっぱな　お手伝いとしてね。」',
       false,
       false
     ];
@@ -90,7 +93,7 @@ function main(){
     sprite2.x = 20;
     sprite2.y = 420;
     // spriteオブジェクトの背景色の指定
-    sprite2.backgroundColor = "rgba(100, 100, 255, 0.8)";
+    sprite2.backgroundColor = "rgba(50, 50, 255, 0.8)";
     // Surfaceオブジェクトの作成
     // Spriteの大きさ以上に指定しても範囲外には描画されない
     var surface = new Surface(100, 100);
@@ -139,7 +142,7 @@ function main(){
         scene.removeChild(sprite2);
         scene.removeChild(sprite3);
         if (work > 100) {
-          sprite.image = game.assets['novel/' + work + '.png'];
+          sprite.image = game.assets['novel/' + work + '.jpg'];
           //break;
         }else if (work > 0){
           scene.addChild(cimg[work]);
@@ -201,7 +204,7 @@ function main(){
           scene.removeChild(sprite2);
           scene.removeChild(sprite3);
           if (work > 100) {
-            sprite.image = game.assets['novel/' + work + '.png'];
+            sprite.image = game.assets['novel/' + work + '.jpg'];
             //break;
           }else if (work > 0){
             scene.addChild(cimg[work]);
@@ -233,7 +236,7 @@ function main(){
       }
 
       if(noveltext.length == 0){
-        let submit = document.getElementById("tutorial3A_novel");
+        let submit = document.getElementById("title");
         submit.submit();
         game.pause();
       }

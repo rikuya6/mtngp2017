@@ -34,9 +34,9 @@ function main() {
       [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0]
     ]);
     map.collisionData = [
-      [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3],
-      [2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
-      [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 3, 3],
+      [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+      [2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2],
+      [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 2, 2],
       [2, 0, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 0, 3, 3],
       [2, 0, 2, 2, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 3, 3],
       [2, 0, 2, 2, 2, 0, 0, 2, 2, 0, 2, 0, 0, 0, 0, 0, 0, 3, 3],
@@ -51,44 +51,52 @@ function main() {
     var foregroundMap = new Map(spriteSize.x, spriteSize.y);
     foregroundMap.image = game.assets["objects.png"];
     foregroundMap.loadData([
-      [2,   5,  5,  5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  5,  5, -1, -1, -1],
-      [-1,  5,  5,  5, -1,  5,  5,  5,  5,  5,  5,  5, -1,  5,  5, -1, -1, -1],
-      [-1,  5,  5,  5, -1, -1, -1, -1, -1,  5, -1, -1, -1,  6, -1, -1, -1, -1],
-      [-1,  5,  5,  5, -1, -1,  0,  1, -1,  5, -1, -1, -1, -1, -1, -1, -1, -1],
-      [-1,  5,  5,  5, -1, -1,  3,  4, -1,  5, -1, -1, -1, -1, -1, -1, -1, -1],
-      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-      [ 5,  5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  5,  5, -1, -1],
-      [ 5,  5,  5,  5, -1, 14, 14, 14, 14, 12, 13, -1, -1, -1,  5,  5, -1, -1],
-      [ 5,  5,  5,  5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+      [2,   5,  5,  5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17],
+      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  5,  5, -1, 17, 17],
+      [-1,  5,  5,  5, -1,  5,  5,  5,  5,  5,  5,  5, -1,  5,  5, -1, 17, 17],
+      [-1,  5,  5,  5, -1, -1, -1, -1, -1,  5, -1, -1, -1,  6, -1, -1, 17, 17],
+      [-1,  5,  5,  5, -1, -1,  0,  1, -1,  5, -1, -1, -1, -1, -1, -1, 17, 17],
+      [-1,  5,  5,  5, -1, -1,  3,  4, -1,  5, -1, -1, -1, -1, -1, -1, 17, 17],
+      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17],
+      [ 5,  5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  5,  5, 17, 17],
+      [ 5,  5,  5,  5, -1, 14, 14, 14, 14, 15, 16, -1, -1, -1,  5, 18, 17, 17],
+      [ 5,  5,  5,  5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 25, 17, 17],
+      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17]
     ]);
-    var ruledLine = getRuledLineSprite();
+    // var ruledLine = (new RuledLine()).getSprite();
     var azuki = new Player(game, map, "azuki_walk.png", 0, 64, 0);
+    let submit = document.getElementById("stage1_novel");
+    let flower_shop = false;
+    let park = false;
+    let library = false;
     azuki.player.addEventListener('enterframe', function () {
-      let submit = document.getElementById("stage1");
+      // 花屋
+      if (this.x == 832 && this.y == 256) flower_shop = true;
+      // 公園
+      if ((this.x == 384 && this.y == 384) || (this.x == 448 && this.y == 384)) {
+        park = true;
+      }
+      // 図書館
+      if ((this.x == 576 && this.y == 576) || (this.x == 640 && this.y == 576)) library = true;
       if (this.x == 960 && this.y == 576) {
-        Cookies.set('tutorial_status', {
-          tutorial1: true
-        }); // データはJSON形式で保存する
+        if (park || library) flower_shop = false; // 公園または、図書館を通っていた場合、花屋のフラグは無効とする。
+        Cookies.set('status', {
+          stage1: true,
+          flower_flg: flower_shop,
+          park_flg: park,
+          library_flg: library
+        });
         submit.submit();
         game.pause();
       }
     });
-    var o1 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1024, 128, 3);
-    var o2 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1088, 128, 3);
-    var o3 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1024, 192, 3);
-    var o4 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1088, 192, 3);
-    var o5 = new MapObject(game, map, azuki.player.moveController, "color_cone.png", 1024, 256, 3);
     map.addChild(foregroundMap);
     // map.addChild(ruledLine);
     map.addChild(azuki.getSprite());
-    map.addChild(o1.getSprite());
-    map.addChild(o2.getSprite());
-    map.addChild(o3.getSprite());
-    map.addChild(o4.getSprite());
-    map.addChild(o5.getSprite());
     game.rootScene.addChild(map);
+
+    for(let i = 0; i < 5; i++)
+      (new MapObject(game, map, azuki.player.moveController, "color_cone.png", 3)).appendMap(map);
 
     var startButton = new StartButton(function () {
       azuki.player.moveController.setHitTurnLeftOrRight();
@@ -98,6 +106,9 @@ function main() {
       startButton.disable();
     });
     var resetButton = new RsetButton(function () {
+      flower_shop = false;
+      park = false;
+      library = false;
       startButton.reset();
       resetButton.reset(azuki);
     });
@@ -107,24 +118,4 @@ function main() {
     game.rootScene.addChild(resetButton.getButtonObject());
   };
   game.start();
-}
-
-function getRuledLineSprite() {
-  // 罫線
-  let square = new Sprite(gameSize.x, gameSize.y);
-  square.x = 0;
-  square.y = 0;
-
-  let suef = new Surface(gameSize.x, gameSize.y);
-  square.image = suef;
-  let cont = suef.context;
-  cont.beginPath();
-  for (let i = 0; i <= gameSize.x; i += spriteSize.x) {
-    cont.moveTo(i, 0);
-    cont.lineTo(i, gameSize.x);
-    cont.moveTo(0, i);
-    cont.lineTo(gameSize.x, i);
-  }
-  cont.stroke();
-  return square;
 }
