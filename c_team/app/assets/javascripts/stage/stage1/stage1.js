@@ -63,8 +63,8 @@ function main() {
       [ 5,  5,  5,  5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 25, 17, 17],
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17]
     ]);
-    // var ruledLine = (new RuledLine()).getSprite();
-    var azuki = new Player(game, map, "azuki_walk.png", 0, 64, 0);
+    let ruledLine = (new RuledLine()).getSprite();
+    let azuki = new Player(game, map, "azuki_walk.png", 0, 64, 0);
     let submit = document.getElementById("stage1_novel");
     let flower_shop = false;
     let park = false;
@@ -91,7 +91,7 @@ function main() {
       }
     });
     map.addChild(foregroundMap);
-    // map.addChild(ruledLine);
+    map.addChild(ruledLine);
     map.addChild(azuki.getSprite());
     game.rootScene.addChild(map);
 

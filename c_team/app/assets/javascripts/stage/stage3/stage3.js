@@ -63,7 +63,7 @@ function main() {
       [-1, -1, -1, -1, -1, -1, -1, -1,  5,  5, -1, -1, -1, -1, -1, -1, 17, 17],
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17]
     ]);
-    // var ruledLine = (new RuledLine()).getSprite();
+    let ruledLine = (new RuledLine()).getSprite();
     let azuki = new Player(game, map, "azuki_walk.png", 128, 128, 2);
     let submit = document.getElementById("ending_novel");
     let zunda_flg = false;
@@ -89,7 +89,7 @@ function main() {
     });
 
     map.addChild(foregroundMap);
-    // map.addChild(ruledLine);
+    map.addChild(ruledLine);
     map.addChild(azuki.getSprite());
     game.rootScene.addChild(map);
 

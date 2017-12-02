@@ -63,8 +63,8 @@ function main() {
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 14, 17, 17],
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 14, 17, 17]
     ]);
-    var ruledLine = (new RuledLine()).getSprite();
-    var azuki = new Player(game, map, "azuki_walk.png", 0, 0, 0);
+    let ruledLine = (new RuledLine()).getSprite();
+    let azuki = new Player(game, map, "azuki_walk.png", 0, 0, 0);
     let submit = document.getElementById("tutorial3");
     azuki.player.addEventListener('enterframe', function () {
       if (this.x == 960 && this.y == 320) {
