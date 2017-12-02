@@ -67,7 +67,7 @@ function main() {
     let bus = new Player(game, map, "stage2/bus.png", 832, 576, 1);
     let submit = document.getElementById("stage3_novel");
     let bus_stop = [false, false, false, false];
-    bus.player.addEventListener('enterframe', function () {
+    bus.sprite.addEventListener('enterframe', function () {
       // バス停1
       if (this.x == 384 && this.y == 256) {
         for (let i = 1; i < bus_stop.length; i++)
@@ -114,12 +114,12 @@ function main() {
     game.rootScene.addChild(map);
 
     for(let i = 0; i < 8; i++)
-      (new MapObject(game, map, bus.player.moveController, "color_cone.png", 3)).appendMap(map);
+      (new MapObstacle(game, map, bus.sprite.moveController, "color_cone.png", 3)).appendMap(map);
 
     var startButton = new StartButton(function () {
-      bus.player.moveController.setHitTurnLeftOrRight();
-      bus.player.moveController.moveStraight();
-      bus.player.moveController.execute();
+      bus.sprite.moveController.setHitTurnLeftOrRight();
+      bus.sprite.moveController.moveStraight();
+      bus.sprite.moveController.execute();
       resetButton.enable();
       startButton.disable();
     });
