@@ -63,7 +63,7 @@ function main() {
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  5, -1, 27, -1, -1, 17, 17],
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17]
     ]);
-    // var ruledLine = (new RuledLine()).getSprite();
+    let ruledLine = (new RuledLine()).getSprite();
     let bus = new Player(game, map, "stage2/bus.png", 832, 576, 1);
     let submit = document.getElementById("stage3_novel");
     let bus_stop = [false, false, false, false];
@@ -94,7 +94,7 @@ function main() {
         }
         if (reset_flg) {
           // 正しくバス停を通れていない
-          restartStage2(game);
+          restartStage2(game, resetButton);
         } else {
           let status = Cookies.getJSON('status');
           let addStatus = {
@@ -109,7 +109,7 @@ function main() {
       }
     });
     map.addChild(foregroundMap);
-    // map.addChild(ruledLine);
+    map.addChild(ruledLine);
     map.addChild(bus.getSprite());
     game.rootScene.addChild(map);
 
@@ -136,7 +136,7 @@ function main() {
   game.start();
 }
 
-function restartStage2(game) {
+function restartStage2(game, resetButton) {
   let scene = new Scene();
   let sprite = new Sprite(1112, 200);
   sprite.x = 20;
@@ -156,6 +156,8 @@ function restartStage2(game) {
   game.pushScene(scene);
 
   sprite2.addEventListener('touchstart', function () {
-    location.reload();
+    resetButton.enable();
+    resetButton.button.dispatchEvent(new Event('touchstart'));
+    game.removeScene(scene);
   });
 }
