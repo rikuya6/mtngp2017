@@ -74,7 +74,8 @@ h3 {
 }
 
 #motion-pic {
-    width: inherit;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 #help-pic {
@@ -91,13 +92,13 @@ h3 {
 
 #puzz {
     width: 100%;
-    height: 50vh;
+    height: 60%;
     border-bottom: 1px solid #aaaaaa;
 }
 
 #help {
     width: 100%;
-    height: 40vh;
+    height: 40%;
 }
 
 .balloon {

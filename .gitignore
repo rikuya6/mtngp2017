@@ -1,4 +1,5 @@
 .DS_Store
 .sass-cache/
-# ドラゴン用
+
 web_new/less/
+/.vscode

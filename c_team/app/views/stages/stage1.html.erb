@@ -2,7 +2,7 @@
 
 <% content_for :stage_header do %>
   <p id="story">ステージ1</p>
-  <p id="mis">ミッション：主人公をゴールに届けよう!!</p>
+  <p id="mis">ミッション：お花屋さんを通って、お花を買おう。そして、小豆ちゃんをゴールに届けよう!!</p>
 <% end %>
 
 <div id="motion">
@@ -12,7 +12,11 @@
   </div>
   <div id="help">
     <h3>〜ヘルプ〜</h3>
-    <div class="balloon">ここはこうするとええのよ</div>
+    <div class="balloon" onclick="help_button()">
+      <p id="help_text_before">ここをクリックしたら「ヘルプ」が表示されるよ！</p>
+      <p id="help_text_after" style="display: none">家から出てすぐ右に行くルートも考えてみよう！</p>
+    </div>
+    <%= image_tag('favicon.png', id: 'help-pic') %>
   </div>
 </div>
 
