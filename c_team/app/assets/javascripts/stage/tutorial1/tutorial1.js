@@ -66,7 +66,7 @@ function main() {
     var ruledLine = (new RuledLine()).getSprite();
     var azuki = new Player(game, map, "azuki_walk.png", 448, 0, 0);
     let submit = document.getElementById("tutorial2_novel");
-    azuki.player.addEventListener('enterframe', function() {
+    azuki.sprite.addEventListener('enterframe', function() {
       if (this.x == 448 && this.y == 576) {
         Cookies.set('tutorial_status', {
           tutorial1: true
@@ -80,8 +80,8 @@ function main() {
     map.addChild(azuki.getSprite());
     game.rootScene.addChild(map);
     var startButton = new StartButton(function() {
-      azuki.player.moveController.moveStraight();
-      azuki.player.moveController.execute();
+      azuki.sprite.moveController.moveStraight();
+      azuki.sprite.moveController.execute();
       resetButton.enable();
       startButton.disable();
     });

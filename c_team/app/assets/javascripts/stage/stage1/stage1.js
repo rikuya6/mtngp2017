@@ -69,7 +69,7 @@ function main() {
     let flower_shop = false;
     let park = false;
     let library = false;
-    azuki.player.addEventListener('enterframe', function () {
+    azuki.sprite.addEventListener('enterframe', function () {
       // 花屋
       if (this.x == 832 && this.y == 256) flower_shop = true;
       // 公園
@@ -96,12 +96,12 @@ function main() {
     game.rootScene.addChild(map);
 
     for(let i = 0; i < 6; i++)
-      (new MapObject(game, map, azuki.player.moveController, "color_cone.png", 3)).appendMap(map);
+      (new MapObstacle(game, map, azuki.sprite.moveController, "color_cone.png", 3)).appendMap(map);
 
     var startButton = new StartButton(function () {
-      azuki.player.moveController.setHitTurnLeftOrRight();
-      azuki.player.moveController.moveStraight();
-      azuki.player.moveController.execute();
+      azuki.sprite.moveController.setHitTurnLeftOrRight();
+      azuki.sprite.moveController.moveStraight();
+      azuki.sprite.moveController.execute();
       resetButton.enable();
       startButton.disable();
     });

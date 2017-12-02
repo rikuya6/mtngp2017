@@ -1,24 +1,12 @@
-class MapObstacle {
+class MapObstacle extends MapObject {
   constructor(game, map, moveController, asset, hitStatus) {
-    this.sprite= new Sprite(spriteSize.x, spriteSize.y);
+    super(game, map, asset, hitStatus);
+    this.sprite.self = this;
     this.originX = 0;
     this.originY = 0;
     this.beforeX = 0;
     this.beforeY = 0;
-    this.sprite.image = game.assets[asset];
-    this.sprite.defaultHitStatus = hitStatus;
     this.initCoordinate(map);
-    this.sprite.changeCollisionData = function(x, y, state) {
-      var width = map._image.width;
-      var height = map._image.height;
-      var tileWidth = map._tileWidth || width;
-      var tileHeight = map._tileHeight || height;
-      x = x / tileWidth | 0;
-      y = y / tileHeight | 0;
-      if (map.collisionData[y + 1][x + 1] == 3) state = 3; // マップの外のため変更対象外
-      map.collisionData[y + 1][x + 1] = state;
-    };
-    this.sprite.changeCollisionData(this.sprite.x, this.sprite.y, this.sprite.defaultHitStatus);
     this.sprite.addEventListener(enchant.Event.TOUCH_START, function(e) {
       if (moveController.hasNextOrder()) return; // 移動を開始していたら、マップオブジェクトは動かせない
       this.originX = e.x - this.x;
@@ -62,7 +50,7 @@ class MapObstacle {
       console.log(nx, ny);
       this.x = nx;
       this.y = ny;
-      this.changeCollisionData(this.beforeX, this.beforeY, 0); // 一つ前のマスを当たり判定なしにする
+      this.self.changeCollisionData(this.beforeX, this.beforeY, 0); // 一つ前のマスを当たり判定なしにする
       // 現在のマスを当たり判定ありにする
       // 通常1。defaultHitStatusが4の場合は特殊。
       let changeStatus;
@@ -74,12 +62,8 @@ class MapObstacle {
           changeStatus = 1;
           break;
       }
-      this.changeCollisionData(this.x, this.y, changeStatus);
+      this.self.changeCollisionData(this.x, this.y, changeStatus);
     });
-  }
-
-  getSprite() {
-    return this.sprite;
   }
 
   initCoordinate(map) {

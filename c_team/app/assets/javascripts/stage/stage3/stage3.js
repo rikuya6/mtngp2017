@@ -68,7 +68,7 @@ function main() {
     let submit = document.getElementById("ending_novel");
     let zunda_flg = false;
     let supermarket_flg = false;
-    azuki.player.addEventListener('enterframe', function () {
+    azuki.sprite.addEventListener('enterframe', function () {
       // ずんだ堂
       if (this.x == 64 && this.y == 576) zunda_flg = true;
       // スーパーマーケット
@@ -94,13 +94,13 @@ function main() {
     game.rootScene.addChild(map);
 
     for(let i = 0; i < 7; i++)
-      (new MapObject(game, map, azuki.player.moveController, "color_cone.png", 3)).appendMap(map);
-    (new MapObject(game, map, azuki.player.moveController, "stage3/signboard_right.png", 4)).appendMap(map);
+      (new MapObstacle(game, map, azuki.sprite.moveController, "color_cone.png", 3)).appendMap(map);
+    (new MapObstacle(game, map, azuki.sprite.moveController, "stage3/signboard_right.png", 4)).appendMap(map);
 
     var startButton = new StartButton(function () {
-      azuki.player.moveController.setHitTurnLeftOrRight();
-      azuki.player.moveController.moveStraight();
-      azuki.player.moveController.execute();
+      azuki.sprite.moveController.setHitTurnLeftOrRight();
+      azuki.sprite.moveController.moveStraight();
+      azuki.sprite.moveController.execute();
       resetButton.enable();
       startButton.disable();
     });
