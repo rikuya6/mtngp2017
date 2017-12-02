@@ -7,7 +7,6 @@ class Player extends MapObject {
     this.sprite.startDirection = direction;
     this.sprite.x = sx;
     this.sprite.y = sy;
-    // @TODO キャラクの上に障害物を置けないようにする。移動したときに判定を変える処理がない map.collisionData[Math.floor(sy / 32) + 1][Math.floor(sx / 32) + 1] = 1;
     this.sprite.frame = 1;
     this.sprite.isMoving = false;
     this.sprite.direction = direction;
