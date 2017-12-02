@@ -68,21 +68,17 @@ function main() {
     let submit = document.getElementById("tutorial3");
     azuki.player.addEventListener('enterframe', function () {
       if (this.x == 960 && this.y == 320) {
+        let novel3_flg = false;
         if (azuki.player.moveController.getMoveCount() <= 20) {
-          Cookies.set('tutorial_status', {
-            tutorial1: true,
-            tutorial2: true,
-            tutorial3: true,
-            novel3: true
-          });
-        } else {
-          Cookies.set('tutorial_status', {
-            tutorial1: true,
-            tutorial2: true,
-            tutorial3: true,
-            novel3: false
-          });
+          novel3_flg = true;
         }
+        let status = Cookies.getJSON('tutorial_status');
+        let addStatus = {
+          tutorial3: true,
+          novel3: novel3_flg
+        };
+        Object.assign(status, addStatus);
+        Cookies.set('tutorial_status', status);
         submit.submit();
         game.pause();
       }
