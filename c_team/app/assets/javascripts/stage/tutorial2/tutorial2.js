@@ -68,10 +68,12 @@ function main() {
     let submit = document.getElementById("tutorial3_novel");
     azuki.player.addEventListener('enterframe', function() {
       if (this.x == 448 && this.y == 576) {
-        Cookies.set('tutorial_status', {
-          tutorial1: true,
+        let status = Cookies.getJSON('tutorial_status');
+        let addStatus = {
           tutorial2: true
-        });
+        };
+        Object.assign(status, addStatus);
+        Cookies.set('tutorial_status', status);
         submit.submit();
         game.pause();
       }
