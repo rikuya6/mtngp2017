@@ -14,7 +14,7 @@ class Player {
     this.d = [180, 270, 90, 0];
     this.player.angle = this.d[direction];
     this.player.walk = 1;
-    this.player.moveSpeed = 4; // default: 4
+    this.player.moveSpeed = 8; // default: 8
     this.player.up = false;
     this.player.right = false;
     this.player.left = false;
