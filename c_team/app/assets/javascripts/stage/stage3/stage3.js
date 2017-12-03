@@ -93,7 +93,7 @@ function main() {
     map.addChild(azuki.getSprite());
     game.rootScene.addChild(map);
 
-    for(let i = 0; i < 7; i++)
+    for(let i = 0; i < 8; i++)
       (new MapObstacle(game, map, azuki.sprite.moveController, "color_cone.png", 3)).appendMap(map);
     (new MapObstacle(game, map, azuki.sprite.moveController, "stage3/signboard_right.png", 4)).appendMap(map);
 
