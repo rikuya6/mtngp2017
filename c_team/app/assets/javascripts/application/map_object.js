@@ -10,14 +10,43 @@ class MapObject {
     return this.sprite;
   }
 
-  changeCollisionData(x, y, state) {
+  getMapArrayX(mapX) {
     let width = this.map._image.width;
-    let height = this.map._image.height;
     let tileWidth = this.map._tileWidth || width;
+    return mapX / tileWidth | 0;
+  }
+
+  getMapArrayY(mapY) {
+    let height = this.map._image.height;
     let tileHeight = this.map._tileHeight || height;
-    x = x / tileWidth | 0;
-    y = y / tileHeight | 0;
-    if (this.map.collisionData[y + 1][x + 1] == 3) state = 3; // マップの外のため変更対象外
-    this.map.collisionData[y + 1][x + 1] = state;
+    return mapY / tileHeight | 0;
+  }
+
+  getCollisionData(mapArrayX, mapArrayY) {
+    return this.map.collisionData[mapArrayY][mapArrayX];
+  }
+
+  setCollisionData(mapArrayX, mapArrayY, state) {
+    this.map.collisionData[mapArrayY][mapArrayX] = state;
+  }
+
+  hasMapObjectTray(pos) {
+    return !!((this.map.mapObjectTray >> pos) & 1);
+  }
+
+  setMapObjectTray(pos) {
+    this.map.mapObjectTray |= (1 << pos);
+  }
+
+  resetMapObjectTray(pos) {
+    this.map.mapObjectTray &= ~(1 << pos);
+  }
+
+  changeCollisionData(mapX, mapY, nstate) {
+    let x = this.getMapArrayX(mapX);
+    let y = this.getMapArrayY(mapY);
+    let currentState =  this.getCollisionData(x + 1, y + 1);
+    if (currentState == 3) nstate = 3; // マップの外のため変更対象外
+    this.setCollisionData(x + 1, y + 1, nstate);
   }
 }
