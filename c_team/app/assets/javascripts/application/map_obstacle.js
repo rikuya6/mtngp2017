@@ -6,6 +6,8 @@ class MapObstacle extends MapObject {
     this.originY = 0;
     this.beforeX = 0;
     this.beforeY = 0;
+    this.mapX = [1024, 1088, 1024, 1088, 1024, 1088, 1024, 1088, 1024, 1088, 1024, 1088, 1024, 1088, 1024, 1088];
+    this.mapY = [128,  128,  192,  192,  256,  256,  320,  320,  384,  384,  448,  448,  512,  512,  576, 576];
     this.initCoordinate(map);
     this.changeCollisionData(this.sprite.x, this.sprite.y, this.sprite.defaultHitStatus);
     this.sprite.addEventListener(enchant.Event.TOUCH_START, function(e) {
@@ -37,21 +39,36 @@ class MapObstacle extends MapObject {
       }
       if (nx < 0 || nx > map.width || ny < 0 || ny > map.height) {
         alert("範囲外の指定です。"); // @TODO　仕様未決定
-        this.x = this.beforeX;
-        this.y = this.beforeY;
+        this.self._moveCancel();
         return;
       }
       var collision_num =  map.collisionData[Math.floor(ny / spriteSize.y) + 1][Math.floor(nx / spriteSize.x) + 1];
       if (collision_num == 1 || collision_num == 2 || collision_num == 4) {
         // 障害物の上に別の障害物は置けない
-        this.x = this.beforeX;
-        this.y = this.beforeY;
+        this.self._moveCancel();
         return;
+      } else if (collision_num == 3) { // UI上の障害物
+        let targetIndex = this.self.getMapObjectTrayIndex(nx, ny);
+        if (this.self.hasMapObjectTray(targetIndex)) {
+          // すでに障害物が置かれている
+          this.self._moveCancel();
+          return;
+        } else {
+          this.self.setMapObjectTray(targetIndex);
+        }
       }
       console.log(nx, ny);
       this.x = nx;
       this.y = ny;
-      this.self.changeCollisionData(this.beforeX, this.beforeY, 0); // 一つ前のマスを当たり判定なしにする
+      let mapArrayX = this.self.getMapArrayX(this.beforeX);
+      let mapArrayY = this.self.getMapArrayY(this.beforeY);
+      let collisionStatus = this.self.getCollisionData(mapArrayX + 1, mapArrayY + 1);
+      if (collisionStatus == 3) {
+        // 移動前のMapObjectTrayのtargetIndex目をfalseにする
+        let targetIndex = this.self.getMapObjectTrayIndex(this.beforeX, this.beforeY);
+        this.self.resetMapObjectTray(targetIndex);
+      }
+      this.self.changeCollisionData(this.beforeX, this.beforeY, 0); // 移動前のマスを当たり判定なしにする
       // 現在のマスを当たり判定ありにする
       // 通常1。defaultHitStatusが4の場合は特殊。
       let changeStatus;
@@ -70,15 +87,14 @@ class MapObstacle extends MapObject {
   initCoordinate(map) {
     // UI上のmap_objectの座標を決定
     if (typeof map.mapObjectTray === 'undefined') map.mapObjectTray = 0;
-    let x = [1024, 1088, 1024, 1088, 1024, 1088, 1024, 1088, 1024, 1088, 1024, 1088, 1024, 1088, 1024, 1088];
-    let y = [128,  128,  192,  192,  256,  256,  320,  320,  384,  384,  448,  448,  512,  512,  576, 576];
-    let max_mask = 32768; // 16のフラグ
+    let max_obstacle = 16;
+    let max_mask = (1 << (max_obstacle - 1)); // 32768 (16のフラグ)
     if (map.mapObjectTray & max_mask) throw new Error('これ以上障害物をマップ上に追加できません');
-    for (let i = 1, p = 0; i <= max_mask; i = i * 2, p++) {
-      if (!(map.mapObjectTray & i)) {
-        map.mapObjectTray |= i;
-        this.sprite.x = x[p];
-        this.sprite.y = y[p];
+    for (let i = 0; i < max_obstacle; i++) {
+      if (!this.hasMapObjectTray(i)) {
+        this.setMapObjectTray(i);
+        this.sprite.x = this.mapX[i];
+        this.sprite.y = this.mapY[i];
         break;
       }
     }
@@ -86,5 +102,23 @@ class MapObstacle extends MapObject {
 
   appendMap(map) {
     map.addChild(this.getSprite());
+  }
+
+  getMapObjectTrayIndex(mapX, mapY) {
+    let xIndex = this.mapX.findIndex(this._searchCoordinateIndex, mapX);
+    let yIndex = this.mapY.findIndex(this._searchCoordinateIndex, mapY);
+    return xIndex + yIndex;
+  }
+
+  _searchCoordinateIndex(element, index, array) {
+    if (array[index] == this)
+      return true;
+    else
+      return false;
+  }
+
+  _moveCancel() {
+    this.sprite.x = this.sprite.beforeX;
+    this.sprite.y = this.sprite.beforeY;
   }
 }
