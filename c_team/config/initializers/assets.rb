@@ -25,4 +25,5 @@ Rails.application.config.assets.precompile << %w( stage/title/title.js
                                                   stage/stage3_novel/stage3_novel.js
                                                   stage/stage3/stage3.js
                                                   stage/ending_novel/ending_novel.js
+                                                  stage/staff/staff.js
                                                 )
