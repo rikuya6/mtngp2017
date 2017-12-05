@@ -37,11 +37,8 @@ function main(){
       cimg[i] = new Sprite(595, 842);
       cimg[i].image = game.assets["novel/"+i+".png"];
       console.log(cimg[i].image);
-      if(i == 1 || i == 5 || i == 9 || i == 13) {
-        cimg[i].moveTo(100, -100);
-      }else{
-        cimg[i].moveTo(400, -100);
-      }
+      cimg[i].moveTo(40, 650);
+      if (i == 4) cimg[i].moveTo(600, 50);
     }
     console.log(cimg);
 
@@ -53,11 +50,26 @@ function main(){
       '<br>',
       '企画・制作',
       '　C班一同',
+      'あずき',
+      '<br><br>',
+      'えほんかき',
+      '<br><br>',
+      'おかあさん',
+      '<br><br>',
+      'きなこ',
       1001,
       'おしまい',
       false,
       false,
     ];
+    var image = [
+      2,
+      3,
+      4,
+    ];
+
+    var x = [40, 40, 40, 40, 600];
+    var y = [-800, -800, -800, -800, 650];
 
     // 文字表示するための処理
     // labelという配列にどんどん追加していく
@@ -97,16 +109,20 @@ function main(){
         continue;
       }else if (label[i - 1] > 1000){
         label[i].color = col[label[i-1]];
-        label[i].font = "72px 'メイリオ'";
+        label[i].font = "56px 'メイリオ'";
       }else{
         label[i].color = "white"; // 通常色
         label[i].font = "32px 'メイリオ'";
       }
-      label[i].moveTo( 40, 650 + index * 40);
+      label[i].moveTo( 500, 640 + index * 40);
       // label[i].color = "white";
       // if(i % 2 == 0)   label[i].color = "red";
       scene.addChild(label[i]);
-      label[i].tl.fadeIn(70 * i).moveTo(40, -500, 450); // スクロール
+      label[i].tl.fadeIn(40 * i).moveTo(500, -1000, 850); // スクロール
+      if (i < 5){
+        scene.addChild(cimg[i]);
+        cimg[i].tl.fadeIn(100 * i).moveTo(x[i], y[i], 250); // スクロール
+      }
       index++;
     }
 
