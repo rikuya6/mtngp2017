@@ -17,7 +17,9 @@
       <%= render 'shared/stage_header' %>
       <!-- 本体 -->
       <%= render 'shared/flash' %>
-      <%= yield %>
+      <div class="inner-stagewrapper">
+        <%= yield %>
+      </div>
       <!-- フッタ -->
       <%# render 'shared/footer' %>
     </div>
