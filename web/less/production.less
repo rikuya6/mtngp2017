@@ -1,0 +1,258 @@
+// out: ../css/main.css, sourcemap: true, compress: true
+@charset "UTF-8";
+// @import url(http://fonts.googleapis.com/earlyaccess/notosansjp.css);
+// フォント設定
+// @font-main : "Noto Sans JP";
+// フォントサイズ
+@font-size-h1 : 45px;
+@font-size-h2 : 30px;
+@font-size-h3 : 25px;
+@font-size-p : 20px;
+// 色彩設定
+@header-orange : #f90;
+@navcolor : #94E3F7;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+    font-size: @font-size-h1;
+}
+
+h2 {
+    display: block;
+    overflow: hidden;
+    width: 350px;
+    padding: 5px;
+    color: #fff;
+    background-color: @header-orange;
+    font-size: @font-size-h2;
+}
+
+h3 {
+    width: auto;
+    text-align: center;
+}
+
+p {
+    font-size: @font-size-p;
+}
+
+img {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+}
+
+.triangle {
+    width: 100px;
+    margin: 50px auto 50px;
+    cursor: pointer;
+}
+
+.diamond {
+    width: 350px;
+    margin: 50px auto 50px;
+}
+
+.logo {
+    width: 200px;
+    margin: 25px auto 25px; // border: 3px solid darken(@navcolor, 5%);
+    box-shadow: 0 0 2px 5px darken(@navcolor, 4%);
+}
+
+nav {
+    position: fixed;
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 55px;
+    text-align: center;
+    background-color: #FFF;
+    font-size: 25px;
+    & a {
+        cursor: pointer;
+        color: @navcolor;
+        border: 2px solid @navcolor;
+        border-top-width: 0px;
+        border-right-width: 0px;
+        background-color: #FFF;
+        transition: all .2s linear;
+        padding: 10px;
+        margin: 0px;
+        font-weight: bold;
+        display: block;
+        height: 100%;
+        &:hover {
+            background-color: @navcolor;
+            color: #FFF;
+        }
+    }
+
+    a:first-child {
+      flex: 1 1 20%;
+    }
+    & span {
+        flex: 1 1 70%;
+        margin: 0px;
+        padding: 0px;
+        & ul {
+            display: flex;
+            height: 55px;
+            & li {
+                list-style: none;
+                flex: 1 1 25%;
+                &:first-child {
+                    display: none;
+                }
+                &:last-child a {
+                    border-right-width: 2px;
+                }
+            }
+        }
+    }
+}
+
+header {
+    margin-bottom: 20px;
+    padding: 160px 0px 5px 0px;
+    text-align: center;
+    background-color: @navcolor;
+    & h1,
+    h3 {
+        color: #8f8f8f;
+    }
+}
+
+.flex-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 85%;
+    margin: 40px auto;
+}
+
+.left-flex {
+    justify-content: left;
+}
+
+.content {
+    width: 80%;
+    margin: 40px auto;
+    padding: 15px;
+    text-align: center;
+    border: 5px solid @header-orange;
+
+    & a {
+      font-size: larger;
+      font-weight: bolder;
+      text-decoration: none;
+      color: darken(@navcolor, 15%);
+      border-bottom: 4px solid #FFF;
+
+      transition: all .25s linear;
+
+      &:hover {
+        // color: darken(@navcolor, 40%);
+        border-bottom-color: @navcolor;
+      }
+    }
+}
+
+.flex-box .content {
+    flex: 1 1 400px;
+    margin: 20px 10px;
+}
+
+.personal-data {
+    flex: 0 0 200px;
+    margin: 10px 40px;
+    padding: 15px;
+    text-align: center;
+    border: 5px solid @header-orange;
+}
+
+.ali-L {
+  text-align: left;
+}
+
+.twitter {
+    width: 500px;
+}
+
+footer {
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .diamond {
+        width: 250px;
+    }
+    .personal-data {
+        flex: 0 0 150px;
+        margin: 10px 5px;
+        & img {
+            display: none;
+        }
+    }
+    .twitter {
+        width: 85%;
+    }
+    h2 {
+        box-sizing: border-box;
+        width: 100%;
+    }
+    nav {
+        background-color: #FFF;
+        overflow: visible;
+        flex-flow: column;
+        & a {
+            border-right-width: 2px;
+        }
+        .title::after {
+            position: absolute;
+            right: 10px;
+            bottom: 11px;
+            content: "\f0c9";
+            color: @navcolor;
+            font-family: "FontAwesome";
+            font-size: 30px;
+            transition: all .2s linear;
+        }
+        & .title:hover::after {
+            color: darken(@navcolor, 20%);
+        }
+        & span {
+            flex-direction: column;
+            width: 100%;
+            display: none;
+            & ul {
+                flex-flow: column;
+                & li {
+                    & a {
+                        text-align: left;
+                    }
+                    &:first-child {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+    .flex-box,
+    .content,
+    .twitter {
+        width: inherit;
+        margin: inherit 0px inherit;
+    }
+    .flex-box .content {
+        flex: 1 1 200px;
+    }
+
+    .left-flex {
+      justify-content: space-around;
+    }
+}
