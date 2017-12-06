@@ -82,4 +82,7 @@ class StagesController < GuestController
   rescue
     redirect_to title_path
   end
+
+  def staff
+  end
 end
