@@ -16,8 +16,8 @@ function main(){
   game.fps = 30;
   game.rootScene.backgroundColor = "black";
 
-  for(let i = 1; i <= 13; i++){
-    game.preload("novel/" + i + ".png");
+  for(let i = 1; i <= 6; i++){
+    game.preload("novel/staff/" + i + ".png");
   }
   for(let i = 119; i <= 121; i++){
     game.preload("novel/" + i + ".png");
@@ -33,14 +33,12 @@ function main(){
     // キャラクター画像の準備
     var cimg = [];
     cimg[0] = false;
-    for(let i = 1; i <= 13; i++){
+    for(let i = 1; i <= 6; i++){
       cimg[i] = new Sprite(595, 842);
-      cimg[i].image = game.assets["novel/"+i+".png"];
+      cimg[i].image = game.assets["novel/staff/"+i+".png"];
       console.log(cimg[i].image);
       cimg[i].moveTo(-70, -120);
     }
-    cimg.splice(5, 1);
-    cimg.splice(6, 1);
     for(let i = 119; i <= 121; i++){
       cimg[i] = new Sprite(screen_width, screen_height);
       cimg[i].image = game.assets["novel/" + i + ".png"];
