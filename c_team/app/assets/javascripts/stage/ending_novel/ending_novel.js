@@ -280,11 +280,11 @@ function main(){
       'そうあずきが聞くと　おばあちゃんは嬉しそうに笑って　言いました。',
       false,
       'おばあちゃん',
-      '「それがね、　大したことなかったから　もう退院できるみたいなの！',
-      '　今週末には帰ることができるみたい　心配かけちゃってごめんね」',
+      '「それがね、　大したことなかったから　もう退院できるのよ！',
+      '　今すぐにでも　帰れるから　一緒に帰りましょう！」',
       false,
       'あずき',
-      '「本当に？　よかった…！」',
+      '「え　本当に…！？」',
       -9,
       13,
       false,
@@ -636,7 +636,7 @@ function main(){
       }
 
       if(noveltext.length == 0){
-        let submit = document.getElementById("title");
+        let submit = document.getElementById("staff");
         submit.submit();
         game.pause();
       }
