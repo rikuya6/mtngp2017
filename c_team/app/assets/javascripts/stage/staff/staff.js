@@ -16,11 +16,11 @@ function main(){
   game.fps = 30;
   game.rootScene.backgroundColor = "black";
 
-  for(let i = 1; i <= 13; i++){
-    game.preload("novel/" + i + ".png");
+  for(let i = 1; i <= 6; i++){
+    game.preload("novel/staff/" + i + ".png");
   }
-  for(let i = 101; i <= 112; i++){
-    game.preload("novel/" + i + ".jpg");
+  for(let i = 119; i <= 121; i++){
+    game.preload("novel/" + i + ".png");
   }
 
   game.onload = function(){
@@ -33,43 +33,57 @@ function main(){
     // キャラクター画像の準備
     var cimg = [];
     cimg[0] = false;
-    for(let i = 1; i <= 13; i++){
+    for(let i = 1; i <= 6; i++){
       cimg[i] = new Sprite(595, 842);
-      cimg[i].image = game.assets["novel/"+i+".png"];
+      cimg[i].image = game.assets["novel/staff/"+i+".png"];
       console.log(cimg[i].image);
-      cimg[i].moveTo(40, 650);
-      if (i == 4) cimg[i].moveTo(600, 50);
+      cimg[i].moveTo(-70, -120);
     }
-    console.log(cimg);
+    for(let i = 119; i <= 121; i++){
+      cimg[i] = new Sprite(screen_width, screen_height);
+      cimg[i].image = game.assets["novel/" + i + ".png"];
+      cimg[i].moveTo(0, 0);
+    }
 
     var label = []; // 物語表示のため、配列を用意する。
     var noveltext = [
       1001,
       '2017　松永プロジェクト',
       'あずきのおみまい',
-      '<br>',
-      '企画・制作',
-      '　C班一同',
+      '<br><br><br>',
       'あずき',
       '<br><br>',
-      'えほんかき',
+      'えほんかきのおじさん',
       '<br><br>',
       'おかあさん',
       '<br><br>',
       'きなこ',
-      1001,
-      'おしまい',
-      false,
-      false,
-    ];
-    var image = [
-      2,
-      3,
-      4,
+      '<br><br>',
+      'おばあちゃん',
+      '<br><br>',
+      'スーパーのおばちゃん',
+      '<br><br>',
+      '企画・制作',
+      '　C班一同',
     ];
 
-    var x = [40, 40, 40, 40, 600];
-    var y = [-800, -800, -800, -800, 650];
+    // Cookieフラグ管理
+    var status = Cookies.getJSON('status');
+    // console.log(status);
+
+    if (status.zunda || status.supermarket || status.flower_flg) {
+      if (status.zunda && status.supermarket && status.flower_flg) {
+        noveltext.push(119);
+        noveltext.push(false);
+      } else {
+        noveltext.push(120);
+        noveltext.push(false);
+      }
+    } else {
+      noveltext.push(121);
+      noveltext.push(false);
+    }
+    // console.log(noveltext);
 
     // 文字表示するための処理
     // labelという配列にどんどん追加していく
@@ -81,11 +95,8 @@ function main(){
       // 以下、キャラクター表示の指示が来た場合の処理
       if (!(isNaN(work))) {
         console.log("work:" + work);
-        if (work > 1000) { // 1000以上は文字色管理
+        if (work > 100) { // 1000以上は文字色管理
           label.push(work);
-        }else if (work > 100) {
-          sprite.image = game.assets['novel/' + work + '.jpg'];
-          //break;
         }else if (work > 0){
           scene.addChild(cimg[work]);
           game.pushScene(scene);
@@ -110,21 +121,41 @@ function main(){
       }else if (label[i - 1] > 1000){
         label[i].color = col[label[i-1]];
         label[i].font = "56px 'メイリオ'";
+      }else if (label[i] > 100) {
+        scene.addChild(cimg[label[i]]);
+        cimg[label[i]].opacity = 0.0;
+        cimg[label[i]].tl.delay(40 * i + 450).fadeIn(100);
+        continue;
       }else{
         label[i].color = "white"; // 通常色
         label[i].font = "32px 'メイリオ'";
       }
-      label[i].moveTo( 500, 640 + index * 40);
+      label[i].moveTo( 450, 640 + index * 40);
       // label[i].color = "white";
       // if(i % 2 == 0)   label[i].color = "red";
       scene.addChild(label[i]);
-      label[i].tl.fadeIn(40 * i).moveTo(500, -1000, 850); // スクロール
-      if (i < 5){
+      label[i].tl.fadeIn(40 * i).moveTo(450, -1000, 850); // スクロール
+      if (i < 7) {
         scene.addChild(cimg[i]);
-        cimg[i].tl.fadeIn(100 * i).moveTo(x[i], y[i], 250); // スクロール
+        cimg[i].opacity = 0.0;
+        cimg[i].tl.delay(140 * i)
+                  .fadeIn(40)
+                  .delay(70)
+                  .fadeOut(40)
       }
       index++;
     }
+
+    /* どこをクリックしてもすすめるようにするためのすぷらいとくん */
+    var sprite4 = new Sprite(screen_width, screen_height);
+    scene.addChild(sprite4);
+    game.pushScene(scene);
+    // 画面がクリックされたならば以下が呼び出される
+    sprite4.addEventListener('touchstart', function() {
+      let submit = document.getElementById("title");
+      submit.submit();
+      game.pause();
+    });
 
   };
   game.start();
