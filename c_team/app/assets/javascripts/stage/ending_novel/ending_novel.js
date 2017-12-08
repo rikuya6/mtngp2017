@@ -43,7 +43,8 @@ function main(){
     console.log(cimg);
 
     var label = []; // 物語表示のため、配列を用意する。
-    var noveltext = [
+    var noveltext = [];
+    var text = [
       'あずき',
       '「よし、このルートで向かおう！」', //ああああああ
       13,
@@ -450,6 +451,7 @@ function main(){
     console.log(status);
 
     if (!(status.library_flg) && (status.zunda || status.supermarket || status.flower_flg)) {
+      Array.prototype.push.apply(noveltext, text);
       if (status.zunda) Array.prototype.push.apply(noveltext, zundatext);
       if (status.supermarket) Array.prototype.push.apply(noveltext, supertext);
       Array.prototype.push.apply(noveltext, hosptext);

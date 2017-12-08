@@ -43,6 +43,8 @@ function main(){
     console.log(cimg);
 
     var label = []; // 物語表示のため、配列を用意する。
+
+    //flowerがtrue
     var noveltext = [
       '<br><br>',
       'あずきは　無事病院のそばのバス停で　降りることができました。',
@@ -67,16 +69,82 @@ function main(){
       false,
     ];
 
+    var park = [
+      '<br><br>',
+      'あずきは　無事病院のそばのバス停で　降りることができました。',
+      9,
+      104,
+      false,
+      'あずき',
+      '「よかった、ちょっと時間はなくなっちゃったし　お花も置いて',
+      '　きちゃったけど　ここまでこれた！」',
+      false,
+      'あずき',
+      '「病院に　向かうまでの間に　お花の代わりになるものが',
+      '　買えたらいいな…」',
+      false,
+      false,
+    ];
+
+    var library = [
+      '<br><br>',
+      'あずきは　無事病院のそばのバス停で　降りることができました。',
+      9,
+      104,
+      false,
+      'あずき',
+      '「よかった、なんとか　ここまでこれた…」',
+      false,
+      'あずき',
+      '「ここから急いで向かえば　おばあちゃんのところまで　いけるかな」',
+      false,
+      '<br><br>',
+      'あずきがそう　つぶやいたときです。',
+      false,
+      '？',
+      '「あずき！　まだこんなところにいたのか」',
+      7,
+      false,
+      '<br><br>',
+      'すぐそばで　名前を呼ばれた　あずきのそばには',
+      'スーツ姿のお父さんがいました。',
+      false,
+      'あずき',
+      '「お父さん！　どうしてここにいるの？」',
+      -9,
+      1,
+      false,
+      'お父さん',
+      '「あずきがお見舞いに行くって聞いて、',
+      '　一緒に帰ろうと思ったんだけど',
+      '　まだここにいたんだね…」',
+      false,
+      'あずき',
+      '「うん…ちょっと図書館で寄り道しちゃって…」',
+      -1,
+      5,
+      false,
+      'お父さん',
+      '「そっか、とりあえずあんまり遅いと　おばあちゃんと',
+      '　会える時間がなくなっちゃうから急いで行こうか」',
+      false,
+      'あずき',
+      '「うん」',
+      false,
+      '<br><br>',
+      'あずきは　お父さんに連れられて　病院まで向かうことになりました。',
+      false,
+      false,
+    ];
+
     // Cookieフラグ管理
-/*    var status = Cookies.getJSON('status');
+    var status = Cookies.getJSON('status');
     console.log(status);
-    if (status.flower_flg && !(status.park_flg) && !(status.library_flg)) noveltext = flower;
-    else {
-      // if (status.flower_flg) noveltext = flower;
-      if (status.park_flg) noveltext = park;
-      if (status.library_flg) noveltext = library;
+    if (!(status.flower_flg) && status.park_flg) {
+      noveltext = park;
+    } else if (status.library_flg) {
+      noveltext = library;
     }
-*/
 
     /* 以下からテキストボックスの描画 */
 
@@ -230,6 +298,7 @@ function main(){
 
       if(noveltext.length == 0){
         let submit = document.getElementById("stage3");
+        if (status.library_flg) submit = document.getElementById("ending");
         submit.submit();
         game.pause();
       }
