@@ -78,14 +78,18 @@ class StagesController < GuestController
 
   def ending_novel
     status = JSON.parse cookies['status']
-    redirect_to title_path unless status['stage1'] && status['stage2']
+    unless (status['stage1'] && status['stage2'] && status['stage3']) || (status['stage1'] && status['stage2'] && !status['stage3'] && status['library_flg'])
+      redirect_to title_path
+    end
   rescue
     redirect_to title_path
   end
 
   def staff
     status = JSON.parse cookies['status']
-    redirect_to title_path unless status['stage1'] && status['stage2'] && status['stage3']
+    unless (status['stage1'] && status['stage2'] && status['stage3']) || (status['stage1'] && status['stage2'] && !status['stage3'] && status['library_flg'])
+      redirect_to title_path
+    end
   rescue
     redirect_to title_path
   end
