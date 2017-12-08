@@ -16,7 +16,7 @@ function main(){
   game.fps = 30;
   game.rootScene.backgroundColor = "black";
 
-  for(let i = 1; i <= 6; i++){
+  for(let i = 1; i <= 7; i++){
     game.preload("novel/staff/" + i + ".png");
   }
   for(let i = 119; i <= 121; i++){
@@ -33,7 +33,7 @@ function main(){
     // キャラクター画像の準備
     var cimg = [];
     cimg[0] = false;
-    for(let i = 1; i <= 6; i++){
+    for(let i = 1; i <= 7; i++){
       cimg[i] = new Sprite(595, 842);
       cimg[i].image = game.assets["novel/staff/"+i+".png"];
       console.log(cimg[i].image);
@@ -60,6 +60,8 @@ function main(){
       'きなこ',
       '<br><br>',
       'おばあちゃん',
+      '<br><br>',
+      'お父さん',
       '<br><br>',
       'スーパーのおばちゃん',
       '<br><br>',
@@ -135,7 +137,7 @@ function main(){
       // if(i % 2 == 0)   label[i].color = "red";
       scene.addChild(label[i]);
       label[i].tl.fadeIn(40 * i).moveTo(450, -1000, 850); // スクロール
-      if (i < 7) {
+      if (i < 8) {
         scene.addChild(cimg[i]);
         cimg[i].opacity = 0.0;
         cimg[i].tl.delay(140 * i)
