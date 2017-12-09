@@ -372,7 +372,7 @@ function main(){
     false,
     'あずき',
     '「おばあちゃん…？',
-    '　なんで　返事してくれないの…？',
+    '　なんで　返事してくれないの…？」',
     false,
     'おばあちゃん',
     '「………」',
@@ -460,6 +460,7 @@ function main(){
       Array.prototype.push.apply(noveltext, grandmom2);
       Array.prototype.push.apply(noveltext, good);
     } else if (status.zunda && !(status.supermarket)) {
+      snack[0] += '」';
       Array.prototype.push.apply(noveltext, snack);
       Array.prototype.push.apply(noveltext, grandmom2);
       Array.prototype.push.apply(noveltext, nomal);
