@@ -232,10 +232,20 @@ function main(){
   let apple = [
     '　この果物は　お手伝いしたから　お礼にもらったんだよ！」',
   ];
-  let nonflower = [
+  let nonflower_snack_apple = [
     'あずき',
     '「お花は持ってこれなかったけど　おばあちゃんの好きな',
-    '　おだんごと　果物持ってきたよ！」',
+    '　おだんごと　果物　持ってきたよ！」',
+  ];
+  let nonflower_snack = [
+    'あずき',
+    '「お花は持ってこれなかったけど　おばあちゃんの好きな',
+    '　おだんご　持ってきたよ！」',
+  ];
+  let nonflower_apple = [
+    'あずき',
+    '「お花は持ってこれなかったけど　おばあちゃんの好きな',
+    '　果物　持ってきたよ！」',
   ];
 
   let grandmom2 = [
@@ -451,6 +461,12 @@ function main(){
     if (status.flower_flg) Array.prototype.push.apply(noveltext, flower);
 
     if ((status.zunda || status.supermarket) && !(status.flower_flg)) {
+      if (status.zunda && status.supermarket)
+        nonflower = nonflower_snack_apple;
+      else if (status.zunda)
+        nonflower = nonflower_snack;
+      else
+        nonflower = nonflower_apple;
       Array.prototype.push.apply(noveltext, nonflower);
       Array.prototype.push.apply(noveltext, grandmom2);
       Array.prototype.push.apply(noveltext, nomal);
