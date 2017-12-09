@@ -1,5 +1,5 @@
 class Novel {
-  constructor(noveltext, submitIdName) {
+  constructor(noveltext, getCimg, submitIdName) {
     this.game = new Game(screen_width, screen_height);
     this.game.self = this;
     this.game.fps = 30;
@@ -7,6 +7,7 @@ class Novel {
     this.noveltext = noveltext;
     this.self = this;
     this.submitIdName = submitIdName;
+    this.getCimg = getCimg;
 
     this.game.onload = function() {
       this.self.main();
@@ -28,23 +29,13 @@ class Novel {
   main() {
     let scene = new Scene();
     let sprite = new Sprite(screen_width, screen_height);
-    // sprite.image = this.game.assets['tutorial1_novel/background.jpg'];
     scene.addChild(sprite);
     this.game.pushScene(scene);
 
     // キャラクター画像の準備
-    let cimg = [];
-    cimg[0] = false;
-    for(let i = 1; i <= 13; i++){
-      cimg[i] = new Sprite(595, 842);
-      cimg[i].image = this.game.assets["novel/"+i+".png"];
-      console.log(cimg[i].image);
-      cimg[i].moveTo((screen_width / 4) - 50, -100);
-    }
-    console.log(cimg);
+    let cimg = this.getCimg();
 
     let label = []; // 物語表示のため、配列を用意する。
-
 
     /* 以下からテキストボックスの描画 */
 
@@ -98,7 +89,6 @@ class Novel {
 
       // 以下、キャラクター表示の指示が来た場合の処理
       if (!(isNaN(work))) {
-        console.log("work:" + work);
         // キャラクターがボックスの前に来ちゃうので一度取り除く
         scene.removeChild(sprite2);
         scene.removeChild(sprite3);
@@ -147,7 +137,6 @@ class Novel {
       // 既に表示されていた文字を消す
       let len = label.length;
       for(let i = 0; i < len; i++){
-        console.log(label[0]);
         scene.removeChild(label[0]);
         label.splice(0, 1);
       }
@@ -155,17 +144,17 @@ class Novel {
       // 文字表示するための処理
       // labelという配列にどんどん追加していく
       while(true){
-        let work = this.novelObj.noveltext[0];
-        this.novelObj.noveltext.splice(0, 1); // this.noveltext０番目から１つ削除
-        if (!(work)) break;  // 配列this.noveltextにはfalseがある。
+        let work = this.novelObj.noveltext.splice(0, 1)[0]; // this.novelObj.noveltext０番目から１つ削除
+        if (!(work)) break;  // 配列this.novelObj.noveltextにはfalseがある。
 
         // 以下、キャラクター表示の指示が来た場合の処理
         if (!(isNaN(work))) {
-          console.log("work:" + work);
           // キャラクターがボックスの前に来ちゃうので一度取り除く
           scene.removeChild(sprite2);
           scene.removeChild(sprite3);
-          if (work > 100) {
+          if (work > 1000) { // 1000以上は文字色管理
+            label.push(work);
+          }else if (work > 100) {
             sprite.image = this.novelObj.game.assets['novel/' + work + '.jpg'];
             //break;
           }else if (work > 0){
@@ -180,21 +169,40 @@ class Novel {
           this.novelObj.game.pushScene(scene);
           continue;
         }
-
         // 以下、通常通りテキストを表示する処理
-        let tex = new Label(work);
+        var tex = new Label(work);
         tex.width = tex_width;
         label.push(tex); // falseじゃないなら一度に表示する分追加
       }
 
+      // // 表示の処理
+      // for(let i = 0; i < label.length; i++){
+      //   label[i].moveTo( 40, 400 + i * 40);
+      //   label[i].font = "32px 'メイリオ'";
+      //   label[i].color = "white";
+      //   // if(i % 2 == 0)   label[i].color = "red";
+      //   scene.addChild(label[i]);
+      //   this.novelObj.game.pushScene(scene);
+      // }
+
       // 表示の処理
-      for(let i = 0; i < label.length; i++){
-        label[i].moveTo( 40, 400 + i * 40);
+      let index = 0; // インデックス管理に必須
+      for(let i = 0; i < label.length; i++) {
+        if (label[i] > 1000){ //文字色変更信号
+          // console.log(col[label[i]]);
+          continue;
+        }else if (label[i - 1] > 1000){
+          label[i].color = col[label[i-1]];
+        }else{
+          label[i].color = "white"; // 通常色
+        }
+        label[i].moveTo( 40, 400 + index * 40);
         label[i].font = "32px 'メイリオ'";
-        label[i].color = "white";
+        // label[i].color = "white";
         // if(i % 2 == 0)   label[i].color = "red";
         scene.addChild(label[i]);
         this.novelObj.game.pushScene(scene);
+        index++;
       }
 
       if(this.novelObj.noveltext.length == 0){
