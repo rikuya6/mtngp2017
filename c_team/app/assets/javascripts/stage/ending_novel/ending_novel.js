@@ -43,7 +43,8 @@ function main(){
     console.log(cimg);
 
     var label = []; // 物語表示のため、配列を用意する。
-    var noveltext = [
+    var noveltext = [];
+    var text = [
       'あずき',
       '「よし、このルートで向かおう！」', //ああああああ
       13,
@@ -268,7 +269,7 @@ function main(){
       '　ありがとう　あずきちゃん」',
       false,
       'あずき',
-      '「あずきも　おばあちゃんに喜んでもらえて　嬉しい！',
+      '「私も　おばあちゃんに喜んでもらえて　嬉しい！',
       '　ずっと寂しかったんだよ　まだお家帰ってこれないの？」',
       -1,
       9,
@@ -280,11 +281,11 @@ function main(){
       'そうあずきが聞くと　おばあちゃんは嬉しそうに笑って　言いました。',
       false,
       'おばあちゃん',
-      '「それがね、　大したことなかったから　もう退院できるみたいなの！',
-      '　今週末には帰ることができるみたい　心配かけちゃってごめんね」',
+      '「それがね、　大したことなかったから　もう退院できるのよ！',
+      '　今すぐにでも　帰れるから　一緒に帰りましょう！」',
       false,
       'あずき',
-      '「本当に？　よかった…！」',
+      '「え　本当に…！？」',
       -9,
       13,
       false,
@@ -392,7 +393,7 @@ function main(){
       5,
       false,
       'あずき',
-      '「あずきが　悪いのかな',
+      '「私が　悪いのかな',
       '　お母さんが　お花を持って行きなさい　とか　寄り道はダメだよ',
       '　とか言ってたの　守らなかったから…？」',
       false,
@@ -450,6 +451,7 @@ function main(){
     console.log(status);
 
     if (!(status.library_flg) && (status.zunda || status.supermarket || status.flower_flg)) {
+      Array.prototype.push.apply(noveltext, text);
       if (status.zunda) Array.prototype.push.apply(noveltext, zundatext);
       if (status.supermarket) Array.prototype.push.apply(noveltext, supertext);
       Array.prototype.push.apply(noveltext, hosptext);
@@ -636,7 +638,7 @@ function main(){
       }
 
       if(noveltext.length == 0){
-        let submit = document.getElementById("title");
+        let submit = document.getElementById("staff");
         submit.submit();
         game.pause();
       }
