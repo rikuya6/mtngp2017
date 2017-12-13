@@ -21,7 +21,7 @@ class Novel {
     for(let i = 1; i <= 13; i++) {
       this.game.preload("novel/" + i + ".png");
     }
-    for(let i = 101; i <= 118; i++) {
+    for(let i = 102; i <= 118; i++) {
       this.game.preload("novel/" + i + ".jpg");
     }
   }
