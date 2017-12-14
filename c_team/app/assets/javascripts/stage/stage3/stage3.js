@@ -52,23 +52,23 @@ function main() {
     foregroundMap.image = game.assets["objects.png"];
     foregroundMap.loadData([
       [ 5,  5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 12, 13,  5,  5, 17, 17],
-      [ 5,  5, 18, -1, -1, -1, -1, -1,  5,  5, -1, -1, -1, -1, -1, -1, 17, 17],
+      [ 5,  5, 18, -1, -1, -1, -1, -1,  5,  5, -1, -1, 25, 25, -1, -1, 17, 17],
       [ 5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  5,  5,  5,  5, -1, 17, 17],
       [ 5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  5,  5,  5,  5, -1, 17, 17],
       [ 5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17],
       [ 5, -1, -1,  5, -1,  5,  5, -1, -1, -1, -1, -1, -1,  5,  5, -1, 17, 17],
       [-1, -1, -1,  5, -1,  5,  5, -1,  5,  5, -1, 29, -1,  5,  5, -1, 17, 17],
-      [-1, -1, -1,  5, -1,  5,  5, -1,  5,  5, -1, -1, -1,  5,  5, -1, 17, 17],
+      [-1, -1, -1,  5, -1,  5,  5, -1,  5,  5, -1, 27, -1,  5,  5, -1, 17, 17],
       [-1, 28, -1,  5, -1, -1, -1, -1,  5,  5, -1, -1, -1, -1, -1, -1, 17, 17],
-      [-1, -1, -1, -1, -1, -1, -1, -1,  5,  5, -1, -1, -1, -1, -1, -1, 17, 17],
+      [-1, 27, -1, -1, -1, -1, -1, -1,  5,  5, -1, -1, -1, -1, -1, -1, 17, 17],
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17]
     ]);
-    // var ruledLine = (new RuledLine()).getSprite();
+    let ruledLine = (new RuledLine()).getSprite();
     let azuki = new Player(game, map, "azuki_walk.png", 128, 128, 2);
     let submit = document.getElementById("ending_novel");
     let zunda_flg = false;
     let supermarket_flg = false;
-    azuki.player.addEventListener('enterframe', function () {
+    azuki.sprite.addEventListener('enterframe', function () {
       // ずんだ堂
       if (this.x == 64 && this.y == 576) zunda_flg = true;
       // スーパーマーケット
@@ -89,18 +89,18 @@ function main() {
     });
 
     map.addChild(foregroundMap);
-    // map.addChild(ruledLine);
+    map.addChild(ruledLine);
     map.addChild(azuki.getSprite());
     game.rootScene.addChild(map);
 
-    for(let i = 0; i < 7; i++)
-      (new MapObject(game, map, azuki.player.moveController, "color_cone.png", 3)).appendMap(map);
-    (new MapObject(game, map, azuki.player.moveController, "stage3/signboard_right.png", 4)).appendMap(map);
+    for(let i = 0; i < 8; i++)
+      (new MapObstacle(game, map, azuki.sprite.moveController, "color_cone.png", 3)).appendMap(map);
+    (new MapObstacle(game, map, azuki.sprite.moveController, "stage3/signboard_right.png", 4)).appendMap(map);
 
     var startButton = new StartButton(function () {
-      azuki.player.moveController.setHitTurnLeftOrRight();
-      azuki.player.moveController.moveStraight();
-      azuki.player.moveController.execute();
+      azuki.sprite.moveController.setHitTurnLeftOrRight();
+      azuki.sprite.moveController.moveStraight();
+      azuki.sprite.moveController.execute();
       resetButton.enable();
       startButton.disable();
     });

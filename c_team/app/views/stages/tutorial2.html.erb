@@ -2,7 +2,7 @@
 
 <% content_for :stage_header do %>
   <p id="story">チュートリアル2</p>
-  <p id="mis">ミッション：主人公をゴールに届けよう!!</p>
+  <p id="mis">ミッション：主人公をゴールにとどけよう!!</p>
 <% end %>
 
 <div id="motion">
@@ -13,14 +13,16 @@
   <div id="help">
     <h3>〜ヘルプ〜</h3>
     <div class="balloon" onclick="help_button()">
-      <p id="help_text_before">ここをクリックしたら「ヘルプ」が表示されるよ！</p>
-      <p id="help_text_after" style="display: none">私は赤色のカラーコーンにぶつかると、右を向くよ！</p>
+      <p id="help_text_before">ここをクリックしたら「ヘルプ」がひょうじされるよ！</p>
+      <p id="help_text_after" style="display: none">わたしは赤色のカラーコーンにぶつかると、右を向くよ！</p>
     </div>
     <%= image_tag('favicon.png', id: 'help-pic') %>
   </div>
 </div>
 
-<div id="enchant-stage">
-  <%= javascript_include_tag 'stage/tutorial2/tutorial2' %>
+<div class="enchant-wrapper">
+  <div id="enchant-stage">
+    <%= javascript_include_tag 'stage/tutorial2/tutorial2' %>
+  </div>
 </div>
 <%= form_tag tutorial3_novel_path, id: :tutorial3_novel, method: :get %>

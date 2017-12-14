@@ -1,31 +1,31 @@
-class Player {
+class Player extends MapObject {
   constructor(game, map, asset, sx, sy, direction) {
-    this.player = new Sprite(spriteSize.x, spriteSize.y);
-    this.player.image = game.assets[asset];
-    this.player.startX = sx;
-    this.player.startY = sy;
-    this.player.startDirection = direction;
-    this.player.x = sx;
-    this.player.y = sy;
-    // @TODO キャラクの上に障害物を置けないようにする。移動したときに判定を変える処理がない map.collisionData[Math.floor(sy / 32) + 1][Math.floor(sx / 32) + 1] = 1;
-    this.player.frame = 1;
-    this.player.isMoving = false;
-    this.player.direction = direction;
+    super(game, map, asset, 1);
+    this.sprite.self = this;
+    this.sprite.startX = sx;
+    this.sprite.startY = sy;
+    this.sprite.startDirection = direction;
+    this.sprite.x = sx;
+    this.sprite.y = sy;
+    this.sprite.frame = 1;
+    this.sprite.isMoving = false;
+    this.sprite.direction = direction;
     this.d = [180, 270, 90, 0];
-    this.player.angle = this.d[direction];
-    this.player.walk = 1;
-    this.player.moveSpeed = 4; // default: 4
-    this.player.up = false;
-    this.player.right = false;
-    this.player.left = false;
-    this.player.down = false;
-    this.player.isDebugMode = false; // default: false
-    this.player.moveController = new MoveController();
-    this.player.addAngle = function (add) {
+    this.sprite.angle = this.d[direction];
+    this.sprite.walk = 1;
+    this.sprite.moveSpeed = 8; // default: 8
+    this.sprite.up = false;
+    this.sprite.right = false;
+    this.sprite.left = false;
+    this.sprite.down = false;
+    this.sprite.isDebugMode = false; // default: false
+    this.sprite.moveController = new MoveController();
+    this.changeCollisionData(this.sprite.x, this.sprite.y, this.sprite.defaultHitStatus);
+    this.sprite.addAngle = function (add) {
       if(this.angle + add >= 0) this.angle = (this.angle + add) % 360;
       else this.angle = (360 + add) % 360;
     };
-    this.player.changeAngleDown = function () {
+    this.sprite.changeAngleDown = function () {
       switch (this.angle) {
         case 0:
         case 180:
@@ -39,7 +39,7 @@ class Player {
           break;
       }
     };
-    this.player.move = function () {
+    this.sprite.move = function () {
       switch (this.angle) {
         case 0:
           this.up = true;
@@ -57,8 +57,9 @@ class Player {
           throw new Error("想定外の向きです。" + this.angle);
       }
     };
-    this.player.moving = function () {
+    this.sprite.moving = function () {
       if (this.moveController.hasNextOrder() && !this.isMoving) {
+        this.self.changeCollisionData(this.startX, this.startY, 0);
         switch (this.moveController.nextOrder()) {
           case 0: // まっすぐ
             this.move();
@@ -82,7 +83,7 @@ class Player {
       this.frame = this.direction * 3 + this.walk;
       if (this.isMoving) {
         this.moveBy(this.vx, this.vy);
-        if (this.isDebugMode) console.log(this.x, this.y); // 現在のplayer座標
+        if (this.isDebugMode) console.log(this.x, this.y); // 現在のsprite座標
         if (game.frame % 3 != 0) {
           this.walk++;
           this.walk %= 3;
@@ -201,50 +202,48 @@ class Player {
         }
       }
     };
-    this.player.addEventListener('enterframe', function () {
+    this.sprite.addEventListener('enterframe', function () {
       this.moving();
     });
-    this.debugMode(game, this.player); // デバック用関数
-  }
-
-  getSprite() {
-    return this.player;
+    this.debugMode(game, this.sprite); // デバック用関数
   }
 
   reset() {
-    this.player.moveController.reset();
+    this.sprite.moveController.reset();
+    this.changeCollisionData(this.sprite.startX, this.sprite.startY, 1);
     this.resetPosition();
   }
 
   resetPosition() {
-    this.player.x = this.player.startX;
-    this.player.y = this.player.startY;
-    this.player.direction = this.player.startDirection;
-    this.player.angle = this.d[this.player.startDirection];
-    this.player.walk = 1;
-    this.player.isMoving = false;
-    this.player.frame = 1;
-    this.player.up = false;
-    this.player.right = false;
-    this.player.left = false;
-    this.player.down = false;
-    this.player.vx = this.player.vy = this.ty = this.tx = 0;
+    this.sprite.x = this.sprite.startX;
+    this.sprite.y = this.sprite.startY;
+    this.sprite.direction = this.sprite.startDirection;
+    this.sprite.angle = this.d[this.sprite.startDirection];
+    this.sprite.walk = 1;
+    this.sprite.isMoving = false;
+    this.sprite.frame = 1;
+    this.sprite.up = false;
+    this.sprite.right = false;
+    this.sprite.left = false;
+    this.sprite.down = false;
+    this.sprite.vx = this.sprite.vy = this.ty = this.tx = 0;
   }
 
-  debugMode(game, player) {
+  debugMode(game, sprite) {
     game._debugS = false;
-    game._default_moevSpeed = player.moveSpeed;
+    game._default_moevSpeed = sprite.moveSpeed;
     game.keybind('S'.charCodeAt(0), 'S');
     game.addEventListener('Sbuttondown', function() {
       game._debugS = !game._debugS;
     });
     game.addEventListener('enterframe', function() {
       if (game._debugS) {
-        player.isDebugMode = true;
-        player.moveSpeed = 16;
+        sprite.isDebugMode = true;
+        sprite.moveSpeed = 64;
+        sprite.self.changeCollisionData(sprite.startX, sprite.startY, 0);
       } else {
-        player.isDebugMode = false;
-        player.moveSpeed = game._default_moevSpeed;
+        sprite.isDebugMode = false;
+        sprite.moveSpeed = game._default_moevSpeed;
       }
     });
   }

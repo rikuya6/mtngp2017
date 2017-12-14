@@ -55,21 +55,21 @@ function main() {
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  5,  5, -1, 17, 17],
       [-1,  5,  5,  5, -1,  5,  5,  5,  5,  5,  5,  5, -1,  5,  5, -1, 17, 17],
       [-1,  5,  5,  5, -1, -1, -1, -1, -1,  5, -1, -1, -1,  6, -1, -1, 17, 17],
-      [-1,  5,  5,  5, -1, -1,  0,  1, -1,  5, -1, -1, -1, -1, -1, -1, 17, 17],
+      [-1,  5,  5,  5, -1, -1,  0,  1, -1,  5, -1, -1, -1, 27, -1, -1, 17, 17],
       [-1,  5,  5,  5, -1, -1,  3,  4, -1,  5, -1, -1, -1, -1, -1, -1, 17, 17],
-      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17],
+      [-1, -1, -1, -1, -1, -1, 27, 27, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17],
       [ 5,  5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  5,  5, 17, 17],
       [ 5,  5,  5,  5, -1, 14, 14, 14, 14, 15, 16, -1, -1, -1,  5, 18, 17, 17],
-      [ 5,  5,  5,  5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 25, 17, 17],
+      [ 5,  5,  5,  5, -1, -1, -1, -1, -1, 27, 27, -1, -1, -1, -1, 25, 17, 17],
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17]
     ]);
-    // var ruledLine = (new RuledLine()).getSprite();
-    var azuki = new Player(game, map, "azuki_walk.png", 0, 64, 0);
+    let ruledLine = (new RuledLine()).getSprite();
+    let azuki = new Player(game, map, "azuki_walk.png", 0, 64, 0);
     let submit = document.getElementById("stage1_novel");
     let flower_shop = false;
     let park = false;
     let library = false;
-    azuki.player.addEventListener('enterframe', function () {
+    azuki.sprite.addEventListener('enterframe', function () {
       // 花屋
       if (this.x == 832 && this.y == 256) flower_shop = true;
       // 公園
@@ -91,17 +91,17 @@ function main() {
       }
     });
     map.addChild(foregroundMap);
-    // map.addChild(ruledLine);
+    map.addChild(ruledLine);
     map.addChild(azuki.getSprite());
     game.rootScene.addChild(map);
 
-    for(let i = 0; i < 5; i++)
-      (new MapObject(game, map, azuki.player.moveController, "color_cone.png", 3)).appendMap(map);
+    for(let i = 0; i < 6; i++)
+      (new MapObstacle(game, map, azuki.sprite.moveController, "color_cone.png", 3)).appendMap(map);
 
     var startButton = new StartButton(function () {
-      azuki.player.moveController.setHitTurnLeftOrRight();
-      azuki.player.moveController.moveStraight();
-      azuki.player.moveController.execute();
+      azuki.sprite.moveController.setHitTurnLeftOrRight();
+      azuki.sprite.moveController.moveStraight();
+      azuki.sprite.moveController.execute();
       resetButton.enable();
       startButton.disable();
     });

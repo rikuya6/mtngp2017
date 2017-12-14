@@ -53,7 +53,7 @@ function main(){
     // SurfaceオブジェクトをSpriteオブジェクトのimageプロパティに代入
     sprite22.image = surface;
     // コンテキストを取得する
-    var context = surface.context;
+    context = surface.context;
     // パスの描画の初期化
     context.beginPath();
     // 描画開始位置の移動
@@ -71,7 +71,7 @@ function main(){
     // SurfaceオブジェクトをSpriteオブジェクトのimageプロパティに代入
     sprite23.image = surface;
     // コンテキストを取得する
-    var context = surface.context;
+    context = surface.context;
     // パスの描画の初期化
     context.beginPath();
     // 描画開始位置の移動
@@ -111,9 +111,9 @@ function main(){
     sprite4.x = 400;
     sprite4.y = 435;
     sprite4.backgroundColor = "rgba(0, 0, 0, 0)";
-    var surface = new Surface(100, 100);
+    surface = new Surface(100, 100);
     sprite4.image = surface;
-    var context = surface.context;
+    context = surface.context;
     context.beginPath();
     context.moveTo(10, 10);
 
@@ -123,7 +123,7 @@ function main(){
     sprite5.backgroundColor = "rgba(0, 0, 0, 0)";
     surface = new Surface(100, 100);
     sprite5.image = surface;
-    var context = surface.context;
+    context = surface.context;
     context.beginPath();
     context.moveTo(10, 10);
 
@@ -133,7 +133,7 @@ function main(){
     sprite6.backgroundColor = "rgba(0, 0, 0, 0)";
     surface = new Surface(100, 100);
     sprite6.image = surface;
-    var context = surface.context;
+    context = surface.context;
     context.beginPath();
     context.moveTo(10, 10);
 
@@ -160,6 +160,11 @@ function main(){
 
     sprite6.addEventListener('touchstart', function() {
       // 「つづきからはじめる」
+      let status = Cookies.getJSON('status');
+      if (status.stage1 && status.stage2 && status.stage3) {
+        // ゲームをすでにクリアしていたら, データの消去を行う
+        Cookies.remove('status');
+      }
       let submit = document.getElementById("intro_novel");
       submit.submit();
       game.pause();

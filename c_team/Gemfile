@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '>= 2.4.0'
 
 gem 'rails', '4.2.8'
 gem 'sass-rails', '~> 5.0'
@@ -15,14 +16,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rails-i18n'
 gem 'kaminari'
 gem 'puma'
-# gem 'carrierwave'
-# gem 'mini_magick'
 gem 'enumerize'
-gem 'faker'
-# gem 'nested_form'
-#gem 'mysql2'
-gem 'babel-transpiler'
 gem 'js_cookie_rails'
+gem 'babel-transpiler'
 
 group :test do
   gem 'factory_girl_rails'
@@ -44,6 +40,7 @@ group :development do
   gem 'pry-stack_explorer'
   gem 'annotate'
   gem 'bullet'
+  gem 'faker'
 end
 
 group :production do

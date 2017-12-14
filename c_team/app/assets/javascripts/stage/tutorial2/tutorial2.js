@@ -63,15 +63,17 @@ function main() {
       [-1, -1, -1, -1, -1, -1, -1, 24, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17],
       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 17, 17]
     ]);
-    var ruledLine = (new RuledLine()).getSprite();
+    let ruledLine = (new RuledLine()).getSprite();
     var azuki = new Player(game, map, "azuki_walk.png", 0, 0, 2);
     let submit = document.getElementById("tutorial3_novel");
-    azuki.player.addEventListener('enterframe', function() {
+    azuki.sprite.addEventListener('enterframe', function() {
       if (this.x == 448 && this.y == 576) {
-        Cookies.set('tutorial_status', {
-          tutorial1: true,
+        let status = Cookies.getJSON('tutorial_status');
+        let addStatus = {
           tutorial2: true
-        });
+        };
+        Object.assign(status, addStatus);
+        Cookies.set('tutorial_status', status);
         submit.submit();
         game.pause();
       }
@@ -80,12 +82,12 @@ function main() {
     map.addChild(ruledLine);
     map.addChild(azuki.getSprite());
     game.rootScene.addChild(map);
-    (new MapObject(game, map, azuki.player.moveController, "color_cone.png", 3)).appendMap(map);
+    (new MapObstacle(game, map, azuki.sprite.moveController, "color_cone.png", 3)).appendMap(map);
 
     var startButton = new StartButton(function() {
-      azuki.player.moveController.setHitTurnRightOrLeft();
-      azuki.player.moveController.moveStraight();
-      azuki.player.moveController.execute();
+      azuki.sprite.moveController.setHitTurnRightOrLeft();
+      azuki.sprite.moveController.moveStraight();
+      azuki.sprite.moveController.execute();
       resetButton.enable();
       startButton.disable();
     });

@@ -3,3 +3,5 @@
 
 web_new/less/
 /.vscode
+
+.ruby-version
