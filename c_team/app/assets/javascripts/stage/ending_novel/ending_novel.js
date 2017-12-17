@@ -461,6 +461,7 @@ function main(){
     if (status.flower_flg) Array.prototype.push.apply(noveltext, flower);
 
     if ((status.zunda || status.supermarket) && !(status.flower_flg)) {
+      let nonflower;
       if (status.zunda && status.supermarket)
         nonflower = nonflower_snack_apple;
       else if (status.zunda)
